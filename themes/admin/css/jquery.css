@@ -1,0 +1,191 @@
+/* CSS Document */
+.shadowaccordion { border:none;}
+.shadowaccordion .ui-accordion-header a {
+	background-image:url(../images/el_bg.png);
+	background-color:#333333!important;
+	color:#FFF!important;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	
+	
+ 	
+}
+
+.shadowaccordion .ui-state-active a, .shadowaccordion .ui-accordion-header a:hover{
+	font-weight:bold;
+}
+
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+  color:#FFFFFF;
+  text-decoration:none;
+}
+
+.shadowaccordion div.ui-accordion-content{
+	
+	border:solid 1px #CCC!important;
+	font: 10pt Arial,Helvetica,sans-serif;
+	background-color:#F1F1F1!important;
+	background-image:none;
+}
+.shadowaccordion .ui-corner-bottom {
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;
+}
+
+.shadowaccordion .ui-corner-top {
+  border-top-left-radius:0px;
+  border-top-right-radius:0px;
+}
+
+/* Progress bars*/
+.shadowprogressbar.ui-widget-content{
+	background-color:#F1F1F1!important;
+	background-image:none;
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .25) ;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .25) ;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .25) ;
+	
+}
+.shadowprogressbar.ui-corner-all, .shadowprogressbar .ui-corner-left{
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+}
+
+.shadowprogressbar .ui-progressbar-value{
+	background-image:url(../images/el_bg.png);
+	background-color:#333333!important;
+	border-left-radius:0px;
+    border-right-radius:0px;
+}
+/*Sliders*/
+.shadowslider.ui-corner-all,.shadowslider-dark.ui-corner-all{
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+}
+.shadowslider.ui-slider{
+	
+	background-color:#F1F1F1!important;
+	background-image:none;
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset ;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+}
+
+.shadowslider-dark.ui-slider{
+	
+	background-image:url(../images/el_bg.png);
+	background-color:#333333!important;
+}
+.shadowslider a.ui-state-default, .shadowslider-dark a.ui-state-default{
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15)  ;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) ;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .15) ;
+}
+.shadowslider a.ui-state-default{
+	background-image:url(../images/el_bg.png)!important;
+	background-color:#333333!important;
+}
+
+/*Tabs*/
+.shadowtabs.ui-corner-all{
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+	padding:0px;
+	border:none;
+	
+}
+.shadowtabs .ui-tabs-nav.ui-widget-header{
+	background-image:url(../images/el_bg.png)!important;
+	background-color:#333333!important;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+}
+
+.shadowtabs div.ui-widget-content
+{
+	font: normal 10pt Arial,Helvetica,sans-serif;	
+	
+}
+
+.shadowtabs .ui-widget-content.ui-corner-bottom{
+	border: solid 1px #999;
+	border-top:0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+	}
+
+.shadowtabs .ui-tabs-nav.ui-corner-all, .shadowtabs li.ui-corner-top{
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+}
+
+/*Button*/
+.ui-button.ui-state-default{
+	font: normal 10pt Arial,Helvetica,sans-serif;
+    text-decoration:none;
+}
+
+.shadowbutton.ui-state-default{
+	background-image:url(../images/el_bg.png)!important;
+	background-color:#333333!important;
+	color:#FFFFFF;
+
+}
+
+/*DatePicker*/
+.shadowdatepicker.hasDatepicker{
+	margin: 0.2em 0 0.5em 0;
+	font-family: Verdana, 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
+	font-size: 12px;
+	color: #424242;
+	padding: 6px;
+	border: 1px solid #CCC;
+	outline: none;
+	
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;	
+	
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .15) inset;
+	
+	-moz-transition: border .2s linear, box-shadow .2s linear;
+	-webkit-transition: border .2s linear, -webkit-box-shadow .2s linear;
+}
+div.ui-datepicker-header.ui-corner-all, #ui-datepicker-div.ui-datepicker.ui-corner-all{
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+}
+div.ui-datepicker-header.ui-widget-header{
+	background-image:url(../images/el_bg.png)!important;
+	background-color:#333333!important;
+	color:#FFFFFF;
+}
+.ui-datepicker-calendar thead th{background-color:#F1F1F1!important;}
+
+/*Dialog*/
+.ui-dialog.ui-corner-all, .ui-dialog .ui-corner-all
+{
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	border-radius: 0px;	
+}
+
+.ui-dialog .ui-widget-header
+{
+	background-image:url(../images/el_bg.png)!important;
+	background-color:#333333!important;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	color:#FFFFFF;
+}
+
+.ui-dialog .ui-dialog-content
+{
+	font: normal 10pt Arial,Helvetica,sans-serif;
+    text-decoration:none;	
+}

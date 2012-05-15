@@ -1,0 +1,56 @@
+/* 
+    Document   : box
+    Created on : 2012-2-21, 10:59:08
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+root { 
+    display: block;
+}
+.box{
+    border: 1px solid #ececec;
+    margin-bottom: 10px;
+    padding: 0;
+}
+.box-title{
+    background:transparent url(../images/box_title_bg.gif) repeat-x scroll 0 0;
+    height:29px;
+    line-height:29px;
+    font-weight:bold;
+    font-size:14px;
+    text-align: left;
+    padding-left: 10px;
+}
+.box-title span{
+    float: right;
+    padding-right: 10px
+}
+.box-title a{
+    text-decoration: none;
+    color: #B7D6E7;
+}
+.box-title a:hover{
+    color: #0099FF
+}
+.box-content{
+    padding:10px;
+    overflow:hidden;
+    display:block;
+}
+.box-inside{
+    overflow:hidden;
+    width: 688px;
+}
+.box-content a{
+    text-decoration: none;
+}
+.box-content a:hover{
+    color: #0099FF
+}

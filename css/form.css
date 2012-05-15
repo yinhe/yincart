@@ -56,7 +56,6 @@ div.form fieldset
 div.form label
 {
 	font-weight: bold;
-	font-size: 0.9em;
 	display: block;
 }
 
@@ -118,13 +117,11 @@ div.form .errorSummary
 	padding: 7px 7px 12px 7px;
 	margin: 0 0 20px 0;
 	background: #FEE;
-	font-size: 0.9em;
 }
 
 div.form .errorMessage
 {
 	color: red;
-	font-size: 0.9em;
 }
 
 div.form .errorSummary p
