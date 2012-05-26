@@ -1,1 +1,105 @@
-<?php$this->breadcrumbs = array(    '商品中心' => array('index'),    '管理',);$this->menu = array(    array('label' => '创建商品', 'url' => array('create')),);?><h1>商品管理</h1>        <?php        $form = $this->beginWidget('CActiveForm', array(            'id' => 'item-form',            'action' => 'bulk',            'htmlOptions' => array('enctype' => 'multipart/form-data'),            'enableAjaxValidation' => false,                ));        ?>        <?php        $this->widget('zii.widgets.grid.CGridView', array(            'id' => 'item-grid',            'dataProvider' => $model->search(),            'selectableRows' => 2,            'filter' => $model,            'columns' => array(                array(                    'class' => 'CCheckBoxColumn',                    'name' => 'id',                    'value' => '$data->id',                ),                array(// display 'author.username' using an expression                    'name' => 'cate_id',                    'value' => '$data->cat->cate_name',                ),                'item_name',                'item_sn',                /*                  'wholesale_price',                  'item_image',                  'item_desc',                  'is_new',                 */                array(// display 'author.username' using an expression                    'name' => 'if_show',                    'value' => '$data->getShow()',                ),                array(// display 'author.username' using an expression                    'name' => 'is_tejia',                    'value' => '$data->getTejia()',                ),                array(// display 'author.username' using an expression                    'name' => 'is_new',                    'value' => '$data->getNew()',                ),                array(// display 'author.username' using an expression                    'name' => 'recommended',                    'value' => '$data->getRecommend()',                ),                'sort_order',                /*                  'create_time',                  'update_time',                 */                array(                    'class' => 'CButtonColumn',                    'header' => '操作',                    'template' => '[{update}]&nbsp;[{delete}]',                    'updateButtonImageUrl' => false,                    'deleteButtonImageUrl' => false,                    'htmlOptions' => array(                        'width' => '63'                    )                ),            ),        ));        ?>        <div class="row buttons" style="padding-top:10px">            <?php            echo CHtml::radioButtonList('act', '', array(                'delete' => '删除商品',                'if_show' => '上架商品',                'un_show' => '下架商品',                'is_tejia' => '设为特价',                'un_tejia' => '取消特价',                'is_new' => '设为新品',                'un_new' => '取消新品',                'recommended' => '推荐商品',                'un_recommended' => '取消推荐',                    ), array('separator' => '&nbsp;')            )            ?>        <?php echo CHtml::submitButton('提交'); ?>        </div><?php $this->endWidget(); ?>
+<?php
+$this->breadcrumbs = array(
+    '商品列表' => array('admin'),
+    '管理',
+);
+
+$this->menu = array(
+    array('label' => '创建商品', 'url' => array('create')),
+);
+
+Yii::app()->clientScript->registerScript('search', "
+$('.search-button').click(function(){
+	$('.search-form').toggle();
+	return false;
+});
+$('.search-form form').submit(function(){
+	$.fn.yiiGridView.update('item-grid', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
+?>
+
+<h1>管理商品</h1>
+
+<p>
+    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
+    or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
+</p>
+
+<?php echo CHtml::link('Advanced Search', '#', array('class' => 'search-button')); ?>
+<div class="search-form" style="display:none">
+    <?php
+    $this->renderPartial('_search', array(
+        'model' => $model,
+    ));
+    ?>
+</div><!-- search-form -->
+
+<?php
+$this->widget('zii.widgets.grid.CGridView', array(
+    'id' => 'item-grid',
+    'dataProvider' => $model->search(),
+    'filter' => $model,
+    'columns' => array(
+        array(
+            'class' => 'CCheckBoxColumn',
+            'name' => 'item_id',
+            'value' => '$data->item_id',
+        ),
+        'category.category_name',
+        'brand.brand_name',
+        'item_name',
+        'item_sn',
+        'market_price',
+        'shop_price',
+        array(
+            'name' => 'is_show',
+            'value' => '$data->getShow()',
+        ),
+        array(
+            'name' => 'is_promote',
+            'value' => '$data->getPromote()',
+        ),
+        array(
+            'name' => 'is_new',
+            'value' => '$data->getNew()',
+        ),
+        array(
+            'name' => 'is_hot',
+            'value' => '$data->getHot()',
+        ),
+        array(
+            'name' => 'is_best',
+            'value' => '$data->getBest()',
+        ),
+        /*
+          'stock',
+          'min_number',
+          'market_price',
+          'shop_price',
+          'props',
+          'props_name',
+          'prop_imgs',
+          'item_image',
+          'item_imgs',
+          'item_desc',
+          'is_show',
+          'is_promote',
+          'is_new',
+          'is_hot',
+          'is_best',
+          'click_count',
+          'sort_order',
+          'create_time',
+          'update_time',
+          'language',
+         */
+        array(
+            'class' => 'CButtonColumn',
+        ),
+    ),
+));
+?>

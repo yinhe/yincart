@@ -37,7 +37,7 @@ class FlashAd extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, pic, url, sort_order', 'required'),
+			array('title, pic, sort_order', 'required'),
 			array('sort_order', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>100),
                         array('pic', 'file', 'types'=>'jpg, gif, png'),
@@ -66,10 +66,10 @@ class FlashAd extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'title' => 'Title',
-			'pic' => 'Pic',
-			'url' => 'Url',
-			'sort_order' => 'Sort Order',
+			'title' => '标题',
+			'pic' => '图片',
+			'url' => 'Url地址',
+			'sort_order' => '排序',
 		);
 	}
 

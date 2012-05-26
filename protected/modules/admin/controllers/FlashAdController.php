@@ -51,19 +51,15 @@ class FlashAdController extends Controller
                         $extensionName = $extensionName[count($extensionName) - 1];
 
                         $day_file = date('Y-m-d', time());
-                        $path = dirname(Yii::app()->basePath) . '/upload/flash';
-                        CommonFunction::do_mkdir($day_file, $path);
-                        $time_path = date('Y',time()).'/'.date('m',time()).'/'.date('d',time()).'/';
-                        $dir = dirname(Yii::app()->basePath) . '/upload/flash/'.$time_path;
-                        $img_src = $dir. md5(time()) .'.'. $extensionName;
+                        $path = dirname(Yii::app()->basePath) . '/upload/ad/';
+                        $img_src = $path. md5(time()) .'.'. $extensionName;
                         $img1 = md5(time()) .'.'. $extensionName;
-                        $model->pic = $time_path.$img1;
+                        $model->pic = $img1;
                         }}else{
                            echo '<script>alert("请上传图片.")</script>';
                         }
 
 			if($model->save()){
-                                //$model->default_image->saveAs(dirname(Yii::app()->basePath) .'/upload/caigou/'.$model->default_image,true);
                             $img -> saveAs($img_src);
 				$this->redirect(array('admin'));
                         }
@@ -96,14 +92,10 @@ class FlashAdController extends Controller
                         $extensionName = explode('.', $img->getName());
                         $extensionName = $extensionName[count($extensionName) - 1];
 
-                        $day_file = date('Y-m-d', time());
-                        $path = dirname(Yii::app()->basePath) . '/upload/flash';
-                        CommonFunction::do_mkdir($day_file, $path);
-                        $time_path = date('Y',time()).'/'.date('m',time()).'/'.date('d',time()).'/';
-                        $dir = dirname(Yii::app()->basePath) . '/upload/flash/'.$time_path;
-                        $img_src = $dir. md5(time()) .'.'. $extensionName;
+                        $path = dirname(Yii::app()->basePath) . '/upload/ad/';
+                        $img_src = $path. md5(time()) .'.'. $extensionName;
                         $img1 = md5(time()) .'.'. $extensionName;
-                        $model->pic = $time_path.$img1;
+                        $model->pic = $img1;
                         }else{
                         $model->pic = $FlashAd->pic;
                         }
@@ -111,7 +103,7 @@ class FlashAdController extends Controller
                         
 			if($model->save()){
                             if($img !== ''){
-                            @unlink(dirname(Yii::app()->basePath).'/upload/flash/'.$FlashAd->pic);
+                            @unlink(dirname(Yii::app()->basePath).'/upload/ad/'.$FlashAd->pic);
                             $img -> saveAs($img_src);
                             }
 		            $this->redirect(array('admin'));

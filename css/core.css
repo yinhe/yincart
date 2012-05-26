@@ -37,7 +37,11 @@ caption, th, td {
     font-weight: normal;
 }
 table, td, th {
-    vertical-align: top;
+    vertical-align:top;
+}
+.cart table, td, th {
+    vertical-align:middle;
+    border:solid 1px #DDDDDD;
 }
 .span-4 {
     width: 150px;

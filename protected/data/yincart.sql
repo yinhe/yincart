@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.10.5
+-- version 3.1.3.1
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2012 年 05 月 15 日 18:50
--- 服务器版本: 5.1.62
--- PHP 版本: 5.3.2-1ubuntu4.15
+-- 生成日期: 2012 年 05 月 26 日 06:13
+-- 服务器版本: 5.1.33
+-- PHP 版本: 5.2.9-2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,8 +16,61 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 数据库: `u116191_juhuo`
+-- 数据库: `yincart`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cart_ad`
+--
+
+CREATE TABLE IF NOT EXISTS `cart_ad` (
+  `ad_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `position_id` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `media_type` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `ad_name` varchar(60) NOT NULL DEFAULT '',
+  `ad_link` varchar(255) NOT NULL DEFAULT '',
+  `ad_code` text NOT NULL,
+  `start_time` int(11) NOT NULL DEFAULT '0',
+  `end_time` int(11) NOT NULL DEFAULT '0',
+  `link_man` varchar(60) NOT NULL DEFAULT '',
+  `link_email` varchar(60) NOT NULL DEFAULT '',
+  `link_phone` varchar(60) NOT NULL DEFAULT '',
+  `click_count` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `enabled` tinyint(3) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`ad_id`),
+  KEY `position_id` (`position_id`),
+  KEY `enabled` (`enabled`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- 导出表中的数据 `cart_ad`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cart_ad_position`
+--
+
+CREATE TABLE IF NOT EXISTS `cart_ad_position` (
+  `position_id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `position_name` varchar(60) NOT NULL DEFAULT '',
+  `ad_width` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `ad_height` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `position_desc` varchar(255) NOT NULL DEFAULT '',
+  `position_style` text NOT NULL,
+  PRIMARY KEY (`position_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- 导出表中的数据 `cart_ad_position`
+--
+
+INSERT INTO `cart_ad_position` (`position_id`, `position_name`, `ad_width`, `ad_height`, `position_desc`, `position_style`) VALUES
+(1, '首页轮播广告', 990, 486, '', '');
 
 -- --------------------------------------------------------
 
@@ -41,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `cart_article` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `cart_article`
+-- 导出表中的数据 `cart_article`
 --
 
 
@@ -60,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `cart_authassignment` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `cart_authassignment`
+-- 导出表中的数据 `cart_authassignment`
 --
 
 INSERT INTO `cart_authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
@@ -82,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `cart_authitem` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `cart_authitem`
+-- 导出表中的数据 `cart_authitem`
 --
 
 INSERT INTO `cart_authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
@@ -206,9 +259,35 @@ CREATE TABLE IF NOT EXISTS `cart_authitemchild` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `cart_authitemchild`
+-- 导出表中的数据 `cart_authitemchild`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cart_brand`
+--
+
+CREATE TABLE IF NOT EXISTS `cart_brand` (
+  `brand_id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(60) NOT NULL DEFAULT '',
+  `brand_logo` varchar(80) NOT NULL DEFAULT '',
+  `brand_desc` text NOT NULL,
+  `site_url` varchar(255) NOT NULL DEFAULT '',
+  `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '50',
+  `is_show` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  PRIMARY KEY (`brand_id`),
+  KEY `is_show` (`is_show`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+
+--
+-- 导出表中的数据 `cart_brand`
+--
+
+INSERT INTO `cart_brand` (`brand_id`, `brand_name`, `brand_logo`, `brand_desc`, `site_url`, `sort_order`, `is_show`) VALUES
+(2, '劳力士', 'e54625d75fbd630146563634d82ac668.jpg', '', 'http://www.rolex.com/zh-hans#/home?cmpid=brand-zone-home', 50, 1),
+(1, '其他', '', '', '', 50, 1);
 
 -- --------------------------------------------------------
 
@@ -217,25 +296,44 @@ CREATE TABLE IF NOT EXISTS `cart_authitemchild` (
 --
 
 CREATE TABLE IF NOT EXISTS `cart_category` (
-  `cate_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cate_name` varchar(200) NOT NULL,
+  `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `category_name` varchar(200) NOT NULL,
   `parent_id` int(10) unsigned NOT NULL DEFAULT '0',
   `url` varchar(200) DEFAULT NULL,
+  `pic` varchar(200) NOT NULL,
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `if_show` tinyint(3) unsigned NOT NULL DEFAULT '1',
-  PRIMARY KEY (`cate_id`),
+  PRIMARY KEY (`category_id`),
   KEY `store_id` (`parent_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=23 ;
 
 --
--- 转存表中的数据 `cart_category`
+-- 导出表中的数据 `cart_category`
 --
 
-INSERT INTO `cart_category` (`cate_id`, `cate_name`, `parent_id`, `url`, `sort_order`, `if_show`) VALUES
-(1, '手表', 0, '', 255, 1),
-(2, '围巾', 0, '', 255, 1),
-(3, '太阳镜', 0, '', 255, 1),
-(4, '皮带', 0, '', 255, 1);
+INSERT INTO `cart_category` (`category_id`, `category_name`, `parent_id`, `url`, `pic`, `sort_order`, `if_show`) VALUES
+(1, '手表', 0, 'watches', 'ac51d7322fd859710c94d0e9bc85e0bc.jpg', 255, 1),
+(2, '围巾', 0, 'scarves', '45462a9e13ccd408770c2fb5efbc506e.jpg', 255, 1),
+(3, '太阳镜', 0, 'sunglasses', 'c5ab28c7c3265a1e756c2ce431571b13.jpg', 255, 1),
+(4, '皮带', 0, 'leatherbelt', 'e2bb0e44cbbf72d93321ce6060ec04b3.jpg', 255, 1),
+(5, '饰品', 0, 'jewelry', '6d0a06d04819b98134c2e277f6a85a0b.jpg', 255, 1),
+(6, '男士系列', 1, '', '', 255, 1),
+(7, '女士系列', 1, '', '', 255, 1),
+(8, '情侣系列', 1, '', '', 255, 1),
+(9, '运动系列', 1, '', '', 255, 1),
+(10, '流行糖果色', 2, '', '', 255, 1),
+(11, '性感豹纹', 2, '', '', 255, 1),
+(12, '波希米亚风', 2, '', '', 255, 1),
+(13, 'OL气质型', 2, '', '', 255, 1),
+(14, '男士系列', 3, '', '', 255, 1),
+(15, '女士系列', 3, '', '', 255, 1),
+(16, '时尚女款', 4, '', '', 255, 1),
+(17, '精品男款', 4, '', '', 255, 1),
+(18, '百搭情侣款', 4, '', '', 255, 1),
+(19, '时尚项链', 5, '', '', 255, 1),
+(20, '个性耳环', 5, '', '', 255, 1),
+(21, '精美戒指', 5, '', '', 255, 1),
+(22, '酷炫手链', 5, '', '', 255, 1);
 
 -- --------------------------------------------------------
 
@@ -258,7 +356,7 @@ CREATE TABLE IF NOT EXISTS `cart_comment` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- 转存表中的数据 `cart_comment`
+-- 导出表中的数据 `cart_comment`
 --
 
 
@@ -277,7 +375,7 @@ CREATE TABLE IF NOT EXISTS `cart_content_category` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- 转存表中的数据 `cart_content_category`
+-- 导出表中的数据 `cart_content_category`
 --
 
 INSERT INTO `cart_content_category` (`category_id`, `parent_id`, `category_name`, `sort_order`) VALUES
@@ -307,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `cart_feedback` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- 转存表中的数据 `cart_feedback`
+-- 导出表中的数据 `cart_feedback`
 --
 
 
@@ -324,15 +422,18 @@ CREATE TABLE IF NOT EXISTS `cart_flash_ad` (
   `url` varchar(50) NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT '255',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
--- 转存表中的数据 `cart_flash_ad`
+-- 导出表中的数据 `cart_flash_ad`
 --
 
 INSERT INTO `cart_flash_ad` (`id`, `title`, `pic`, `url`, `sort_order`) VALUES
-(1, '纯天然手工皂/精油皂批发', '2011/07/07/9a7461035bc3d9b73668f8042150b0df.jpg', '#', 255),
-(2, '精油、按摩油、基础油大量批发', '2011/07/07/f295a465768a04e4aebc2ec8484aa55f.jpg', '#', 255);
+(1, '手表', '396a80b1da9ecda9933c9211a52cb739.jpg', '', 1),
+(2, '围巾', '43465178d81433e852ab52d2fd829d84.jpg', '', 2),
+(3, '太阳镜', '35f81a6cce715644d6b93a11c56692fa.jpg', '', 3),
+(4, '皮带', '34c81b0aa0492517c7b7a74c442599a4.jpg', '', 4),
+(5, '饰品', 'cb60bf750716618d49010c68bddd0a48.jpg', '', 5);
 
 -- --------------------------------------------------------
 
@@ -351,7 +452,7 @@ CREATE TABLE IF NOT EXISTS `cart_friend_link` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
--- 转存表中的数据 `cart_friend_link`
+-- 导出表中的数据 `cart_friend_link`
 --
 
 INSERT INTO `cart_friend_link` (`id`, `name`, `en_name`, `image`, `website`, `sort_order`) VALUES
@@ -366,94 +467,49 @@ INSERT INTO `cart_friend_link` (`id`, `name`, `en_name`, `image`, `website`, `so
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cart_item`
+-- 表的结构 `cart_items`
 --
 
-CREATE TABLE IF NOT EXISTS `cart_item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cate_id` int(11) NOT NULL DEFAULT '0' COMMENT '类别',
-  `CateName` varchar(200) DEFAULT NULL COMMENT '类别++',
-  `pp_id` int(11) DEFAULT NULL COMMENT '品牌',
-  `PinPai` varchar(200) DEFAULT NULL COMMENT '品牌++',
+CREATE TABLE IF NOT EXISTS `cart_items` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_id` int(11) NOT NULL DEFAULT '0' COMMENT '类别',
+  `brand_id` int(11) DEFAULT NULL COMMENT '品牌',
   `item_name` varchar(800) NOT NULL COMMENT '名称',
-  `item_sn` varchar(120) NOT NULL COMMENT '编号',
-  `item_number` int(11) DEFAULT '1',
-  `guige` varchar(400) DEFAULT NULL COMMENT '规格',
-  `caizhi` varchar(100) NOT NULL COMMENT '材质',
-  `minOrder` varchar(100) NOT NULL COMMENT '最少订货量',
-  `if_logo` tinyint(1) DEFAULT '0' COMMENT '定制Logo',
-  `price` decimal(10,2) DEFAULT '0.00',
-  `wholesale_price` decimal(10,2) DEFAULT '0.00',
-  `item_image` varchar(400) NOT NULL COMMENT '图片',
-  `item_desc` text NOT NULL COMMENT '描述',
-  `if_show` tinyint(1) DEFAULT '0',
-  `is_tejia` tinyint(1) DEFAULT '0',
-  `is_new` tinyint(1) DEFAULT '0',
-  `recommended` tinyint(1) DEFAULT '0',
-  `type` tinyint(1) DEFAULT '0',
+  `item_sn` varchar(120) NOT NULL COMMENT '货号',
+  `unit` varchar(20) NOT NULL COMMENT '计量单位',
+  `stock` int(11) DEFAULT '1' COMMENT '库存',
+  `min_number` varchar(100) NOT NULL COMMENT '最少订货量',
+  `market_price` decimal(10,2) DEFAULT '0.00' COMMENT '市场价',
+  `shop_price` decimal(10,2) DEFAULT '0.00' COMMENT '本店价',
+  `currency` varchar(20) NOT NULL,
+  `props` longtext NOT NULL COMMENT '商品属性 格式：pid:vid;pid:vid',
+  `props_name` longtext NOT NULL COMMENT '商品属性名称。标识着props内容里面的pid和vid所对应的名称。格式为：pid1:vid1:pid_name1:vid_name1;pid2:vid2:pid_name2:vid_name2……(注：属性名称中的冒号":"被转换为："#cln#"; 分号";"被转换为："#scln#" )',
+  `prop_imgs` longtext NOT NULL COMMENT '商品属性图片列表。fields中只设置prop_img可以返回PropImg结构体中所有字段，如果设置为prop_img.id、prop_img.url、prop_img.properties、prop_img.position等形式就只会返回相应的字段',
+  `item_image` varchar(255) NOT NULL,
+  `item_imgs` longtext NOT NULL COMMENT '图片',
+  `item_desc` longtext NOT NULL COMMENT '描述',
+  `is_show` tinyint(1) DEFAULT '0' COMMENT '是否显示',
+  `is_promote` tinyint(1) DEFAULT '0' COMMENT '是否促销',
+  `is_new` tinyint(1) DEFAULT '0' COMMENT '是否新品',
+  `is_hot` tinyint(1) DEFAULT '0' COMMENT '是否热销',
+  `is_best` tinyint(1) DEFAULT '0' COMMENT '是否精品',
+  `click_count` int(11) unsigned NOT NULL DEFAULT '0',
   `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
   `create_time` int(11) DEFAULT NULL,
   `update_time` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `language` varchar(45) NOT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- 转存表中的数据 `cart_item`
+-- 导出表中的数据 `cart_items`
 --
 
-
--- --------------------------------------------------------
-
---
--- 表的结构 `cart_item_pinpai`
---
-
-CREATE TABLE IF NOT EXISTS `cart_item_pinpai` (
-  `pp_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `pp_name` varchar(200) NOT NULL,
-  `sort_order` tinyint(3) unsigned NOT NULL DEFAULT '255',
-  PRIMARY KEY (`pp_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=105 ;
-
---
--- 转存表中的数据 `cart_item_pinpai`
---
-
-INSERT INTO `cart_item_pinpai` (`pp_id`, `pp_name`, `sort_order`) VALUES
-(1, '博  达', 255),
-(2, '百  诚', 255),
-(3, '特  灵', 255),
-(4, '欢  迎', 255),
-(5, '正  点', 255),
-(6, '奥  麦', 255),
-(7, '雷  萨', 255),
-(8, '方  进', 255),
-(9, '保  发', 255),
-(10, '和  丰', 255),
-(11, '蓝  剑', 255),
-(12, '恒  星', 255),
-(13, '潘  宁', 255),
-(14, '龙  光', 255),
-(15, '三  智', 255),
-(16, '嘉  恒', 255),
-(17, '雅斯达', 255),
-(18, '远  鸣', 255),
-(19, '鼎  丰', 255),
-(20, '成  丰', 255),
-(21, '忠  华', 255),
-(22, '瑞  达', 255),
-(23, '正  达', 255),
-(24, '建  泰', 255),
-(25, '晨  龙', 255),
-(26, '力  丰', 255),
-(27, '万  宝', 255),
-(28, '双  星', 255),
-(29, '宏  丰', 255),
-(30, '红  亚', 255),
-(31, '美  高', 255),
-(32, '派  力', 255),
-(33, '金  豹', 255),
-(34, '银  河', 255);
+INSERT INTO `cart_items` (`item_id`, `category_id`, `brand_id`, `item_name`, `item_sn`, `unit`, `stock`, `min_number`, `market_price`, `shop_price`, `currency`, `props`, `props_name`, `prop_imgs`, `item_image`, `item_imgs`, `item_desc`, `is_show`, `is_promote`, `is_new`, `is_hot`, `is_best`, `click_count`, `sort_order`, `create_time`, `update_time`, `language`) VALUES
+(1, 1, 1, '热销新款欧美流行硅胶手表 加工订做各种规格款式硅胶手表', '123', '块', 1000, '500', '50.00', '15.00', '￥', '', '', '', '2012/05/24/e1a6aa823816959a0493323172115c4a.jpg', '', '<span style="font-size:14pt;">【表壳材料】：环 保塑胶</span><br />\r\n<span style="font-size:14pt;">【表带 材料】：环保硅胶</span><br />\r\n<span style="font-size:14pt;">【后盖材料】：不锈钢后盖，防水结构</span><p><span style="font-size:14pt;">【镜面材料】：平片玻 璃</span><br />\r\n<span style="font-size:14pt;">【表盘材料 】：铜，可订做LOGO</span></p>\r\n<p><span style="font-size:14pt;">【机芯】：日本/瑞士石 英机芯</span></p>\r\n<p><span style="font-size:14pt;">【电池】：索星/金力/ 索尼（1年-3年寿命）</span><br />\r\n<span style="font-size:14pt;">【功能】：三针，时间显示</span><br />\r\n<span style="font-size:14pt;">【防水】：生活防水/10米</span><br />\r\n<span style="font-size:14pt;">【包含】：表盘LOGO任意设计（根据具体要求）</span><br />\r\n<span style="font-size:14pt;">【包装】：单 个表入一个气泡袋安全包装（木盒/塑胶盒/纸盒均可）</span><br />\r\n<span style="font-size:14pt;background-:#ffff00;">【起订量】：500只</span></p>\r\n<p><span style="background-color:#ffff00;font-size:14pt;">【优惠】：量越大越优惠</span></p>', 1, 1, 1, 1, 1, 0, 255, 1337875253, 1337919535, 'zh_cn'),
+(2, 14, 1, '太阳镜 2012新款 明星同款 黄晓明 李孝利最爱 墨镜 蛤蟆镜SJ8160', '1337947307', '副', 3000, '10', '30.00', '11.00', '￥', '', '', '', '2012/05/25/65649efb1c6a666061aa2feb29b880a1.jpg', '', '<p style="text-align:center;"><br />\r\n<span style="color:#999999;font-size:12pt;">James McAvoy<span style="text-transform:none;line-height:19px;text-indent:0px;letter-spacing:normal;font-family:tahoma, arial, 宋体, sans-serif;font-style:normal;font-variant:normal;font-weight:normal;word-spacing:0px;float:none;display:inline !important;white-space:normal;orphans:2;widows:2;background-color:#ffffff;webkit-text-size-adjust:auto;webkit-text-stroke-width:0px;">与你们一起写下生活感悟</span></span></p>\r\n<p style="text-align:center;">&nbsp;</p>\r\n<p style="text-align:center;" align="left"><span style="color:#999999;font-family:simsun;font-size:12pt;background-color:#ffffff;">不要把时间花在一个不在乎与你一起分享的人身上。</span></p>\r\n<p style="text-align:center;" align="left">&nbsp;</p>\r\n<p style="text-align:center;" align="left"><span style="color:#999999;font-family:simsun;font-size:12pt;background-color:#ffffff;"><span>Don''t spend time with someone who doesn''t care spending it with you.</span></span></p>\r\n<p style="text-align:center;">&nbsp;<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/755/092/560290557_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/855/092/560290558_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/165/092/560290561_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/365/092/560290563_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/175/092/560290571_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/475/092/560290574_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/299/882/560288992_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/989/882/560288989_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/889/882/560288988_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/675/092/560290576_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/985/092/560290589_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/895/092/560290598_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/799/882/560288997_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/699/882/560288996_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/599/882/560288995_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/499/882/560288994_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<br class="img-brk" />\r\n</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:red;font-family:方正剪纸简体;font-size:26pt;background-color:white;">太阳眼镜好处多</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜，当然就是用来遮太阳！是没错，但不只这样吧，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">否则好莱坞明星们在室内甚至在晚上为什么还要戴墨镜？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">所以，墨镜的背后，“心机”可深了……</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜与时尚有何关联？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">为何不管太阳大不大，好莱坞女星都特别偏爱太阳镜？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">“纸片人”奥尔森姐妹花有句名言：</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:blue;font-family:方正卡通简体;font-size:15pt;background-color:white;">“</span></strong><strong><span style="color:blue;font-family:方正卡通简体;font-size:15pt;background-color:white;">女人愈瘦，她戴的太阳眼镜就愈大！”</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">这句话，也许说明了一切。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜现在很热门，一来记者拍到的明星照片，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">几乎都戴着太阳眼镜，二来太阳眼镜的价格并不贵,</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">名牌太阳眼镜售价比起皮包、皮鞋来要便宜许多，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">所以各家精品的太阳眼镜销路不错。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜到底有多抢手？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">根据调查，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">近几年很多国外企业销售业绩大幅增长，其中有两成来自太阳眼镜；</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">美国的顶级百货公司也发现，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">以往店内最热销的时尚单品是皮包，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">但太阳眼镜最近的表现相当亮丽，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">成为店内最in的热门商品。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">夏日艳阳高照，戴上太阳眼镜除了可以遮阳、保护眼镜健康外，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">戴太阳眼镜还有说不出来的绝妙好处。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">到底太阳眼镜有那些神妙之处呢？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">且看非戴太阳眼镜不可的五大理由：</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由1：没化妆，太阳眼镜可遮丑</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">没化妆就出门，不妨效法好莱坞明星戴上太阳眼镜，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">绝对可以遮住难看的“黑眼圈”。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由2：美容手术后，至少戴太阳眼镜1个月</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">脸上做了美容手术，红肿、伤疤见不得人？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">戴上太阳眼镜不但可以遮住做手术的部位，还可以遮阳，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">同时还可防止伤口因日晒留下疤痕。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由3：戴太阳眼镜，可显高贵、增加权威感</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">身处公共场合，怕与对面的陌生人四目相对，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">不妨也戴上太阳眼镜吧。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由4：戴太阳眼镜，看起来脸会瘦</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">这个理论是奥尔森姊妹花所提出的，她的理论很简单，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">爱美、爱瘦的女人，总会“处心积虑”让自己看起来更小、更瘦，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">鼻梁上戴的太阳?劬涤螅崛米约旱牧晨雌鹄从。?</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">从而营造出“瘦脸”的视觉效果。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由5：太阳眼镜是最物超所值的时尚单品</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">如果你是个时尚狂热分子，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">那么太阳眼镜将会是你下一个必须采购的时尚单品。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">因为它的售价便宜、不必担心尺寸合不合身等问题，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">可说是精品店内最值得投资的时尚单品。</span></strong></p>\r\n<p><strong><span style="line-height:0px;overflow:hidden;"><br class="img-brk" />\r\n</span><br class="img-brk" />\r\n<br class="img-brk" />\r\n</strong></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p><br />\r\n&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">产品介绍：</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">眼镜框架采用最新高科技碳素树脂，比一般眼镜架更为结实耐用，超细表面处理光洁美观，全树脂天然材料可防止皮肤敏感，配戴更为舒适轻盈，风格感觉更加高档时尚！</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★镜框</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">眼镜镜框的设计及制造哲学，与创制镜片的精确理论同出一辙，质料极为耐用，佩带永远舒适，分外体贴面型。</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★镜臂</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、双重螺丝装嵌，有效巩固镜片</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、经严格扭曲测试，确保镜框的坚韧度及稳定性</span></p>\r\n<p style="text-align:left;">3<span style="font-family:宋体;">、镜臂弧度特别体贴肌肤</span></p>\r\n<p style="text-align:left;">4<span style="font-family:宋体;">、弱性臂端设计，能因应面型轮廓而作调较</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★鼻托：鼻托光滑圆润，分外帖服</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★塑胶部分</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、以醋酸纤维素或尼龙制成的镜框特福弹性，具防燃防化学侵蚀功能，色泽不会减退。</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、为确保镜框外型平滑，所以醋酸纤维素或尼龙制镜框均经过</span>4<span style="font-family:宋体;">天的打磨过程</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★金属部分</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、主要金属接驳部分均经过电镀焊合，防止镜框出现碎屑，侵蚀及失去光泽</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、用以固定镜片的金属丝坚韧耐用，可任意调较，并巩固镜片</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">常见问题在线解答：</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：怎么批发？</span><br />\r\n<span style="font-family:宋体;">回答：一件也批发，只要金额达到</span>100<span style="font-family:宋体;">元，就可以选任意款式的任意颜色，数量不限</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：什么是混批？</span><br />\r\n<span style="font-family:宋体;">回答：混批是指不限产品的种类和样式，买家只要采购总价（或总量）达到或高于设置金额（或数量）即可享受批发价格。</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：价格可以便宜吗？</span><br />\r\n<span style="font-family:宋体;">回\r\n答：本店保证一分价钱一分货，薄利多销，拒绝暴利！价格的定位不单是材料费，款式占很大因素，款式大部分都是出口的，不单追求质量，款式也是，您们也希望\r\n买到的不单要质量好，款式也非常重要，也不想大街小巷都是跟自己一样的。一分价钱一分货，非常认同这样的观点哦，已经把价格降到最低，为了不浪费大家的时\r\n间，请不要讲价，谢谢合作！</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：商品是否有货？</span><br />\r\n<span style="font-family:宋体;">回答：在架上您想要的对应的颜色或尺寸，能拍下的都有货</span>.<span style="font-family:宋体;">如果遇到没货或下架，建议您来咨询下！因为有些数量没及时更新</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：付款后什么时候发货</span>?<br />\r\n<span style="font-family:宋体;">回答：所有上架的货品，全部会在付款后</span>48<span style="font-family:宋体;">小时内发出！</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：商品颜色准吗</span>?<span style="font-family:宋体;">色差大吗？</span><br />\r\n<span style="font-family:宋体;">回答：因灯光原因，每台显示器不同</span><span style="font-family:宋体;">网购色差无法避免，我们已经尽量拍摄跟实物最接近，请谅解，所有图片，均为</span>100%<span style="font-family:宋体;">实物拍摄！</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：宝贝的详细资料？</span><br />\r\n<span style="font-family:宋体;">回答：每个对应的宝贝都有详细的说明介绍，颜色，大小等都已备注，遇到没有详细资料的，可以先咨询，购买前，请一定享受您</span>“<span style="font-family:宋体;">知情权</span>”<span style="font-family:宋体;">，好好看看！因为没有颜色的选择，您可以在拍下的时候备注清楚，比如：亮黑</span>5<span style="font-family:宋体;">付</span><span style="font-family:宋体;">大红</span>3<span style="font-family:宋体;">付</span><span style="font-family:宋体;">豹纹</span>6<span style="font-family:宋体;">付</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：发什么快递？</span></p>\r\n<p style="text-align:left;"><br />\r\n<span style="font-family:宋体;">回答：一、本公司合作快递公司</span>:<span style="font-family:宋体;">圆通快递</span></p>\r\n<p style="text-align:center;">1<span style="font-family:宋体;">、江浙沪：</span>6+2<span style="font-family:宋体;">；</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、安徽、福建、广东、山东、江西：</span>&nbsp;10+8</p>\r\n<p style="text-align:left;">3<span style="font-family:宋体;">、湖南、北京、河南、天津、湖北、河北：</span>11+10</p>\r\n<p style="text-align:left;">4<span style="font-family:宋体;">、青海、海南、内蒙古、重庆、山西、陕西、四川、辽宁、云南、甘肃、贵州、广西、宁夏、黑龙江、吉林：</span>12+10</p>\r\n<p style="text-align:left;">5<span style="font-family:宋体;">、西藏、新疆：</span>18+15</p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">二、大陆偏远地区发</span>EMS<span style="font-family:宋体;">：全国一样</span><span style="font-family:宋体;">重量都按照</span>500<span style="font-family:宋体;">克算</span><span style="font-family:宋体;">首重</span>25<span style="font-family:宋体;">元</span><span style="font-family:宋体;">续重</span>15<span style="font-family:宋体;">元</span></p>\r\n<p style="text-align:left;"><br />\r\n<span style="font-family:宋体;">三、台湾和香港发顺丰快递，到付和寄付的运费一样</span><br />\r\n<span style="color:black;font-family:Arial;font-size:14pt;">1</span><span style="color:black;font-family:宋体;font-size:14pt;">、香港：</span><span style="color:black;font-family:Arial;font-size:14pt;">30+12<br />\r\n2</span><span style="color:black;font-family:宋体;font-size:14pt;">、台湾：</span><span style="color:black;font-family:Arial;font-size:14pt;">35+26</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">问题：我已经拍下多件商品，怎么通知需要改价格和邮费？</span><br />\r\n<span style="font-family:宋体;">回答：强烈建议您使用购物车另行购买，无须修改，在您已分开拍的情况下，您可以旺旺联系帮您修改邮费。一个地方多件商品就收一次邮费哦</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-family:宋体;">签\r\n收须知：当您收到包裹的时候，请不要急于在收货单上签字，请一定要当着快递人员的面打开当场验货，如宝贝有损坏或数量缺少请一定拒收！并当场联系本店（快\r\n递单上有联系电话）。一旦签字即表示您对货品的数量内容及完好性予以认可，掌柜将无法为买家们向快递公司索赔了！也请恕本店不再承担由货品内容不符、缺少\r\n或者损坏造成的损失！收到物品后有任何问题请及时联系我们！掌柜与买家一起解决问题。让买家百分百满意而归！最后，祝买家在本店购物愉快</span></p>', 1, 1, 1, 1, 1, 0, 255, 1337947307, 1338008489, 'zh_cn'),
+(3, 6, 1, 'Magnus SAN MARINO系列机械手表M102MSS45', '1003701074', '块', 10000, '100', '2888.00', '1313.00', '￥', '', '', '', '2012/05/26/96f45716f6084d869e8e7235fcb08e1e.jpg', '', '型号：M102MSS45<br />\r\n系列：SAN MARINO<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢<br />\r\n表带：不锈钢<br />\r\n<b><br />\r\nMagnus M102MSS45产品特点：<br />\r\n</b>1.美国Magnus SAN MARINO系列机械手表。<br />\r\n2.采用20钻自动机械机芯，背面镂空设计，展示其卓越的品质及精湛的技术。<br />\r\n3.6时位圆形星期表盘，12时位扇形日历表盘，将实用与美观融为一体。<br />\r\n4.采用超硬耐磨的宝石水晶玻璃镜面。<br />\r\n5.经抛光打磨而成的表壳带，光滑亮泽，还具有抗氧化、防腐、防震、耐磨等特质。<br />\r\n6.有白面(M102MSS45)、黑面(M102MSS41)、蓝面(M102MSS42)供选择。<br />\r\n<b><br />\r\nM102MSS45实物拍照：</b><br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906739682821.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906192490927.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus12675789061486139945.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906222983012.jpg" />', 1, 1, 1, 1, 1, 0, 255, 1338008469, 1338008469, 'zh_cn'),
+(4, 6, 1, 'Magnus SANMARINO系列机械手表M102MSB41 ', '1338008801', '块', 10000, '100', '2500.00', '1255.00', '￥', '', '', '', '2012/05/26/dba06b5bdf8dfb36c4ef3f4e826f3d70.jpg', '', '型号：M102MSB41<br />\r\n系列：SANMARINO系列<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢，真皮<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢，镂空<br />\r\n表带：真皮<br />\r\n表盘：日历，星期<br />\r\n指针：夜光<br />\r\n<br />\r\n<b>Magnus M102MSB41产品特点：<br />\r\n</b>1.美国Magnus SANMARINO系列机械手表。<br />\r\n2.采用20钻的自动机械机芯，走时精准。<br />\r\n3.6时位圆形星期表盘，12时位扇形日历表盘，将实用与美观融为一体。<br />\r\n4.采用超硬耐磨的宝石水晶玻璃镜面。<br />\r\n5.经抛光打磨而成的表壳，光滑亮泽，还具有抗氧化、防腐、防震、耐磨等特质。<br />\r\n6.采用鳄鱼纹真皮表带，质地柔韧，细腻光泽。<br />\r\n7.另有黑带白面(M102MSB45)、棕红带白面(M102MSR45)、黑带黑面(M102MSB42)。<br />\r\n<br />\r\n<b>Magnus M102MSB41实物拍照：<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-840z.jpg" height="500" hspace="100" width="357" /><br />\r\n<br />\r\n</b>宝蓝色表面，凸显高贵稳重<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600d.jpg" /><br />\r\n经典的设计，将实用与美观融于一体<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600e.jpg" /><br />\r\n鳄鱼纹的真皮表带，佩戴起来更舒适<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600f.jpg" /><br />\r\n经典马蹄扣设计，方便实用<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB45-600g.jpg" /><br />\r\n镂空的背面，彰显其精湛的技术', 1, 1, 1, 1, 1, 0, 255, 1338008801, 1338008801, 'zh_cn');
 
 -- --------------------------------------------------------
 
@@ -472,7 +528,7 @@ CREATE TABLE IF NOT EXISTS `cart_kefu` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
--- 转存表中的数据 `cart_kefu`
+-- 导出表中的数据 `cart_kefu`
 --
 
 INSERT INTO `cart_kefu` (`id`, `type`, `nick_name`, `account`, `if_show`, `sort_order`) VALUES
@@ -492,61 +548,62 @@ CREATE TABLE IF NOT EXISTS `cart_menu` (
   `menu_url` varchar(255) NOT NULL,
   `sort_order` varchar(50) NOT NULL DEFAULT '255',
   `type` varchar(10) NOT NULL,
+  `is_show` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`menu_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
 
 --
--- 转存表中的数据 `cart_menu`
+-- 导出表中的数据 `cart_menu`
 --
 
-INSERT INTO `cart_menu` (`menu_id`, `parent_id`, `name`, `en_name`, `menu_url`, `sort_order`, `type`) VALUES
-(1, 0, '内容管理', 'Content Manage', '', '2', 'admin'),
-(2, 0, '商城管理', 'Shop Manage', '', '3', 'admin'),
-(3, 0, '权限管理', 'Rights', 'rights', '4', 'admin'),
-(4, 0, '分销商管理', 'Distributor ', 'admin/fxs/admin', '5', 'admin'),
-(5, 0, '系统配置', 'System Config', '', '9', 'admin'),
-(6, 1, '内容分类', 'Content Category', 'admin/contentCategory/admin', '1', 'admin'),
-(7, 1, '单页管理', 'Pages', 'admin/page/admin', '2', 'admin'),
-(8, 1, '文章管理', 'Articles', 'admin/article/admin', '255', 'admin'),
-(9, 1, '留言管理', 'Feedback', 'admin/feedback/admin', '255', 'admin'),
-(10, 1, '友情链接', 'Friend Links', 'admin/friendLink/admin', '255', 'admin'),
-(11, 1, '在线客服', 'Customer Service', 'admin/kefu/admin', '255', 'admin'),
-(12, 1, '广告管理', 'Ads', 'admin/flashAd/admin', '255', 'admin'),
-(13, 2, '商品分类', 'Category', 'admin/category/admin', '255', 'admin'),
-(14, 2, '商品管理', 'Items', 'admin/item/admin', '255', 'admin'),
-(15, 2, '商品属性', 'Product Specification', 'shop/productSpecification/admin', '255', 'admin'),
-(16, 2, '配送方式', 'ShippingMethod', 'shop/shippingMethod/admin', '255', 'admin'),
-(17, 2, '支付方式', 'PaymentMethod', 'shop/paymentMethod/admin', '255', 'admin'),
-(18, 2, '税率管理', 'Tax', 'shop/tax/admin', '255', 'admin'),
-(19, 2, '订单管理', 'Order', 'shop/order/admin', '255', 'admin'),
-(20, 2, '订单日志', 'Order Logs', 'admin/orderLog/admin', '255', 'admin'),
-(21, 5, '菜单管理', 'Menus', 'admin/menu/admin', '255', 'admin'),
-(22, 5, '模板管理', 'themes', 'admin/theme/admin', '255', 'admin'),
-(23, 1, '评论管理', 'Comments', 'comment', '255', 'admin'),
-(24, 0, '会员管理', 'Users', 'user/admin', '8', 'admin'),
-(25, 0, '网站前台', 'Frontend', 'site/index', '9', 'admin'),
-(26, 24, '个人资料栏目', 'ProfileField', 'user/profileField/admin', '255', 'admin'),
-(27, 0, '手表', '', '', '2', 'middle'),
-(28, 0, '围巾', '', '', '3', 'middle'),
-(29, 0, '太阳镜', '', '', '4', 'middle'),
-(30, 0, '皮带', '', '', '5', 'middle'),
-(31, 0, '供应商管理', 'Suppliers', 'admin/supplier/admin', '6', 'admin'),
-(32, 0, '后台首页', 'Backend', 'admin', '1', 'admin'),
-(33, 0, '首页', 'Home', 'site/index', '1', 'middle'),
-(34, 0, '购物帮助', 'Help Center', 'page/helpcenter', '8', 'middle'),
-(35, 0, '联系客服', 'Contact Us', 'page/contact', '9', 'middle'),
-(36, 0, '公司简介', 'About Us', 'page/about', '7', 'middle'),
-(37, 0, '首页', 'Home', 'site/index', '255', 'bottom'),
-(38, 0, '关于我们', 'About Us', 'page/about', '255', 'bottom'),
-(39, 0, '批发政策', 'wholesale', 'page/wholesale', '255', 'bottom'),
-(40, 0, '品质保证', 'qualityAssurance', 'page/qualityAssurance', '255', 'bottom'),
-(41, 0, '业务合作', 'coop', 'page/coop', '255', 'bottom'),
-(42, 0, '隐私声明', 'privacy', 'page/privacy', '255', 'bottom'),
-(43, 0, '加入我们', 'Join', 'page/join', '255', 'bottom'),
-(44, 0, '联系我们', 'Contact Us', 'page/contact', '255', 'bottom'),
-(45, 0, '饰品', 'Jewelry', '', '6', 'middle'),
-(46, 12, '广告列表', '', 'admin/ad/admin', '255', 'admin'),
-(47, 12, '广告位置', '', 'admin/adPosition/admin', '255', 'admin');
+INSERT INTO `cart_menu` (`menu_id`, `parent_id`, `name`, `en_name`, `menu_url`, `sort_order`, `type`, `is_show`) VALUES
+(1, 0, '内容管理', 'Content Manage', '', '2', 'admin', 1),
+(2, 0, '商城管理', 'Shop Manage', '', '3', 'admin', 1),
+(3, 0, '权限管理', 'Rights', 'rights', '4', 'admin', 1),
+(4, 0, '分销商管理', 'Distributor ', 'admin/fxs/admin', '5', 'admin', 0),
+(5, 0, '系统配置', 'System Config', '', '9', 'admin', 1),
+(6, 1, '内容分类', 'Content Category', 'admin/contentCategory/admin', '1', 'admin', 1),
+(7, 1, '单页管理', 'Pages', 'admin/page/admin', '2', 'admin', 1),
+(8, 1, '文章管理', 'Articles', 'admin/article/admin', '255', 'admin', 1),
+(9, 1, '留言管理', 'Feedback', 'admin/feedback/admin', '255', 'admin', 1),
+(10, 1, '友情链接', 'Friend Links', 'admin/friendLink/admin', '255', 'admin', 1),
+(11, 1, '在线客服', 'Customer Service', 'admin/kefu/admin', '255', 'admin', 1),
+(12, 1, '广告管理', 'Ads', 'admin/flashAd/admin', '255', 'admin', 1),
+(13, 2, '商品分类', 'Category', 'admin/category/admin', '255', 'admin', 1),
+(14, 2, '商品管理', 'Items', 'admin/item/admin', '255', 'admin', 1),
+(15, 2, '品牌列表', 'Brands', 'admin/brand/admin', '255', 'admin', 1),
+(16, 2, '配送方式', 'ShippingMethod', 'shop/shippingMethod/admin', '255', 'admin', 1),
+(17, 2, '支付方式', 'PaymentMethod', 'shop/paymentMethod/admin', '255', 'admin', 1),
+(18, 2, '税率管理', 'Tax', 'shop/tax/admin', '255', 'admin', 1),
+(19, 2, '订单管理', 'Order', 'shop/order/admin', '255', 'admin', 1),
+(20, 2, '订单日志', 'Order Logs', 'admin/orderLog/admin', '255', 'admin', 1),
+(21, 5, '菜单管理', 'Menus', 'admin/menu/admin', '255', 'admin', 1),
+(22, 5, '模板管理', 'themes', 'admin/theme/admin', '255', 'admin', 0),
+(23, 1, '评论管理', 'Comments', 'comment', '255', 'admin', 1),
+(24, 0, '会员管理', 'Users', 'user/admin', '8', 'admin', 1),
+(25, 0, '网站前台', 'Frontend', 'site/index', '9', 'admin', 1),
+(26, 24, '个人资料栏目', 'ProfileField', 'user/profileField/admin', '255', 'admin', 1),
+(27, 0, '手表', 'Watches', 'catalog/watches', '2', 'middle', 1),
+(28, 0, '围巾', 'Scarves', 'catalog/scarves', '3', 'middle', 1),
+(29, 0, '太阳镜', 'Sunglasses', 'catalog/sunglasses', '4', 'middle', 1),
+(30, 0, '皮带', 'leatherbelt', 'catalog/leatherbelt', '5', 'middle', 1),
+(31, 0, '供应商管理', 'Suppliers', 'admin/supplier/admin', '6', 'admin', 0),
+(32, 0, '后台首页', 'Backend', 'admin', '1', 'admin', 1),
+(33, 0, '首页', 'Home', 'site/index', '1', 'middle', 1),
+(34, 0, '购物帮助', 'Help Center', 'page/helpcenter', '8', 'middle', 1),
+(35, 0, '联系客服', 'Contact Us', 'page/contact', '9', 'middle', 1),
+(36, 0, '公司简介', 'About Us', 'page/about', '7', 'middle', 1),
+(37, 0, '首页', 'Home', 'site/index', '255', 'bottom', 1),
+(38, 0, '关于我们', 'About Us', 'page/about', '255', 'bottom', 1),
+(39, 0, '批发政策', 'wholesale', 'page/wholesale', '255', 'bottom', 1),
+(40, 0, '品质保证', 'qualityAssurance', 'page/qualityAssurance', '255', 'bottom', 1),
+(41, 0, '业务合作', 'coop', 'page/coop', '255', 'bottom', 1),
+(42, 0, '隐私声明', 'privacy', 'page/privacy', '255', 'bottom', 1),
+(43, 0, '加入我们', 'Join', 'page/join', '255', 'bottom', 1),
+(44, 0, '联系我们', 'Contact Us', 'page/contact', '255', 'bottom', 1),
+(45, 0, '饰品', 'Jewelry', 'catalog/jewelry', '6', 'middle', 1),
+(46, 12, '广告列表', '', 'admin/ad/admin', '255', 'admin', 0),
+(47, 12, '广告位置', '', 'admin/adPosition/admin', '255', 'admin', 0);
 
 -- --------------------------------------------------------
 
@@ -568,7 +625,7 @@ CREATE TABLE IF NOT EXISTS `cart_orders` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
--- 转存表中的数据 `cart_orders`
+-- 导出表中的数据 `cart_orders`
 --
 
 
@@ -590,7 +647,7 @@ CREATE TABLE IF NOT EXISTS `cart_order_goods` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
--- 转存表中的数据 `cart_order_goods`
+-- 导出表中的数据 `cart_order_goods`
 --
 
 
@@ -611,7 +668,7 @@ CREATE TABLE IF NOT EXISTS `cart_page` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
 
 --
--- 转存表中的数据 `cart_page`
+-- 导出表中的数据 `cart_page`
 --
 
 INSERT INTO `cart_page` (`id`, `cate_id`, `key`, `title`, `content`, `language`) VALUES
@@ -660,7 +717,7 @@ CREATE TABLE IF NOT EXISTS `cart_profiles` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `cart_profiles`
+-- 导出表中的数据 `cart_profiles`
 --
 
 INSERT INTO `cart_profiles` (`user_id`, `lastname`, `firstname`, `birthday`, `truename`, `IDcards`, `phone`, `qq`, `address`) VALUES
@@ -713,7 +770,7 @@ CREATE TABLE IF NOT EXISTS `cart_profiles_fields` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
--- 转存表中的数据 `cart_profiles_fields`
+-- 导出表中的数据 `cart_profiles_fields`
 --
 
 INSERT INTO `cart_profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_size`, `field_size_min`, `required`, `match`, `range`, `error_message`, `other_validator`, `default`, `widget`, `widgetparams`, `position`, `visible`) VALUES
@@ -740,7 +797,7 @@ CREATE TABLE IF NOT EXISTS `cart_rights` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `cart_rights`
+-- 导出表中的数据 `cart_rights`
 --
 
 
@@ -768,11 +825,11 @@ CREATE TABLE IF NOT EXISTS `cart_users` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
--- 转存表中的数据 `cart_users`
+-- 导出表中的数据 `cart_users`
 --
 
 INSERT INTO `cart_users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`) VALUES
-(1, 'admin', '0192023a7bbd73250516f069df18b500', 'webmaster@example.com', '02433b664a3a868684db063c3b8a9ddc', 1261146094, 1336846374, 1, 1),
+(1, 'admin', '0192023a7bbd73250516f069df18b500', 'webmaster@example.com', '02433b664a3a868684db063c3b8a9ddc', 1261146094, 1337913366, 1, 1),
 (18, '112233', 'd0970714757783e6cf17b26fb8e2298f', '112233@qq.com', '37817d13c6f8f595bc20c4d5fcf145d2', 1333340525, 1333541747, 0, 1),
 (19, 'demo123', '62cc2d8b4bf2d8728120d052163a77df', '111@11.com', 'acc56013573352342ac21856d5401d71', 1334069292, 0, 0, 0),
 (20, '123456', 'e10adc3949ba59abbe56e057f20f883e', '123456@qq.com', 'e32fc3f706f598127a336f4f0c6c7b7a', 1334079903, 0, 0, 0);

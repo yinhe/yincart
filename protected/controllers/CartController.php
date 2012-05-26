@@ -7,17 +7,20 @@ class CartController extends Controller {
     public function actionIndex() {
         $cart = Yii::app()->cart;
         $mycart = $cart->contents();
+        $total  = $cart->total();
         $this->render('index', array(
-            'mycart' => $mycart
+            'mycart' => $mycart,
+            'total'  => $total
         ));
     }
 
-    public function actionAddCart() {
+    public function actionAddToCart() {
         $session = new CHttpSession;
         $session->open();
         $cart = Yii::app()->cart;
         $mycart = $cart->contents();
         unset($_POST['yt0']);
+        print_r($_POST);
         if (empty($mycart)) {
             $data = $_POST;
         } else {
@@ -26,7 +29,7 @@ class CartController extends Controller {
                 foreach ($_POST as $k => $v) {
                     $id = $v['id'];
                     $qty += $v['qty'];
-                    //当购物车里存在此产品，则数量相加 
+                    //当购物车里存在此商品，则数量相加 
                     foreach ($mycart as $key => $value) {
                         if ($v['id'] === $value['id']) {
                             $mycart[$key]['qty'] = $v['qty'] + $value['qty'];
@@ -39,11 +42,11 @@ class CartController extends Controller {
                 }
                 if ($qty == 0) {
 //                    echo '<script>alert("您没有填写数量！")</script>';
-                    $this->redirect(array('/product/index'));
+                    $this->redirect(array('/item'));
                 }
             } else {
                 $id = $_POST['id'];
-                //当购物车里存在此产品，则数量相加 
+                //当购物车里存在此商品，则数量相加 
                 foreach ($mycart as $key => $value) {
                     if ($_POST['id'] === $value['id']) {
                         $mycart[$key]['qty'] = $_POST['qty'] + $value['qty'];
@@ -56,7 +59,7 @@ class CartController extends Controller {
             }
         }
         if ($cart->insert($data)) {
-            $this->redirect(array('/cart/index'));
+            $this->redirect(array('/cart'));
         }
     }
 

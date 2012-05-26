@@ -6,9 +6,17 @@
  */
 class WFlash extends CWidget
 {
+    public function getAds()
+    {
+        $cri = new CDbCriteria(array(
+                    'order' => 'sort_order asc',
+                ));
+        $ads = FlashAd::model()->findAll($cri);
+        return $ads;
+    }
+    
     public function run()
     {
-        $image = Yii::app()->request->baseUrl.'/lib/flash/';
-        $this->render('flash', array('image'=>$image));
+        $this->render('flash');
     }
 }

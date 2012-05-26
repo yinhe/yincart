@@ -1,4 +1,1 @@
-<form  action="<?php echo Yii::app()->createUrl("/product/index")?>" method="get">
-<?php echo CHtml::textField('keyword','请输入关键字') ?>
-<?php echo CHtml::submitButton('搜索'); ?>
-</form>
+<form  action="<?php echo Yii::app()->createUrl("/item/index")?>" method="get"><div class="search"><input type="text" name="keyword" value="品名或商品号" class="search_input" onblur="if(this.value=='') this.value='品名或商品号';"onfocus="if(this.value=='品名或商品号') this.value='';"/><input type="submit" class="search_submit" value="搜索"/></div>                        </form>

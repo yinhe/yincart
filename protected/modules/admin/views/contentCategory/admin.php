@@ -51,19 +51,18 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/lib/j
             ),
         ));
         
-        $c = ContentCategory::model()->findAllByAttributes(array('parent_id'=>0));
-        $c = ContentCategory::model()->findAll();
+//        $c = ContentCategory::model()->findAllByAttributes(array('parent_id'=>0));
+//        $c = ContentCategory::model()->findAll();
         
-foreach($c as $cc){
-//   $returnArr = array();
-//    $cc->getTree($c,$returnArr);
-//   $items[] = $returnArr ;
-//   $ccc = $cc->getMeChildsId($cc->category_id);
-   $childs = $cc->getChildsId($cc->category_id);
-   $rows[] = array('id'=>$cc->category_id, 'name'=>$cc->category_name, 'sort_order'=>$cc->sort_order, $childs !==0 ? "'__parentId'=>$cc->parent_id" : "'_parentId'=>0");
-   
-}
-$myjson = CJSON::encode(array('rows'=>$rows));
+//foreach($c as $cc){
+////   $returnArr = array();
+////    $cc->getTree($c,$returnArr);
+////   $items[] = $returnArr ;
+////   $ccc = $cc->getMeChildsId($cc->category_id);
+//   $childs = $cc->getChildsId($cc->category_id);
+//   $rows[] = array('id'=>$cc->category_id, 'name'=>$cc->category_name, 'sort_order'=>$cc->sort_order, $childs !==0 ? "'__parentId'=>$cc->parent_id" : "'_parentId'=>0");   
+//}
+//$myjson = CJSON::encode(array('rows'=>$rows));
 //print_r($items);
         
 //        var_dump($c->getArray(0));
@@ -82,7 +81,7 @@ $myjson = CJSON::encode(array('rows'=>$rows));
 //);
 ?>
 
-	<div style="margin:10px 0">
+<!--	<div style="margin:10px 0">
 		<a href="javascript:editNode()" class="easyui-linkbutton">Edit</a>
 		<a href="javascript:saveNode()" class="easyui-linkbutton">Save</a>
 		<a href="javascript:cancelNode()" class="easyui-linkbutton">Cancel</a>
@@ -94,10 +93,10 @@ $myjson = CJSON::encode(array('rows'=>$rows));
 		<thead>
 			<tr>
 				<th field="code" rowspan="2" width="150" editor="text">name</th>
-<!--				<th colspan="2">Group Fields</th>-->
+				<th colspan="2">Group Fields</th>
 			</tr>
 			<tr>
 				<th field="name" width="200" editor="text">sort_order</th>
 			</tr>
 		</thead>
-	</table>
+	</table>-->

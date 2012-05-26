@@ -42,6 +42,13 @@
 		<?php echo $form->dropDownList($model,'type',array('middle'=>'前台主目录导航','bottom'=>'前台底部导航', 'admin'=>'后台菜单导航')); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'is_show'); ?>
+		<?php echo $form->dropDownList($model,'is_show',array('1'=>'是','0'=>'否')); ?>
+		<?php echo $form->error($model,'is_show'); ?>
+	</div>
+        
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'sort_order'); ?>

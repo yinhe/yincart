@@ -68,6 +68,9 @@ return array(
             'rules' => array(
 //                '<action:\w+>'=>'site/<action>',
                 'page/<key:\w+>' => 'page/index',
+                'catalog/<key:\w+>' => 'catalog/index',
+                'list-<category_id:\d+>' => 'item/index',
+//                'list-<category_id:.*>' => 'item/index', 都可以
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

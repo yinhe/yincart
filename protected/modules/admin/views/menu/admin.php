@@ -21,7 +21,14 @@ $this->menu=array(
 		'en_name',
 		'menu_url',
 		'sort_order',
-                'type',
+                array(
+                    'name' => 'type',
+                    'value' => '$data->getType()',
+                ),   
+                array(
+                    'name' => 'is_show',
+                    'value' => '$data->getShow()',
+                ),
 		array(
 			'class'=>'CButtonColumn',
 		),
@@ -39,7 +46,14 @@ $this->menu=array(
 		'en_name',
 		'menu_url',
 		'sort_order',
-                'type',
+                array(
+                    'name' => 'type',
+                    'value' => '$data->getType()',
+                ),   
+                array(
+                    'name' => 'is_show',
+                    'value' => '$data->getShow()',
+                ), 
 		array(
 			'class'=>'CButtonColumn',
 		),
@@ -57,7 +71,14 @@ $this->menu=array(
 		'en_name',
 		'menu_url',
 		'sort_order',
-                'type',
+                array(
+                    'name' => 'type',
+                    'value' => '$data->getType()',
+                ),    
+                array(
+                    'name' => 'is_show',
+                    'value' => '$data->getShow()',
+                ),    
 		array(
 			'class'=>'CButtonColumn',
 		),

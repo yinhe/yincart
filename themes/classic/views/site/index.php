@@ -9,9 +9,9 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/li
     var rand =parseInt(Math.random()*4)
     switch(rand){
         case 0:	moveStyle="left" ;break;
-        case 1:	moveStyle="right" ;break;
-        case 2:	moveStyle="down" ;break;
-        case 3:	moveStyle="up" ;break;
+        case 1:	moveStyle="left" ;break;
+        case 2:	moveStyle="left" ;break;
+        case 3:	moveStyle="left" ;break;   
     }
     
     $(function(){

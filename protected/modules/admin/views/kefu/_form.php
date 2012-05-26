@@ -11,7 +11,7 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type', array('1'=>'QQ', '2'=>'Skype', '3'=>'Msn')); ?>
+		<?php echo $form->dropDownList($model,'type', array('1'=>'QQ', '2'=>'阿里旺旺')); ?>
 		<?php echo $form->error($model,'type'); ?>
 	</div>
 

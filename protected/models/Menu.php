@@ -42,7 +42,7 @@ class Menu extends CActiveRecord
 			array('parent_id', 'numerical', 'integerOnly'=>true),
 			array('name, en_name, sort_order', 'length', 'max'=>50),
 			array('menu_url', 'length', 'max'=>255),
-                        array('type', 'safe'),
+                        array('type, is_show', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('menu_id, parent_id, name, en_name, menu_url, sort_order', 'safe', 'on'=>'search'),
@@ -74,6 +74,8 @@ class Menu extends CActiveRecord
 			'en_name' => '英文名字',
 			'menu_url' => '菜单链接地址',
 			'sort_order' => '排序',
+                        'type'=>'菜单位置',
+                        'is_show'=>'是否显示',
 		);
 	}
 
@@ -212,4 +214,18 @@ class Menu extends CActiveRecord
 		if($subitems != array()) $returnarray = array_merge($returnarray, array('items' => $subitems));
 		return $returnarray;
 	}
+        
+        public function getShow() {
+        echo $this->is_show == 1 ? CHtml::image(Yii::app()->request->baseUrl.'/images/yes.gif') : CHtml::image(Yii::app()->request->baseUrl.'/images/no.gif');
+        }
+        
+        public function getType() {
+        if($this->type == 'admin'){
+            echo '后台菜单';
+        }elseif($this->type == 'middle'){
+            echo '前台主菜单';
+        }elseif($this->type == 'bottom'){
+            echo '前台底部菜单';
+        }
+        }
 }

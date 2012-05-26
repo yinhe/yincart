@@ -25,11 +25,11 @@ class OrderController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'create', 'success'),
+                'actions' => array('index', 'view'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('checkout', 'create', 'update'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -49,6 +49,16 @@ class OrderController extends Controller {
     public function actionView($id) {
         $this->render('view', array(
             'model' => $this->loadModel($id),
+        ));
+    }
+    
+    public function actionCheckOut(){
+        $cart = Yii::app()->cart;
+        $mycart = $cart->contents();
+        $total  = $cart->total();
+        $this->render('checkout', array(
+            'mycart' => $mycart,
+            'total'  => $total
         ));
     }
 
