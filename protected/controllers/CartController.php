@@ -7,12 +7,48 @@ class CartController extends Controller {
     public function actionIndex() {
         $cart = Yii::app()->cart;
         $mycart = $cart->contents();
-        $total  = $cart->total();
+        $total = $cart->total();
         $this->render('index', array(
             'mycart' => $mycart,
-            'total'  => $total
+            'total' => $total
         ));
     }
+
+    /*
+     * 商品列表页单个商品加入购物车
+     */
+
+    public function actionAddCart() {
+        $qty = $_POST['qty'];
+        $id = $_POST['item_id'];
+        $cart = Yii::app()->cart;
+        $mycart = $cart->contents();
+
+        $model = Item::model()->findByPk($id);
+
+        $insert_data = array('id' => $id, 'pic_url' => $model->getSmallThumb(), 'sn' => $model->sn, 'title' => $model->title, 'name' =>$id, 'price' => $model->shop_price, 'qty' => $qty);
+
+        if (empty($mycart)) {
+            $data = $insert_data;
+        } else {
+            //当购物车里存在此商品，则数量相加 
+            foreach ($mycart as $key => $value) {
+                if ($id === $value['id']) {
+                    $mycart[$key]['qty'] = $qty + $value['qty'];
+                }
+                if (!$mycart[$key][$id]) {
+                    $cart->insert($insert_data);
+                }
+            }
+            $data = $mycart;
+        }
+
+        $cart->insert($data);
+    }
+
+    /*
+     * 商品列表页批量购买和商品详情页加入购物车
+     */
 
     public function actionAddToCart() {
         $session = new CHttpSession;
@@ -20,7 +56,7 @@ class CartController extends Controller {
         $cart = Yii::app()->cart;
         $mycart = $cart->contents();
         unset($_POST['yt0']);
-        print_r($_POST);
+        
         if (empty($mycart)) {
             $data = $_POST;
         } else {

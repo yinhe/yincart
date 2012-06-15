@@ -16,13 +16,33 @@ Yii::app()->clientScript->registerCoreScript('jquery');
 <div class="box">
     <div class="box-title">收货地址</div>
     <div class="box-content">
-        
+        <?php echo CHtml::link('添加收货地址', array('/member/delivery_address/create'))?>
     </div>
 </div>
 <div class="box">
     <div class="box-title">支付方式</div>
     <div class="box-content">
-        
+        <?php
+        $cri = new CDbCriteria(array(
+            'condition'=>'enabled = 1'
+        ));
+        $paymentMethod = PaymentMethod::model()->findAll($cri);
+        $list = CHtml::listData($paymentMethod, 'id', 'name');
+        echo CHtml::radioButtonList('payment_method', '', $list);
+        ?>
+    </div>
+</div>
+<div class="box">
+    <div class="box-title">配送方式</div>
+    <div class="box-content">
+        <?php
+        $cri = new CDbCriteria(array(
+            'condition'=>'enabled = 1'
+        ));
+        $shippingMethod = ShippingMethod::model()->findAll($cri);
+        $list = CHtml::listData($shippingMethod, 'id', 'name');
+        echo CHtml::radioButtonList('shipping_method', '', $list);
+        ?>
     </div>
 </div>
 <div class="box">
@@ -43,9 +63,9 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 $i=1;
             foreach($mycart as $m){?>
             <tr>
-                <td><?php echo CHtml::hiddenField($i.'[rowid]', $m['rowid']) ?><?php echo $m['item_image'] ?></td>
-                <td><?php echo $m['item_sn'] ?></td>
-                <td><?php echo $m['item_name'] ?></td>
+                <td><?php echo CHtml::hiddenField($i.'[rowid]', $m['rowid']) ?><?php echo $m['pic_url'] ?></td>
+                <td><?php echo $m['sn'] ?></td>
+                <td><?php echo $m['title'] ?></td>
                 <td><?php echo $m['qty'] ?></td>
                 <td><?php echo $m['subtotal'] ?>元</td>
             </tr>

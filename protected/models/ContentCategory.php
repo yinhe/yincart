@@ -6,7 +6,7 @@
  * The followings are the available columns in table '{{content_category}}':
  * @property integer $category_id
  * @property integer $parent_id
- * @property string $category_name
+ * @property string $name
  */
 class ContentCategory extends CActiveRecord {
     
@@ -58,12 +58,12 @@ class ContentCategory extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('category_name', 'required'),
+            array('name', 'required'),
             array('parent_id', 'numerical', 'integerOnly' => true),
-            array('category_name', 'length', 'max' => 50),
+            array('name', 'length', 'max' => 50),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('category_id, parent_id, category_name', 'safe', 'on' => 'search'),
+            array('category_id, parent_id, name', 'safe', 'on' => 'search'),
         );
     }
 
@@ -86,7 +86,7 @@ class ContentCategory extends CActiveRecord {
         return array(
             'category_id' => 'ID',
             'parent_id' => '上一级',
-            'category_name' => '分类名',
+            'name' => '分类',
         );
     }
 
@@ -102,7 +102,7 @@ class ContentCategory extends CActiveRecord {
 
         $criteria->compare('category_id', $this->category_id);
         $criteria->compare('parent_id', $this->parent_id);
-        $criteria->compare('category_name', $this->category_name, true);
+        $criteria->compare('name', $this->name, true);
 
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
@@ -152,7 +152,7 @@ class ContentCategory extends CActiveRecord {
             foreach ($this->childs as $child) {
                 $subitems[] = $child->getListed();
             }
-        $returnarray = array('label' => $this->category_name, 'url' => array('contentCategory/view', 'id' => $this->category_id));
+        $returnarray = array('label' => $this->name, 'url' => array('contentCategory/view', 'id' => $this->category_id));
         if ($subitems != array())
             $returnarray = array_merge($returnarray, array('items' => $subitems));
         return $returnarray;
@@ -199,7 +199,7 @@ class ContentCategory extends CActiveRecord {
                 }
                 $spacer = $adds ? $adds.$j : '';
                 @extract($a);
-                $a['category_name'] = $spacer.' '.$a['category_name'];
+                $a['name'] = $spacer.' '.$a['name'];
                 $this->ret[$a['category_id']] = $a;
                 $fd = $adds.$k.'&nbsp;';
                 $this->getArray($id, $sid, $fd);
@@ -217,7 +217,7 @@ class ContentCategory extends CActiveRecord {
             foreach ($this->childs as $child) {
                 $subitems[] = $this->getJson();
             }
-        $returnarray = array('id'=>$this->category_id, 'name'=>$this->category_name, 'order'=>'sort_order');
+        $returnarray = array('id'=>$this->category_id, 'name'=>$this->name, 'order'=>'sort_order');
         if ($subitems != array())
             $returnarray = array_merge($returnarray, $subitems);
         
@@ -231,7 +231,7 @@ class ContentCategory extends CActiveRecord {
 
         if (!empty($children))
             foreach ($children as $child) {
-                $childArr =  array('id'=>$this->category_id, 'name'=>$this->category_name, 'order'=>'sort_order');
+                $childArr =  array('id'=>$this->category_id, 'name'=>$this->name, 'order'=>'sort_order');
                 $childArr['children'] = array();
 
                 $returnArr[] = $childArr;
@@ -246,7 +246,7 @@ class ContentCategory extends CActiveRecord {
         
         if ($this->childs)
             foreach ($this->childs as $child) {
-//                $data[]=>array('p'=>$this->parent_id,'c'=>$this->category_name,'id'=>$this->category_id);
+//                $data[]=>array('p'=>$this->parent_id,'c'=>$this->name,'id'=>$this->category_id);
             }
 echo CJSON::encode($data);
         

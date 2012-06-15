@@ -16,8 +16,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'category_name'); ?>
-		<?php echo $form->textField($model,'category_name',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->label($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>50)); ?>
 	</div>
 
 	<div class="row buttons">

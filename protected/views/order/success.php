@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs = array(
-    'Orders' => array('index'),
+    '购物车' => array('/cart'),
     '订单成功',
 );
 ?>

@@ -14,7 +14,7 @@ class ArticleController extends Controller {
         //上一级 可支持无限级 分类
         $data = ContentCategory::model()->findAll(array('order' => 'sort_order asc, category_id asc'));
         $parent = CHtml::tag('option', array('value' => 0), F::t('Please Select'));
-        $this->parent = $parent . F::toTree($data, $model->cate_id, 'category_id', 'parent_id', 'category_name', 1);
+        $this->parent = $parent . F::toTree($data, $model->cate_id, 'category_id', 'parent_id', 'name', 1);
     }
 
     public $layout = '//layouts/column2';

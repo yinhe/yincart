@@ -1,29 +1,20 @@
 <?php
 
 /**
- * This is the model class for table "{{ad}}".
+ * This is the model class for table "{{flash_ad}}".
  *
- * The followings are the available columns in table '{{ad}}':
- * @property integer $ad_id
- * @property integer $position_id
- * @property integer $media_type
- * @property string $ad_name
- * @property string $ad_link
- * @property string $ad_code
- * @property integer $start_time
- * @property integer $end_time
- * @property string $link_man
- * @property string $link_email
- * @property string $link_phone
- * @property integer $click_count
- * @property integer $enabled
+ * The followings are the available columns in table '{{flash_ad}}':
+ * @property integer $id
+ * @property string $title
+ * @property string $pic
+ * @property string $url
+ * @property integer $sort_order
  */
 class Ad extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
-	 * @param string $className active record class name.
-	 * @return Ad the static model class
+	 * @return FlashAd the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -46,13 +37,14 @@ class Ad extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('ad_code', 'required'),
-			array('position_id, media_type, start_time, end_time, click_count, enabled', 'numerical', 'integerOnly'=>true),
-			array('ad_name, link_man, link_email, link_phone', 'length', 'max'=>60),
-			array('ad_link', 'length', 'max'=>255),
+			array('title, pic, sort_order', 'required'),
+			array('sort_order', 'numerical', 'integerOnly'=>true),
+			array('title', 'length', 'max'=>100),
+                        array('pic', 'file', 'types'=>'jpg, gif, png'),
+			array('url', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('ad_id, position_id, media_type, ad_name, ad_link, ad_code, start_time, end_time, link_man, link_email, link_phone, click_count, enabled', 'safe', 'on'=>'search'),
+			array('id, title, pic, url, sort_order', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,19 +65,11 @@ class Ad extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'ad_id' => '广告ID',
-			'position_id' => '位置ID',
-			'media_type' => '媒介类型',
-			'ad_name' => '广告名称',
-			'ad_link' => '广告链接',
-			'ad_code' => '广告代码',
-			'start_time' => '开始时间',
-			'end_time' => '结束时间',
-			'link_man' => '联系人',
-			'link_email' => '联系EMAIL',
-			'link_phone' => '联系电话',
-			'click_count' => '点击次数',
-			'enabled' => '是否可用',
+			'id' => 'ID',
+			'title' => '标题',
+			'pic' => '图片',
+			'url' => 'Url地址',
+			'sort_order' => '排序',
 		);
 	}
 
@@ -100,19 +84,11 @@ class Ad extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('ad_id',$this->ad_id);
-		$criteria->compare('position_id',$this->position_id);
-		$criteria->compare('media_type',$this->media_type);
-		$criteria->compare('ad_name',$this->ad_name,true);
-		$criteria->compare('ad_link',$this->ad_link,true);
-		$criteria->compare('ad_code',$this->ad_code,true);
-		$criteria->compare('start_time',$this->start_time);
-		$criteria->compare('end_time',$this->end_time);
-		$criteria->compare('link_man',$this->link_man,true);
-		$criteria->compare('link_email',$this->link_email,true);
-		$criteria->compare('link_phone',$this->link_phone,true);
-		$criteria->compare('click_count',$this->click_count);
-		$criteria->compare('enabled',$this->enabled);
+		$criteria->compare('id',$this->id);
+		$criteria->compare('title',$this->title,true);
+		$criteria->compare('pic',$this->pic,true);
+		$criteria->compare('url',$this->url,true);
+		$criteria->compare('sort_order',$this->sort_order);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table '{{article}}':
  * @property integer $article_id
- * @property integer $cate_id
+ * @property integer $category_id
  * @property integer $author_id
  * @property string $title
  * @property string $from
@@ -41,15 +41,15 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('cate_id, title, content', 'required'),
-			array('cate_id, views', 'numerical', 'integerOnly'=>true),
+			array('category_id, title, content', 'required'),
+			array('category_id, views', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>250),
 			array('from', 'length', 'max'=>200),
                         array('url', 'url'),
                         array('language', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('article_id, cate_id, author_id, title, from, content, views, create_time, update_time', 'safe', 'on'=>'search'),
+			array('article_id, category_id, author_id, title, from, content, views, create_time, update_time', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,7 +62,7 @@ class Article extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                     'author'=>array(self::BELONGS_TO, 'User', 'author_id'),
-                    'category'=>array(self::BELONGS_TO, 'ContentCategory', 'cate_id'),
+                    'category'=>array(self::BELONGS_TO, 'ContentCategory', 'category_id'),
                     'comments' => array(self::HAS_MANY, 'Comment', 'article_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time DESC'),
 		    'commentCount' => array(self::STAT, 'Comment', 'article_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
 		);
@@ -75,7 +75,7 @@ class Article extends CActiveRecord
 	{
 		return array(
 			'article_id' => 'Article',
-			'cate_id' => '分类',
+			'category_id' => '分类',
 			'author_id' => '作者',
 			'title' => '标题',
 			'from' => '来源',
@@ -102,7 +102,7 @@ class Article extends CActiveRecord
 
                 $criteria->order = 'article_id desc';
 		$criteria->compare('article_id',$this->article_id);
-		$criteria->compare('cate_id',$this->cate_id);
+		$criteria->compare('category_id',$this->category_id);
 		$criteria->compare('author_id',$this->author_id);
 		$criteria->compare('title',$this->title,true);
 		$criteria->compare('from',$this->from,true);
@@ -140,7 +140,7 @@ class Article extends CActiveRecord
 //                        $this->update_time=date('m/d/Y', $this->update_time); 
 //                } //EndIf
 ////                $this->author_id = $this->author->username;
-////                $this->cate_id = $this->cate->name;
+////                $this->category_id = $this->cate->name;
 //                return $retVal;
 //        }
         

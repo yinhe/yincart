@@ -8,8 +8,8 @@
 	<?php echo CHtml::encode($data->parent_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('category_name')); ?>:</b>
-	<?php echo CHtml::encode($data->category_name); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('name')); ?>:</b>
+	<?php echo CHtml::encode($data->name); ?>
 	<br />
 
 

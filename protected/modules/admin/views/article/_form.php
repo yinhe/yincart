@@ -10,11 +10,11 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'cate_id'); ?>
-		<select name="Article[cate_id]" id="Article_cate_id"> 
+		<?php echo $form->labelEx($model,'category_id'); ?>
+		<select name="Article[category_id]" id="Article_category_id"> 
                 <?php echo $this->parent;?>
                 </select> 
-		<?php echo $form->error($model,'cate_id'); ?>
+		<?php echo $form->error($model,'category_id'); ?>
 	</div>
 
 	<div class="row">
@@ -60,9 +60,9 @@
 </div><!-- form -->
 <script type="text/javascript">
 	$(function(){ 
-		var tid = "<?php echo $model->cate_id;?>";
+		var tid = "<?php echo $model->category_id;?>";
 
-					$("#Article_cate_id option").each(function(i){
+					$("#Article_category_id option").each(function(i){
 
 						if(this.value == tid)
 						{

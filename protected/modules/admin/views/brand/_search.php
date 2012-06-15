@@ -6,38 +6,23 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'brand_id'); ?>
-		<?php echo $form->textField($model,'brand_id'); ?>
+		<?php echo $form->label($model,'value_id'); ?>
+		<?php echo $form->textField($model,'value_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'brand_name'); ?>
-		<?php echo $form->textField($model,'brand_name',array('size'=>60,'maxlength'=>60)); ?>
+		<?php echo $form->label($model,'value_name'); ?>
+		<?php echo $form->textField($model,'value_name',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'brand_logo'); ?>
-		<?php echo $form->textField($model,'brand_logo',array('size'=>60,'maxlength'=>80)); ?>
+		<?php echo $form->label($model,'prop_id'); ?>
+		<?php echo $form->textField($model,'prop_id',array('size'=>10,'maxlength'=>10)); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'brand_desc'); ?>
-		<?php echo $form->textArea($model,'brand_desc',array('rows'=>6, 'cols'=>50)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'site_url'); ?>
-		<?php echo $form->textField($model,'site_url',array('size'=>60,'maxlength'=>255)); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'sort_order'); ?>
-		<?php echo $form->textField($model,'sort_order'); ?>
-	</div>
-
-	<div class="row">
-		<?php echo $form->label($model,'is_show'); ?>
-		<?php echo $form->textField($model,'is_show'); ?>
+		<?php echo $form->label($model,'prop_name'); ?>
+		<?php echo $form->textField($model,'prop_name',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row buttons">

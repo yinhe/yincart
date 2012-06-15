@@ -15,7 +15,7 @@ class ItemController extends Controller {
         //上一级 可支持无限级 分类
         $data = Category::model()->findAll(array('order' => 'sort_order asc, category_id asc'));
         $parent = CHtml::tag('option', array('value' => 0), '请选择分类');
-        $this->parent = $parent . F::toTree($data, $model->category_id, 'category_id', 'parent_id', 'category_name', 1);
+        $this->parent = $parent . F::toTree($data, $model->category_id, 'category_id', 'parent_id', 'name', 1);
     }
 
     /**
@@ -74,8 +74,8 @@ class ItemController extends Controller {
 
         if (isset($_POST['Item'])) {
             $model->attributes = $_POST['Item'];
-            $model->item_sn = $_POST['Item']['item_sn'] == '' ? time() : $_POST['Item']['item_sn'];
-            $img = CUploadedFile::getInstance($model, 'item_image');
+            $model->sn = $_POST['Item']['sn'] == '' ? time() : $_POST['Item']['sn'];
+            $img = CUploadedFile::getInstance($model, 'pic_url');
             if ($img) {
                 if ($img->size > 2000000) {
                     $img_size = ($img->size) / 1000;
@@ -91,7 +91,7 @@ class ItemController extends Controller {
                     $dir = dirname(Yii::app()->basePath) . '/upload/item/' . $time_path;
                     $img_src = $dir . md5(time()) . '.' . $extensionName;
                     $img1 = md5(time()) . '.' . $extensionName;
-                    $model->item_image = $time_path . $img1;
+                    $model->pic_url = $time_path . $img1;
                 }
             } else {
                 echo '<script>alert("请上传图片.")</script>';
@@ -122,9 +122,9 @@ class ItemController extends Controller {
         if (isset($_POST['Item'])) {
             $model->attributes = $_POST['Item'];
             $item = Item::model()->findByPk($id);
-            $img = $_FILES['Item']['name']['item_image'];
+            $img = $_FILES['Item']['name']['pic_url'];
             if ($img !== '') {
-                $img = CUploadedFile::getInstance($model, 'item_image');
+                $img = CUploadedFile::getInstance($model, 'pic_url');
                 $extensionName = explode('.', $img->getName());
                 $extensionName = $extensionName[count($extensionName) - 1];
 
@@ -135,14 +135,14 @@ class ItemController extends Controller {
                 $dir = dirname(Yii::app()->basePath) . '/upload/item/' . $time_path;
                 $img_src = $dir . md5(time()) . '.' . $extensionName;
                 $img1 = md5(time()) . '.' . $extensionName;
-                $model->item_image = $time_path . $img1;
+                $model->pic_url = $time_path . $img1;
             } else {
-                $model->item_image = $item->item_image;
+                $model->pic_url = $item->pic_url;
             }
 
             if ($model->save()) {
                 if ($img !== '') {
-                    @unlink(dirname(Yii::app()->basePath) . '/upload/item/' . $item->item_image);
+                    @unlink(dirname(Yii::app()->basePath) . '/upload/item/' . $item->pic_url);
                     $img->saveAs($img_src);
                 }
                 $this->redirect(array('admin'));
@@ -162,8 +162,9 @@ class ItemController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-
+            $model = $this->loadModel($id);
+            @unlink(dirname(Yii::app()->basePath) . '/upload/item/' . $model->pic_url);
+            $model->delete();
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));

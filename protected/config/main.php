@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => '聚货购物网',
+    'name' => '聚货批发购物网',
     'language' => 'zh_cn',
     'theme' => 'classic',
     // preloading 'log' component
@@ -55,10 +55,10 @@ return array(
         'authManager' => array(
             'class' => 'RDbAuthManager', // Provides support authorization item sorting.
             'connectionID' => 'db',
-            'itemTable' => 'cart_authitem',
-            'itemChildTable' => 'cart_authitemchild',
-            'assignmentTable' => 'cart_authassignment',
-            'rightsTable' => 'cart_rights',
+            'itemTable' => '{{authitem}}',
+            'itemChildTable' => '{{authitemchild}}',
+            'assignmentTable' => '{{authassignment}}',
+            'rightsTable' => '{{rights}}',
         ),
         // uncomment the following to enable URLs in path-format
         'urlManager' => array(
@@ -70,6 +70,8 @@ return array(
                 'page/<key:\w+>' => 'page/index',
                 'catalog/<key:\w+>' => 'catalog/index',
                 'list-<category_id:\d+>' => 'item/index',
+                'item-list-<key:\w+>' => 'item/list',
+                'item-<id:\d+>' => 'item/view',
 //                'list-<category_id:.*>' => 'item/index', 都可以
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
@@ -88,7 +90,7 @@ return array(
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
-            'tablePrefix' => 'cart_',
+            'tablePrefix' => '',
         ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
@@ -98,15 +100,16 @@ return array(
             'class' => 'CLogRouter',
             'routes' => array(
                 array(
-                    'class' => 'CFileLogRoute',
+                    'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+                    'ipFilters' => array('127.0.0.1', '192.168.0.101'),
                     'levels' => 'error, warning',
                 ),
             // uncomment the following to show log messages on web pages
-            /*
-              array(
-              'class'=>'CWebLogRoute',
-              ),
-             */
+            
+//              array(
+//              'class'=>'CWebLogRoute',
+//              ),
+             
             ),
         ),
     ),

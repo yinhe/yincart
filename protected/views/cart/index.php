@@ -30,9 +30,9 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 $i=1;
             foreach($mycart as $m){?>
             <tr>
-                <td><?php echo CHtml::hiddenField($i.'[rowid]', $m['rowid']) ?><?php echo $m['item_image'] ?></td>
-                <td><?php echo $m['item_sn'] ?></td>
-                <td><?php echo $m['item_name'] ?></td>
+                <td><?php echo CHtml::hiddenField($i.'[rowid]', $m['rowid']) ?><?php echo $m['pic_url'] ?></td>
+                <td><?php echo $m['sn'] ?></td>
+                <td><?php echo $m['title'] ?></td>
                 <td><?php echo CHtml::textField($i.'[qty]', $m['qty'], array('size' => '4', 'maxlength' => '5')) ?></td>
                 <td><?php echo $m['subtotal'] ?>元</td>
                 <td><?php echo CHtml::link('移除', array('/cart/delete', 'rowid'=>$m['rowid']))?></td>
@@ -52,7 +52,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
              </tr>
             <tr>
                 <td colspan="6" style="vertical-align:middle"><span style="float:left;padding:5px 10px;"><?php echo CHtml::link('清空购物车', array('/cart/destory'), array('class'=>'btn'))?></span>
-        <span style="float:right;padding:5px 10px;"><?php echo CHtml::link('继续购物', array('/item'), array('class'=>'btn'))?></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:right;padding:5px 10px;"><?php echo CHtml::link('更新购物车', '#', array('id'=>'updateCart', 'class'=>'btn'))?></span></td>
+        <span style="float:right;padding:5px 10px;"><?php echo CHtml::link('继续购物', array('/item-list-all'), array('class'=>'btn'))?></span>&nbsp;&nbsp;&nbsp;&nbsp;<span style="float:right;padding:5px 10px;"><?php echo CHtml::link('更新购物车', '#', array('id'=>'updateCart', 'class'=>'btn'))?></span></td>
             </tr>
             <tr>
                  <td colspan="6"><span style="float:right;padding:5px 10px;"><?php echo CHtml::link('结算', array('/order/checkout'), array('class'=>'btn1'))?></span></td>

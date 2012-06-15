@@ -1,3 +1,8 @@
+<?php
+$cs = Yii::app()->clientScript;
+$cs->registerCoreScript('jquery');
+$cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.js');
+?>
 <!doctype html>
 <html>
     <head>
@@ -10,7 +15,13 @@
         <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css"/>
         <link type="text/css" rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/css/core.css"/>
         <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/lib/backtop/js/scrolltop.js"></script>
+        <script type="text/javascript" src="<?php echo Yii::app()->theme->baseUrl; ?>/js/common.js"></script>
     </head>
+    <script type="text/javascript">
+        var SITE_URL = "<?php echo Yii::app()->request->baseUrl ?>";
+        var UserId  = '<?PHP echo Yii::app()->user->id ?>';
+        var RETURN_URL = '<?PHP echo Yii::app()->request->url ?>';
+    </script>
     <body>
         <div id="header">
             <div class="hd_top">
@@ -41,14 +52,14 @@
             ?><!-- breadcrumbs -->
 
             <div class="main grid_25">
-<?php echo $content ?>
+                <?php echo $content ?>
             </div>
 
             <div class="clear"></div>
 
             <div id="footer">
                 <div class="helpcenter">
-<?php $this->widget('WHelpCenter') ?>
+                    <?php $this->widget('WHelpCenter') ?>
                 </div>
                 <div class="line"></div>
                 <div class="footnav">
@@ -62,7 +73,7 @@
                     <?php $this->widget('WFootMenu') ?>
                 </div>
                 <div class="paylink">
-<?php //$this->widget('WFriendLink')  ?>
+                    <?php //$this->widget('WFriendLink')  ?>
                 </div>
                 <div class="foot_copyright">
                     <p>Copyright © 2012-2015 聚货电子商务.All Rights Reserved.</p>
@@ -70,6 +81,7 @@
                 </div>
             </div>
         </div>
+        <?php $this->widget('WCustomerService') ?>
         <div style="display:none" id="goTopBtn"><a title="返回顶部" class="ui-scrolltop" id="J_ScrollTopBtn">返回顶部</a></div>
         <script type="text/javascript">goTopEx();</script>
         <script type="text/javascript" src="http://js.tongji.linezing.com/2863871/tongji.js"></script><noscript><a href="http://www.linezing.com"><img src="http://img.tongji.linezing.com/2863871/tongji.gif"/></a></noscript>

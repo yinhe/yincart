@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs = array(
     '内容分类' => array('index'),
-    $model->category_name => array('view', 'id' => $model->category_id),
+    $model->name => array('view', 'id' => $model->category_id),
     '更新',
 );
 

@@ -29,7 +29,7 @@ $('.search-form form').submit(function(){
 	'filter'=>$model,
 	'columns'=>array(
 		'article_id',
-		'category.category_name',
+		'category.name',
 		'author.username',
 		'title',
 		'from',

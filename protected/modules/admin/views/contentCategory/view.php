@@ -18,6 +18,6 @@ $this->menu=array(
 	'attributes'=>array(
 		'category_id',
 		'parent_id',
-		'category_name',
+		'name',
 	),
 )); ?>

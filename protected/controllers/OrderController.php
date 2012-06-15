@@ -32,13 +32,6 @@ class OrderController extends Controller {
                 'actions' => array('checkout', 'create', 'update'),
                 'users' => array('@'),
             ),
-            array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
-                'users' => array('admin'),
-            ),
-            array('deny', // deny all users
-                'users' => array('*'),
-            ),
         );
     }
 
@@ -51,14 +44,14 @@ class OrderController extends Controller {
             'model' => $this->loadModel($id),
         ));
     }
-    
-    public function actionCheckOut(){
+
+    public function actionCheckOut() {
         $cart = Yii::app()->cart;
         $mycart = $cart->contents();
-        $total  = $cart->total();
+        $total = $cart->total();
         $this->render('checkout', array(
             'mycart' => $mycart,
-            'total'  => $total
+            'total' => $total
         ));
     }
 
@@ -67,41 +60,42 @@ class OrderController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Orders;
+        $model = new Order;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
-
-        if (isset($_POST['Orders'])) {
-            $model->attributes = $_POST['Orders'];
-            $model->order_sn = F::get_order_sn();
+        
+        if (isset($_POST['Order'])) {
+            $model->attributes = $_POST['Order'];
+            $model->id = F::get_order_id();
             $model->user_id = Yii::app()->user->id ? Yii::app()->user->id : '0';
-
+                    
             if ($model->save()) {
                 $cart = Yii::app()->cart;
                 $mycart = $cart->contents();
                 foreach ($mycart as $mc) {
-                    $orderGoods = new OrderGoods;
-                    $orderGoods->order_id = $model->order_id;
-                    $orderGoods->product_id = $mc['id'];
-                    $orderGoods->product_name = $mc['product_name'];
-                    $orderGoods->product_image = serialize($mc['product_image']);
-                    $orderGoods->product_sn = $mc['product_sn'];
-                    $orderGoods->qty = $mc['qty'];
-                    $orderGoods->save();
+                    $OrderItem = new OrderItem;
+                    $OrderItem->order_id = $model->order_id;
+                    $OrderItem->item_id = $mc['id'];
+                    $OrderItem->title = $mc['title'];
+                    $OrderItem->pic_url = serialize($mc['pic_url']);
+                    $OrderItem->sn = $mc['sn'];
+                    $OrderItem->num = $mc['qty'];
+                    $OrderItem->save();
                 }
+                    
                 $cart->destroy();
                 $this->redirect(array('success'));
             }
         }
 
-        $this->render('create', array(
-            'model' => $model,
-        ));
+//        $this->render('create', array(
+//            'model' => $model,
+//        ));
     }
-    
-    public function actionSuccess(){
-        
+
+    public function actionSuccess() {
+
         $this->render('success');
     }
 
@@ -116,8 +110,8 @@ class OrderController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['Orders'])) {
-            $model->attributes = $_POST['Orders'];
+        if (isset($_POST['Order'])) {
+            $model->attributes = $_POST['Order'];
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->order_id));
         }
@@ -149,7 +143,7 @@ class OrderController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('Orders');
+        $dataProvider = new CActiveDataProvider('Order');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -159,10 +153,10 @@ class OrderController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Orders('search');
+        $model = new Order('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Orders']))
-            $model->attributes = $_GET['Orders'];
+        if (isset($_GET['Order']))
+            $model->attributes = $_GET['Order'];
 
         $this->render('admin', array(
             'model' => $model,
@@ -175,7 +169,7 @@ class OrderController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = Orders::model()->findByPk($id);
+        $model = Order::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;
@@ -186,7 +180,7 @@ class OrderController extends Controller {
      * @param CModel the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'orders-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'order-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

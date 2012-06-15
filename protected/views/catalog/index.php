@@ -1,25 +1,27 @@
 <?php
-$this->pageTitle = $model->category_name . ' - ' . Yii::app()->name;
+$this->pageTitle = $model->name . ' - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    '商品列表'=>array('/item/list'),
-    $model->category_name
+    '商品列表'=>array('/item-list-all'),
+    $model->name
 );
 ?>
 
 <?php echo $model->getThumb() ?>
 <div class="box" style="margin-top:10px">
     <div class="box-title">热卖商品</div>
-    <div class="box-content item-list">
+    <div class="box-content tuijian" style="width:716px">
             <?php
             if ($hotItems) {
                 echo '<ul>';
                 foreach ($hotItems as $hi) {
                     ?>
                     <li>
-                        <div class="image"><?php echo $hi->getListThumb() ?></div>
-                        <div class="name"><?php echo CHtml::link($hi->item_name, array('/item/view', 'id'=>$hi->item_id)) ?></div>
+                        <div class="image"><?php echo $hi->getRecommendThumb() ?></div>
+                        <div class="title"><?php echo $hi->getTitle() ?></div>
+                        <div class="clear"></div>
                         <div class="price">零售价：<span class="currency"><?php echo $hi->currency ?></span><em><?php echo $hi->market_price ?></em></div>
                         <div class="price">批发价：<span class="currency"><?php echo $hi->currency ?></span><em><?php echo $hi->shop_price ?></em></div>
+                        <div class="btn-list"><?php echo $hi->getBtnList() ?></div>
                     </li>
                 <?php
                 }
@@ -34,7 +36,7 @@ $this->breadcrumbs = array(
 <div class="clear"></div>
 
 <div class="box" style="margin-top:10px">
-    <div class="box-title"><?php //echo $model->category_name ?>商品列表</div>
+    <div class="box-title"><?php //echo $model->name ?>商品列表</div>
     <div class="box-content item-list">
             <?php
 
@@ -44,9 +46,10 @@ $this->breadcrumbs = array(
                     ?>
                     <li>
                         <div class="image"><?php echo $i->getListThumb() ?></div>
-                        <div class="name"><?php echo CHtml::link($i->item_name, array('/item/view', 'id'=>$i->item_id)) ?></div>
+                        <div class="title"><?php echo $i->getTitle() ?></div>
                         <div class="price">零售价：<span class="currency"><?php echo $i->currency ?></span><em><?php echo $i->market_price ?></em></div>
                         <div class="price">批发价：<span class="currency"><?php echo $i->currency ?></span><em><?php echo $i->shop_price ?></em></div>
+                        <div class="btn-list"><?php echo $i->getBtnList() ?></div>
                     </li>
                 <?php
                 }

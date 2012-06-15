@@ -18,9 +18,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'category_name'); ?>
-		<?php echo $form->textField($model,'category_name',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'category_name'); ?>
+		<?php echo $form->labelEx($model,'name'); ?>
+		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>50)); ?>
+		<?php echo $form->error($model,'name'); ?>
 	</div>
         
         <div class="row">

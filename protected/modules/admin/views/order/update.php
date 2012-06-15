@@ -6,13 +6,13 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Orders', 'url'=>array('index')),
-	array('label'=>'Create Orders', 'url'=>array('create')),
-	array('label'=>'View Orders', 'url'=>array('view', 'id'=>$model->order_id)),
-	array('label'=>'Manage Orders', 'url'=>array('admin')),
+	array('label'=>'List Order', 'url'=>array('index')),
+	array('label'=>'Create Order', 'url'=>array('create')),
+	array('label'=>'View Order', 'url'=>array('view', 'id'=>$model->order_id)),
+	array('label'=>'Manage Order', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Update Orders <?php echo $model->order_id; ?></h1>
+<h1>Update Order <?php echo $model->order_id; ?></h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

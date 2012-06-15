@@ -11,8 +11,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'cate_id'); ?>
-		<?php echo $form->textField($model,'cate_id'); ?>
+		<?php echo $form->label($model,'category_id'); ?>
+		<?php echo $form->textField($model,'category_id'); ?>
 	</div>
 
 	<div class="row">

@@ -1,16 +1,13 @@
 <?php
 
 /**
- * This is the model class for table "{{brand}}".
+ * This is the model class for table "brand".
  *
- * The followings are the available columns in table '{{brand}}':
- * @property integer $brand_id
- * @property string $brand_name
- * @property string $brand_logo
- * @property string $brand_desc
- * @property string $site_url
- * @property integer $sort_order
- * @property integer $is_show
+ * The followings are the available columns in table 'brand':
+ * @property string $value_id
+ * @property string $value_name
+ * @property string $prop_id
+ * @property string $prop_name
  */
 class Brand extends CActiveRecord
 {
@@ -29,7 +26,7 @@ class Brand extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return '{{brand}}';
+		return 'brand';
 	}
 
 	/**
@@ -40,14 +37,12 @@ class Brand extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('brand_name', 'required'),
-			array('sort_order, is_show', 'numerical', 'integerOnly'=>true),
-			array('brand_name', 'length', 'max'=>60),
-			array('brand_logo', 'length', 'max'=>80),
-			array('site_url', 'length', 'max'=>255),
+			array('prop_id', 'required'),
+			array('value_id, prop_id', 'length', 'max'=>10),
+			array('value_name, prop_name', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('brand_id, brand_name, brand_logo, brand_desc, site_url, sort_order, is_show', 'safe', 'on'=>'search'),
+			array('value_id, value_name, prop_id, prop_name', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -68,13 +63,10 @@ class Brand extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'brand_id' => 'ID',
-			'brand_name' => '品牌名称',
-			'brand_logo' => '品牌标志',
-			'brand_desc' => '品牌描述',
-			'site_url' => '品牌网址',
-			'sort_order' => '排序',
-			'is_show' => '是否显示',
+			'value_id' => 'Value',
+			'value_name' => 'Value Name',
+			'prop_id' => 'Prop',
+			'prop_name' => 'Prop Name',
 		);
 	}
 
@@ -89,13 +81,10 @@ class Brand extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('brand_id',$this->brand_id);
-		$criteria->compare('brand_name',$this->brand_name,true);
-		$criteria->compare('brand_logo',$this->brand_logo,true);
-		$criteria->compare('brand_desc',$this->brand_desc,true);
-		$criteria->compare('site_url',$this->site_url,true);
-		$criteria->compare('sort_order',$this->sort_order);
-		$criteria->compare('is_show',$this->is_show);
+		$criteria->compare('value_id',$this->value_id,true);
+		$criteria->compare('value_name',$this->value_name,true);
+		$criteria->compare('prop_id',$this->prop_id,true);
+		$criteria->compare('prop_name',$this->prop_name,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

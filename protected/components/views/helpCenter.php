@@ -2,11 +2,11 @@
         ?>
 <div class="help<?php echo $k+1 ?>">
                     <div>
-                        <h3><?php echo $h->category_name ?></h3>
+                        <h3><?php echo $h->name ?></h3>
                         <ul>
                             <?php 
     $cri = new CDbCriteria(array(
-                    'condition' => 'cate_id = '.$h->category_id,
+                    'condition' => 'category_id = '.$h->category_id,
                 ));
     $helpChilds = Page::model()->findAll($cri);
     foreach($helpChilds as $hc){

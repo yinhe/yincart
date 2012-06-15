@@ -29,13 +29,13 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/li
     #KinSlideshow{ overflow:hidden; width:990px; height:486px;}
 </style>
     <div class="image_scroll">
-        <?php $this->widget('WFlash') ?>
+        <?php $this->widget('WAd') ?>
     </div>
     <div class="category">
-        <a href=""><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/new_pro.png" width="366" height="78"/></a>
-        <a href=""><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/hot_pro.png" width="315" height="78"/></a>
-        <a href=""><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/value.png" width="309" height="78"/></a>
+        <a href="<?php echo Yii::app()->createUrl('/item-list-new') ?>"><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/new_pro.png" width="366" height="78"/></a>
+        <a href="<?php echo Yii::app()->createUrl('/item-list-hot') ?>"><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/hot_pro.png" width="315" height="78"/></a>
+        <a href="<?php echo Yii::app()->createUrl('/item-list-best') ?>"><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/value.png" width="309" height="78"/></a>
     </div>
     <div class="vip_pro">
-        <a href=""><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/vip_pro.png" width="990" height="117"/></a>
+        <a href="<?php echo Yii::app()->createUrl('/item-list-promote') ?>"><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/vip_pro.png" width="990" height="117"/></a>
     </div>

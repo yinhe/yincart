@@ -1636,3 +1636,377 @@ REQUEST_URI=/yincart/catalog/watches
 in E:\wamp\www\yincart\protected\components\WCategory.php (14)
 in E:\wamp\www\yincart\themes\classic\views\layouts\catalog.php (3)
 in E:\wamp\www\yincart\protected\controllers\CatalogController.php (31)
+2012/05/26 12:13:27 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "new" 动作.' in E:\wamp\www\yii\framework\web\CController.php:484
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CController.php(271): CController->missingAction('new')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('new')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/new')
+#3 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yincart/item/new.html
+HTTP_REFERER=http://localhost/yincart/site/index
+---
+2012/05/26 12:18:22 [error] [exception.CHttpException.400] exception 'CHttpException' with message '您的请求无效。' in E:\wamp\www\yii\framework\web\CController.php:337
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 E:\wamp\www\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#2 E:\wamp\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('list')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/list/new')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/yincart/item/list/new.html
+HTTP_REFERER=http://localhost/yincart/site/index
+---
+2012/05/26 12:19:39 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "list？key=new" 动作.' in E:\wamp\www\yii\framework\web\CController.php:484
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CController.php(271): CController->missingAction('list???key=new')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('list???key=new')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/list???key...')
+#3 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yincart/item/list%EF%BC%9Fkey=new.html
+---
+2012/05/26 12:37:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item/index.html?keyword=%E5%93%81%E5%90%8D%E6%88%96%E5%95%86%E5%93%81%E5%8F%B7
+---
+2012/05/26 12:37:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message '系统无法找到请求的 "hot" 动作.' in E:\wamp\www\yii\framework\web\CController.php:484
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CController.php(271): CController->missingAction('hot')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('hot')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/hot')
+#3 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#4 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#5 {main}
+REQUEST_URI=/yincart/item/hot.html
+HTTP_REFERER=http://localhost/yincart/site/index
+---
+2012/05/26 12:42:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:42:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:42:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:42:51 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:42:54 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:42:59 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:43:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:43:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:44:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/26 12:46:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item/index.html?keyword=%E6%89%8B%E8%A1%A8
+---
+2012/05/26 12:47:02 [error] [exception.CHttpException.400] exception 'CHttpException' with message '您的请求无效。' in E:\wamp\www\yii\framework\web\CController.php:337
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 E:\wamp\www\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#2 E:\wamp\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('list')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/list')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/yincart/item/list.html
+HTTP_REFERER=http://localhost/yincart/item/index.html?keyword=%E6%89%8B%E8%A1%A8
+---
+2012/05/26 12:47:48 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item/index.html?keyword=%E6%89%8B%E8%A1%A8
+---
+2012/05/26 12:48:34 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item/index.html?keyword=%E6%89%8B%E8%A1%A8
+---
+2012/05/26 12:48:37 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "item-list"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item-list')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/item-list.html
+HTTP_REFERER=http://localhost/yincart/item/index.html?keyword=%E6%89%8B%E8%A1%A8
+---
+2012/05/26 12:48:54 [error] [exception.CHttpException.400] exception 'CHttpException' with message '您的请求无效。' in E:\wamp\www\yii\framework\web\CController.php:337
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CController.php(310): CController->invalidActionParams(Object(CInlineAction))
+#1 E:\wamp\www\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#2 E:\wamp\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('list')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/list')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#6 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/yincart/item/list.html
+---
+2012/05/26 12:49:00 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "item-list"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item-list')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/item-list.html
+---
+2012/05/26 12:51:43 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-1.html
+---
+2012/05/26 12:52:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-14.html
+---
+2012/05/26 12:54:47 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "item-list1all1222222222xxxx2"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item-list1all12...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/item-list1all1222222222xxxx2.html
+---
+2012/05/26 13:05:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-1.html
+---
+2012/05/26 13:06:57 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-19.html
+---
+2012/05/26 13:07:08 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-6.html
+---
+2012/05/26 13:07:25 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-6.html
+---
+2012/05/27 05:31:45 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-1.html
+---
+2012/05/27 06:37:26 [error] [exception.CException] exception 'CException' with message 'CHttpRequest and its behaviors do not have a method or closure named "cookies".' in E:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 [internal function]: CComponent->__call('cookies', Array)
+#1 E:\wamp\www\yincart\protected\controllers\ItemController.php(71): CHttpRequest->cookies()
+#2 [internal function]: ItemController->actionView('5')
+#3 E:\wamp\www\yii\framework\web\actions\CAction.php(107): ReflectionMethod->invokeArgs(Object(ItemController), Array)
+#4 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(48): CAction->runWithParamsInternal(Object(ItemController), Object(ReflectionMethod), Array)
+#5 E:\wamp\www\yii\framework\web\CController.php(309): CInlineAction->runWithParams(Array)
+#6 E:\wamp\www\yii\framework\web\CController.php(287): CController->runAction(Object(CInlineAction))
+#7 E:\wamp\www\yii\framework\web\CController.php(266): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CController->run('view')
+#9 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('item/view')
+#10 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#11 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/yincart/item-5.html
+HTTP_REFERER=http://localhost/yincart/item-4.html
+---
+2012/05/27 07:08:07 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/list-6.html
+---
+2012/05/27 07:08:44 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item.html
+---
+2012/05/27 07:25:33 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item.html
+---
+2012/05/27 07:26:42 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/27 07:26:46 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/27 07:26:56 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/27 07:27:01 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/admin/images/small_icons/sitemap_color.png"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('themes/admin/im...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/themes/admin/images/small_icons/sitemap_color.png
+HTTP_REFERER=http://localhost/yincart/themes/admin/css/icons.css
+---
+2012/05/27 07:29:58 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item.html
+---
+2012/05/27 07:30:53 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "css/jquery.highlight-3.js"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:280
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(135): CWebApplication->runController('css/jquery.high...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#2 E:\wamp\www\yincart\index.php(13): CApplication->run()
+#3 {main}
+REQUEST_URI=/yincart/css/jquery.highlight-3.js
+HTTP_REFERER=http://localhost/yincart/item.html
+---

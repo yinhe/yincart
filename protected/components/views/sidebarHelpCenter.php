@@ -1,9 +1,9 @@
 <div class="TreeList">
     <?php foreach($this->getHelp() as $h){?>
-    <div class="cat1"><?php echo $h->category_name ?></div> 
+    <div class="cat1"><?php echo $h->name ?></div> 
     <?php 
     $cri = new CDbCriteria(array(
-                    'condition' => 'cate_id = '.$h->category_id,
+                    'condition' => 'category_id = '.$h->category_id,
                 ));
     $helpChilds = Page::model()->findAll($cri);
     foreach($helpChilds as $hc){

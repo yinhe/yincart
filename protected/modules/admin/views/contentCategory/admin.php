@@ -41,9 +41,9 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/lib/j
             'dataProvider' => $model->search(),
             'filter' => $model,
             'columns' => array(
-//                'category_id',
+                'category_id',
                 'parent_id',
-                'category_name',
+                'name',
                 array(
                     'class' => 'CButtonColumn',
                     'template' => '{update}{delete}'
@@ -60,7 +60,7 @@ Yii::app()->clientScript->registerCssFile(Yii::app()->request->baseUrl . '/lib/j
 ////   $items[] = $returnArr ;
 ////   $ccc = $cc->getMeChildsId($cc->category_id);
 //   $childs = $cc->getChildsId($cc->category_id);
-//   $rows[] = array('id'=>$cc->category_id, 'name'=>$cc->category_name, 'sort_order'=>$cc->sort_order, $childs !==0 ? "'__parentId'=>$cc->parent_id" : "'_parentId'=>0");   
+//   $rows[] = array('id'=>$cc->category_id, 'name'=>$cc->name, 'sort_order'=>$cc->sort_order, $childs !==0 ? "'__parentId'=>$cc->parent_id" : "'_parentId'=>0");   
 //}
 //$myjson = CJSON::encode(array('rows'=>$rows));
 //print_r($items);

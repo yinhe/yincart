@@ -15,7 +15,7 @@ class ContentCategoryController extends Controller {
         //上一级 可支持无限级 分类
         $data = ContentCategory::model()->findAll(array('order' => 'sort_order asc, category_id asc'));
         $parent = CHtml::tag('option', array('value' => 0), F::t('Please Select'));
-        $this->parent = $parent . F::toTree($data, $model->cate_id, 'category_id', 'parent_id', 'category_name', 1);
+        $this->parent = $parent . F::toTree($data, $model->cate_id, 'category_id', 'parent_id', 'name', 1);
     }
 
     /**
@@ -154,10 +154,10 @@ class ContentCategoryController extends Controller {
             $parentId = (int) $_GET['root'];
         }
         $req = Yii::app()->db->createCommand(
-            "SELECT m1.category_id, m1.category_name AS text, m2.category_id IS NOT NULL AS hasChildren "
+            "SELECT m1.category_id, m1.name AS text, m2.category_id IS NOT NULL AS hasChildren "
             . "FROM cart_content_category AS m1 LEFT JOIN cart_content_category AS m2 ON m1.category_id=m2.parent_id "
             . "WHERE m1.parent_id <=> $parentId "
-            . "GROUP BY m1.category_id ORDER BY m1.category_name ASC"
+            . "GROUP BY m1.category_id ORDER BY m1.name ASC"
         );
         $children = $req->queryAll();
         echo str_replace(

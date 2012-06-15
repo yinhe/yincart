@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
 	'商品列表'=>array('admin'),
-	'创建',
+	'添加',
 );
 
 $this->menu=array(
@@ -9,6 +9,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>创建商品</h1>
+<h1>添加商品</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

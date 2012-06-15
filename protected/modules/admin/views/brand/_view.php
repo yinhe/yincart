@@ -1,31 +1,19 @@
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('brand_id')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->brand_id), array('view', 'id'=>$data->brand_id)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('value_id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->value_id), array('view', 'id'=>$data->value_id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('brand_name')); ?>:</b>
-	<?php echo CHtml::encode($data->brand_name); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('value_name')); ?>:</b>
+	<?php echo CHtml::encode($data->value_name); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('brand_logo')); ?>:</b>
-	<?php echo CHtml::encode($data->brand_logo); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('prop_id')); ?>:</b>
+	<?php echo CHtml::encode($data->prop_id); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('brand_desc')); ?>:</b>
-	<?php echo CHtml::encode($data->brand_desc); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('site_url')); ?>:</b>
-	<?php echo CHtml::encode($data->site_url); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('sort_order')); ?>:</b>
-	<?php echo CHtml::encode($data->sort_order); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('is_show')); ?>:</b>
-	<?php echo CHtml::encode($data->is_show); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('prop_name')); ?>:</b>
+	<?php echo CHtml::encode($data->prop_name); ?>
 	<br />
 
 

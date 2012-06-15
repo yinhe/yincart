@@ -8,41 +8,13 @@ class AdController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
-	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
+        public function filters() {
+        return array('rights',);
+        }
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
+        public function allowedActions() {
+            return 'index, view';
+        }
 
 	/**
 	 * Displays a particular model.
@@ -69,8 +41,28 @@ class AdController extends Controller
 		if(isset($_POST['Ad']))
 		{
 			$model->attributes=$_POST['Ad'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->ad_id));
+                        $img = CUploadedFile::getInstance($model, 'pic');
+                        if($img){
+                        if($img->size > 2000000){
+                            $img_size = ($img->size)/1000;
+                           echo '<script>alert("图片大小为'.$img_size.'KB,请小于2M")</script>';
+                        }else{
+                        $extensionName = explode('.', $img->getName());
+                        $extensionName = $extensionName[count($extensionName) - 1];
+
+                        $day_file = date('Y-m-d', time());
+                        $path = dirname(Yii::app()->basePath) . '/upload/ad/';
+                        $img_src = $path. md5(time()) .'.'. $extensionName;
+                        $img1 = md5(time()) .'.'. $extensionName;
+                        $model->pic = $img1;
+                        }}else{
+                           echo '<script>alert("请上传图片.")</script>';
+                        }
+
+			if($model->save()){
+                            $img -> saveAs($img_src);
+				$this->redirect(array('admin'));
+                        }
 		}
 
 		$this->render('create',array(
@@ -93,8 +85,29 @@ class AdController extends Controller
 		if(isset($_POST['Ad']))
 		{
 			$model->attributes=$_POST['Ad'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->ad_id));
+                        $Ad = Ad::model()->findByPk($id);
+                        $img = $_FILES['Ad']['name']['pic'];
+                        if($img !== ''){
+                        $img = CUploadedFile::getInstance($model, 'pic');
+                        $extensionName = explode('.', $img->getName());
+                        $extensionName = $extensionName[count($extensionName) - 1];
+
+                        $path = dirname(Yii::app()->basePath) . '/upload/ad/';
+                        $img_src = $path. md5(time()) .'.'. $extensionName;
+                        $img1 = md5(time()) .'.'. $extensionName;
+                        $model->pic = $img1;
+                        }else{
+                        $model->pic = $Ad->pic;
+                        }
+
+                        
+			if($model->save()){
+                            if($img !== ''){
+                            @unlink(dirname(Yii::app()->basePath).'/upload/ad/'.$Ad->pic);
+                            $img -> saveAs($img_src);
+                            }
+		            $this->redirect(array('admin'));
+                        }
 		}
 
 		$this->render('update',array(
@@ -167,7 +180,7 @@ class AdController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='ad-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='flash-ad-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
