@@ -1,30 +1,31 @@
 <?php
 $this->breadcrumbs=array(
-	'Address Results'=>array('index'),
-	$model->contact_id,
+	'收货地址'=>array('admin'),
+	'详细地址#'.$model->contact_id,
 );
 
-$this->menu=array(
-	array('label'=>'List AddressResult', 'url'=>array('index')),
-	array('label'=>'Create AddressResult', 'url'=>array('create')),
-	array('label'=>'Update AddressResult', 'url'=>array('update', 'id'=>$model->contact_id)),
-	array('label'=>'Delete AddressResult', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->contact_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage AddressResult', 'url'=>array('admin')),
-);
+//$this->menu=array(
+//	array('label'=>'List AddressResult', 'url'=>array('index')),
+//	array('label'=>'Create AddressResult', 'url'=>array('create')),
+//	array('label'=>'Update AddressResult', 'url'=>array('update', 'id'=>$model->contact_id)),
+//	array('label'=>'Delete AddressResult', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->contact_id),'confirm'=>'Are you sure you want to delete this item?')),
+//	array('label'=>'Manage AddressResult', 'url'=>array('admin')),
+//);
 ?>
 
-<h1>View AddressResult #<?php echo $model->contact_id; ?></h1>
-
+<div class="box">
+    <div class="box-title">查看收货地址#<?php echo $model->contact_id; ?></div>
+    <div class="box-content">
 <?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'contact_id',
 		'user_id',
 		'contact_name',
-		'country',
-		'state',
-		'city',
-		'district',
+//		'country',
+		's.name',
+		'c.name',
+		'd.name',
 		'zipcode',
 		'address',
 		'phone',
@@ -35,3 +36,5 @@ $this->menu=array(
 		'update_time',
 	),
 )); ?>
+    </div>
+</div>

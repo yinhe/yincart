@@ -35,7 +35,7 @@
                             //empty since it will be filled by the other dropdown
                 $c_default = $model->isNewRecord ? '' : $model->city;
                 if(!$model->isNewRecord){
-                $city_data=area::model()->findAll("parent_id=:parent_id",
+                $city_data=Area::model()->findAll("parent_id=:parent_id",
                   array(":parent_id"=>$model->state));
                 $city=CHtml::listData($city_data,"id","name");
                 }
@@ -52,7 +52,7 @@
                             )));   
                 $d_default = $model->isNewRecord ? '' : $model->district;
                 if(!$model->isNewRecord){
-                $district_data=area::model()->findAll("parent_id=:parent_id",
+                $district_data=Area::model()->findAll("parent_id=:parent_id",
                   array(":parent_id"=>$model->city));
                 $district=CHtml::listData($district_data,"id","name");
                 }          
@@ -63,21 +63,20 @@
                          )
                          );
                          ?>
-                
-                <?php echo '&nbsp;邮编：'.$form->textField($model,'zipcode',array('size'=>10,'maxlength'=>45)); ?>
+                <?php echo '&nbsp;邮政编号 <font color="red">*</font>：'.$form->textField($model,'zipcode',array('size'=>10,'maxlength'=>45)); ?>
                 <?php echo $form->error($model,'zipcode'); ?>
             </div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'zipcode'); ?>
-		<?php echo $form->textField($model,'zipcode',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'zipcode'); ?>
-	</div>
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'address'); ?>
 		<?php echo $form->textField($model,'address',array('size'=>60,'maxlength'=>255)); ?>
 		<?php echo $form->error($model,'address'); ?>
+	</div>
+        
+        <div class="row">
+		<?php echo $form->labelEx($model,'mobile_phone'); ?>
+		<?php echo $form->textField($model,'mobile_phone',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->error($model,'mobile_phone'); ?>
 	</div>
 
 	<div class="row">
@@ -85,13 +84,6 @@
 		<?php echo $form->textField($model,'phone',array('size'=>45,'maxlength'=>45)); ?>
 		<?php echo $form->error($model,'phone'); ?>
 	</div>
-
-	<div class="row">
-		<?php echo $form->labelEx($model,'mobile_phone'); ?>
-		<?php echo $form->textField($model,'mobile_phone',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'mobile_phone'); ?>
-	</div>
-        
         
 	<div class="row">
 		<?php echo $form->labelEx($model,'is_default'); ?>
@@ -106,7 +98,7 @@
 	</div>
 
 	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+		<?php echo CHtml::submitButton($model->isNewRecord ? '创建' : '保存'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

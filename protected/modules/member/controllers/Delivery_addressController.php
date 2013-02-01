@@ -29,11 +29,11 @@ class Delivery_addressController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update'),
+                'actions' => array('create', 'update', 'dynamiccities', 'dynamicdistrict'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete'),
+                'actions' => array('admin', 'delete', 'dynamiccities', 'dynamicdistrict'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -65,7 +65,7 @@ class Delivery_addressController extends Controller {
         if (isset($_POST['AddressResult'])) {
             $model->attributes = $_POST['AddressResult'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->contact_id));
+                $this->redirect(array('admin'));
         }
 
         $this->render('create', array(
@@ -87,7 +87,7 @@ class Delivery_addressController extends Controller {
         if (isset($_POST['AddressResult'])) {
             $model->attributes = $_POST['AddressResult'];
             if ($model->save())
-                $this->redirect(array('view', 'id' => $model->contact_id));
+                $this->redirect(array('admin'));
         }
 
         $this->render('update', array(
@@ -161,7 +161,8 @@ class Delivery_addressController extends Controller {
     }
 
     public function actionDynamiccities() {
-        $data = Area::model()->findAll("parent_id=:parent_id", array(":parent_id" => $_GET['Address_state']));
+        echo $_GET['AddressResult_state'];
+        $data = Area::model()->findAll("parent_id=:parent_id", array(":parent_id" => $_GET['AddressResult_state']));
 
         $data = CHtml::listData($data, "id", "name");
         echo CHtml::tag("option", array("value" => ''), '', true);
@@ -171,8 +172,8 @@ class Delivery_addressController extends Controller {
     }
 
     public function actionDynamicdistrict() {
-        if ($_GET["Address_city_id"]) {
-            $data = Area::model()->findAll("parent_id=:parent_id", array(":parent_id" => $_GET["Address_city_id"]));
+        if ($_GET["AddressResult_city"]) {
+            $data = Area::model()->findAll("parent_id=:parent_id", array(":parent_id" => $_GET["AddressResult_city"]));
 
             $data = CHtml::listData($data, "id", "name");
             foreach ($data as $value => $name) {

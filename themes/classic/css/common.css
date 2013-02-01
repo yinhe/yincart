@@ -3,7 +3,7 @@ body {font:12px/1.5 '宋体',Arial,Lucida,Helvetica,sans-serif;background:#fffff
 a {color:#464646;text-decoration:none;}
 li{list-style:none;}
 .common_left{float:left;}
-.common_right{float:right;width:220px;overflow:hidden}
+.common_right{float:right;width:230px;overflow:hidden}
 a img{border:none;}
 .clear{clear:both;}
 

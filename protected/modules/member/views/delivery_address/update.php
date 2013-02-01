@@ -1,8 +1,8 @@
 <?php
 $this->breadcrumbs=array(
-	'Address Results'=>array('index'),
-	$model->contact_id=>array('view','id'=>$model->contact_id),
-	'Update',
+	'收货地址'=>array('admin'),
+	'详细地址#'.$model->contact_id=>array('view','id'=>$model->contact_id),
+	'更新',
 );
 
 $this->menu=array(
@@ -13,6 +13,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update AddressResult <?php echo $model->contact_id; ?></h1>
-
+<div class="box">
+    <div class="box-title">更新收货地址#<?php echo $model->contact_id; ?></div>
+    <div class="box-content">
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+    </div>
+</div>

@@ -11,12 +11,30 @@ Yii::app()->clientScript->registerCoreScript('jquery');
             $('#orderForm').submit(); 
         });
     });
+    
 </script>
 <?php echo CHtml::beginForm(array('/order/create'), 'POST', array('id'=>'orderForm')) ?>
 <div class="box">
-    <div class="box-title">收货地址</div>
+    <div class="box-title"><span style="float:right"><?php echo CHtml::link('管理收货地址', array('/member/delivery_address/admin'))?></span>收货地址</div>
     <div class="box-content">
-        <?php echo CHtml::link('添加收货地址', array('/member/delivery_address/create'))?>
+        <?php
+        $cri = new CDbCriteria(array(
+            'condition'=>'user_id = '.Yii::app()->user->id
+        ));
+        $AddressResult = AddressResult::model()->findAll($cri);
+        if($AddressResult){
+        foreach($AddressResult as $address){
+        $default_address = $address->is_default == 1 ? 'default_address' : '';
+        echo '<li class='.$default_address.'>'.CHtml::radioButton('delivery_address', $address->is_default == 1 ? TRUE : FALSE, array('value'=>$address->contact_id, 'id'=>'delivery_address'.$address->contact_id));
+        echo CHtml::tag('span', array(
+				'class' => 'buyer-address shop_selection'),
+                $address->s->name.'&nbsp;'.$address->c->name.'&nbsp;'.$address->d->name.'&nbsp;'.$address->address.'&nbsp;('.$address->contact_name.'&nbsp;收)&nbsp;'.$address->mobile_phone);
+        echo '</li>';
+        
+        }}else{?>
+        <?php echo CHtml::link('添加收货地址', array('/member/delivery_address/create'))?>    
+        <?php }?>
+        
     </div>
 </div>
 <div class="box">
@@ -28,20 +46,7 @@ Yii::app()->clientScript->registerCoreScript('jquery');
         ));
         $paymentMethod = PaymentMethod::model()->findAll($cri);
         $list = CHtml::listData($paymentMethod, 'id', 'name');
-        echo CHtml::radioButtonList('payment_method', '', $list);
-        ?>
-    </div>
-</div>
-<div class="box">
-    <div class="box-title">配送方式</div>
-    <div class="box-content">
-        <?php
-        $cri = new CDbCriteria(array(
-            'condition'=>'enabled = 1'
-        ));
-        $shippingMethod = ShippingMethod::model()->findAll($cri);
-        $list = CHtml::listData($shippingMethod, 'id', 'name');
-        echo CHtml::radioButtonList('shipping_method', '', $list);
+        echo CHtml::radioButtonList('pay_method', '1', $list);
         ?>
     </div>
 </div>
@@ -63,11 +68,11 @@ Yii::app()->clientScript->registerCoreScript('jquery');
                 $i=1;
             foreach($mycart as $m){?>
             <tr>
-                <td><?php echo CHtml::hiddenField($i.'[rowid]', $m['rowid']) ?><?php echo $m['pic_url'] ?></td>
-                <td><?php echo $m['sn'] ?></td>
-                <td><?php echo $m['title'] ?></td>
-                <td><?php echo $m['qty'] ?></td>
-                <td><?php echo $m['subtotal'] ?>元</td>
+                <td><?php echo CHtml::hiddenField('order['.$i.'][rowid]', $m['rowid']) ?><?php echo $m['pic_url'] ?></td>
+                <td><?php echo CHtml::hiddenField('order['.$i.'][sn]', $m['sn']) ?><?php echo $m['sn'] ?></td>
+                <td><?php echo CHtml::hiddenField('order['.$i.'][title]', $m['title']) ?><?php echo $m['title'] ?></td>
+                <td><?php echo CHtml::hiddenField('order['.$i.'][qty]', $m['qty']) ?><?php echo $m['qty'] ?></td>
+                <td><?php echo CHtml::hiddenField('order['.$i.'][subtotal]', $m['subtotal']) ?><?php echo $m['subtotal'] ?>元</td>
             </tr>
             <?php 
             $i++;
@@ -80,11 +85,26 @@ Yii::app()->clientScript->registerCoreScript('jquery');
              </tr>
              <?php } ?>
              <tr>
-                 <td colspan="5" style="padding:10px;text-align:right">总计：<?php echo $total ?> 元</td>
+                 <td colspan="5" style="padding:10px;text-align:right">总计：<?php echo CHtml::hiddenField('pay_fee', $total) ?><?php echo $total ?> 元</td>
              </tr>
         </table>
     </div>
     </div>
+    <div class="row">
+        <div class="memo" style="float:left"><h3>给卖家留言：</h3><?php echo CHtml::textArea('memo','选填，可以告诉卖家您对商品的特殊要求，如：颜色、尺码等', array('rows'=>'1', 'cols'=>'60'));?></div>
+        <div class="express" style="float:right">
+        运送方式：
+        <?php
+        $cri = new CDbCriteria(array(
+            'condition'=>'enabled = 1'
+        ));
+        $shippingMethod = ShippingMethod::model()->findAll($cri);
+        $list = CHtml::listData($shippingMethod, 'id', 'name');
+        echo CHtml::dropDownList('ship_method', '', $list);
+        ?></div>
+        
+    </div>
+    <div class="clear"></div>
     <div class="order-confirm"><span style="float:right;padding:5px 10px;"><?php echo CHtml::link('确认订单', '#', array('id'=>'confirmOrder', 'class'=>'btn1'))?></span></div>
     
 

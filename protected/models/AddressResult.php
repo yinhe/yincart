@@ -45,9 +45,11 @@ class AddressResult extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+            array('contact_name, state, city, district, zipcode, address, mobile_phone,', 'required'),
             array('is_default', 'numerical', 'integerOnly' => true),
             array('user_id, create_time, update_time', 'length', 'max' => 10),
-            array('contact_name, country, state, city, district, zipcode, phone, mobile_phone', 'length', 'max' => 45),
+            array('country, state, city, district,', 'length', 'max' => 11),
+            array('contact_name, zipcode, phone, mobile_phone', 'length', 'max' => 45),
             array('address', 'length', 'max' => 255),
             array('memo', 'safe'),
             // The following rule is used by search().
@@ -63,6 +65,9 @@ class AddressResult extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
+            'd' => array(self::BELONGS_TO, 'Area', 'district'),
+            'c' => array(self::BELONGS_TO, 'Area', 'city'),
+            's' => array(self::BELONGS_TO, 'Area', 'state'),
         );
     }
 
@@ -76,8 +81,11 @@ class AddressResult extends CActiveRecord {
             'contact_name' => '联系人',
             'country' => '国家',
             'state' => '省',
+            's.name'=>'省',
             'city' => '市',
+            'c.name'=>'市',
             'district' => '区',
+            'd.name'=>'区',
             'zipcode' => '邮政编号',
             'address' => '详细地址',
             'phone' => '电话',
@@ -118,6 +126,10 @@ class AddressResult extends CActiveRecord {
         return new CActiveDataProvider($this, array(
                     'criteria' => $criteria,
                 ));
+    }
+    
+    public function getDefault() {
+        echo $this->is_default == 1 ? CHtml::image(Yii::app()->request->baseUrl.'/images/yes.gif') : CHtml::image(Yii::app()->request->baseUrl.'/images/no.gif');
     }
 
     public function beforeSave() {

@@ -6,7 +6,7 @@
 // CWebApplication properties can be configured here.
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-    'name' => '聚货批发购物网',
+    'name' => 'Yincart演示购物网',
     'language' => 'zh_cn',
     'theme' => 'classic',
     // preloading 'log' component

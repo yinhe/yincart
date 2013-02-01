@@ -16,15 +16,17 @@ $this->breadcrumbs = array(
             'filter' => $model,
             'columns' => array(
                 'contact_name',
-                'country',
-                'state',
-                'city',
-                'district',
+//                'country',
+                's.name',
+                'c.name',
+                'd.name',
                 'zipcode',
                 'address',
-                'phone',
                 'mobile_phone',
-                'is_default',
+                array(
+                    'name' => 'is_default',
+                    'value' => '$data->getDefault()',
+                ),
                 /*
                   'memo',
                   'create_time',

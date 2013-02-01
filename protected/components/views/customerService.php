@@ -37,7 +37,7 @@
                         </ul>
                     <?php } ?>
                 </div>
-                <div class="bk phonee"><h3>联系电话</h3><span>400-800-0808</span></div>
+                <div class="bk phonee"><h3>联系电话</h3><span>86 0579 86898388</span></div>
                 <div><a target="_blank" class="J_TokenSign" href="#" style="border:none;"><img src="http://img01.taobaocdn.com/bao/uploaded/i1/T16kC6Xj4iXXb1upjX.jpg?noq=y&amp;rid=37631128&amp;file_path=-right_bottom.jpg"></a></div>
                 <div style="display:none;" class="f_con2"></div>
             </div>

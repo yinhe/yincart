@@ -1,15 +1,15 @@
 <?php
 $this->breadcrumbs=array(
-	'Orders',
+	'Flash Ads',
 );
 
 $this->menu=array(
-	array('label'=>'Create Orders', 'url'=>array('create')),
-	array('label'=>'Manage Orders', 'url'=>array('admin')),
+	array('label'=>'Create FlashAd', 'url'=>array('create')),
+	array('label'=>'Manage FlashAd', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Orders</h1>
+<h1>Flash Ads</h1>
 
 <?php $this->widget('zii.widgets.CListView', array(
 	'dataProvider'=>$dataProvider,

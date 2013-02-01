@@ -45,7 +45,10 @@ class OrderController extends Controller {
         ));
     }
 
-    public function actionCheckOut() {
+    public function actionCheckout() {
+//        echo Yii::app()->user->id;
+//        exit;
+        if(Yii::app()->user->id){
         $cart = Yii::app()->cart;
         $mycart = $cart->contents();
         $total = $cart->total();
@@ -53,6 +56,9 @@ class OrderController extends Controller {
             'mycart' => $mycart,
             'total' => $total
         ));
+        }else{
+            $this->redirect(array('/site/login'));
+        }
     }
 
     /**
@@ -65,11 +71,33 @@ class OrderController extends Controller {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         
-        if (isset($_POST['Order'])) {
-            $model->attributes = $_POST['Order'];
-            $model->id = F::get_order_id();
+//        print_r($_POST);       
+//        exit;
+        if(!$_POST['delivery_address']){
+            echo '<script>alert("您还没有添加收货地址！")</script>';
+            echo '<script type="text/javascript">history.go(-1)</script>';
+            die;
+        }else{
+        if (isset($_POST)) {
+            $model->attributes = $_POST;
+            $model->order_id = F::get_order_id();
             $model->user_id = Yii::app()->user->id ? Yii::app()->user->id : '0';
-                    
+            $model->create_time = time();
+            
+            $cri = new CDbCriteria(array(
+               'condition'=>'contact_id ='.$_POST['delivery_address'].' AND user_id = '.Yii::app()->user->id
+            ));
+            $address = AddressResult::model()->find($cri);
+            $model->receiver_name = $address->contact_name;
+            $model->receiver_country = $address->country;
+            $model->receiver_state = $address->state;
+            $model->receiver_city = $address->city;
+            $model->receiver_district = $address->district;
+            $model->receiver_address = $address->address;
+            $model->receiver_zip = $address->zipcode ;
+            $model->receiver_mobile = $address->mobile_phone;
+            $model->receiver_phone = $address->phone;
+            
             if ($model->save()) {
                 $cart = Yii::app()->cart;
                 $mycart = $cart->contents();
@@ -81,12 +109,15 @@ class OrderController extends Controller {
                     $OrderItem->pic_url = serialize($mc['pic_url']);
                     $OrderItem->sn = $mc['sn'];
                     $OrderItem->num = $mc['qty'];
+                    $OrderItem->price = $mc['price'];
+                    $OrderItem->amount = $mc['subtotal'];
                     $OrderItem->save();
                 }
                     
                 $cart->destroy();
                 $this->redirect(array('success'));
             }
+          }
         }
 
 //        $this->render('create', array(
