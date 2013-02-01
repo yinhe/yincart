@@ -34,7 +34,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
                         <?php $this->widget('WSearch') ?>
                         <div class="clear"></div>
                         <div class="phone">
-                            订购热线：400 615 1818
+                            订购热线：86 0579 86898388
                         </div>
                     </div>
                 </div>			
@@ -76,8 +76,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
                     <?php //$this->widget('WFriendLink')  ?>
                 </div>
                 <div class="foot_copyright">
-                    <p>Copyright © 2012-2015 聚货电子商务.All Rights Reserved.</p>
-                    <p><?php echo CHtml::link('银河方舟', 'http://yinheark.com', array('target' => '_blank')) ?>  全程技术支持</p>
+                    <p>Copyright © 2012-2015 <?php echo CHtml::link('Yincart', 'http://yinheark.com', array('target' => '_blank')) ?>.All Rights Reserved.</p>
                 </div>
             </div>
         </div>
