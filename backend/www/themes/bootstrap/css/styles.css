@@ -1,0 +1,17 @@
+body {
+    font-family:'微软雅黑';
+}
+#page {
+    padding-top: 60px;
+}
+footer {
+    margin-top:20px;
+}
+footer .powered {
+    color: #888888;
+    margin-bottom: 20px;
+}
+footer .copy {
+    color: #666666;
+    text-align: right;
+}

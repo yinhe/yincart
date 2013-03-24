@@ -1,1 +1,0 @@
-<?php$this->breadcrumbs = array(    '单页' => array('index'),    '创建',);$this->menu = array(    array('label' => '单页管理', 'url' => array('admin')),);?><h1>单页创建</h1>    <?php echo $this->renderPartial('_form', array('model' => $model)); ?>
