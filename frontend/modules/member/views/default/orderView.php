@@ -10,7 +10,7 @@ $this->breadcrumbs=array(
     <div class="box-content">
 
         <?php
-        $this->widget('zii.widgets.CDetailView', array(
+        $this->widget('bootstrap.widgets.TbDetailView', array(
             'data' => $model,
             'attributes' => array(
                 'order_id',

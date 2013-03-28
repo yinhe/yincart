@@ -4,15 +4,11 @@ $this->breadcrumbs=array(
 	'Create',
 );
 
+$action_text = '创建文章';
+
 $this->menu=array(
-	array('label'=>'List Article', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Manage Article', 'icon'=>'cog','url'=>array('admin')),
+	array('label'=>'文章管理', 'icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
-<div class="box">
-<div class="box-title2">Create Article</div>
-<div class="box-content">
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-</div>
-</div>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'action_text'=>$action_text)); ?>

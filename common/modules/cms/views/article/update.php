@@ -5,17 +5,13 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
+$action_text = '更新文章' . $model->article_id;
+
 $this->menu=array(
-	array('label'=>'List Article', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Article', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'View Article', 'url'=>array('view', 'id'=>$model->article_id)),
-	array('label'=>'Manage Article', 'icon'=>'cog','url'=>array('admin')),
+	array('label'=>'创建文章', 'icon'=>'plus','url'=>array('create')),
+	array('label'=>'查看文章', 'url'=>array('view', 'id'=>$model->article_id)),
+	array('label'=>'文章管理', 'icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
-<div class="box">
-<div class="box-title2">Update Article <?php echo $model->article_id; ?></div>
-<div class="box-content">
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
-</div>
-</div>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'action_text'=>$action_text)); ?>

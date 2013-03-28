@@ -15,7 +15,7 @@ $this->menu = array(
 <h1>View ItemProp #<?php echo $model->prop_id; ?></h1>
 
 <?php
-$this->widget('zii.widgets.CDetailView', array(
+$this->widget('bootstrap.widgets.TbDetailView', array(
     'data' => $model,
     'attributes' => array(
         'prop_id',

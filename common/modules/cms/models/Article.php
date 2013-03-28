@@ -41,7 +41,7 @@ class Article extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('category_id, title, content', 'required'),
+			array('category_id, title, content, language', 'required'),
 			array('category_id, views', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>250),
 			array('from', 'length', 'max'=>200),
@@ -78,6 +78,7 @@ class Article extends CActiveRecord
 			'category_id' => '分类',
 			'author_id' => '作者',
 			'title' => '标题',
+                        'language' => '语言',
 			'from' => '来源',
 			'content' => '内容',
 			'views' => '热度',

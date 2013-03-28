@@ -63,7 +63,6 @@
                             ), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => '系统设置', 'url' => '#', 'items' => array(
                                 array('label' => '菜单管理', 'url' => array('/menu/admin')),
-                                array('label' => '模板配置', 'url' => array('/theme/admin')),
                             ), 'visible' => !Yii::app()->user->isGuest),
                     ),
                 ),

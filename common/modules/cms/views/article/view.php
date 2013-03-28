@@ -5,17 +5,16 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Article', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Article', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'Update Article', 'icon'=>'pencil','url'=>array('update', 'id'=>$model->article_id)),
-	array('label'=>'Delete Article', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->article_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Article', 'icon'=>'cog','url'=>array('admin')),
+	array('label'=>'文章创建', 'icon'=>'plus','url'=>array('create')),
+	array('label'=>'文章更新', 'icon'=>'pencil','url'=>array('update', 'id'=>$model->article_id)),
+	array('label'=>'文章删除', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->article_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'文章管理', 'icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
 <h1>View Article #<?php echo $model->article_id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'article_id',

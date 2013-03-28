@@ -16,7 +16,7 @@ $this->breadcrumbs=array(
 <div class="box">
     <div class="box-title">查看收货地址#<?php echo $model->contact_id; ?></div>
     <div class="box-content">
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'contact_id',

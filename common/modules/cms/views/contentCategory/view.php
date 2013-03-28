@@ -13,7 +13,7 @@ $this->menu=array(
 ?>
 
 <h1>查看内容分类 #<?php echo $model->category_id; ?></h1>
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'category_id',

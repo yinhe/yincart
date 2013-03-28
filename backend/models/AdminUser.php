@@ -95,6 +95,7 @@ class AdminUser extends CActiveRecord {
      */
     public function validatePassword($password) {
         return crypt($password, $this->password) === $this->password;
+//        return crypt($password, $this->password) === $this->hashPassword($password); //服务器上可如此配置
     }
 
     /**

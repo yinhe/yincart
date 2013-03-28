@@ -25,8 +25,6 @@
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
 <script type="text/javascript">
 	$(function(){ 
 		var tid = "<?php echo $model->parent_id;?>";

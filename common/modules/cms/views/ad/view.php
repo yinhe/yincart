@@ -16,7 +16,7 @@ $this->menu=array(
 <div class="box">
 <div class="box-title2">View FlashAd #<?php echo $model->id; ?></div>
 <div class="box-content">
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',

@@ -15,7 +15,7 @@ $this->menu=array(
 
 <h1>View Shipping #<?php echo $model->ship_id; ?></h1>
 
-<?php $this->widget('zii.widgets.CDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'ship_id',

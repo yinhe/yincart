@@ -10,6 +10,8 @@
         array('label'=>'控制面板', 'icon'=>'home', 'url'=>array('/site/index')),
         '---',
         array('label'=>'菜单管理', 'icon'=>'user', 'url'=>array('/menu/admin')),
+        array('label'=>'模板列表', 'icon'=>'cog', 'url'=>array('/theme/admin')),
+        array('label'=>'数据备份', 'icon'=>'file', 'url'=>array('/backup/default/index')),
         '---',
         array('label'=>'CHILD MENU'),
         ),$this->menu),
