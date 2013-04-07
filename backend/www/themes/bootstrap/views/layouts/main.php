@@ -100,10 +100,9 @@
                 <div class="row">
                     <div class="span6">
                         <p class="powered"><?php echo Yii::powered(); ?> 
-                            / <?php echo CHtml::link('Yincart', 'http://yincart.com'); ?> 
-                            / <?php echo CHtml::link('UsCar', 'http://yousijia.com'); ?></p>
+                            / <?php echo CHtml::link('Yincart', 'http://yincart.com'); ?></p>
                     </div>
-                    <div class="span6"><p class="copy">Copyright &copy; <?php echo date('Y'); ?> by 优思佳网络科技有限公司. All Rights Reserved.</p></div>
+                    <div class="span6"><p class="copy">Copyright &copy; <?php echo date('Y'); ?> by <?php echo Yii::app()->name ?>. All Rights Reserved.</p></div>
                 </div>
             </footer><!-- footer -->
 
