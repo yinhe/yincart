@@ -19,6 +19,9 @@ base on yiiframework , website:yincart.com
 
 * 前端访问路径webroot/frontend/www
 * 后端访问路径webroot/backend/www
+···php
+ common/main-local.php 本地数据库配置
+···
 
 * 因YII框架自身比较大，所以没有包含在代码中，请按前后端index.php里的YII路径放置好框架位置
 
