@@ -1,21 +1,9 @@
 <?php
 
-$root = dirname(__FILE__) . '/../../';
-Yii::setPathOfAlias('root', $root);
-Yii::setPathOfAlias('common', $root . DIRECTORY_SEPARATOR . 'common');
-Yii::setPathOfAlias('frontend', $root . DIRECTORY_SEPARATOR . 'frontend');
-Yii::setPathOfAlias('comext', $root . '/common/extensions');
+require_once 'alias.php';
 
 return array(
     'components' => array(
-        'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=yincart',
-            'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '',
-            'charset' => 'utf8',
-            'tablePrefix' => ''
-        ),
         'cart' => array(
             'class' => 'common.extensions.Cart',
         ),
