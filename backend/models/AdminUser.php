@@ -37,7 +37,7 @@ class AdminUser extends CActiveRecord {
         return array(
             array('username, password, email', 'required'),
             array('username, password, email, profile', 'length', 'max' => 128),
-            array('password', 'length', 'min'=>6, 'max'=>12),
+            array('password', 'length', 'min'=>12, 'max'=>24),
             array('profile', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
