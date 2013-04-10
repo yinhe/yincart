@@ -9,7 +9,7 @@
 
 	<?php echo $form->textFieldRow($model,'username',array('class'=>'span5','maxlength'=>128)); ?>
 
-	<?php echo $form->passwordFieldRow($model,'password',array('class'=>'span5','maxlength'=>128)); ?>
+	<?php echo $form->textFieldRow($model,'password',array('class'=>'span5','maxlength'=>128, 'value'=>'')); ?>
 
 	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>128)); ?>
 

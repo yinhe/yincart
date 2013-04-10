@@ -102,7 +102,7 @@
                         <p class="powered"><?php echo Yii::powered(); ?> 
                             / <?php echo CHtml::link('Yincart', 'http://yincart.com'); ?></p>
                     </div>
-                    <div class="span6"><p class="copy">Copyright &copy; <?php echo date('Y'); ?> by <?php echo Yii::app()->name ?>. All Rights Reserved.</p></div>
+                    <div class="span6"><p class="copy">Copyright &copy; <?php echo date('Y'); ?> by MyCompany. All Rights Reserved.</p></div>
                 </div>
             </footer><!-- footer -->
 

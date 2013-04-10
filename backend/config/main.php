@@ -70,7 +70,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                     ),
                 ),
                 'bootstrap' => array(
-                    'class' => 'ext.bootstrap.components.Bootstrap',
+                    'class' => 'comext.bootstrap.components.Bootstrap',
                     'responsiveCss' => true,
                 ),
                 

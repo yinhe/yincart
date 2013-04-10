@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
 	array('label'=>'创建广告', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'查看广告', 'url'=>array('view', 'id'=>$model->id)),
+	array('label'=>'查看广告', 'icon'=>'eye-open','url'=>array('view', 'id'=>$model->id)),
 	array('label'=>'管理广告', 'icon'=>'cog','url'=>array('admin')),
 );
 ?>
