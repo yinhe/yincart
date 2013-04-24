@@ -6,17 +6,7 @@ class ContentCategoryController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column2';
-    public $parent;
-
-    function init() {
-        parent::init();
-        //上一级 可支持无限级 分类
-        //上一级 可支持无限级 分类
-        $data = ContentCategory::model()->findAll(array('order' => 'sort_order asc, category_id asc'));
-        $parent = CHtml::tag('option', array('value' => 0), F::t('Please Select'));
-        $this->parent = $parent . F::toTree($data, $model->cate_id, 'category_id', 'parent_id', 'name', 1);
-    }
+    public $layout = '//layouts/cms';
 
     /**
      * Displays a particular model.
@@ -33,14 +23,24 @@ class ContentCategoryController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new ContentCategory;
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-        if (isset($_POST['ContentCategory'])) {
-            $model->attributes = $_POST['ContentCategory'];
-            if ($model->save())
+        $model = new Category;
+
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
+
+        if (isset($_POST['Category'])) {
+            $model->attributes = $_POST['Category'];
+            $parent_node = $_POST['Category']['node'];
+            if ($parent_node != 0) {
+                $node = Category::model()->findByPk($parent_node);
+                $model->appendTo($node);
+//            print_r($_POST['Category']);
+//            exit;
+            }
+            if ($model->saveNode())
                 $this->redirect(array('admin'));
         }
+
         $this->render('create', array(
             'model' => $model,
         ));
@@ -51,15 +51,35 @@ class ContentCategoryController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-    public function actionUpdate($id) {
+     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-        if (isset($_POST['ContentCategory'])) {
-            $model->attributes = $_POST['ContentCategory'];
-            if ($model->save())
-                $this->redirect(array('admin'));
+
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
+
+        if (isset($_POST['Category'])) {
+            $model->attributes = $_POST['Category'];
+
+
+            $parent_node = $_POST['Category']['node'];
+            if ($parent_node != 0) {
+                $node = Category::model()->findByPk($parent_node);
+                if ($node->id !== $model->id) {
+// move 
+                    $model->moveAsLast($node);
+
+                    if ($model->saveNode())
+                        $this->redirect(array('admin'));
+                }
+            }else {
+                if(!$model->isRoot()){
+                $model->moveAsRoot();
+                }
+                if ($model->saveNode())
+                    $this->redirect(array('admin'));
+            }
         }
+
         $this->render('update', array(
             'model' => $model,
         ));
@@ -73,7 +93,7 @@ class ContentCategoryController extends Controller {
     public function actionDelete($id) {
         if (Yii::app()->request->isPostRequest) {
             // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
+            $this->loadModel($id)->deleteNode();
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
@@ -86,7 +106,7 @@ class ContentCategoryController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('ContentCategory');
+        $dataProvider = new CActiveDataProvider('Category');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -96,10 +116,10 @@ class ContentCategoryController extends Controller {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new ContentCategory('search');
+        $model = new Category('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['ContentCategory']))
-            $model->attributes = $_GET['ContentCategory'];
+        if (isset($_GET['Category']))
+            $model->attributes = $_GET['Category'];
         $this->render('admin', array(
             'model' => $model,
         ));
@@ -111,7 +131,7 @@ class ContentCategoryController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = ContentCategory::model()->findByPk($id);
+        $model = Category::model()->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

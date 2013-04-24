@@ -1,86 +1,48 @@
 <?php
 $this->breadcrumbs=array(
-	'菜单'=>array('admin'),
-	'管理',
+	'Menus'=>array('admin'),
+	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'创建菜单', 'icon'=>'plus','url'=>array('create')),
+	array('label'=>'创建菜单', 'icon'=>'plus', 'url'=>array('create')),
 );
 ?>
 
-<h3>后台菜单</h3>
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
-	'id'=>'adminmenu-grid',
-	'dataProvider'=>$model->AdminMenuSearch(),
-	'filter'=>$model,
-	'columns'=>array(
-//		'menu_id',
-		'parent_id',
-		'name',
-		'en_name',
-		'menu_url',
-		'sort_order',
-                array(
-                    'name' => 'type',
-                    'value' => '$data->getType()',
-                ),   
-                array(
-                    'name' => 'is_show',
-                    'value' => '$data->getShow()',
-                ),
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
-)); ?>
-<h3>前台主目录菜单</h3>
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
-	'id'=>'middlemenu-grid',
-	'dataProvider'=>$model->MainMenuSearch(),
-	'filter'=>$model,
-	'columns'=>array(
-//		'menu_id',
-		'parent_id',
-		'name',
-		'en_name',
-		'menu_url',
-		'sort_order',
-                array(
-                    'name' => 'type',
-                    'value' => '$data->getType()',
-                ),   
-                array(
-                    'name' => 'is_show',
-                    'value' => '$data->getShow()',
-                ), 
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
-)); ?>
-<h3>前台底部菜单</h3>
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
-	'id'=>'bottommenu-grid',
-	'dataProvider'=>$model->BottomMenuSearch(),
-	'filter'=>$model,
-	'columns'=>array(
-//		'menu_id',
-		'parent_id',
-		'name',
-		'en_name',
-		'menu_url',
-		'sort_order',
-                array(
-                    'name' => 'type',
-                    'value' => '$data->getType()',
-                ),    
-                array(
-                    'name' => 'is_show',
-                    'value' => '$data->getShow()',
-                ),    
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
-)); ?>
+<h1>菜单列表</h1>
+
+<div class="well well-large">
+<?php
+$criteria = new CDbCriteria;
+$criteria->order = 't.root, t.lft'; // or 't.root, t.lft' for multiple trees
+$menu = Menu::model()->findAll($criteria);
+$level = 0;
+
+foreach ($menu as $n => $m) {
+    if ($m->level == $level)
+        echo CHtml::closeTag('li') . "\n";
+    else if ($m->level > $level)
+        echo CHtml::openTag('ul') . "\n";
+    else {
+        echo CHtml::closeTag('li') . "\n";
+
+        for ($i = $level - $m->level; $i; $i--) {
+            echo CHtml::closeTag('ul') . "\n";
+            echo CHtml::closeTag('li') . "\n";
+        }
+    }
+
+    echo CHtml::openTag('li');
+    echo CHtml::encode($m->name).'<span style="float:right">['.
+            CHtml::link('更新', array('/menu/update', 'id'=>$m->id)).']['.
+            CHtml::link('删除', '', array('submit'=>array('/menu/delete','id'=>$m->id),'style'=>'cursor:pointer', 'confirm'=>'Are you sure you want to delete this item?')).']</span>';
+    $level = $m->level;
+}
+
+for ($i = $level; $i; $i--) {
+    echo CHtml::closeTag('li') . "\n";
+    echo CHtml::closeTag('ul') . "\n";
+}
+
+?>
+</div>

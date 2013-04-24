@@ -1,0 +1,9 @@
+2013/04/22 15:02:04 [error] [php] opendir(E:\wamp\www\site-yinhe\yincart\console\extensions,E:\wamp\www\site-yinhe\yincart\console\extensions): 系统找不到指定的文件。 (code: 2) (E:\wamp\www\site-yinhe\yincart\console\commands\DocCommand.php:581)
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\console\commands\DocCommand.php(266): import_rec()
+#1 E:\wamp\www\yii\framework\console\CConsoleCommandRunner.php(67): DocCommand->run()
+#2 E:\wamp\www\yii\framework\console\CConsoleApplication.php(91): CConsoleCommandRunner->run()
+#3 E:\wamp\www\yii\framework\base\CApplication.php(169): CConsoleApplication->processRequest()
+#4 E:\wamp\www\yii\framework\yiic.php(33): CConsoleApplication->run()
+#5 E:\wamp\www\site-yinhe\yincart\console\yiic.php(10): require_once()
+

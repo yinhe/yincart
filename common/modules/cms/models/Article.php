@@ -62,7 +62,7 @@ class Article extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
                     'author'=>array(self::BELONGS_TO, 'User', 'author_id'),
-                    'category'=>array(self::BELONGS_TO, 'ContentCategory', 'category_id'),
+                    'category'=>array(self::BELONGS_TO, 'Category', 'category_id'),
                     'comments' => array(self::HAS_MANY, 'Comment', 'article_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time DESC'),
 		    'commentCount' => array(self::STAT, 'Comment', 'article_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
 		);

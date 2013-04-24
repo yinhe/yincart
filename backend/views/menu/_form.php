@@ -1,62 +1,72 @@
-<div class="form">
-
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'menu-form',
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'parent_id'); ?>
-		<select name="Menu[parent_id]" id="Menu_parent_id"> 
-                <?php echo $this->parent;?>
-                </select> 
-		<?php echo $form->error($model,'parent_id'); ?>
-	</div>
+	<?php
+if (!$model->isNewRecord) {
+    $menu_check = Menu::model()->findByPk($model->id);
+    $parent = $menu_check->parent()->find();
+}
+echo '<select id="Menu_node" name="Menu[node]">';
+$menu = Menu::model()->roots()->findAll();
+$level = 1;
+echo '<option value="0">请选择分类</option>';
+foreach ($menu as $n => $m) {
+    if (!$model->isNewRecord) {
+        if ($parent->id == $m->id) {
+            $selected = 'selected';
+            echo '<option value="' . $m->id . '" selected="' . $selected . '">' . $m->name . '</option>';
+        } else {
+            echo '<option value="' . $m->id . '">' . $m->name . '</option>';
+        }
+    } else {
+        echo '<option value="' . $m->id . '">' . $m->name . '</option>';
+    }
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'name'); ?>
-	</div>
+    $children = $m->descendants()->findAll();
+    foreach ($children as $child) {
+        $string = '&nbsp;&nbsp;';
+        $string .= str_repeat('│&nbsp;&nbsp;', $child->level - $level - 1);
+        if ($child->isLeaf() && !$child->next()->find()) {
+            $string .= '└';
+        } else {
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'en_name'); ?>
-		<?php echo $form->textField($model,'en_name',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'en_name'); ?>
-	</div>
+            $string .= '├';
+        }
+        $string .= '─' . $child->name;
+//		echo $string;
+        if (!$model->isNewRecord) {
+            if ($parent->id == $child->id) {
+                $selected = 'selected';
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'menu_url'); ?>
-		<?php echo $form->textField($model,'menu_url',array('size'=>60,'maxlength'=>255)); ?>
-            <span class="hint">格式为：模块/控制器/动作  Modules/Controller/action 没地址请留空</span>
-		<?php echo $form->error($model,'menu_url'); ?>
-	</div>
-        
-                
-        <div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type',array('middle'=>'前台主目录导航','bottom'=>'前台底部导航', 'admin'=>'后台菜单导航')); ?>
-		<?php echo $form->error($model,'type'); ?>
-	</div>
-        
-        <div class="row">
-		<?php echo $form->labelEx($model,'is_show'); ?>
-		<?php echo $form->dropDownList($model,'is_show',array('1'=>'是','0'=>'否')); ?>
-		<?php echo $form->error($model,'is_show'); ?>
-	</div>
-        
+                echo '<option value="' . $child->id . '" selected="' . $selected . '">' . $string . '</option>';
+            } else {
+                echo '<option value="' . $child->id . '" >' . $string . '</option>';
+            }
+        } else {
+            echo '<option value="' . $child->id . '" >' . $string . '</option>';
+        }
+    }
+}
+echo '</select>';
+?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'sort_order'); ?>
-		<?php echo $form->textField($model,'sort_order',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'sort_order'); ?>
-	</div>
-        
-        
+	<?php echo $form->textFieldRow($model,'name',array('class'=>'span5','maxlength'=>100)); ?>
+
+	<?php echo $form->textFieldRow($model,'url',array('class'=>'span5','maxlength'=>255)); ?>
+
+	<?php echo $form->fileFieldRow($model,'pic',array('class'=>'span5','maxlength'=>255)); ?>
+
+	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5','maxlength'=>45)); ?>
+
+	<?php echo $form->dropDownListRow($model,'if_show',array('1'=>'是', '0'=>'否')); ?>
+
+	<?php echo $form->textAreaRow($model,'memo',array('rows'=>6, 'cols'=>50, 'class'=>'span8')); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
@@ -67,18 +77,3 @@
 	</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
-<script type="text/javascript">
-	$(function(){ 
-		var tid = "<?php echo $model->menu_id;?>";
-
-					$("#Menu_parent_id option").each(function(i){
-
-						if(this.value == tid)
-						{
-							$(this).attr("selected","selected");
-						} 
-					}); 
-	});
-</script>

@@ -5,7 +5,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
 
 return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.php'), array(
             'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -73,16 +73,14 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                     'class' => 'comext.bootstrap.components.Bootstrap',
                     'responsiveCss' => true,
                 ),
-                
                 // uncomment the following to enable URLs in path-format
-        'urlManager' => array(
-            'rules' => array(
-                '<_c:\w+>/<id:\d+>' => '<_c>/view',
-                '<_c:\w+>/<_a:\w+>/<id:\d+>' => '<_c>/<_a>',
-                '<_c:\w+>/<_a:\w+>' => '<_c>/<_a>',
-            ),
-        ),
-                
+                'urlManager' => array(
+                    'rules' => array(
+                        '<_c:\w+>/<id:\d+>' => '<_c>/view',
+                        '<_c:\w+>/<_a:\w+>/<id:\d+>' => '<_c>/<_a>',
+                        '<_c:\w+>/<_a:\w+>' => '<_c>/<_a>',
+                    ),
+                ),
                 'errorHandler' => array(
                     // use 'site/error' action to display errors
                     'errorAction' => 'site/error',
@@ -108,6 +106,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 // using Yii::app()->params['paramName']
                 'params' => array(
                     // this is used in contact page
+//                    'version' => '1.0.3',
                     'adminEmail' => 'webmaster@example.com',
                     'backup' => array('path' => __DIR__ . '/../../common/_backup/'),
                 ),

@@ -24,6 +24,11 @@ return array(
                 '<_m:\w+>/<_c:\w+>/<_a:\w+>' => '<_m>/<_c>/<_a>',
             ),
         ),
+         // application-level parameters that can be accessed
+                // using Yii::app()->params['paramName']
+//        'params' => array(
+//                    // this is used in contact page
+//                    'version' => '1.0.3'
+//                ),
     ),
 );
-?>

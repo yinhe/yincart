@@ -7,3 +7,5 @@ protected/runtime/
 /upload/item/2012/05/26/.tmb/
 /nbproject/private/
 !/common/extensions/bootstrap/assets/
+!/common/extensions/kindeditor/assets/
+!/console/commands/doc/assets/

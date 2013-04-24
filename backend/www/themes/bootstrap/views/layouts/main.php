@@ -39,7 +39,7 @@
                             ), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => '商城管理', 'url' => '#', 'items' => array(
                                 array('label' => 'ITEM'),
-                                array('label' => '商品分类', 'url' => array('/mall/category/admin')),
+                                array('label' => '商品分类', 'url' => array('/mall/itemCategory/admin')),
                                 array('label' => '商品列表', 'url' => array('/mall/item/admin')),
                                 array('label' => '品牌列表', 'url' => array('/mall/brand/admin')),
                                 '---',
@@ -63,6 +63,7 @@
                             ), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => '系统设置', 'url' => '#', 'items' => array(
                                 array('label' => '菜单管理', 'url' => array('/menu/admin')),
+                                array('label' => '分类管理', 'url' => array('/category/admin')),
                             ), 'visible' => !Yii::app()->user->isGuest),
                     ),
                 ),

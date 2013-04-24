@@ -6,18 +6,8 @@ class ArticleController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $parent;
 
-    function init() {
-        parent::init();
-        //上一级 可支持无限级 分类
-        //上一级 可支持无限级 分类
-        $data = ContentCategory::model()->findAll(array('order' => 'sort_order asc, category_id asc'));
-        $parent = CHtml::tag('option', array('value' => 0), F::t('Please Select'));
-        $this->parent = $parent . F::toTree($data, $model->cate_id, 'category_id', 'parent_id', 'name', 1);
-    }
-
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/cms';
 
     /**
      * Displays a particular model.

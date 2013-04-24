@@ -9,7 +9,7 @@ $action_text = '更新文章' . $model->article_id;
 
 $this->menu=array(
 	array('label'=>'创建文章', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'查看文章', 'url'=>array('view', 'id'=>$model->article_id)),
+	array('label'=>'查看文章', 'icon'=>'eye-open','url'=>array('view', 'id'=>$model->article_id)),
 	array('label'=>'文章管理', 'icon'=>'cog','url'=>array('admin')),
 );
 ?>

@@ -1,18 +1,17 @@
 <?php
 $this->breadcrumbs=array(
-	'Menus'=>array('index'),
-	$model->name=>array('view','id'=>$model->menu_id),
+	'Menus'=>array('admin'),
+	$model->name=>array('view','id'=>$model->id),
 	'Update',
 );
 
 $this->menu=array(
-	array('label'=>'List Menu', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Menu', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'View Menu', 'url'=>array('view', 'id'=>$model->menu_id)),
-	array('label'=>'Manage Menu', 'icon'=>'cog','url'=>array('admin')),
+	array('label'=>'创建菜单','icon'=>'plus','url'=>array('create')),
+	array('label'=>'查看菜单','icon'=>'eye-open','url'=>array('view','id'=>$model->id)),
+	array('label'=>'管理菜单','icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
-<h1>Update Menu <?php echo $model->menu_id; ?></h1>
+<h1>更新菜单 <?php echo $model->id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>

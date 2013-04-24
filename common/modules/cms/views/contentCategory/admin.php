@@ -1,97 +1,44 @@
 <?php
 $this->breadcrumbs = array(
-    '内容分类' => array('index'),
+    '内容分类' => array('admin'),
     '管理',
 );
 
 $this->menu = array(
-    array('label' => '创建内容分类', 'icon' => 'plus', 'url' => array('create')),
+    array('label' => '创建分类', 'icon' => 'plus', 'url' => array('create')),
 );
 ?>
-	<script>
-//		function editNode(){
-//			var node = $('#tt').treegrid('getSelected');
-//			if (node){
-//				$('#tt').treegrid('beginEdit',node.id);
-//			}
-//		}
-//		function saveNode(){
-//			var node = $('#tt').treegrid('getSelected');
-//			if (node){
-//				$('#tt').treegrid('endEdit',node.id);
-//			}
-//		}
-//		function cancelNode(){
-//			var node = $('#tt').treegrid('getSelected');
-//			if (node){
-//				$('#tt').treegrid('cancelEdit',node.id);
-//			}
-//		}
-	</script>
-
 <h1>内容分类</h1>
-        <?php
-        $this->widget('bootstrap.widgets.TbGridView', array(
-            'id' => 'article-category-grid',
-            'dataProvider' => $model->search(),
-            'filter' => $model,
-            'columns' => array(
-                'category_id',
-                'parent_id',
-                'name',
-                array(
-                    'class' => 'bootstrap.widgets.TbButtonColumn',
-                    'template' => '{update}{delete}'
-                ),
-            ),
-        ));
-        
-//        $c = ContentCategory::model()->findAllByAttributes(array('parent_id'=>0));
-//        $c = ContentCategory::model()->findAll();
-        
-//foreach($c as $cc){
-////   $returnArr = array();
-////    $cc->getTree($c,$returnArr);
-////   $items[] = $returnArr ;
-////   $ccc = $cc->getMeChildsId($cc->category_id);
-//   $childs = $cc->getChildsId($cc->category_id);
-//   $rows[] = array('id'=>$cc->category_id, 'name'=>$cc->name, 'sort_order'=>$cc->sort_order, $childs !==0 ? "'__parentId'=>$cc->parent_id" : "'_parentId'=>0");   
-//}
-//$myjson = CJSON::encode(array('rows'=>$rows));
-//print_r($items);
-        
-//        var_dump($c->getArray(0));
-//$b = CJSON::decode(Yii::app()->request->baseUrl .'/lib/jqeasyui/treegrid_data3.json');
-//
-//var_dump($b);
-//var_dump(Yii::app()->request->baseUrl .'/lib/jqeasyui/treegrid_data3.json');
-//print_r($b);
-
-        ?>
-
+<div class="well well-large">
 <?php
-//$this->widget(
-//    'CTreeView',
-//    array('url' => array('/admin/contentCategory/ajaxFillTree'))
-//);
-?>
 
-<!--	<div style="margin:10px 0">
-		<a href="javascript:editNode()" class="easyui-linkbutton">Edit</a>
-		<a href="javascript:saveNode()" class="easyui-linkbutton">Save</a>
-		<a href="javascript:cancelNode()" class="easyui-linkbutton">Cancel</a>
-	</div>
-	
-	<table id="tt" title="TreeGrid" class="easyui-treegrid" style="width:700px;height:auto"
-			url=<?php echo $myjson ?> idField="id" treeField="name"
-			pagination="false" fitColumns="true">
-		<thead>
-			<tr>
-				<th field="code" rowspan="2" width="150" editor="text">name</th>
-				<th colspan="2">Group Fields</th>
-			</tr>
-			<tr>
-				<th field="name" width="200" editor="text">sort_order</th>
-			</tr>
-		</thead>
-	</table>-->
+$descendants=Category::model()->findAll(array('condition'=>'root=1','order'=>'lft'));
+$level = 0;
+
+foreach ($descendants as $category) {
+    if ($category->level == $level)
+        echo CHtml::closeTag('li') . "\n";
+    else if ($category->level > $level)
+        echo CHtml::openTag('ul') . "\n";
+    else {
+        echo CHtml::closeTag('li') . "\n";
+
+        for ($i = $level - $category->level; $i; $i--) {
+            echo CHtml::closeTag('ul') . "\n";
+            echo CHtml::closeTag('li') . "\n";
+        }
+    }
+
+    echo CHtml::openTag('li');
+    echo CHtml::encode($category->name).'<span style="float:right">['.
+            CHtml::link('更新', array('/cms/contentCategory/update', 'id'=>$category->id)).']['.
+            CHtml::link('删除', '', array('submit'=>array('/cms/contentCategory/delete','id'=>$category->id),'style'=>'cursor:pointer', 'confirm'=>'Are you sure you want to delete this item?')).']</span>';
+    $level = $category->level;
+}
+
+for ($i = $level; $i; $i--) {
+    echo CHtml::closeTag('li') . "\n";
+    echo CHtml::closeTag('ul') . "\n";
+}
+?>
+</div>

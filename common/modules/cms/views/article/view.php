@@ -22,7 +22,7 @@ $this->menu=array(
 		'author_id',
 		'title',
 		'from',
-		'content',
+		'content:html',
 		'views',
 		'create_time',
 		'update_time',

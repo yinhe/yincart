@@ -1,21 +1,47 @@
 <?php
 
-class MenuController extends Controller {
+class MenuController extends Controller
+{
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column5';
+	public $layout='//layouts/system';
 
-        public $parent;
-        function init(){
-		parent::init();
-        $data=  Menu::model()->findAll(array('order'=>'sort_order asc, menu_id asc')); 
-        $parent = CHtml::tag('option',
-                        array('value'=>0),F::t('Please Select')); 
-        $model = new Menu;
-        $this->parent =$parent.F::toTree($data, $model->menu_id, 'menu_id', 'parent_id', 'name', 1);     
-                
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
 	}
 
 	/**
@@ -33,49 +59,68 @@ class MenuController extends Controller {
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
-	{
-		$model=new Menu;
+		public function actionCreate() {
+        $model = new Menu;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Menu']))
-		{
-			$model->attributes=$_POST['Menu'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->menu_id));
-		}
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
+            $parent_node = $_POST['Menu']['node'];
+            if ($parent_node != 0) {
+                $node = Menu::model()->findByPk($parent_node);
+                $model->appendTo($node);
+//            print_r($_POST['DealMenu']);
+//            exit;
+            }
+            if ($model->saveNode())
+                $this->redirect(array('admin'));
+        }
 
-		$this->render('create',array(
-			'model'=>$model,
-		));
-	}
+        $this->render('create', array(
+            'model' => $model,
+        ));
+    }
 
 	/**
 	 * Updates a particular model.
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
-		$model=$this->loadModel($id);
+	public function actionUpdate($id) {
+        $model = $this->loadModel($id);
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
+// Uncomment the following line if AJAX validation is needed
+// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Menu']))
-		{
-			$model->attributes=$_POST['Menu'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->menu_id));
-		}
+        if (isset($_POST['Menu'])) {
+            $model->attributes = $_POST['Menu'];
 
-		$this->render('update',array(
-			'model'=>$model,
-		));
-	}
 
+            $parent_node = $_POST['Menu']['node'];
+            if ($parent_node != 0) {
+                $node = Menu::model()->findByPk($parent_node);
+                if ($node->id !== $model->id) {
+// move 
+                    $model->moveAsLast($node);
+
+                    if ($model->saveNode())
+                        $this->redirect(array('admin'));
+                }
+            }else {
+                if(!$model->isRoot()){
+                $model->moveAsRoot();
+                }
+                if ($model->saveNode())
+                    $this->redirect(array('admin'));
+            }
+        }
+
+        $this->render('update', array(
+            'model' => $model,
+        ));
+    }
 	/**
 	 * Deletes a particular model.
 	 * If deletion is successful, the browser will be redirected to the 'admin' page.
@@ -86,7 +131,7 @@ class MenuController extends Controller {
 		if(Yii::app()->request->isPostRequest)
 		{
 			// we only allow deletion via POST request
-			$this->loadModel($id)->delete();
+			$this->loadModel($id)->deleteNode();
 
 			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
 			if(!isset($_GET['ajax']))

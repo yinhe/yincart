@@ -3,6 +3,14 @@ yincart
 
 base on yiiframework , website:yincart.com
 
+###2013.4.24 1.0.3版本
+
+* 分类换成左右值无限分类，编辑器扩展引入最新的kindeditor
+
+* 数据库完整版位于/common/data/yincart-1.0.3.sql
+
+* 后台登陆帐号密码修正为admin admin123
+
 ###2013.3.24 1.0.2版本
 
 * 前后台目录结构调整，适合中大型项目开发

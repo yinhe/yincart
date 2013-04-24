@@ -5,25 +5,28 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Menu', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Menu', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'Update Menu', 'icon'=>'pencil','url'=>array('update', 'id'=>$model->menu_id)),
-	array('label'=>'Delete Menu', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->menu_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Menu', 'icon'=>'cog','url'=>array('admin')),
+	array('label'=>'创建菜单','icon'=>'plus','url'=>array('create')),
+	array('label'=>'更新菜单','icon'=>'pencil','url'=>array('update','id'=>$model->id)),
+	array('label'=>'删除菜单','icon'=>'trash','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'管理菜单','icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
-<h1>View Menu #<?php echo $model->menu_id; ?></h1>
+<h1>View Menu #<?php echo $model->id; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView', array(
+<?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
-		'menu_id',
-		'parent_id',
+		'id',
+		'root',
+		'lft',
+		'rgt',
+		'level',
 		'name',
-		'en_name',
-		'menu_url',
-                'type',
-		'sort_order',
+		'url',
+		'pic',
+		'position',
+		'if_show',
+		'memo',
 	),
 )); ?>

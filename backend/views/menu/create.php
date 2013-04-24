@@ -5,11 +5,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Menu', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Manage Menu', 'icon'=>'cog','url'=>array('admin')),
+	array('label'=>'菜单管理', 'icon'=>'cog', 'url'=>array('admin')),
 );
 ?>
 
-<h1>Create Menu</h1>
+<h1>创建菜单</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

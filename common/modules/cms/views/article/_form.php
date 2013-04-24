@@ -15,14 +15,45 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
 <?php echo $form->errorSummary($model); ?>
 
-<div class="control-group ">
-    <label class="control-label" for="Article_category_id">上一级</label>
-    <div class="controls">
-        <select name="Article[category_id]" id="Article_category_id"> 
-            <?php echo $this->parent; ?>
-        </select>
+  <div class="control-group ">
+        <label for="Article_category_id" class="control-label required">文章分类 <span class="required">*</span></label>
+        <div class="controls">
+            <?php
+            
+            echo '<select id="Article_category_id" name="Article[category_id]">';
+            $category = Category::model()->findByPk(5);
+            $descendants = $category->descendants()->findAll();
+            $level = 3;
+
+            echo '<option value="0" >请选择分类</option>';
+            foreach ($descendants as $child) {
+                $string = '&nbsp;&nbsp;';
+                $string .= str_repeat('&nbsp;&nbsp;', $child->level - $level);
+                if ($child->isLeaf() && !$child->next()->find()) {
+                    $string .= '';
+                } else {
+
+                    $string .= '';
+                }
+                $string .= '' . $child->name;
+//		echo $string;
+                if (!$model->isNewRecord) {
+                    if ($model->category_id == $child->id) {
+                        $selected = 'selected';
+
+                        echo '<option value="' . $child->id . '" selected="' . $selected . '">' . $string . '</option>';
+                    } else {
+                        echo '<option value="' . $child->id . '" >' . $string . '</option>';
+                    }
+                } else {
+                    echo '<option value="' . $child->id . '" >' . $string . '</option>';
+                }
+            }
+
+            echo '</select>';
+            ?>
+        </div>
     </div>
-</div>
 
 <?php echo $form->textFieldRow($model, 'title'); ?>
 
@@ -35,7 +66,26 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
 <?php echo $form->textFieldRow($model, 'url', array('size' => 60, 'maxlength' => 100)); ?>
 
-<?php echo $form->html5EditorRow($model, 'content', array('class'=>'span4', 'rows'=>5, 'height'=>'200', 'options'=>array('color'=>true))); ?>
+<?php echo $form->textAreaRow($model, 'content'); ?>
+
+    <?php
+    $this->widget('comext.kindeditor.KindEditorWidget', array(
+        'id' => 'Article_content', # Textarea id
+        'language' => 'zh_CN',
+        'items' => array(
+            'width' => '700px',
+            'height' => '300px',
+            'themeType' => 'simple',
+            'allowFileManager' => true,
+            'allowImageUpload' => true,
+            'allowFlashUpload' => true,
+            'items' => array(
+                'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+                'insertunorderedlist', '|', 'emoticons', 'image', 'link',
+            )),
+    ));
+    ?>
 
 <div class="form-actions">
     <?php
@@ -48,18 +98,3 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 </div>
 
 <?php $this->endWidget(); ?>
-
-
-<script type="text/javascript">
-    $(function() {
-        var tid = "<?php echo $model->category_id; ?>";
-
-        $("#Article_category_id option").each(function(i) {
-
-            if (this.value == tid)
-            {
-                $(this).attr("selected", "selected");
-            }
-        });
-    });
-</script>

@@ -6,19 +6,8 @@ class ItemController extends Controller {
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '//layouts/column3';
-    public $parent;
-
-    function init() {
-        parent::init();
-        //上一级 可支持无限级 分类
-        //上一级 可支持无限级 分类
-        $data = Category::model()->findAll(array('order' => 'sort_order asc, category_id asc'));
-        $parent = CHtml::tag('option', array('value' => 0), '请选择分类');
-         $this->parent = $parent . F::toTree($data, $model->category_id, 'category_id', 'parent_id', 'name', 1);
-//        $this->parent=F::CategorytoArray($data);
-    }
-
+    public $layout = '//layouts/mall';
+    
     /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
