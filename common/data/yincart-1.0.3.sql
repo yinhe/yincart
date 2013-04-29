@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 04 月 24 日 06:21
+-- 生成日期: 2013 年 04 月 29 日 13:26
 -- 服务器版本: 5.5.24-log
 -- PHP 版本: 5.3.13
 
@@ -26,7 +26,6 @@ SET time_zone = "+00:00";
 -- 表的结构 `ad`
 --
 
-DROP TABLE IF EXISTS `ad`;
 CREATE TABLE IF NOT EXISTS `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
@@ -41,11 +40,11 @@ CREATE TABLE IF NOT EXISTS `ad` (
 --
 
 INSERT INTO `ad` (`id`, `title`, `pic`, `url`, `sort_order`) VALUES
-(1, '手表', '396a80b1da9ecda9933c9211a52cb739.jpg', '', 1),
-(2, '围巾', '43465178d81433e852ab52d2fd829d84.jpg', '', 2),
-(3, '太阳镜', '35f81a6cce715644d6b93a11c56692fa.jpg', '', 3),
-(4, '皮带', '34c81b0aa0492517c7b7a74c442599a4.jpg', '', 4),
-(5, '饰品', 'cb60bf750716618d49010c68bddd0a48.jpg', '', 5);
+(1, '手表', '20130429/20130429113116_16789.jpg', '', 1),
+(2, '围巾', '20130429/20130429113143_97717.jpg', '', 2),
+(3, '太阳镜', '20130429/20130429113153_59268.jpg', '', 3),
+(4, '皮带', '20130429/20130429113202_11326.jpg', '', 4),
+(5, '饰品', '20130429/20130429113210_38037.jpg', '', 5);
 
 -- --------------------------------------------------------
 
@@ -53,7 +52,6 @@ INSERT INTO `ad` (`id`, `title`, `pic`, `url`, `sort_order`) VALUES
 -- 表的结构 `address_result`
 --
 
-DROP TABLE IF EXISTS `address_result`;
 CREATE TABLE IF NOT EXISTS `address_result` (
   `contact_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '地址库ID',
   `user_id` int(10) unsigned DEFAULT NULL,
@@ -86,7 +84,6 @@ INSERT INTO `address_result` (`contact_id`, `user_id`, `contact_name`, `country`
 -- 表的结构 `admin_user`
 --
 
-DROP TABLE IF EXISTS `admin_user`;
 CREATE TABLE IF NOT EXISTS `admin_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
@@ -102,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `admin_user` (
 
 INSERT INTO `admin_user` (`id`, `username`, `password`, `email`, `profile`) VALUES
 (1, 'demo', '$2a$10$.ln8efv0ruje1k5DwmNNzetuHhPcJNn2N7Wgn.ktuMuw3NC4Yomv2', 'webmaster@example.com', ''),
-(2, 'admin', '$2a$10$BxZ/.B6hO4MByiLHeJcSieJz6RH6In/M5PXNJvj0GtCm2tLl6Mt9O', 'webmaster@example.com', '');
+(2, 'admin', '$2a$10$5nUz94KR4Tt5DcE.7IkAuObfGB//HcP/x61vQBBwaJslEj8sE.LFK', 'webmaster@example.com', '');
 
 -- --------------------------------------------------------
 
@@ -110,7 +107,6 @@ INSERT INTO `admin_user` (`id`, `username`, `password`, `email`, `profile`) VALU
 -- 表的结构 `area`
 --
 
-DROP TABLE IF EXISTS `area`;
 CREATE TABLE IF NOT EXISTS `area` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `language` varchar(20) NOT NULL,
@@ -3844,7 +3840,6 @@ INSERT INTO `area` (`id`, `language`, `parent_id`, `path`, `grade`, `name`) VALU
 -- 表的结构 `article`
 --
 
-DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `article_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL,
@@ -3866,7 +3861,6 @@ CREATE TABLE IF NOT EXISTS `article` (
 -- 表的结构 `authassignment`
 --
 
-DROP TABLE IF EXISTS `authassignment`;
 CREATE TABLE IF NOT EXISTS `authassignment` (
   `itemname` varchar(64) NOT NULL,
   `userid` varchar(64) NOT NULL,
@@ -3888,7 +3882,6 @@ INSERT INTO `authassignment` (`itemname`, `userid`, `bizrule`, `data`) VALUES
 -- 表的结构 `authitem`
 --
 
-DROP TABLE IF EXISTS `authitem`;
 CREATE TABLE IF NOT EXISTS `authitem` (
   `name` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
@@ -4015,7 +4008,6 @@ INSERT INTO `authitem` (`name`, `type`, `description`, `bizrule`, `data`) VALUES
 -- 表的结构 `authitemchild`
 --
 
-DROP TABLE IF EXISTS `authitemchild`;
 CREATE TABLE IF NOT EXISTS `authitemchild` (
   `parent` varchar(64) NOT NULL,
   `child` varchar(64) NOT NULL,
@@ -4029,7 +4021,6 @@ CREATE TABLE IF NOT EXISTS `authitemchild` (
 -- 表的结构 `brand`
 --
 
-DROP TABLE IF EXISTS `brand`;
 CREATE TABLE IF NOT EXISTS `brand` (
   `value_id` int(10) unsigned NOT NULL DEFAULT '0',
   `value_name` varchar(45) DEFAULT NULL COMMENT 'vid的值',
@@ -4046,7 +4037,6 @@ CREATE TABLE IF NOT EXISTS `brand` (
 -- 表的结构 `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `root` int(10) unsigned DEFAULT NULL,
@@ -4064,21 +4054,36 @@ CREATE TABLE IF NOT EXISTS `category` (
   KEY `lft` (`lft`),
   KEY `rgt` (`rgt`),
   KEY `level` (`level`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=32 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
 -- 转存表中的数据 `category`
 --
 
 INSERT INTO `category` (`id`, `root`, `lft`, `rgt`, `level`, `name`, `url`, `pic`, `position`, `if_show`, `memo`) VALUES
-(1, 1, 1, 10, 1, '内容分类', '', '', '', 1, ''),
-(3, 3, 1, 6, 1, '商城分类', '', '', '', 1, ''),
-(4, 1, 2, 5, 2, '单页分类', '', '', '', 1, ''),
-(5, 1, 6, 9, 2, '文章分类', '', '', '', 1, ''),
-(9, 3, 2, 3, 2, '手表', '', '', '', 1, ''),
-(11, 1, 7, 8, 3, '最新公告', '', '', '', 1, ''),
-(13, 1, 3, 4, 3, '帮助中心', NULL, NULL, NULL, NULL, NULL),
-(31, 3, 4, 5, 2, '围巾', NULL, NULL, NULL, NULL, NULL);
+(1, 1, 1, 18, 1, '内容分类', '', '', '', 1, ''),
+(3, 3, 1, 28, 1, '商城分类', '', '', '', 1, ''),
+(4, 1, 2, 13, 2, '单页分类', '', '', '', 1, ''),
+(5, 1, 14, 17, 2, '文章分类', '', '', '', 1, ''),
+(9, 3, 2, 11, 2, '手表', 'watches', '20130429/20130429083208_67384.jpg', '', 1, ''),
+(11, 1, 15, 16, 3, '最新公告', '', '', '', 1, ''),
+(13, 1, 3, 12, 3, '帮助中心', NULL, NULL, NULL, NULL, NULL),
+(42, 3, 9, 10, 3, '运动系列', '', NULL, NULL, NULL, NULL),
+(41, 3, 7, 8, 3, '情侣系列', '', NULL, NULL, NULL, NULL),
+(40, 3, 5, 6, 3, '女士系列', '', NULL, NULL, NULL, NULL),
+(39, 3, 3, 4, 3, '男士系列', '', NULL, NULL, NULL, NULL),
+(38, 3, 26, 27, 2, '饰品', 'jewelry', '20130429/20130429112402_42198.jpg', NULL, NULL, NULL),
+(37, 3, 24, 25, 2, '皮带', 'leatherbelt', '20130429/20130429112353_21672.jpg', NULL, NULL, NULL),
+(36, 3, 22, 23, 2, '太阳镜', 'sunglasses', '20130429/20130429112344_22142.jpg', NULL, NULL, NULL),
+(35, 1, 10, 11, 4, '购物条款', NULL, NULL, NULL, NULL, NULL),
+(34, 1, 8, 9, 4, '支付/配送方式', NULL, NULL, NULL, NULL, NULL),
+(33, 1, 6, 7, 4, '购物指南', NULL, NULL, NULL, NULL, NULL),
+(32, 1, 4, 5, 4, '新手上路', NULL, NULL, NULL, NULL, NULL),
+(31, 3, 12, 21, 2, '围巾', 'scarves', '20130429/20130429130722_29967.jpg', NULL, NULL, NULL),
+(43, 3, 13, 14, 3, '流行糖果色', '', NULL, NULL, NULL, NULL),
+(44, 3, 15, 16, 3, '性感豹纹', '', NULL, NULL, NULL, NULL),
+(45, 3, 17, 18, 3, '波希米亚风', '', NULL, NULL, NULL, NULL),
+(46, 3, 19, 20, 3, 'OL气质型', '', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -4086,7 +4091,6 @@ INSERT INTO `category` (`id`, `root`, `lft`, `rgt`, `level`, `name`, `url`, `pic
 -- 表的结构 `category1`
 --
 
-DROP TABLE IF EXISTS `category1`;
 CREATE TABLE IF NOT EXISTS `category1` (
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(200) NOT NULL,
@@ -4132,7 +4136,6 @@ INSERT INTO `category1` (`category_id`, `name`, `parent_id`, `url`, `pic`, `sort
 -- 表的结构 `comment`
 --
 
-DROP TABLE IF EXISTS `comment`;
 CREATE TABLE IF NOT EXISTS `comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` text NOT NULL,
@@ -4153,7 +4156,6 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- 表的结构 `content_category`
 --
 
-DROP TABLE IF EXISTS `content_category`;
 CREATE TABLE IF NOT EXISTS `content_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
@@ -4186,7 +4188,6 @@ INSERT INTO `content_category` (`category_id`, `parent_id`, `name`, `sort_order`
 -- 表的结构 `customer_service`
 --
 
-DROP TABLE IF EXISTS `customer_service`;
 CREATE TABLE IF NOT EXISTS `customer_service` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(10) unsigned NOT NULL,
@@ -4216,7 +4217,6 @@ INSERT INTO `customer_service` (`id`, `category_id`, `type`, `nick_name`, `accou
 -- 表的结构 `feedback`
 --
 
-DROP TABLE IF EXISTS `feedback`;
 CREATE TABLE IF NOT EXISTS `feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -4235,7 +4235,6 @@ CREATE TABLE IF NOT EXISTS `feedback` (
 -- 表的结构 `friend_link`
 --
 
-DROP TABLE IF EXISTS `friend_link`;
 CREATE TABLE IF NOT EXISTS `friend_link` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
@@ -4265,7 +4264,6 @@ INSERT INTO `friend_link` (`id`, `name`, `en_name`, `image`, `website`, `sort_or
 -- 表的结构 `item`
 --
 
-DROP TABLE IF EXISTS `item`;
 CREATE TABLE IF NOT EXISTS `item` (
   `item_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int(10) unsigned NOT NULL,
@@ -4308,11 +4306,11 @@ CREATE TABLE IF NOT EXISTS `item` (
 --
 
 INSERT INTO `item` (`item_id`, `category_id`, `title`, `sn`, `unit`, `stock`, `min_number`, `market_price`, `shop_price`, `currency`, `skus`, `props`, `props_name`, `item_imgs`, `prop_imgs`, `pic_url`, `desc`, `location`, `post_fee`, `express_fee`, `ems_fee`, `is_show`, `is_promote`, `is_new`, `is_hot`, `is_best`, `is_discount`, `click_count`, `sort_order`, `create_time`, `update_time`, `language`) VALUES
-(1, 3, '热销新款欧美流行硅胶手表 加工订做各种规格款式硅胶手表', '123', '块', 1000, 500, '50.00', '15.00', '￥', NULL, '', '', '', '', '2012/05/24/e1a6aa823816959a0493323172115c4a.jpg', '<span style="font-size:14pt;">【表壳材料】：环 保塑胶</span><br />\r\n<span style="font-size:14pt;">【表带 材料】：环保硅胶</span><br />\r\n<span style="font-size:14pt;">【后盖材料】：不锈钢后盖，防水结构</span><p><span style="font-size:14pt;">【镜面材料】：平片玻 璃</span><br />\r\n<span style="font-size:14pt;">【表盘材料 】：铜，可订做LOGO</span></p>\r\n<p><span style="font-size:14pt;">【机芯】：日本/瑞士石 英机芯</span></p>\r\n<p><span style="font-size:14pt;">【电池】：索星/金力/ 索尼（1年-3年寿命）</span><br />\r\n<span style="font-size:14pt;">【功能】：三针，时间显示</span><br />\r\n<span style="font-size:14pt;">【防水】：生活防水/10米</span><br />\r\n<span style="font-size:14pt;">【包含】：表盘LOGO任意设计（根据具体要求）</span><br />\r\n<span style="font-size:14pt;">【包装】：单 个表入一个气泡袋安全包装（木盒/塑胶盒/纸盒均可）</span><br />\r\n<span style="font-size:14pt;background-:#ffff00;">【起订量】：500只</span></p>\r\n<p><span style="background-color:#ffff00;font-size:14pt;">【优惠】：量越大越优惠</span></p>', NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, 0, 112, 255, 1337875253, 1364105209, 'zh_cn'),
-(2, 3, '太阳镜 2012新款 明星同款 黄晓明 李孝利最爱 墨镜 蛤蟆镜SJ8160', '1337947307', '副', 3000, 10, '30.00', '11.00', '￥', NULL, '', '', '', '', '2012/05/25/65649efb1c6a666061aa2feb29b880a1.jpg', '<p style="text-align:center;"><br />\r\n<span style="color:#999999;font-size:12pt;">James McAvoy<span style="text-transform:none;line-height:19px;text-indent:0px;letter-spacing:normal;font-family:tahoma, arial, 宋体, sans-serif;font-style:normal;font-variant:normal;font-weight:normal;word-spacing:0px;float:none;display:inline !important;white-space:normal;orphans:2;widows:2;background-color:#ffffff;webkit-text-size-adjust:auto;webkit-text-stroke-width:0px;">与你们一起写下生活感悟</span></span></p>\r\n<p style="text-align:center;">&nbsp;</p>\r\n<p style="text-align:center;" align="left"><span style="color:#999999;font-family:simsun;font-size:12pt;background-color:#ffffff;">不要把时间花在一个不在乎与你一起分享的人身上。</span></p>\r\n<p style="text-align:center;" align="left">&nbsp;</p>\r\n<p style="text-align:center;" align="left"><span style="color:#999999;font-family:simsun;font-size:12pt;background-color:#ffffff;"><span>Don''t spend time with someone who doesn''t care spending it with you.</span></span></p>\r\n<p style="text-align:center;">&nbsp;<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/755/092/560290557_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/855/092/560290558_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/165/092/560290561_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/365/092/560290563_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/175/092/560290571_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/475/092/560290574_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/299/882/560288992_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/989/882/560288989_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/889/882/560288988_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/675/092/560290576_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/985/092/560290589_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/895/092/560290598_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/799/882/560288997_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/699/882/560288996_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/599/882/560288995_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/499/882/560288994_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<br class="img-brk" />\r\n</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:red;font-family:方正剪纸简体;font-size:26pt;background-color:white;">太阳眼镜好处多</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜，当然就是用来遮太阳！是没错，但不只这样吧，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">否则好莱坞明星们在室内甚至在晚上为什么还要戴墨镜？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">所以，墨镜的背后，“心机”可深了……</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜与时尚有何关联？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">为何不管太阳大不大，好莱坞女星都特别偏爱太阳镜？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">“纸片人”奥尔森姐妹花有句名言：</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:blue;font-family:方正卡通简体;font-size:15pt;background-color:white;">“</span></strong><strong><span style="color:blue;font-family:方正卡通简体;font-size:15pt;background-color:white;">女人愈瘦，她戴的太阳眼镜就愈大！”</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">这句话，也许说明了一切。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜现在很热门，一来记者拍到的明星照片，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">几乎都戴着太阳眼镜，二来太阳眼镜的价格并不贵,</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">名牌太阳眼镜售价比起皮包、皮鞋来要便宜许多，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">所以各家精品的太阳眼镜销路不错。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜到底有多抢手？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">根据调查，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">近几年很多国外企业销售业绩大幅增长，其中有两成来自太阳眼镜；</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">美国的顶级百货公司也发现，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">以往店内最热销的时尚单品是皮包，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">但太阳眼镜最近的表现相当亮丽，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">成为店内最in的热门商品。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">夏日艳阳高照，戴上太阳眼镜除了可以遮阳、保护眼镜健康外，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">戴太阳眼镜还有说不出来的绝妙好处。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">到底太阳眼镜有那些神妙之处呢？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">且看非戴太阳眼镜不可的五大理由：</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由1：没化妆，太阳眼镜可遮丑</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">没化妆就出门，不妨效法好莱坞明星戴上太阳眼镜，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">绝对可以遮住难看的“黑眼圈”。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由2：美容手术后，至少戴太阳眼镜1个月</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">脸上做了美容手术，红肿、伤疤见不得人？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">戴上太阳眼镜不但可以遮住做手术的部位，还可以遮阳，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">同时还可防止伤口因日晒留下疤痕。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由3：戴太阳眼镜，可显高贵、增加权威感</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">身处公共场合，怕与对面的陌生人四目相对，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">不妨也戴上太阳眼镜吧。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由4：戴太阳眼镜，看起来脸会瘦</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">这个理论是奥尔森姊妹花所提出的，她的理论很简单，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">爱美、爱瘦的女人，总会“处心积虑”让自己看起来更小、更瘦，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">鼻梁上戴的太阳?劬涤螅崛米约旱牧晨雌鹄从。?</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">从而营造出“瘦脸”的视觉效果。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由5：太阳眼镜是最物超所值的时尚单品</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">如果你是个时尚狂热分子，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">那么太阳眼镜将会是你下一个必须采购的时尚单品。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">因为它的售价便宜、不必担心尺寸合不合身等问题，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">可说是精品店内最值得投资的时尚单品。</span></strong></p>\r\n<p><strong><span style="line-height:0px;overflow:hidden;"><br class="img-brk" />\r\n</span><br class="img-brk" />\r\n<br class="img-brk" />\r\n</strong></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p><br />\r\n&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">产品介绍：</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">眼镜框架采用最新高科技碳素树脂，比一般眼镜架更为结实耐用，超细表面处理光洁美观，全树脂天然材料可防止皮肤敏感，配戴更为舒适轻盈，风格感觉更加高档时尚！</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★镜框</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">眼镜镜框的设计及制造哲学，与创制镜片的精确理论同出一辙，质料极为耐用，佩带永远舒适，分外体贴面型。</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★镜臂</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、双重螺丝装嵌，有效巩固镜片</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、经严格扭曲测试，确保镜框的坚韧度及稳定性</span></p>\r\n<p style="text-align:left;">3<span style="font-family:宋体;">、镜臂弧度特别体贴肌肤</span></p>\r\n<p style="text-align:left;">4<span style="font-family:宋体;">、弱性臂端设计，能因应面型轮廓而作调较</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★鼻托：鼻托光滑圆润，分外帖服</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★塑胶部分</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、以醋酸纤维素或尼龙制成的镜框特福弹性，具防燃防化学侵蚀功能，色泽不会减退。</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、为确保镜框外型平滑，所以醋酸纤维素或尼龙制镜框均经过</span>4<span style="font-family:宋体;">天的打磨过程</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★金属部分</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、主要金属接驳部分均经过电镀焊合，防止镜框出现碎屑，侵蚀及失去光泽</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、用以固定镜片的金属丝坚韧耐用，可任意调较，并巩固镜片</span></p>', NULL, NULL, NULL, NULL, 1, 1, 1, 1, 0, 0, 26, 255, 1337947307, 1365343773, 'zh_cn'),
-(3, 3, 'Magnus SAN MARINO系列机械手表M102MSS45', '1003701074', '块', 10000, 100, '2888.00', '1313.00', '￥', NULL, '', '', '', '', '2012/05/26/96f45716f6084d869e8e7235fcb08e1e.jpg', '型号：M102MSS45<br />\r\n系列：SAN MARINO<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢<br />\r\n表带：不锈钢<br />\r\n<b><br />\r\nMagnus M102MSS45产品特点：<br />\r\n</b>1.美国Magnus SAN MARINO系列机械手表。<br />\r\n2.采用20钻自动机械机芯，背面镂空设计，展示其卓越的品质及精湛的技术。<br />\r\n3.6时位圆形星期表盘，12时位扇形日历表盘，将实用与美观融为一体。<br />\r\n4.采用超硬耐磨的宝石水晶玻璃镜面。<br />\r\n5.经抛光打磨而成的表壳带，光滑亮泽，还具有抗氧化、防腐、防震、耐磨等特质。<br />\r\n6.有白面(M102MSS45)、黑面(M102MSS41)、蓝面(M102MSS42)供选择。<br />\r\n<b><br />\r\nM102MSS45实物拍照：</b><br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906739682821.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906192490927.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus12675789061486139945.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906222983012.jpg" />', NULL, NULL, NULL, NULL, 1, 0, 1, 1, 1, 0, 49, 255, 1338008469, 1338722441, 'zh_cn'),
-(4, 3, 'Magnus SANMARINO系列机械手表M102MSB41 ', '1338008801', '块', 10000, 100, '2500.00', '1255.00', '￥', NULL, '', '', '', '', '2012/05/26/dba06b5bdf8dfb36c4ef3f4e826f3d70.jpg', '型号：M102MSB41<br />\r\n系列：SANMARINO系列<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢，真皮<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢，镂空<br />\r\n表带：真皮<br />\r\n表盘：日历，星期<br />\r\n指针：夜光<br />\r\n<br />\r\n<b>Magnus M102MSB41产品特点：<br />\r\n</b>1.美国Magnus SANMARINO系列机械手表。<br />\r\n2.采用20钻的自动机械机芯，走时精准。<br />\r\n3.6时位圆形星期表盘，12时位扇形日历表盘，将实用与美观融为一体。<br />\r\n4.采用超硬耐磨的宝石水晶玻璃镜面。<br />\r\n5.经抛光打磨而成的表壳，光滑亮泽，还具有抗氧化、防腐、防震、耐磨等特质。<br />\r\n6.采用鳄鱼纹真皮表带，质地柔韧，细腻光泽。<br />\r\n7.另有黑带白面(M102MSB45)、棕红带白面(M102MSR45)、黑带黑面(M102MSB42)。<br />\r\n<br />\r\n<b>Magnus M102MSB41实物拍照：<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-840z.jpg" height="500" hspace="100" width="357" /><br />\r\n<br />\r\n</b>宝蓝色表面，凸显高贵稳重<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600d.jpg" /><br />\r\n经典的设计，将实用与美观融于一体<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600e.jpg" /><br />\r\n鳄鱼纹的真皮表带，佩戴起来更舒适<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600f.jpg" /><br />\r\n经典马蹄扣设计，方便实用<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB45-600g.jpg" /><br />\r\n镂空的背面，彰显其精湛的技术', NULL, NULL, NULL, NULL, 1, 1, 0, 1, 1, 0, 29, 255, 1338008801, 1338470260, 'zh_cn'),
-(5, 3, 'Magnus MONTERREY系列机械手表M110MGR45', '1338015021', '块', 10000, 100, '2520.00', '1268.00', '￥', NULL, '', '', '', '', '2012/05/26/b5d50f6cee075e963fe532cc0aaa5c82.jpg', '型号：M110MGR45<br />\r\n系列：MONTERREY系列<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢，真皮，玫瑰金<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢，镂空<br />\r\n表带：真皮<br />\r\n表盘：月历，星期<br />\r\n指针：夜光<br />\r\n<br />\r\n<b>Magnus M110MGR45产品特点：<br />\r\n</b>1.美国Magnus MONTERREY系列机械手表。<br />\r\n2.采用20钻的自动机械机芯，走时精准。<br />\r\n3.圆形星期显示，扇形日历显示，集实用与美观为一体。<br />\r\n4.带夜光的阿拉伯数字设计新颖独特，符合视觉习惯。<br />\r\n5.采用不锈钢表壳，具有抗氧化、耐磨、防腐、防震等特质。<br />\r\n6.采用超硬耐磨损的宝石水晶玻璃镜面。<br />\r\n7.采用棕红色真皮表带，显得古朴、典雅。<br />\r\n8.有银白(M110MSR45)、金色(M110MGR45)供选择。<br />\r\n<br />\r\n<b>Magnus M110MGR45实物拍照：<br />\r\n</b><img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-840z.jpg" height="500" hspace="100" width="357" /><br />\r\n金色表壳搭配棕红色表带，彰显高贵与典雅<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600d.jpg" /><br />\r\n人性化的设计理念，将科技、艺术与实用三者完美结合<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600e.jpg" /><br />\r\n弧形表盘设计，佩戴起来更显优雅<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600f.jpg" /><br />\r\n经典马蹄扣设计，方便实用<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600g.jpg" /><br />\r\n镂空的背面，彰显其精湛的技术<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600h.jpg" /><br />\r\n30米防水，让你日常使用更方便', NULL, '0.00', '0.00', '0.00', 1, 1, 1, 1, 1, 0, 66, 255, 1338015021, 1365340404, 'zh_cn');
+(1, 9, '热销新款欧美流行硅胶手表 加工订做各种规格款式硅胶手表', '123', '块', 1000, 500, '50.00', '15.00', '￥', NULL, '', '', '', '', '2012/05/24/e1a6aa823816959a0493323172115c4a.jpg', '<span style="font-size:14pt;">【表壳材料】：环 保塑胶</span><br />\r\n<span style="font-size:14pt;">【表带 材料】：环保硅胶</span><br />\r\n<span style="font-size:14pt;">【后盖材料】：不锈钢后盖，防水结构</span><p><span style="font-size:14pt;">【镜面材料】：平片玻 璃</span><br />\r\n<span style="font-size:14pt;">【表盘材料 】：铜，可订做LOGO</span></p>\r\n<p><span style="font-size:14pt;">【机芯】：日本/瑞士石 英机芯</span></p>\r\n<p><span style="font-size:14pt;">【电池】：索星/金力/ 索尼（1年-3年寿命）</span><br />\r\n<span style="font-size:14pt;">【功能】：三针，时间显示</span><br />\r\n<span style="font-size:14pt;">【防水】：生活防水/10米</span><br />\r\n<span style="font-size:14pt;">【包含】：表盘LOGO任意设计（根据具体要求）</span><br />\r\n<span style="font-size:14pt;">【包装】：单 个表入一个气泡袋安全包装（木盒/塑胶盒/纸盒均可）</span><br />\r\n<span style="font-size:14pt;background-:#ffff00;">【起订量】：500只</span></p>\r\n<p><span style="background-color:#ffff00;font-size:14pt;">【优惠】：量越大越优惠</span></p>', NULL, NULL, NULL, NULL, 1, 1, 1, 1, 1, 0, 120, 255, 1337875253, 1367241097, 'zh_cn'),
+(2, 36, '太阳镜 2012新款 明星同款 黄晓明 李孝利最爱 墨镜 蛤蟆镜SJ8160', '1337947307', '副', 3000, 10, '30.00', '11.00', '￥', NULL, '', '', '', '', '2012/05/25/65649efb1c6a666061aa2feb29b880a1.jpg', '<p style="text-align:center;"><br />\r\n<span style="color:#999999;font-size:12pt;">James McAvoy<span style="text-transform:none;line-height:19px;text-indent:0px;letter-spacing:normal;font-family:tahoma, arial, 宋体, sans-serif;font-style:normal;font-variant:normal;font-weight:normal;word-spacing:0px;float:none;display:inline !important;white-space:normal;orphans:2;widows:2;background-color:#ffffff;webkit-text-size-adjust:auto;webkit-text-stroke-width:0px;">与你们一起写下生活感悟</span></span></p>\r\n<p style="text-align:center;">&nbsp;</p>\r\n<p style="text-align:center;" align="left"><span style="color:#999999;font-family:simsun;font-size:12pt;background-color:#ffffff;">不要把时间花在一个不在乎与你一起分享的人身上。</span></p>\r\n<p style="text-align:center;" align="left">&nbsp;</p>\r\n<p style="text-align:center;" align="left"><span style="color:#999999;font-family:simsun;font-size:12pt;background-color:#ffffff;"><span>Don''t spend time with someone who doesn''t care spending it with you.</span></span></p>\r\n<p style="text-align:center;">&nbsp;<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/755/092/560290557_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/855/092/560290558_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/165/092/560290561_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/365/092/560290563_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/175/092/560290571_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/475/092/560290574_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/299/882/560288992_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/989/882/560288989_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/889/882/560288988_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/675/092/560290576_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/985/092/560290589_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/895/092/560290598_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i00.c.aliimg.com/img/ibank/2012/799/882/560288997_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/699/882/560288996_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i04.c.aliimg.com/img/ibank/2012/599/882/560288995_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<img style="visibility:visible;" alt="" src="http://i02.c.aliimg.com/img/ibank/2012/499/882/560288994_752546223.jpg" /><br class="img-brk" />\r\n<br class="img-brk" />\r\n<br class="img-brk" />\r\n</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:red;font-family:方正剪纸简体;font-size:26pt;background-color:white;">太阳眼镜好处多</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜，当然就是用来遮太阳！是没错，但不只这样吧，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">否则好莱坞明星们在室内甚至在晚上为什么还要戴墨镜？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">所以，墨镜的背后，“心机”可深了……</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜与时尚有何关联？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">为何不管太阳大不大，好莱坞女星都特别偏爱太阳镜？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">“纸片人”奥尔森姐妹花有句名言：</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:blue;font-family:方正卡通简体;font-size:15pt;background-color:white;">“</span></strong><strong><span style="color:blue;font-family:方正卡通简体;font-size:15pt;background-color:white;">女人愈瘦，她戴的太阳眼镜就愈大！”</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">这句话，也许说明了一切。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜现在很热门，一来记者拍到的明星照片，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">几乎都戴着太阳眼镜，二来太阳眼镜的价格并不贵,</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">名牌太阳眼镜售价比起皮包、皮鞋来要便宜许多，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">所以各家精品的太阳眼镜销路不错。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#ff6633;font-family:方正卡通简体;font-size:15pt;background-color:white;">太阳眼镜到底有多抢手？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">根据调查，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">近几年很多国外企业销售业绩大幅增长，其中有两成来自太阳眼镜；</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">美国的顶级百货公司也发现，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">以往店内最热销的时尚单品是皮包，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">但太阳眼镜最近的表现相当亮丽，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">成为店内最in的热门商品。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">夏日艳阳高照，戴上太阳眼镜除了可以遮阳、保护眼镜健康外，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">戴太阳眼镜还有说不出来的绝妙好处。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#663399;font-family:方正卡通简体;font-size:15pt;background-color:white;">到底太阳眼镜有那些神妙之处呢？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="font-family:方正卡通简体;font-size:15pt;background-color:white;">且看非戴太阳眼镜不可的五大理由：</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由1：没化妆，太阳眼镜可遮丑</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">没化妆就出门，不妨效法好莱坞明星戴上太阳眼镜，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:fuchsia;font-family:方正卡通简体;font-size:15pt;background-color:white;">绝对可以遮住难看的“黑眼圈”。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由2：美容手术后，至少戴太阳眼镜1个月</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">脸上做了美容手术，红肿、伤疤见不得人？</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">戴上太阳眼镜不但可以遮住做手术的部位，还可以遮阳，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#0066ff;font-family:方正卡通简体;font-size:15pt;background-color:white;">同时还可防止伤口因日晒留下疤痕。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由3：戴太阳眼镜，可显高贵、增加权威感</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">身处公共场合，怕与对面的陌生人四目相对，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:green;font-family:方正卡通简体;font-size:15pt;background-color:white;">不妨也戴上太阳眼镜吧。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由4：戴太阳眼镜，看起来脸会瘦</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">这个理论是奥尔森姊妹花所提出的，她的理论很简单，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">爱美、爱瘦的女人，总会“处心积虑”让自己看起来更小、更瘦，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">鼻梁上戴的太阳?劬涤螅崛米约旱牧晨雌鹄从。?</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:#993333;font-family:方正卡通简体;font-size:15pt;background-color:white;">从而营造出“瘦脸”的视觉效果。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center">&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">理由5：太阳眼镜是最物超所值的时尚单品</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">如果你是个时尚狂热分子，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">那么太阳眼镜将会是你下一个必须采购的时尚单品。</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">因为它的售价便宜、不必担心尺寸合不合身等问题，</span></strong></p>\r\n<p>&nbsp;</p>\r\n<p style="background-color:white;" align="center"><strong><span style="color:olive;font-family:方正卡通简体;font-size:15pt;background-color:white;">可说是精品店内最值得投资的时尚单品。</span></strong></p>\r\n<p><strong><span style="line-height:0px;overflow:hidden;"><br class="img-brk" />\r\n</span><br class="img-brk" />\r\n<br class="img-brk" />\r\n</strong></p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p>&nbsp;</p>\r\n<p><br />\r\n&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">产品介绍：</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">眼镜框架采用最新高科技碳素树脂，比一般眼镜架更为结实耐用，超细表面处理光洁美观，全树脂天然材料可防止皮肤敏感，配戴更为舒适轻盈，风格感觉更加高档时尚！</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★镜框</span></p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">眼镜镜框的设计及制造哲学，与创制镜片的精确理论同出一辙，质料极为耐用，佩带永远舒适，分外体贴面型。</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★镜臂</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、双重螺丝装嵌，有效巩固镜片</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、经严格扭曲测试，确保镜框的坚韧度及稳定性</span></p>\r\n<p style="text-align:left;">3<span style="font-family:宋体;">、镜臂弧度特别体贴肌肤</span></p>\r\n<p style="text-align:left;">4<span style="font-family:宋体;">、弱性臂端设计，能因应面型轮廓而作调较</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★鼻托：鼻托光滑圆润，分外帖服</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★塑胶部分</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、以醋酸纤维素或尼龙制成的镜框特福弹性，具防燃防化学侵蚀功能，色泽不会减退。</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、为确保镜框外型平滑，所以醋酸纤维素或尼龙制镜框均经过</span>4<span style="font-family:宋体;">天的打磨过程</span></p>\r\n<p style="text-align:left;">&nbsp;</p>\r\n<p style="text-align:left;"><span style="font-family:宋体;">★金属部分</span></p>\r\n<p style="text-align:left;">1<span style="font-family:宋体;">、主要金属接驳部分均经过电镀焊合，防止镜框出现碎屑，侵蚀及失去光泽</span></p>\r\n<p style="text-align:left;">2<span style="font-family:宋体;">、用以固定镜片的金属丝坚韧耐用，可任意调较，并巩固镜片</span></p>', NULL, NULL, NULL, NULL, 1, 1, 1, 1, 0, 0, 29, 255, 1337947307, 1367239847, 'zh_cn'),
+(3, 9, 'Magnus SAN MARINO系列机械手表M102MSS45', '1003701074', '块', 10000, 100, '2888.00', '1313.00', '￥', NULL, '', '', '', '', '2012/05/26/96f45716f6084d869e8e7235fcb08e1e.jpg', '型号：M102MSS45<br />\r\n系列：SAN MARINO<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢<br />\r\n表带：不锈钢<br />\r\n<b><br />\r\nMagnus M102MSS45产品特点：<br />\r\n</b>1.美国Magnus SAN MARINO系列机械手表。<br />\r\n2.采用20钻自动机械机芯，背面镂空设计，展示其卓越的品质及精湛的技术。<br />\r\n3.6时位圆形星期表盘，12时位扇形日历表盘，将实用与美观融为一体。<br />\r\n4.采用超硬耐磨的宝石水晶玻璃镜面。<br />\r\n5.经抛光打磨而成的表壳带，光滑亮泽，还具有抗氧化、防腐、防震、耐磨等特质。<br />\r\n6.有白面(M102MSS45)、黑面(M102MSS41)、蓝面(M102MSS42)供选择。<br />\r\n<b><br />\r\nM102MSS45实物拍照：</b><br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906739682821.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906192490927.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus12675789061486139945.jpg" /><br />\r\n<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/Magnus1267578906222983012.jpg" />', NULL, NULL, NULL, NULL, 1, 0, 1, 1, 1, 0, 54, 255, 1338008469, 1367241220, 'zh_cn'),
+(4, 9, 'Magnus SANMARINO系列机械手表M102MSB41 ', '1338008801', '块', 10000, 100, '2500.00', '1255.00', '￥', NULL, '', '', '', '', '2012/05/26/dba06b5bdf8dfb36c4ef3f4e826f3d70.jpg', '型号：M102MSB41<br />\r\n系列：SANMARINO系列<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢，真皮<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢，镂空<br />\r\n表带：真皮<br />\r\n表盘：日历，星期<br />\r\n指针：夜光<br />\r\n<br />\r\n<b>Magnus M102MSB41产品特点：<br />\r\n</b>1.美国Magnus SANMARINO系列机械手表。<br />\r\n2.采用20钻的自动机械机芯，走时精准。<br />\r\n3.6时位圆形星期表盘，12时位扇形日历表盘，将实用与美观融为一体。<br />\r\n4.采用超硬耐磨的宝石水晶玻璃镜面。<br />\r\n5.经抛光打磨而成的表壳，光滑亮泽，还具有抗氧化、防腐、防震、耐磨等特质。<br />\r\n6.采用鳄鱼纹真皮表带，质地柔韧，细腻光泽。<br />\r\n7.另有黑带白面(M102MSB45)、棕红带白面(M102MSR45)、黑带黑面(M102MSB42)。<br />\r\n<br />\r\n<b>Magnus M102MSB41实物拍照：<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-840z.jpg" height="500" hspace="100" width="357" /><br />\r\n<br />\r\n</b>宝蓝色表面，凸显高贵稳重<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600d.jpg" /><br />\r\n经典的设计，将实用与美观融于一体<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600e.jpg" /><br />\r\n鳄鱼纹的真皮表带，佩戴起来更舒适<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB41-600f.jpg" /><br />\r\n经典马蹄扣设计，方便实用<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M102MSB45-600g.jpg" /><br />\r\n镂空的背面，彰显其精湛的技术', NULL, NULL, NULL, NULL, 1, 1, 0, 1, 1, 0, 33, 255, 1338008801, 1367241326, 'zh_cn'),
+(5, 9, 'Magnus MONTERREY系列机械手表M110MGR45', '1338015021', '块', 10000, 100, '2520.00', '1268.00', '￥', NULL, '', '', '', '', '2012/05/26/b5d50f6cee075e963fe532cc0aaa5c82.jpg', '型号：M110MGR45<br />\r\n系列：MONTERREY系列<br />\r\n产地：美国<br />\r\n机芯：机械<br />\r\n材料：不锈钢，真皮，玫瑰金<br />\r\n钻数：20<br />\r\n防水：30m防水<br />\r\n表壳：不锈钢，镂空<br />\r\n表带：真皮<br />\r\n表盘：月历，星期<br />\r\n指针：夜光<br />\r\n<br />\r\n<b>Magnus M110MGR45产品特点：<br />\r\n</b>1.美国Magnus MONTERREY系列机械手表。<br />\r\n2.采用20钻的自动机械机芯，走时精准。<br />\r\n3.圆形星期显示，扇形日历显示，集实用与美观为一体。<br />\r\n4.带夜光的阿拉伯数字设计新颖独特，符合视觉习惯。<br />\r\n5.采用不锈钢表壳，具有抗氧化、耐磨、防腐、防震等特质。<br />\r\n6.采用超硬耐磨损的宝石水晶玻璃镜面。<br />\r\n7.采用棕红色真皮表带，显得古朴、典雅。<br />\r\n8.有银白(M110MSR45)、金色(M110MGR45)供选择。<br />\r\n<br />\r\n<b>Magnus M110MGR45实物拍照：<br />\r\n</b><img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-840z.jpg" height="500" hspace="100" width="357" /><br />\r\n金色表壳搭配棕红色表带，彰显高贵与典雅<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600d.jpg" /><br />\r\n人性化的设计理念，将科技、艺术与实用三者完美结合<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600e.jpg" /><br />\r\n弧形表盘设计，佩戴起来更显优雅<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600f.jpg" /><br />\r\n经典马蹄扣设计，方便实用<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600g.jpg" /><br />\r\n镂空的背面，彰显其精湛的技术<br />\r\n<img alt="" src="http://img.guuoo.com/Magnus/M110MGR45-600h.jpg" /><br />\r\n30米防水，让你日常使用更方便', NULL, '0.00', '0.00', '0.00', 1, 1, 1, 1, 1, 0, 68, 255, 1338015021, 1367241127, 'zh_cn');
 
 -- --------------------------------------------------------
 
@@ -4320,7 +4318,6 @@ INSERT INTO `item` (`item_id`, `category_id`, `title`, `sn`, `unit`, `stock`, `m
 -- 表的结构 `item_img`
 --
 
-DROP TABLE IF EXISTS `item_img`;
 CREATE TABLE IF NOT EXISTS `item_img` (
   `item_id` int(11) unsigned NOT NULL,
   `url` varchar(255) DEFAULT NULL COMMENT '图片链接地址',
@@ -4335,7 +4332,6 @@ CREATE TABLE IF NOT EXISTS `item_img` (
 -- 表的结构 `item_prop`
 --
 
-DROP TABLE IF EXISTS `item_prop`;
 CREATE TABLE IF NOT EXISTS `item_prop` (
   `prop_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '属性 ID 例：品牌的PID=20000',
   `category_id` int(10) unsigned NOT NULL,
@@ -4362,17 +4358,17 @@ CREATE TABLE IF NOT EXISTS `item_prop` (
 --
 
 INSERT INTO `item_prop` (`prop_id`, `category_id`, `parent_prop_id`, `parent_value_id`, `prop_name`, `prop_alias`, `type`, `is_key_prop`, `is_sale_prop`, `is_color_prop`, `is_enum_prop`, `is_item_prop`, `must`, `multi`, `prop_values`, `status`, `sort_order`) VALUES
-(1, 1, 0, NULL, '机芯', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 1),
-(2, 1, 0, NULL, '表盘', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 4),
-(3, 1, 0, NULL, '手表品牌', '', 'optional', 1, 0, 0, 1, 0, 1, 0, NULL, 'normal', 7),
-(4, 1, 0, NULL, '颜色分类', '', 'multiCheck', 0, 1, 1, 0, 0, 0, 0, NULL, 'normal', 6),
-(5, 1, 0, NULL, '品牌源自', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 2),
-(6, 1, 0, NULL, '表带', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 5),
-(7, 1, 0, NULL, '价格', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 3),
-(8, 2, 0, NULL, '材质', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 255),
-(9, 2, 0, NULL, '形状', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 255),
-(10, 2, 0, NULL, '围巾长度', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 255),
-(11, 2, 0, NULL, '围巾品牌', '', 'optional', 1, 0, 0, 1, 0, 1, 0, NULL, 'normal', 255);
+(1, 9, 0, NULL, '机芯', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 1),
+(2, 9, 0, NULL, '表盘', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 4),
+(3, 9, 0, NULL, '手表品牌', '', 'optional', 1, 0, 0, 1, 0, 1, 0, NULL, 'normal', 7),
+(4, 9, 0, NULL, '颜色分类', '', 'multiCheck', 0, 1, 1, 0, 0, 0, 0, NULL, 'normal', 6),
+(5, 9, 0, NULL, '品牌源自', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 2),
+(6, 9, 0, NULL, '表带', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 5),
+(7, 9, 0, NULL, '价格', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 3),
+(8, 31, 0, NULL, '材质', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 255),
+(9, 31, 0, NULL, '形状', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 255),
+(10, 31, 0, NULL, '围巾长度', '', 'optional', 0, 0, 0, 1, 1, 0, 0, NULL, 'normal', 255),
+(11, 31, 0, NULL, '围巾品牌', '', 'optional', 1, 0, 0, 1, 0, 1, 0, NULL, 'normal', 255);
 
 -- --------------------------------------------------------
 
@@ -4380,7 +4376,6 @@ INSERT INTO `item_prop` (`prop_id`, `category_id`, `parent_prop_id`, `parent_val
 -- 表的结构 `location`
 --
 
-DROP TABLE IF EXISTS `location`;
 CREATE TABLE IF NOT EXISTS `location` (
   `country` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
@@ -4396,7 +4391,6 @@ CREATE TABLE IF NOT EXISTS `location` (
 -- 表的结构 `menu`
 --
 
-DROP TABLE IF EXISTS `menu`;
 CREATE TABLE IF NOT EXISTS `menu` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `root` int(10) unsigned DEFAULT NULL,
@@ -4414,20 +4408,34 @@ CREATE TABLE IF NOT EXISTS `menu` (
   KEY `lft` (`lft`),
   KEY `rgt` (`rgt`),
   KEY `level` (`level`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- 转存表中的数据 `menu`
 --
 
 INSERT INTO `menu` (`id`, `root`, `lft`, `rgt`, `level`, `name`, `url`, `pic`, `position`, `if_show`, `memo`) VALUES
-(1, 1, 1, 12, 1, '前台菜单', '', '', '', 1, ''),
+(1, 1, 1, 40, 1, '前台菜单', '', '', '', 1, ''),
 (2, 2, 1, 2, 1, '后台菜单', '', '', '', 1, ''),
 (3, 1, 2, 3, 2, '顶部导航', '', '', '', 1, ''),
-(4, 1, 4, 9, 2, '主目录菜单', '', '', '', 1, ''),
-(5, 1, 10, 11, 2, '底部导航', '', '', '', 1, ''),
-(6, 1, 5, 6, 3, '首页', '', '', '', 1, ''),
-(7, 1, 7, 8, 3, '商城', '', '', '', 1, '');
+(4, 1, 20, 39, 2, '主目录菜单', '', '', '', 1, ''),
+(5, 1, 4, 19, 2, '底部导航', '', '', '', 1, ''),
+(6, 1, 21, 22, 3, '首页', 'site/index', '', '', 1, ''),
+(7, 1, 23, 24, 3, '手表', 'catalog/watches', '', '', 1, ''),
+(8, 1, 25, 26, 3, '围巾', 'catalog/scarves', NULL, NULL, 1, ''),
+(9, 1, 27, 28, 3, '太阳镜', 'catalog/sunglasses', NULL, NULL, 1, ''),
+(10, 1, 29, 30, 3, '皮带', 'catalog/leatherbelt', NULL, NULL, 1, ''),
+(11, 1, 31, 32, 3, '饰品', 'catalog/jewelry', NULL, NULL, 1, ''),
+(12, 1, 33, 34, 3, '公司简介', 'page/about', NULL, NULL, 1, ''),
+(13, 1, 35, 36, 3, '购物帮助', 'page/helpcenter', NULL, NULL, 1, ''),
+(14, 1, 37, 38, 3, '联系客服', 'page/contact', NULL, NULL, 1, ''),
+(15, 1, 5, 6, 3, '关于我们', 'page/about', NULL, NULL, 1, ''),
+(16, 1, 7, 8, 3, '批发政策', 'page/wholesale', NULL, NULL, 1, ''),
+(17, 1, 9, 10, 3, '品质保证', 'page/qualityAssurance', NULL, NULL, 1, ''),
+(18, 1, 11, 12, 3, '业务合作', 'page/coop', NULL, NULL, 1, ''),
+(19, 1, 13, 14, 3, '隐私声明', 'page/privacy', NULL, NULL, 1, ''),
+(20, 1, 15, 16, 3, '加入我们', 'page/join', NULL, NULL, 1, ''),
+(21, 1, 17, 18, 3, '联系我们', 'page/contact', NULL, NULL, 1, '');
 
 -- --------------------------------------------------------
 
@@ -4435,7 +4443,6 @@ INSERT INTO `menu` (`id`, `root`, `lft`, `rgt`, `level`, `name`, `url`, `pic`, `
 -- 表的结构 `menu1`
 --
 
-DROP TABLE IF EXISTS `menu1`;
 CREATE TABLE IF NOT EXISTS `menu1` (
   `menu_id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
@@ -4507,7 +4514,6 @@ INSERT INTO `menu1` (`menu_id`, `parent_id`, `name`, `en_name`, `menu_url`, `sor
 -- 表的结构 `order`
 --
 
-DROP TABLE IF EXISTS `order`;
 CREATE TABLE IF NOT EXISTS `order` (
   `order_id` bigint(20) unsigned NOT NULL DEFAULT '0',
   `user_id` int(10) unsigned DEFAULT NULL,
@@ -4544,7 +4550,8 @@ CREATE TABLE IF NOT EXISTS `order` (
 
 INSERT INTO `order` (`order_id`, `user_id`, `status`, `pay_status`, `ship_status`, `refund_status`, `total_fee`, `ship_fee`, `pay_fee`, `pay_method`, `ship_method`, `receiver_name`, `receiver_country`, `receiver_state`, `receiver_city`, `receiver_district`, `receiver_address`, `receiver_zip`, `receiver_mobile`, `receiver_phone`, `memo`, `pay_time`, `ship_time`, `create_time`, `update_time`) VALUES
 (20130201236640, 1, 0, 0, 0, 0, NULL, NULL, '110.00', '1', '1', '小明', NULL, '130000', '130300', '130304', '11111', '1111111', '13338888899', '021-877777222', '选填，可以告诉卖家您对商品的特殊要求，如：颜色、尺码等', NULL, NULL, 1359685702, NULL),
-(20130324580782, 1, 0, 0, 0, 0, NULL, NULL, '7500.00', '1', '1', '小明', NULL, '130000', '130300', '130304', '11111', '1111111', '13338888899', '021-877777222', '选填，可以告诉卖家您对商品的特殊要求，如：颜色、尺码等', NULL, NULL, 1364111047, NULL);
+(20130324580782, 1, 0, 0, 0, 0, NULL, NULL, '7500.00', '1', '1', '小明', NULL, '130000', '130300', '130304', '11111', '1111111', '13338888899', '021-877777222', '选填，可以告诉卖家您对商品的特殊要求，如：颜色、尺码等', NULL, NULL, 1364111047, NULL),
+(20130429837549, 1, 0, 0, 0, 0, NULL, NULL, '7500.00', '1', '1', '小明', NULL, '130000', '130300', '130304', '11111', '1111111', '13338888899', '021-877777222', '选填，可以告诉卖家您对商品的特殊要求，如：颜色、尺码等', NULL, NULL, 1367222096, NULL);
 
 -- --------------------------------------------------------
 
@@ -4552,7 +4559,6 @@ INSERT INTO `order` (`order_id`, `user_id`, `status`, `pay_status`, `ship_status
 -- 表的结构 `order_item`
 --
 
-DROP TABLE IF EXISTS `order_item`;
 CREATE TABLE IF NOT EXISTS `order_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -4567,7 +4573,7 @@ CREATE TABLE IF NOT EXISTS `order_item` (
   `props_name` longtext,
   PRIMARY KEY (`id`),
   KEY `fk_order_item_order1` (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- 转存表中的数据 `order_item`
@@ -4575,7 +4581,8 @@ CREATE TABLE IF NOT EXISTS `order_item` (
 
 INSERT INTO `order_item` (`id`, `category_id`, `order_id`, `item_id`, `title`, `sn`, `price`, `num`, `amount`, `pic_url`, `props_name`) VALUES
 (1, NULL, 20130201236640, 2, '太阳镜 2012新款 明星同款 黄晓明 李孝利最爱 墨镜 蛤蟆镜SJ8160', '1337947307', '11.00', 10, '110.00', 's:12:"没有图片";', NULL),
-(2, NULL, 20130324580782, 1, '热销新款欧美流行硅胶手表 加工订做各种规格款式硅胶手表', '123', '15.00', 500, '7500.00', 's:12:"没有图片";', NULL);
+(2, NULL, 20130324580782, 1, '热销新款欧美流行硅胶手表 加工订做各种规格款式硅胶手表', '123', '15.00', 500, '7500.00', 's:12:"没有图片";', NULL),
+(3, NULL, 20130429837549, 1, '热销新款欧美流行硅胶手表 加工订做各种规格款式硅胶手表', '123', '15.00', 500, '7500.00', 's:12:"没有图片";', NULL);
 
 -- --------------------------------------------------------
 
@@ -4583,7 +4590,6 @@ INSERT INTO `order_item` (`id`, `category_id`, `order_id`, `item_id`, `title`, `
 -- 表的结构 `order_log`
 --
 
-DROP TABLE IF EXISTS `order_log`;
 CREATE TABLE IF NOT EXISTS `order_log` (
   `log_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `order_id` int(11) DEFAULT NULL,
@@ -4602,7 +4608,6 @@ CREATE TABLE IF NOT EXISTS `order_log` (
 -- 表的结构 `page`
 --
 
-DROP TABLE IF EXISTS `page`;
 CREATE TABLE IF NOT EXISTS `page` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) NOT NULL DEFAULT '0',
@@ -4618,23 +4623,23 @@ CREATE TABLE IF NOT EXISTS `page` (
 --
 
 INSERT INTO `page` (`id`, `category_id`, `key`, `title`, `content`, `language`) VALUES
-(1, 13, 'notice', '顾客必读', '<h4>\r\n	如何订购商品？\r\n</h4>\r\n您可以首先浏览我们的网站了解商品。看到您满意的商品您可以直接在我们的网站上实现订购。您也可以和我们网站的客服人员联系订购。\r\n<h4>\r\n	我通过网站看到你们的商品后觉得不错，但是我不是经常上网，你可以寄一些商品的图片和介绍给我吗？\r\n</h4>\r\n答：我们的网站会不定期地为会员发送商品信息资料的电子邮件。如果您目前还没有成为我们的会员，您可以直接在我们的网站上注册，非常方便。\r\n<h4>\r\n	请告诉我在这里购物的理由好吗？\r\n</h4>\r\n<ol>\r\n	<li>\r\n		我们是一家拥有长期经营零售业务经验的网站；\r\n	</li>\r\n	<li>\r\n		我们将给您带来优质的商品及更优惠的价格；\r\n	</li>\r\n	<li>\r\n		多种付款方式以及快速的全国配送；\r\n	</li>\r\n	<li>\r\n		人性化的退换货事宜；\r\n	</li>\r\n	<li>\r\n		体贴入微的会员积分计划；\r\n	</li>\r\n	<li>\r\n		所有产品为原厂正规包装；\r\n	</li>\r\n</ol>\r\n<h4>\r\n	你们的商品我都非常喜欢，已经购买了很多，但是有些怎么一直没货？会不会订不到？\r\n</h4>\r\n由于网站顾客购买量比较大，商品随时可能断货，您可以通过网站上的“到货通知”按钮预定商品或直接联系我们的网站客服进行预约订购。\r\n<h4>\r\n	所有的产品都能够在网站上购买?\r\n</h4>\r\n答：目前网站查找的都是可以订购的，但是必须是仓库中有库存的产品我们才可以与您确认。部分热销产品也可以通过我们的网站做一个预约，等到货品到后，我们会立即通过电话或者电子邮件的方式通知您来订购。\r\n<h4>\r\n	为什么要注册会员？\r\n</h4>\r\n<ol>\r\n	<li>\r\n		只有注册用户才可以在网上进行订购，享受优惠的价格。\r\n	</li>\r\n	<li>\r\n		只有注册用户才可以登录"会员中心"，使用更多的会员购物功能,管理自己的资料。\r\n	</li>\r\n	<li>\r\n		只有注册用户才可以在网上给其他注册的朋友留言。\r\n	</li>\r\n	<li>\r\n		只有注册用户才有可能获取我们赠送的礼品。\r\n	</li>\r\n</ol>\r\n<h4>\r\n	忘记了密码怎么办？\r\n</h4>\r\n为了保护客户利益，我们无法看到您的密码。当您忘记密码时，请登录注册页面，点击"忘记密码"，系统会自动将您的密码通过email告诉您，您可以登录"会员中心"去更改密码，以确保您的利益。\r\n<h4>\r\n	积分是怎么回事？有什么作用？\r\n</h4>\r\n积分的高低只反映您对我们的关注和支持程度。我们的积分是通过订购商品产生的。对于高积分的客户我们会有一定的奖励，如积分兑换商品、积分抵扣价格、赠送商品,更优惠的价格购买商品等，以此回馈广大顾客。', 'zh_cn'),
-(2, 13, 'memberrank', '会员等级折扣', '我们的会员等级系统是动态的，按照会员积分的多少划分不同的等级，等级越高享受的商品折扣越大。 针对会员的促销活动和优惠政策会运用到每一个优惠活动中。如：“捆绑销售”、“积分换购”等等。', 'zh_cn'),
-(3, 13, 'orderstatus', '订单的几种状态', '<table class="liststyle data ke-zeroborder" border="0" cellpadding="0" cellspacing="2">\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				状态名称\r\n			</th>\r\n			<th>\r\n				状态释义\r\n			</th>\r\n			<th>\r\n				定义\r\n			</th>\r\n			<th>\r\n				反馈信息\r\n			</th>\r\n		</tr>\r\n	</tbody>\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				确认\r\n			</th>\r\n			<td>\r\n				未确认\r\n			</td>\r\n			<td>\r\n				未审核确认订单\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				已确认\r\n			</th>\r\n			<td>\r\n				货到付款订单已经审核确认\r\n			</td>\r\n			<td>\r\n				为您发送订单已确认信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				付款\r\n			</th>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				部分付款\r\n			</th>\r\n			<td>\r\n				只收到部分订单货款\r\n			</td>\r\n			<td>\r\n				为您发送订单收款信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				已付款\r\n			</th>\r\n			<td>\r\n				货款全部收到\r\n			</td>\r\n			<td>\r\n				为您发送订单收款信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				取消\r\n			</th>\r\n			<td>\r\n				客户要求取消\r\n			</td>\r\n			<td>\r\n				客户自行取消的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				超送货范围取消\r\n			</th>\r\n			<td>\r\n				超出送货范围的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				重复订单取消\r\n			</th>\r\n			<td>\r\n				同一日重复定购同样商品的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				地址不详取消\r\n			</th>\r\n			<td>\r\n				客户所留地址不够详细，或只留信箱，无法上门送货的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				货款逾期未收到\r\n			</th>\r\n			<td>\r\n				自订单日期后7日内仍然没有收到全部货款\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				货款不足取消\r\n			</th>\r\n			<td>\r\n				部分到款后7日内余款未付\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				发货\r\n			</th>\r\n			<td>\r\n				部分发货\r\n			</td>\r\n			<td>\r\n				由于订单中部分商品缺货，先将有库存的商品发货\r\n			</td>\r\n			<td>\r\n				&nbsp;为您发送全部发货信件\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				已发货\r\n			</th>\r\n			<td>\r\n				全部发货\r\n			</td>\r\n			<td>\r\n				为您发送部分发货信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				退款\r\n			</th>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				部分退款\r\n			</th>\r\n			<td>\r\n				退回您的部分购物款项\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				全额退款\r\n			</th>\r\n			<td>\r\n				退回您的全部购物款项\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				退货\r\n			</th>\r\n			<td>\r\n				部分退货\r\n			</td>\r\n			<td>\r\n				收到了您退回订单中的部分商品\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				全部退货\r\n			</th>\r\n			<td>\r\n				收到了您退回订单中的全部商品\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				归档\r\n			</th>\r\n			<td>\r\n				已归档\r\n			</td>\r\n			<td>\r\n				订单已经全部处理结束，归档保存\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', 'zh_cn'),
-(4, 13, 'scoreplan', '积分奖励计划 ', '<h4>积分增加</h4>\r\n 按照订单中商品金额或者商品可得积分，订单状态为已发货后可获得相应的积分 。 <h4>积分查询</h4>\r\n 会员可进入会员中心－会员信息中查看自己的积分情况。 <h4>积分有效期</h4>\r\n 积分长期有效。除非本网站取消积分奖励计划。如果取消积分奖励计划我们会提前通知广大用户。 <h4>积分说明</h4>\r\n 本积分奖励计划由本网站制定并保留所有的解释权和修改权。修改以网站公布为准，不做另行通知。', 'zh_cn'),
-(5, 13, 'returngood', '商品退货保障', '<h4> 符合以下条件，可以要求换货 </h4>\r\n <ol><li>客户在收到货物时当面在送货员面前拆包检查，发现货物有质量问题的；</li>\r\n<li>实际收到货物与网站上描述的有很大的出入的。</li>\r\n</ol>\r\n <strong>换货流程</strong>：客户当面要求送货人员退回货物，然后与我们联系。我们会为您重新发货，货物到达时间顺延。 <h4>符合以下条件，可以要求退货</h4>\r\n <ol><li>客户收到货物后两天之内，发现商品有明显的制造缺陷的；</li>\r\n<li>货物经过一次换货但仍然存在质量问题的；</li>\r\n<li>由于人为原因造成超过我们承诺到货之日5天还没收到货物的。</li>\r\n</ol>\r\n <strong>退货流程：</strong>客户在收到货物后两天内与我们联系，我们会在三个工作日内通过银行汇款把您的货款退回。 <h4>在以下情况我们有权拒绝客户的退换货要求</h4>\r\n <ol><li>货物出现破损，但没有在收货时当场要求送货人员换货的；</li>\r\n<li>超过退换货期限的退换货要求；</li>\r\n<li>退换货物不全或者外观受损 ；</li>\r\n<li>客户发货单据丢失或者不全；</li>\r\n<li>产品并非我们提供；</li>\r\n<li>货物本身不存在质量问题的 。</li>\r\n</ol>', 'zh_cn'),
-(6, 13, 'nonmember', '非会员购物通道', '<ol><li>我们提供非会员购物功能，在购物车下一步的时候，进入非会员购物通道即可使用此功能。</li>\r\n<li>但是由于非会员无法享受购物积分、无法查询订单等，所以我们建议您花一分钟时间注册成为会员，这样就能享受整个网站强大的会员功能和多种优惠措施。</li>\r\n</ol>', 'zh_cn'),
-(7, 13, 'service', '体贴的售后服务', '本网站所售产品均实行三包政策，请顾客保存好有效凭证，以确保我们为您更好服务。本公司的客户除享受国家规定“三包”。您可以更放心地在这里购物。<br />\r\n<br />\r\n <h3> 保修细则 </h3>\r\n <h4>一、在本网站购买的商品，自购买日起(以到货登记为准)7日内出现性能故障，您可以选择退货、换货或修理。</h4>\r\n <ol><li>在接到您的产品后，我公司将问题商品送厂商特约维修中心检测； </li>\r\n<li>检测报出来后，如非人为损坏的，是产品本身质量问题，我公司会及时按您的要求予以退款、换可或维修。 </li>\r\n<li>如果检测结果是无故障或是人为因素造成的故障，我公司会及时通知您，并咨询您的处理意见。 </li>\r\n</ol>\r\n <h4>二、在本公司购买的商品，自购日起(以到货登记为准)15日内出现性能故障，您可以选择换货或修理。(享受15天退换货无需理由的商品，按《15天退换货无需理由细则》办理)</h4>\r\n <ol><li>在接到您的产品后，我公司将问题商品送厂商特约维修中心检测； </li>\r\n<li>检测报出来后，如非人为损坏的，是产品本身质量问题，我公司会及时按您的要求予以退款、换可或维修。 </li>\r\n<li>如果检测结果是无故障或是人为因素造成的故障，我公司会及时通知您，并咨询您的处理意见。</li>\r\n</ol>\r\n <h4>三、在本公司购买的商品，自购日起(以到货登记为准)一年之内出现非人为损坏的质量问题，本公司承诺免费保修。</h4>\r\n <ol><li>在接到您的产品后，我公司将问题商品送厂商特约维修中心检测； </li>\r\n<li>检测报出来后，如非人为损坏的，是产品本身质量问题，我公司会及时按您的要求予以退款、换可或维修。 </li>\r\n<li>如果检测结果是无故障或是人为因素造成的故障，我公司会及时通知您，并咨询您的处理意见。 </li>\r\n</ol>\r\n <h3>收费维修：</h3>\r\n <h4>一、对于人为造成的故障，本公司将采取收费维修，包括：</h4>\r\n <ol><li>产品内部被私自拆开或其中任何部分被更替； </li>\r\n<li>商品里面的条码不清楚，无法成功判断； </li>\r\n<li>有入水、碎裂、损毁或有腐蚀等现象； </li>\r\n<li>过了保修期的商品。</li>\r\n</ol>\r\n <h4>二、符合以下条件，可以要求换货：</h4>\r\n <ol><li>客户在收到货物时当面在送货员面前拆包检查，发现货物有质量问题的 </li>\r\n<li>实际收到货物与网站上描述的有很大的出入的 </li>\r\n<li>换货流程：客户当面要求送货人员退回货物，然后与我们联系。我们会在一个工作日内为您重新发货，货物到达时间顺延。</li>\r\n</ol>\r\n <h4>三、符合以下条件，可以要求退货：</h4>\r\n 客户收到货物后两天之内， <ol><li>发现商品有明显的制造缺陷的 </li>\r\n<li>货物经过一次换货但仍然存在质量问题的 </li>\r\n<li>由于人为原因造成超过我们承诺到货之日三天还没收到货物的</li>\r\n</ol>\r\n 退货流程：客户在收到货物后两天内与我们联系，我们会在两个工作日内通过银行汇款把您的货款退回。 <h4>在以下情况我们有权拒绝客户的退换货要求：</h4>\r\n <ol><li>货物出现破损，但没有在收货时当场要求送货人员换货的 </li>\r\n<li>超过退换货期限的退换货要求 </li>\r\n<li>退换货物不全或者外观受损 </li>\r\n<li>客户发货单据丢失或者不全 </li>\r\n<li>产品并非我们提供 </li>\r\n<li>货物本身不存在质量问题的</li>\r\n</ol>', 'zh_cn'),
-(8, 13, 'terms', '网站使用条款', '如果您在本网站访问或购物，您便接受了以下条件。 <h4>版权</h4>\r\n \r\n本网站上的所有内容诸如文字、图表、标识、按钮图标、图像、声音文件片段、数字下载、数据编辑和软件都是本网站提供者的财产，受中国和国际版权法的保护。\r\n本网站上所有内容的汇编是本网站的排他财产，受中国和国际版权法的保护。本网站上所使用的所有软件都是本网站或其关联公司或其软件供应商的财产，受中国和\r\n国际版权法的保护。 <h4>许可和网站进入</h4>\r\n \r\n本网站授予您有限的许可进入和个人使用本网站，未经本网站的明确书面同意不许下载（除了页面缓存）或修改网站或其任何部分。这一许可不包括对本网站或其内\r\n容的转售或商业利用、任何收集和利用产品目录、说明和价格、任何对本网站或其内容的衍生利用、任何为其他商业利益而下载或拷贝账户信息或使用任何数据采\r\n集、 \r\nrobots或类似的数据收集和摘录工具。未经本网站的书面许可，严禁对本网站的内容进行系统获取以直接或间接创建或编辑文集、汇编、数据库或人名地址录\r\n（无论是否通过robots、spiders、自动仪器或手工操作）。另外，严禁为任何未经本使用条件明确允许的目的而使用本网站上的内容和材料。 \r\n未经本网站明确书面同意，不得以任何商业目的对本网站或其任何部分进行复制、复印、仿造、出售、转售、访问、或以其他方式加以利用。未经本网站明确书面同\r\n意，您不得用设计或运用设计技巧把本网站或其关联公司的商标、标识或其他专有信息（包括图像、文字、网页设计或形式）据为己有。未经本网站明确书面同意，\r\n您不可以meta \r\ntags或任何其他“隐藏文本”方式使用本网站的名字和商标。任何未经授权的使用都会终止本网站所授予的允许或许可。您被授予有限的、可撤销的和非独家的\r\n权利建立链接到本网站主页的超链接，只要这个链接不以虚假、误导、贬毁或其他侵犯性方式描写本网站、其关联公司或它们的产品和服务。 <h4>评论、意见、消息和其他内容</h4>\r\n \r\n访问者可以张贴评论、意见及其他内容，以及提出建议、主意、意见、问题或其他信息，只要内容不是非法、淫秽、威胁、诽谤、侵犯隐私、侵犯知识产权或以其他\r\n形式对第三者构成伤害或侵犯或令公众讨厌，也不包含软件病毒、政治宣传、商业招揽、连锁信、大宗邮件或任何形式的“垃圾邮件”。您不可以使用虚假的电子邮\r\n件地址、冒充任何他人或实体或以其它方式对卡片或其他内容的来源进行误导。本网站保留清除或编辑这些内容的权利（但非义务），但不对所张贴的内容进行经常\r\n性的审查。如果您确实张贴了内容或提交了材料，除非我们有相反指示，您授予本网站及其关联公司非排他的、免费的、永久的、不可撤销的和完全的再许可权而在\r\n全世界范围内任何媒体上使用、复制、修改、改写、出版、翻译、创作衍生作品、分发和展示这样的内容。您授予本网站及其关联公司和被转许可人使用您所提交的\r\n与这些内容有关的名字的权利，如果他们选择这样做的话。您声明并担保您拥有或以其它方式控制您所张贴内容的权利，内容是准确的，对您所提供内容的使用不违\r\n反本政策并不会对任何人和实体造成伤害。您声明并保证对于因您所提供的内容引起的对本网站或其关联公司损害进行赔偿。本网站有权监控和编辑或清除任何活动\r\n或内容。本网站对您或任何第三方所张贴的内容不承担责任。 <h4>产品说明 </h4>\r\n 本网站及其关联公司努力使产品说明尽可能准确。不过，由于实际条件限制，本网站并不保证产品说明或本网站上的其他内容是准确的、完整的、可靠的、最新的或无任何错误的。 <h4>电子通讯 </h4>\r\n \r\n当您访问本网站或给我们发送电子邮件时，您与我们用电子方式进行联系。您同意以电子方式接受我们的信息。我们将用电子邮件或通过在本网站上发布通知的方式\r\n与您进行联系。您同意我们用电子方式提供给您的所有协议、通知、披露和其他信息是符合此类通讯必须是书面形式的法定要求的。如果并且当本网站能够证明以电\r\n子形式的信息已经发送给您或者在本网站张贴这样的通知，将被视为您已收到所有协议、声明、披露和其他信息。', 'zh_cn'),
-(9, 13, 'disclaimer', '免责条款', '<h4>免责声明</h4>\r\n如因不可抗力或其他无法控制的原因造成网站销售系统崩溃或无法正常使用，从而导致网上交易无法完成或丢失有关的信息、记录等，网站将不承担责任。但是我们将会尽合理的可能协助处理善后事宜，并努力使客户减少可能遭受的经济损失。<br />\r\n本\r\n店可以按买方的要求代办相关运输手续，但我们的责任义务仅限于按时发货，遇到物流（邮政）意外时协助买方查询，不承担任何物流（邮政）提供给顾客之外的赔\r\n偿，一切查询索赔事宜均按照物流（邮政）的规定办理。在物流（邮政）全程查询期限未满之前，买方不得要求赔偿。提醒买方一定核实好收货详细地址和收货人电\r\n话，以免耽误投递。凡在本店购物，均视为如同意此声明。<br />\r\n <h4>客户监督</h4>\r\n我们希望通过不懈努力，为客户提供最佳服务，我们在给客户提供服务的全程中接受客户的监督。 <h4>争议处理</h4>\r\n如果客户与网站之间发生任何争议，可依据当时双方所认定的协议或相关法律来解决。', 'zh_cn'),
-(10, 13, 'process', '简单的购物流程', '<h4>怎样注册？</h4>\r\n <p>\r\n 答：您可以直接点击"会员注册"进行注册。注册很简单，您只需按注册向导的要求输入一些基本信息即可。为了准确地为您服务，请务必在注册时填写您的真实信息，我们会为您保密。输入的帐号要4-10位，仅可使用英文字母、数字"-"。 </p>\r\n <h4>怎样成为会员?</h4>\r\n <p>\r\n 答：您可以直接点击"会员登录与注册"进行注册。注册很简单，您只需根据系统提示输入相关资料即可，请您填写完毕时，务必核对填写内容的准确性，并谨记您的会员账号和密码，以便您查询订单或是希望网站提供予您更多的服务时用以核对您的身份。 </p>\r\n <h4>如何在网上下单购买，怎么一个操作流程呢？</h4>\r\n <p>\r\n 答：这种方式和您逛商场的方式十分相似，您只要按照我们的商品分类页面或进入"钻石珠宝"、"个性定制"等逐页按照链接指明的路径浏览就可以了。 \r\n一旦看中了您喜欢的商品，您可以随时点击"放入购物篮"按钮将它放入"购物篮"。随后，您可以按"去收银台"。我们的商品十分丰富，不过您别担心，我们在\r\n每一页中都设立了详细明白的导航条，您是不会迷路的。 </p>', 'zh_cn'),
-(11, 13, 'payment', '支付方式', '<table class="liststyle data ke-zeroborder" border="0" cellpadding="0" cellspacing="2"> <colgroup> <col class="span-4 ColColorGray" /> <col class="span-6" /> <col class="span-6" /> <col /> </colgroup> <thead> <tr> <th width="123">支付方式</th>\r\n <th width="198">银行</th>\r\n <th width="518">卡号</th>\r\n <th width="309">户名</th>\r\n </tr>\r\n </thead> <tbody> <tr> <th><span style="text-align:left;">预存款支付</span></th>\r\n <td>&nbsp;</td>\r\n <td colspan="2">使用本商店会员预存款余额进行支付。如果余额不足，可进入会员中心在线充值。</td>\r\n </tr>\r\n <tr> <th><span style="text-align:left;"> <label></label> </span></th>\r\n <td><img src="http://pic.shopex.cn/pictures/newsimg/1169028039.gif" /></td>\r\n <td>一卡通卡号：</td>\r\n <td rowspan="2">刘小恪</td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><strong>招商</strong>银行上海分行</td>\r\n <td>&nbsp;</td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><span style="font-size:small;"><strong><img src="http://pic.shopex.cn/pictures/newsimg/1169028056.gif" /></strong></span></td>\r\n <td>灵通卡号：</td>\r\n <td rowspan="2">刘小恪</td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><span style="font-size:small;"><strong>工商</strong></span>银行上海分行昌宁支行</td>\r\n <td><span style="color:#0080c0;">9558</span>8010<span style="color:#0080c0;">0×××8</span>9<span style="color:#0080c0;">×××</span></td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><strong><span style="font-size:small;"><img src="http://pic.shopex.cn/pictures/newsimg/1169028068.gif" /></span></strong></td>\r\n <td>金穗卡号：</td>\r\n <td rowspan="2">刘小恪</td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><strong><span style="font-size:small;">农业</span></strong>银行上海分行共和支行</td>\r\n <td><span style="color:#0080c0;">622848×××8</span>9<span style="color:#0080c0;">×××</span></td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><span style="font-size:small;"><strong><img src="http://pic.shopex.cn/pictures/newsimg/1169028078.gif" /></strong></span></td>\r\n <td>龙卡号：</td>\r\n <td rowspan="2">刘小恪</td>\r\n </tr>\r\n <tr> <th>&nbsp;</th>\r\n <td><span style="font-size:small;"><strong>建设</strong></span>银行上海分行</td>\r\n <td><span style="color:#0080c0;">4367</span>4212<span style="color:#0080c0;">1×××8<span style="color:#000000;">9</span><span style="color:#0080c0;">×××</span></span></td>\r\n </tr>\r\n <tr> <th>支付宝</th>\r\n <td><img alt="" src="http://pic.shopex.cn/pictures/newsimg/1169028139.jpg" /></td>\r\n <td colspan="2">支付宝（<a href="http://www.alipay.com/"><span style="color:#0328c1;">www.alipay.com</span></a>）致力于为中国电子商务提供各种安全、方便、个性化的在线支付解决方案。支付宝从2003年10月在淘宝网推出，短短几年时间内迅速成为使用极其广泛的网上安全支付工具，深受用户喜爱。截止2006年6月，使用支付宝的用户已经超过2000万，日支付宝日交易总额超过４000万元人民币，日交易笔数超过25万笔。</td>\r\n </tr>\r\n <tr> <th><span style="text-align:left;"> <label>paypal贝宝</label> </span></th>\r\n <td><img src="http://pic.shopex.cn/pictures/newsimg/1169028114.jpg" /></td>\r\n <td colspan="2">paypal 贝宝（<a href="http://www.paypal.com.cn/"><span style="color:#000000;">www.paypal.com.cn</span></a>）公司是世界领先的网络支付公司paypal 公司为中国市场度身定做的网络支付服务，可以用e-mail地址，透过信用卡及银行帐户，安全地支付及存入网上各类帐项。paypal公司利用现有的银行系统和信用卡系统，通过先进的网络技术和网络安全防范技术，在全球 103 个国家为超过 1 亿个人以及网上商户提供安全便利的网上支付服务。</td>\r\n </tr>\r\n </tbody>\r\n </table>', 'zh_cn'),
-(12, 13, 'shipping', '配送方式', '<table class="liststyle data" border="0" cellpadding="0" cellspacing="2"><thead><tr><th width="79">快递公司</th>\r\n <th width="120">送货范围</th>\r\n <th width="117">送达时间</th>\r\n <th width="815">详细介绍</th>\r\n</tr>\r\n</thead> <tbody> <tr> <th><span style="text-align:left;"><label style="width:auto;">顺丰快递(+￥20.00)</label> <br />\r\n<label></label></span></th>\r\n <td colspan="3"><img src="http://pic.shopex.cn/pictures/newsimg/1169028571.jpg" /></td>\r\n</tr>\r\n <tr> <th>&nbsp;</th>\r\n <td>全国</td>\r\n <td>2-4个工作日</td>\r\n <td>顺丰快递（<a href="http://www.sf-express.com/"><span style="color:#0328c1;">www.sf-express.com</span></a>）可能是国内最好的快递公司。假如你希望快递公司的服务质量比较好，请选择顺丰。从速度到人员素质乃至安全性，顺丰都是国内数一数二的。配送过程中可以进入顺风网站查询和跟踪商品运输情况。</td>\r\n</tr>\r\n <tr> <th><label style="width:auto;">ems快递(+￥25.00)</label> <br />\r\n</th>\r\n <td colspan="3"><img src="http://pic.shopex.cn/pictures/newsimg/1169028716.jpg" /></td>\r\n</tr>\r\n <tr> <th>&nbsp;</th>\r\n <td>全国</td>\r\n <td>2-5个工作日</td>\r\n <td>国家邮政特快专递，门对门服务，一般在2-5天内到达。由快递公司中转，所以速度反而会比一般的快递慢。主要用于一般快递无法到达地区。 </td>\r\n</tr>\r\n <tr> <th><label style="width:auto;">fedex联邦快递(+￥30.00)</label> <br />\r\n</th>\r\n <td colspan="3"><img src="http://pic.shopex.cn/pictures/newsimg/1169028674.jpg" /></td>\r\n</tr>\r\n <tr> <th>&nbsp;</th>\r\n <td>全国</td>\r\n <td>1-2工作日</td>\r\n <td>联邦快递是全球最具规模的快递运输公司，为全球超过220个国家及地区提供快捷、可靠的快递服务。联邦快递设有环球航空及陆运网络，通常只需一至两个工作日，就能迅速运送时限紧迫的货件，而且确保准时送达。</td>\r\n</tr>\r\n</tbody>\r\n</table>', 'zh_cn'),
-(13, 13, 'orderinfo', '订单何时出库？', '订单的出库时间要以您订单的配货情况而定。请您随时登录“会员中心”查看订单状态。如果订单显示“已发货”，说明订单已经出库，请您耐心等待收货。', 'zh_cn'),
-(14, 13, 'onlinepayment', '网上支付小贴士', '<h4>1、银行卡网上支付的开通手续</h4>\r\n因各地银行政策不同，建议您在网上支付前拨打所在地银行电话，咨询该行可供网上支付的银行卡种类及开通手续。 <table class="liststyle data" border="0" cellpadding="0" cellspacing="2"> <colgroup> <col class="span-4 ColColorGray" /> <col class="span-6" /> <col class="span-6" /> <col /> </colgroup><thead> <tr> <th width="174"><strong>银行名称</strong></th>\r\n <th width="153"><strong>服务热线</strong></th>\r\n <th width="195"><strong>银行名称</strong></th>\r\n <th width="184"><strong>服务热线</strong></th>\r\n <th width="195">银行名称</th>\r\n <th width="243">服务热线</th>\r\n</tr>\r\n</thead> <tbody> <tr> <th>招商银行</th>\r\n <td>95555</td>\r\n <th>中国银行</th>\r\n <td>95566</td>\r\n <th>交通银行</th>\r\n <td>95559</td>\r\n</tr>\r\n <tr> <th>中国工商银行</th>\r\n <td>95588</td>\r\n <th>北京银行</th>\r\n <td>010-96169</td>\r\n <th>光大银行</th>\r\n <td>95595</td>\r\n</tr>\r\n <tr> <th>中国建设银行</th>\r\n <td>95533</td>\r\n <th>中国农业银行</th>\r\n <td>95599</td>\r\n <th>深圳发展银行</th>\r\n <td>95501</td>\r\n</tr>\r\n <tr> <th>上海浦东发展银行</th>\r\n <td>95528</td>\r\n <th>广东发展银行</th>\r\n <td>95508</td>\r\n <th>中国邮政</th>\r\n <td>11185</td>\r\n</tr>\r\n <tr> <th>民生银行</th>\r\n <td>95568</td>\r\n <th>华夏银行</th>\r\n <td>95577</td>\r\n <th>中信银行</th>\r\n <td>86668888</td>\r\n</tr>\r\n</tbody>\r\n</table>\r\n <h4>2、支付金额上限</h4>\r\n目前各银行对于网上支付均有一定金额的限制，由于各银行政策不同，建议您在申请网上支付功能时向银行咨询相关事宜。 <h4>3、怎样判断网上支付是否成功？</h4>\r\n <ol><li>当您完成网上在线支付过程后，系统应提示支付成功；如果系统没有提示支付失败或成功，您可通过电话、atm 、柜台或登录网上银行等各种方式查询银行卡余额，如果款项已被扣除，网上支付交易应该是成功的，请您耐心等待。</li>\r\n<li>如果出现信用卡超额透支、存折余额不足、意外断线等导致支付不成功，请您登录会员中心，找到该张未支付成功的订单，重新完成支付。</li>\r\n</ol>\r\n<span style="color:#ff0000;">小贴士：请您在48小时之内完成支付，否则我们将不会保留您的订单。</span> <h4>4、造成“支付被拒绝”的原因有哪些？</h4>\r\n <ol><li>所持银行卡尚未开通网上在线支付功能</li>\r\n<li>所持银行卡已过期、作废、挂失；</li>\r\n<li>所持银行卡内余额不足；</li>\r\n<li>输入银行卡卡号或密码不符；</li>\r\n<li>输入证件号不符；</li>\r\n<li>银行系统数据传输出现异常；</li>\r\n<li>网络中断。</li>\r\n</ol>', 'zh_cn'),
-(15, 13, 'shippinginfo', '关于送货和验货', '<h2>签收商品时需要注意哪些问题？</h2>\r\n<p>1、送货上门、货到付款订单：快递员送货上门时，请您务必当面对照发货单核对商品，如果出现商品数量缺少、商品破损，请您当场办理整单商品的退货。若订单中含有赠品，请一并退回。一旦您确认签字，我们将无法为您办理退换或补发。 </p>\r\n<ol><strong>特别提示：</strong><li>如果您的订单使用帐户余额或礼券支付，只有退货商品的金额小于实际应付款金额时才可办理。 </li>\r\n<li>如果您的订单中含有赠品，将无法提供此项服务；如果是成套商品，您只能整套退货。如果是捆绑商品，您在退主商品的同时需要将赠品一起退回。</li>\r\n</ol>\r\n2、\r\n邮局邮寄订单：请您在领取包裹时务必检查外包装，如果发现包裹破损，请您不要签收，随后请及时将包裹单原件邮寄给我们，您的包裹单原件将作为我们为您办理\r\n补发或退款的唯一证明。收到包裹单后，我们将为您办理相关手续。如您未拆开外包装箱，也可以当场全部退货。平邮订单，在收到包裹时，如发现包裹破损，请您\r\n要求邮局出具包裹破损证明。<span style="color:#ff0000;">注：敬请您在验货签收时仔细核对发票，如果出现发票开错或漏开，请您及时联系我们，注明订单号、邮寄地址和收信人姓名，我们接到您的信息后会尽快为您开具，并邮寄给您。</span>', 'zh_cn'),
-(16, 13, 'license', '注册服务条款', '<p>\r\n 尊敬的用户，欢迎您注册成为本网站用户。在注册前请您仔细阅读如下服务条款：<br />\r\n本服务协议双方为本网站与本网站用户，本服务协议具有合同效力。<br />\r\n您确认本服务协议后，本服务协议即在您和本网站之间产生法律效力。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向本网站咨询。<br />\r\n无论您事实上是否在注册之前认真阅读了本服务协议，只要您点击协议正本下方的"注册"按钮并按照本网站注册程序成功注册为用户，您的行为仍然表示您同意并签署了本服务协议。 </p>\r\n <h4>1．本网站服务条款的确认和接纳</h4>\r\n本网站各项服务的所有权和运作权归本网站拥有。 <h4>2．用户必须：</h4>\r\n(1)自行配备上网的所需设备， 包括个人电脑、调制解调器或其他必备上网装置。<br />\r\n(2)自行负担个人上网所支付的与此服务有关的电话费用、 网络费用。 <h4>3．用户在本网站上交易平台上不得发布下列违法信息：</h4>\r\n(1)反对宪法所确定的基本原则的；<br />\r\n(2).危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；<br />\r\n(3).损害国家荣誉和利益的；<br />\r\n(4).煽动民族仇恨、民族歧视，破坏民族团结的；<br />\r\n(5).破坏国家宗教政策，宣扬邪教和封建迷信的；<br />\r\n(6).散布谣言，扰乱社会秩序，破坏社会稳定的；<br />\r\n(7).散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；<br />\r\n(8).侮辱或者诽谤他人，侵害他人合法权益的；<br />\r\n(9).含有法律、行政法规禁止的其他内容的。 <h4>4． 有关个人资料</h4>\r\n用户同意：<br />\r\n(1) 提供及时、详尽及准确的个人资料。<br />\r\n(2).同意接收来自本网站的信息。<br />\r\n(3) 不断更新注册资料，符合及时、详尽准确的要求。所有原始键入的资料将引用为注册资料。<br />\r\n(4)本网站不公开用户的姓名、地址、电子邮箱和笔名，以下情况除外：<br />\r\n（a）用户授权本网站透露这些信息。<br />\r\n（b）相应的法律及程序要求本网站提供用户的个人资料。如果用户提供的资料包含有不正确的信息，本网站保留结束用户使用本网站信息服务资格的权利。 <h4>5.\r\n \r\n用户在注册时应当选择稳定性及安全性相对较好的电子邮箱，并且同意接受并阅读本网站发往用户的各类电子邮件。如用户未及时从自己的电子邮箱接受电子邮件或\r\n因用户电子邮箱或用户电子邮件接收及阅读程序本身的问题使电子邮件无法正常接收或阅读的，只要本网站成功发送了电子邮件，应当视为用户已经接收到相关的电\r\n子邮件。电子邮件在发信服务器上所记录的发出时间视为送达时间。</h4>\r\n <h4>6． 服务条款的修改</h4>\r\n本网站有权在必要时修改服务条款，本\r\n网站服务条款一旦发生变动，将会在重要页面上提示修改内容。如果不同意所改动的内容，用户可以主动取消获得的本网站信息服务。如果用户继续享用本网站信息\r\n服务，则视为接受服务条款的变动。本网站保留随时修改或中断服务而不需通知用户的权利。本网站行使修改或中断服务的权利，不需对用户或第三方负责。 <h4>7． 用户隐私制度</h4>\r\n尊重用户个人隐私是本网站的一项基本政策。所以，本网站一定不会在未经合法用户授权时公开、编辑或透露其注册资料及保存在本网站中的非公开内容，除非有法律许可要求或本网站在诚信的基础上认为透露这些信息在以下四种情况是必要的：<br />\r\n(1) 遵守有关法律规定，遵从本网站合法服务程序。<br />\r\n(2) 保持维护本网站的商标所有权。<br />\r\n(3) 在紧急情况下竭力维护用户个人和社会大众的隐私安全。<br />\r\n(4)符合其他相关的要求。<br />\r\n本网站保留发布会员人口分析资询的权利。 <h4>8．用户的帐号、密码和安全性</h4>\r\n你\r\n一旦注册成功成为用户，你将得到一个密码和帐号。如果你不保管好自己的帐号和密码安全，将负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全\r\n责。你可随时根据指示改变你的密码，也可以结束旧的帐户重开一个新帐户。用户同意若发现任何非法使用用户帐号或安全漏洞的情况，请立即通告本网站。 <h4>9． 拒绝提供担保</h4>\r\n用户明确同意信息服务的使用由用户个人承担风险。 本网站不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保，但会在能力范围内，避免出错。 <h4>10．有限责任</h4>\r\n本网站对任何直接、间接、偶然、特殊及继起的损害不负责任，这些损害来自：不正当使用本网站服务，或用户传送的信息不符合规定等。这些行为都有可能导致本网站形象受损，所以本网站事先提出这种损害的可能性，同时会尽量避免这种损害的发生。 <h4>11．信息的储存及限制</h4>\r\n本网站有判定用户的行为是否符合本网站服务条款的要求和精神的权利，如果用户违背本网站服务条款的规定，本网站有权中断其服务的帐号。 <h4>12．用户管理</h4>\r\n<strong>用户必须遵循</strong>：<br />\r\n(1) 使用信息服务不作非法用途。<br />\r\n(2) 不干扰或混乱网络服务。<br />\r\n(3) 遵守所有使用服务的网络协议、规定、程序和惯例。用户的行为准则是以因特网法规，政策、程序和惯例为根据的。 <h4>13．保障</h4>\r\n用户同意保障和维护本网站全体成员的利益，负责支付由用户使用超出服务范围引起的律师费用，违反服务条款的损害补偿费用，其它人使用用户的电脑、帐号和其它知识产权的追索费。 <h4>14．结束服务</h4>\r\n用户或本网站可随时根据实际情况中断一项或多项服务。本网站不需对任何个人或第三方负责而随时中断服务。用户若反对任何服务条款的建议或对后来的条款修改有异议，或对本网站服务不满，用户可以行使如下权利：<br />\r\n(1) 不再使用本网站信息服务。<br />\r\n(2) 通知本网站停止对该用户的服务。<br />\r\n结束用户服务后，用户使用本网站服务的权利马上中止。从那时起，用户没有权利，本网站也没有义务传送任何未处理的信息或未完成的服务给用户或第三方。 <h4>15．通告</h4>\r\n所有发给用户的通告都可通过重要页面的公告或电子邮件或常规的信件传送。服务条款的修改、服务变更、或其它重要事件的通告都会以此形式进行。 <h4>16．信息内容的所有权</h4>\r\n本\r\n网站定义的信息内容包括：文字、软件、声音、相片、录象、图表；在广告中全部内容；本网站为用户提供的其它信息。所有这些内容受版权、商标、标签和其它财\r\n产所有权法律的保护。所以，用户只能在本网站和广告商授权下才能使用这些内容，而不能擅自复制、再造这些内容、或创造与内容有关的派生产品。 <h4>17．法律</h4>\r\n本网站信息服务条款要与中华人民共和国的法律解释一致。用户和本网站一致同意服从本网站所在地有管辖权的法院管辖。如发生本网站服务条款与中华人民共和国法律相抵触时，则这些条款将完全按法律规定重新解释，而其它条款则依旧保持对用户的约束力。', 'zh_cn'),
-(17, 13, 'privacy', '隐私保护政策', '<h4>个人信息</h4>\r\n 一般情况下，您无须提供您的姓名或其它个人信息即可访问我们的站点。但有时我们可能需要您提供一些信息，例如为了处理订单、与您联系、提供预订服务或处理工作应聘。我们可能需要这些信息完成以上事务的处理或提供更好的服务。 <h4> 用途</h4>\r\n <ol><li>供我们网站交易和沟通等相关方使用，以满足您的订单等购物服务；</li>\r\n<li>用于与您保持联系，以开展客户满意度调查、市场研究或某些事务的处理；</li>\r\n<li> 用于不记名的数据分析（例如点击流量数据）；</li>\r\n<li> 帮助发展我们的业务关系（如果您是我们网站的业务合作伙伴或批发商）；</li>\r\n</ol>', 'zh_cn'),
+(1, 32, 'notice', '顾客必读', '<h4>\r\n	如何订购商品？\r\n</h4>\r\n您可以首先浏览我们的网站了解商品。看到您满意的商品您可以直接在我们的网站上实现订购。您也可以和我们网站的客服人员联系订购。\r\n<h4>\r\n	我通过网站看到你们的商品后觉得不错，但是我不是经常上网，你可以寄一些商品的图片和介绍给我吗？\r\n</h4>\r\n答：我们的网站会不定期地为会员发送商品信息资料的电子邮件。如果您目前还没有成为我们的会员，您可以直接在我们的网站上注册，非常方便。\r\n<h4>\r\n	请告诉我在这里购物的理由好吗？\r\n</h4>\r\n<ol>\r\n	<li>\r\n		我们是一家拥有长期经营零售业务经验的网站；\r\n	</li>\r\n	<li>\r\n		我们将给您带来优质的商品及更优惠的价格；\r\n	</li>\r\n	<li>\r\n		多种付款方式以及快速的全国配送；\r\n	</li>\r\n	<li>\r\n		人性化的退换货事宜；\r\n	</li>\r\n	<li>\r\n		体贴入微的会员积分计划；\r\n	</li>\r\n	<li>\r\n		所有产品为原厂正规包装；\r\n	</li>\r\n</ol>\r\n<h4>\r\n	你们的商品我都非常喜欢，已经购买了很多，但是有些怎么一直没货？会不会订不到？\r\n</h4>\r\n由于网站顾客购买量比较大，商品随时可能断货，您可以通过网站上的“到货通知”按钮预定商品或直接联系我们的网站客服进行预约订购。\r\n<h4>\r\n	所有的产品都能够在网站上购买?\r\n</h4>\r\n答：目前网站查找的都是可以订购的，但是必须是仓库中有库存的产品我们才可以与您确认。部分热销产品也可以通过我们的网站做一个预约，等到货品到后，我们会立即通过电话或者电子邮件的方式通知您来订购。\r\n<h4>\r\n	为什么要注册会员？\r\n</h4>\r\n<ol>\r\n	<li>\r\n		只有注册用户才可以在网上进行订购，享受优惠的价格。\r\n	</li>\r\n	<li>\r\n		只有注册用户才可以登录"会员中心"，使用更多的会员购物功能,管理自己的资料。\r\n	</li>\r\n	<li>\r\n		只有注册用户才可以在网上给其他注册的朋友留言。\r\n	</li>\r\n	<li>\r\n		只有注册用户才有可能获取我们赠送的礼品。\r\n	</li>\r\n</ol>\r\n<h4>\r\n	忘记了密码怎么办？\r\n</h4>\r\n为了保护客户利益，我们无法看到您的密码。当您忘记密码时，请登录注册页面，点击"忘记密码"，系统会自动将您的密码通过email告诉您，您可以登录"会员中心"去更改密码，以确保您的利益。\r\n<h4>\r\n	积分是怎么回事？有什么作用？\r\n</h4>\r\n积分的高低只反映您对我们的关注和支持程度。我们的积分是通过订购商品产生的。对于高积分的客户我们会有一定的奖励，如积分兑换商品、积分抵扣价格、赠送商品,更优惠的价格购买商品等，以此回馈广大顾客。', 'zh_cn'),
+(2, 32, 'memberrank', '会员等级折扣', '我们的会员等级系统是动态的，按照会员积分的多少划分不同的等级，等级越高享受的商品折扣越大。 针对会员的促销活动和优惠政策会运用到每一个优惠活动中。如：“捆绑销售”、“积分换购”等等。', 'zh_cn'),
+(3, 32, 'orderstatus', '订单的几种状态', '<table class="liststyle data ke-zeroborder" border="0" cellpadding="0" cellspacing="2">\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				状态名称\r\n			</th>\r\n			<th>\r\n				状态释义\r\n			</th>\r\n			<th>\r\n				定义\r\n			</th>\r\n			<th>\r\n				反馈信息\r\n			</th>\r\n		</tr>\r\n	</tbody>\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				确认\r\n			</th>\r\n			<td>\r\n				未确认\r\n			</td>\r\n			<td>\r\n				未审核确认订单\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				已确认\r\n			</th>\r\n			<td>\r\n				货到付款订单已经审核确认\r\n			</td>\r\n			<td>\r\n				为您发送订单已确认信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				付款\r\n			</th>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				部分付款\r\n			</th>\r\n			<td>\r\n				只收到部分订单货款\r\n			</td>\r\n			<td>\r\n				为您发送订单收款信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				已付款\r\n			</th>\r\n			<td>\r\n				货款全部收到\r\n			</td>\r\n			<td>\r\n				为您发送订单收款信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				取消\r\n			</th>\r\n			<td>\r\n				客户要求取消\r\n			</td>\r\n			<td>\r\n				客户自行取消的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				超送货范围取消\r\n			</th>\r\n			<td>\r\n				超出送货范围的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				重复订单取消\r\n			</th>\r\n			<td>\r\n				同一日重复定购同样商品的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				地址不详取消\r\n			</th>\r\n			<td>\r\n				客户所留地址不够详细，或只留信箱，无法上门送货的订单\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				货款逾期未收到\r\n			</th>\r\n			<td>\r\n				自订单日期后7日内仍然没有收到全部货款\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				货款不足取消\r\n			</th>\r\n			<td>\r\n				部分到款后7日内余款未付\r\n			</td>\r\n			<td>\r\n				为您发送订单取消信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				发货\r\n			</th>\r\n			<td>\r\n				部分发货\r\n			</td>\r\n			<td>\r\n				由于订单中部分商品缺货，先将有库存的商品发货\r\n			</td>\r\n			<td>\r\n				&nbsp;为您发送全部发货信件\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				已发货\r\n			</th>\r\n			<td>\r\n				全部发货\r\n			</td>\r\n			<td>\r\n				为您发送部分发货信件\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				退款\r\n			</th>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				部分退款\r\n			</th>\r\n			<td>\r\n				退回您的部分购物款项\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				全额退款\r\n			</th>\r\n			<td>\r\n				退回您的全部购物款项\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				退货\r\n			</th>\r\n			<td>\r\n				部分退货\r\n			</td>\r\n			<td>\r\n				收到了您退回订单中的部分商品\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				全部退货\r\n			</th>\r\n			<td>\r\n				收到了您退回订单中的全部商品\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				归档\r\n			</th>\r\n			<td>\r\n				已归档\r\n			</td>\r\n			<td>\r\n				订单已经全部处理结束，归档保存\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', 'zh_cn'),
+(4, 32, 'scoreplan', '积分奖励计划 ', '<h4>\r\n	积分增加\r\n</h4>\r\n按照订单中商品金额或者商品可得积分，订单状态为已发货后可获得相应的积分 。\r\n<h4>\r\n	积分查询\r\n</h4>\r\n会员可进入会员中心－会员信息中查看自己的积分情况。\r\n<h4>\r\n	积分有效期\r\n</h4>\r\n积分长期有效。除非本网站取消积分奖励计划。如果取消积分奖励计划我们会提前通知广大用户。\r\n<h4>\r\n	积分说明\r\n</h4>\r\n本积分奖励计划由本网站制定并保留所有的解释权和修改权。修改以网站公布为准，不做另行通知。', 'zh_cn'),
+(5, 32, 'returngood', '商品退货保障', '<h4>\r\n	符合以下条件，可以要求换货\r\n</h4>\r\n<ol>\r\n	<li>\r\n		客户在收到货物时当面在送货员面前拆包检查，发现货物有质量问题的；\r\n	</li>\r\n	<li>\r\n		实际收到货物与网站上描述的有很大的出入的。\r\n	</li>\r\n</ol>\r\n<strong>换货流程</strong>：客户当面要求送货人员退回货物，然后与我们联系。我们会为您重新发货，货物到达时间顺延。\r\n<h4>\r\n	符合以下条件，可以要求退货\r\n</h4>\r\n<ol>\r\n	<li>\r\n		客户收到货物后两天之内，发现商品有明显的制造缺陷的；\r\n	</li>\r\n	<li>\r\n		货物经过一次换货但仍然存在质量问题的；\r\n	</li>\r\n	<li>\r\n		由于人为原因造成超过我们承诺到货之日5天还没收到货物的。\r\n	</li>\r\n</ol>\r\n<strong>退货流程：</strong>客户在收到货物后两天内与我们联系，我们会在三个工作日内通过银行汇款把您的货款退回。\r\n<h4>\r\n	在以下情况我们有权拒绝客户的退换货要求\r\n</h4>\r\n<ol>\r\n	<li>\r\n		货物出现破损，但没有在收货时当场要求送货人员换货的；\r\n	</li>\r\n	<li>\r\n		超过退换货期限的退换货要求；\r\n	</li>\r\n	<li>\r\n		退换货物不全或者外观受损 ；\r\n	</li>\r\n	<li>\r\n		客户发货单据丢失或者不全；\r\n	</li>\r\n	<li>\r\n		产品并非我们提供；\r\n	</li>\r\n	<li>\r\n		货物本身不存在质量问题的 。\r\n	</li>\r\n</ol>', 'zh_cn'),
+(6, 33, 'nonmember', '非会员购物通道', '<ol>\r\n	<li>\r\n		我们提供非会员购物功能，在购物车下一步的时候，进入非会员购物通道即可使用此功能。\r\n	</li>\r\n	<li>\r\n		但是由于非会员无法享受购物积分、无法查询订单等，所以我们建议您花一分钟时间注册成为会员，这样就能享受整个网站强大的会员功能和多种优惠措施。\r\n	</li>\r\n</ol>', 'zh_cn'),
+(7, 33, 'service', '体贴的售后服务', '本网站所售产品均实行三包政策，请顾客保存好有效凭证，以确保我们为您更好服务。本公司的客户除享受国家规定“三包”。您可以更放心地在这里购物。<br />\r\n<br />\r\n<h3>\r\n	保修细则\r\n</h3>\r\n<h4>\r\n	一、在本网站购买的商品，自购买日起(以到货登记为准)7日内出现性能故障，您可以选择退货、换货或修理。\r\n</h4>\r\n<ol>\r\n	<li>\r\n		在接到您的产品后，我公司将问题商品送厂商特约维修中心检测；\r\n	</li>\r\n	<li>\r\n		检测报出来后，如非人为损坏的，是产品本身质量问题，我公司会及时按您的要求予以退款、换可或维修。\r\n	</li>\r\n	<li>\r\n		如果检测结果是无故障或是人为因素造成的故障，我公司会及时通知您，并咨询您的处理意见。\r\n	</li>\r\n</ol>\r\n<h4>\r\n	二、在本公司购买的商品，自购日起(以到货登记为准)15日内出现性能故障，您可以选择换货或修理。(享受15天退换货无需理由的商品，按《15天退换货无需理由细则》办理)\r\n</h4>\r\n<ol>\r\n	<li>\r\n		在接到您的产品后，我公司将问题商品送厂商特约维修中心检测；\r\n	</li>\r\n	<li>\r\n		检测报出来后，如非人为损坏的，是产品本身质量问题，我公司会及时按您的要求予以退款、换可或维修。\r\n	</li>\r\n	<li>\r\n		如果检测结果是无故障或是人为因素造成的故障，我公司会及时通知您，并咨询您的处理意见。\r\n	</li>\r\n</ol>\r\n<h4>\r\n	三、在本公司购买的商品，自购日起(以到货登记为准)一年之内出现非人为损坏的质量问题，本公司承诺免费保修。\r\n</h4>\r\n<ol>\r\n	<li>\r\n		在接到您的产品后，我公司将问题商品送厂商特约维修中心检测；\r\n	</li>\r\n	<li>\r\n		检测报出来后，如非人为损坏的，是产品本身质量问题，我公司会及时按您的要求予以退款、换可或维修。\r\n	</li>\r\n	<li>\r\n		如果检测结果是无故障或是人为因素造成的故障，我公司会及时通知您，并咨询您的处理意见。\r\n	</li>\r\n</ol>\r\n<h3>\r\n	收费维修：\r\n</h3>\r\n<h4>\r\n	一、对于人为造成的故障，本公司将采取收费维修，包括：\r\n</h4>\r\n<ol>\r\n	<li>\r\n		产品内部被私自拆开或其中任何部分被更替；\r\n	</li>\r\n	<li>\r\n		商品里面的条码不清楚，无法成功判断；\r\n	</li>\r\n	<li>\r\n		有入水、碎裂、损毁或有腐蚀等现象；\r\n	</li>\r\n	<li>\r\n		过了保修期的商品。\r\n	</li>\r\n</ol>\r\n<h4>\r\n	二、符合以下条件，可以要求换货：\r\n</h4>\r\n<ol>\r\n	<li>\r\n		客户在收到货物时当面在送货员面前拆包检查，发现货物有质量问题的\r\n	</li>\r\n	<li>\r\n		实际收到货物与网站上描述的有很大的出入的\r\n	</li>\r\n	<li>\r\n		换货流程：客户当面要求送货人员退回货物，然后与我们联系。我们会在一个工作日内为您重新发货，货物到达时间顺延。\r\n	</li>\r\n</ol>\r\n<h4>\r\n	三、符合以下条件，可以要求退货：\r\n</h4>\r\n客户收到货物后两天之内，\r\n<ol>\r\n	<li>\r\n		发现商品有明显的制造缺陷的\r\n	</li>\r\n	<li>\r\n		货物经过一次换货但仍然存在质量问题的\r\n	</li>\r\n	<li>\r\n		由于人为原因造成超过我们承诺到货之日三天还没收到货物的\r\n	</li>\r\n</ol>\r\n退货流程：客户在收到货物后两天内与我们联系，我们会在两个工作日内通过银行汇款把您的货款退回。\r\n<h4>\r\n	在以下情况我们有权拒绝客户的退换货要求：\r\n</h4>\r\n<ol>\r\n	<li>\r\n		货物出现破损，但没有在收货时当场要求送货人员换货的\r\n	</li>\r\n	<li>\r\n		超过退换货期限的退换货要求\r\n	</li>\r\n	<li>\r\n		退换货物不全或者外观受损\r\n	</li>\r\n	<li>\r\n		客户发货单据丢失或者不全\r\n	</li>\r\n	<li>\r\n		产品并非我们提供\r\n	</li>\r\n	<li>\r\n		货物本身不存在质量问题的\r\n	</li>\r\n</ol>', 'zh_cn'),
+(8, 33, 'terms', '网站使用条款', '如果您在本网站访问或购物，您便接受了以下条件。\r\n<h4>\r\n	版权\r\n</h4>\r\n本网站上的所有内容诸如文字、图表、标识、按钮图标、图像、声音文件片段、数字下载、数据编辑和软件都是本网站提供者的财产，受中国和国际版权法的保护。\r\n本网站上所有内容的汇编是本网站的排他财产，受中国和国际版权法的保护。本网站上所使用的所有软件都是本网站或其关联公司或其软件供应商的财产，受中国和\r\n国际版权法的保护。\r\n<h4>\r\n	许可和网站进入\r\n</h4>\r\n本网站授予您有限的许可进入和个人使用本网站，未经本网站的明确书面同意不许下载（除了页面缓存）或修改网站或其任何部分。这一许可不包括对本网站或其内\r\n容的转售或商业利用、任何收集和利用产品目录、说明和价格、任何对本网站或其内容的衍生利用、任何为其他商业利益而下载或拷贝账户信息或使用任何数据采\r\n集、 \r\nrobots或类似的数据收集和摘录工具。未经本网站的书面许可，严禁对本网站的内容进行系统获取以直接或间接创建或编辑文集、汇编、数据库或人名地址录\r\n（无论是否通过robots、spiders、自动仪器或手工操作）。另外，严禁为任何未经本使用条件明确允许的目的而使用本网站上的内容和材料。 \r\n未经本网站明确书面同意，不得以任何商业目的对本网站或其任何部分进行复制、复印、仿造、出售、转售、访问、或以其他方式加以利用。未经本网站明确书面同\r\n意，您不得用设计或运用设计技巧把本网站或其关联公司的商标、标识或其他专有信息（包括图像、文字、网页设计或形式）据为己有。未经本网站明确书面同意，\r\n您不可以meta \r\ntags或任何其他“隐藏文本”方式使用本网站的名字和商标。任何未经授权的使用都会终止本网站所授予的允许或许可。您被授予有限的、可撤销的和非独家的\r\n权利建立链接到本网站主页的超链接，只要这个链接不以虚假、误导、贬毁或其他侵犯性方式描写本网站、其关联公司或它们的产品和服务。\r\n<h4>\r\n	评论、意见、消息和其他内容\r\n</h4>\r\n访问者可以张贴评论、意见及其他内容，以及提出建议、主意、意见、问题或其他信息，只要内容不是非法、淫秽、威胁、诽谤、侵犯隐私、侵犯知识产权或以其他\r\n形式对第三者构成伤害或侵犯或令公众讨厌，也不包含软件病毒、政治宣传、商业招揽、连锁信、大宗邮件或任何形式的“垃圾邮件”。您不可以使用虚假的电子邮\r\n件地址、冒充任何他人或实体或以其它方式对卡片或其他内容的来源进行误导。本网站保留清除或编辑这些内容的权利（但非义务），但不对所张贴的内容进行经常\r\n性的审查。如果您确实张贴了内容或提交了材料，除非我们有相反指示，您授予本网站及其关联公司非排他的、免费的、永久的、不可撤销的和完全的再许可权而在\r\n全世界范围内任何媒体上使用、复制、修改、改写、出版、翻译、创作衍生作品、分发和展示这样的内容。您授予本网站及其关联公司和被转许可人使用您所提交的\r\n与这些内容有关的名字的权利，如果他们选择这样做的话。您声明并担保您拥有或以其它方式控制您所张贴内容的权利，内容是准确的，对您所提供内容的使用不违\r\n反本政策并不会对任何人和实体造成伤害。您声明并保证对于因您所提供的内容引起的对本网站或其关联公司损害进行赔偿。本网站有权监控和编辑或清除任何活动\r\n或内容。本网站对您或任何第三方所张贴的内容不承担责任。\r\n<h4>\r\n	产品说明\r\n</h4>\r\n本网站及其关联公司努力使产品说明尽可能准确。不过，由于实际条件限制，本网站并不保证产品说明或本网站上的其他内容是准确的、完整的、可靠的、最新的或无任何错误的。\r\n<h4>\r\n	电子通讯\r\n</h4>\r\n当您访问本网站或给我们发送电子邮件时，您与我们用电子方式进行联系。您同意以电子方式接受我们的信息。我们将用电子邮件或通过在本网站上发布通知的方式\r\n与您进行联系。您同意我们用电子方式提供给您的所有协议、通知、披露和其他信息是符合此类通讯必须是书面形式的法定要求的。如果并且当本网站能够证明以电\r\n子形式的信息已经发送给您或者在本网站张贴这样的通知，将被视为您已收到所有协议、声明、披露和其他信息。', 'zh_cn'),
+(9, 33, 'disclaimer', '免责条款', '<h4>\r\n	免责声明\r\n</h4>\r\n如因不可抗力或其他无法控制的原因造成网站销售系统崩溃或无法正常使用，从而导致网上交易无法完成或丢失有关的信息、记录等，网站将不承担责任。但是我们将会尽合理的可能协助处理善后事宜，并努力使客户减少可能遭受的经济损失。<br />\r\n本\r\n店可以按买方的要求代办相关运输手续，但我们的责任义务仅限于按时发货，遇到物流（邮政）意外时协助买方查询，不承担任何物流（邮政）提供给顾客之外的赔\r\n偿，一切查询索赔事宜均按照物流（邮政）的规定办理。在物流（邮政）全程查询期限未满之前，买方不得要求赔偿。提醒买方一定核实好收货详细地址和收货人电\r\n话，以免耽误投递。凡在本店购物，均视为如同意此声明。<br />\r\n<h4>\r\n	客户监督\r\n</h4>\r\n我们希望通过不懈努力，为客户提供最佳服务，我们在给客户提供服务的全程中接受客户的监督。\r\n<h4>\r\n	争议处理\r\n</h4>\r\n如果客户与网站之间发生任何争议，可依据当时双方所认定的协议或相关法律来解决。', 'zh_cn'),
+(10, 33, 'process', '简单的购物流程', '<h4>\r\n	怎样注册？\r\n</h4>\r\n<p>\r\n	答：您可以直接点击"会员注册"进行注册。注册很简单，您只需按注册向导的要求输入一些基本信息即可。为了准确地为您服务，请务必在注册时填写您的真实信息，我们会为您保密。输入的帐号要4-10位，仅可使用英文字母、数字"-"。\r\n</p>\r\n<h4>\r\n	怎样成为会员?\r\n</h4>\r\n<p>\r\n	答：您可以直接点击"会员登录与注册"进行注册。注册很简单，您只需根据系统提示输入相关资料即可，请您填写完毕时，务必核对填写内容的准确性，并谨记您的会员账号和密码，以便您查询订单或是希望网站提供予您更多的服务时用以核对您的身份。\r\n</p>\r\n<h4>\r\n	如何在网上下单购买，怎么一个操作流程呢？\r\n</h4>\r\n<p>\r\n	答：这种方式和您逛商场的方式十分相似，您只要按照我们的商品分类页面或进入"钻石珠宝"、"个性定制"等逐页按照链接指明的路径浏览就可以了。 \r\n一旦看中了您喜欢的商品，您可以随时点击"放入购物篮"按钮将它放入"购物篮"。随后，您可以按"去收银台"。我们的商品十分丰富，不过您别担心，我们在\r\n每一页中都设立了详细明白的导航条，您是不会迷路的。\r\n</p>', 'zh_cn'),
+(11, 34, 'payment', '支付方式', '<table class="liststyle data ke-zeroborder" border="0" cellpadding="0" cellspacing="2">\r\n	<tbody>\r\n		<tr>\r\n			<th width="123">\r\n				支付方式\r\n			</th>\r\n			<th width="198">\r\n				银行\r\n			</th>\r\n			<th width="518">\r\n				卡号\r\n			</th>\r\n			<th width="309">\r\n				户名\r\n			</th>\r\n		</tr>\r\n	</tbody>\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				<span>预存款支付</span>\r\n			</th>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n			<td colspan="2">\r\n				使用本商店会员预存款余额进行支付。如果余额不足，可进入会员中心在线充值。\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				<span> </span><br />\r\n			</th>\r\n			<td>\r\n				<img src="http://pic.shopex.cn/pictures/newsimg/1169028039.gif" />\r\n			</td>\r\n			<td>\r\n				一卡通卡号：\r\n			</td>\r\n			<td rowspan="2">\r\n				刘小恪\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<strong>招商</strong>银行上海分行\r\n			</td>\r\n			<td>\r\n				&nbsp;\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<span style="font-size:small;"><strong><img src="http://pic.shopex.cn/pictures/newsimg/1169028056.gif" /></strong></span>\r\n			</td>\r\n			<td>\r\n				灵通卡号：\r\n			</td>\r\n			<td rowspan="2">\r\n				刘小恪\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<span style="font-size:small;"><strong>工商</strong></span>银行上海分行昌宁支行\r\n			</td>\r\n			<td>\r\n				<span style="color:#0080c0;">9558</span>8010<span style="color:#0080c0;">0×××8</span>9<span style="color:#0080c0;">×××</span>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<strong><span style="font-size:small;"><img src="http://pic.shopex.cn/pictures/newsimg/1169028068.gif" /></span></strong>\r\n			</td>\r\n			<td>\r\n				金穗卡号：\r\n			</td>\r\n			<td rowspan="2">\r\n				刘小恪\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<strong><span style="font-size:small;">农业</span></strong>银行上海分行共和支行\r\n			</td>\r\n			<td>\r\n				<span style="color:#0080c0;">622848×××8</span>9<span style="color:#0080c0;">×××</span>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<span style="font-size:small;"><strong><img src="http://pic.shopex.cn/pictures/newsimg/1169028078.gif" /></strong></span>\r\n			</td>\r\n			<td>\r\n				龙卡号：\r\n			</td>\r\n			<td rowspan="2">\r\n				刘小恪\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				<span style="font-size:small;"><strong>建设</strong></span>银行上海分行\r\n			</td>\r\n			<td>\r\n				<span style="color:#0080c0;">4367</span>4212<span style="color:#0080c0;">1×××8<span style="color:#000000;">9</span><span style="color:#0080c0;">×××</span></span>\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				支付宝\r\n			</th>\r\n			<td>\r\n				<img alt="" src="http://pic.shopex.cn/pictures/newsimg/1169028139.jpg" />\r\n			</td>\r\n			<td colspan="2">\r\n				支付宝（<a href="http://www.alipay.com/"><span style="color:#0328c1;">www.alipay.com</span></a>）致力于为中国电子商务提供各种安全、方便、个性化的在线支付解决方案。支付宝从2003年10月在淘宝网推出，短短几年时间内迅速成为使用极其广泛的网上安全支付工具，深受用户喜爱。截止2006年6月，使用支付宝的用户已经超过2000万，日支付宝日交易总额超过４000万元人民币，日交易笔数超过25万笔。\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				<span> paypal贝宝</span>\r\n			</th>\r\n			<td>\r\n				<img src="http://pic.shopex.cn/pictures/newsimg/1169028114.jpg" />\r\n			</td>\r\n			<td colspan="2">\r\n				paypal 贝宝（<a href="http://www.paypal.com.cn/"><span style="color:#000000;">www.paypal.com.cn</span></a>）公司是世界领先的网络支付公司paypal 公司为中国市场度身定做的网络支付服务，可以用e-mail地址，透过信用卡及银行帐户，安全地支付及存入网上各类帐项。paypal公司利用现有的银行系统和信用卡系统，通过先进的网络技术和网络安全防范技术，在全球 103 个国家为超过 1 亿个人以及网上商户提供安全便利的网上支付服务。\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', 'zh_cn'),
+(12, 34, 'shipping', '配送方式', '<table class="liststyle data ke-zeroborder" border="0" cellpadding="0" cellspacing="2">\r\n	<tbody>\r\n		<tr>\r\n			<th width="79">\r\n				快递公司\r\n			</th>\r\n			<th width="120">\r\n				送货范围\r\n			</th>\r\n			<th width="117">\r\n				送达时间\r\n			</th>\r\n			<th width="815">\r\n				详细介绍\r\n			</th>\r\n		</tr>\r\n	</tbody>\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				<span>顺丰快递(+￥20.00)<br />\r\n</span>\r\n			</th>\r\n			<td colspan="3">\r\n				<img src="http://pic.shopex.cn/pictures/newsimg/1169028571.jpg" />\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				全国\r\n			</td>\r\n			<td>\r\n				2-4个工作日\r\n			</td>\r\n			<td>\r\n				顺丰快递（<a href="http://www.sf-express.com/"><span style="color:#0328c1;">www.sf-express.com</span></a>）可能是国内最好的快递公司。假如你希望快递公司的服务质量比较好，请选择顺丰。从速度到人员素质乃至安全性，顺丰都是国内数一数二的。配送过程中可以进入顺风网站查询和跟踪商品运输情况。\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				ems快递(+￥25.00)<br />\r\n			</th>\r\n			<td colspan="3">\r\n				<img src="http://pic.shopex.cn/pictures/newsimg/1169028716.jpg" />\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				全国\r\n			</td>\r\n			<td>\r\n				2-5个工作日\r\n			</td>\r\n			<td>\r\n				国家邮政特快专递，门对门服务，一般在2-5天内到达。由快递公司中转，所以速度反而会比一般的快递慢。主要用于一般快递无法到达地区。\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				fedex联邦快递(+￥30.00)<br />\r\n			</th>\r\n			<td colspan="3">\r\n				<img src="http://pic.shopex.cn/pictures/newsimg/1169028674.jpg" />\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				&nbsp;\r\n			</th>\r\n			<td>\r\n				全国\r\n			</td>\r\n			<td>\r\n				1-2工作日\r\n			</td>\r\n			<td>\r\n				联邦快递是全球最具规模的快递运输公司，为全球超过220个国家及地区提供快捷、可靠的快递服务。联邦快递设有环球航空及陆运网络，通常只需一至两个工作日，就能迅速运送时限紧迫的货件，而且确保准时送达。\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>', 'zh_cn'),
+(13, 34, 'orderinfo', '订单何时出库？', '订单的出库时间要以您订单的配货情况而定。请您随时登录“会员中心”查看订单状态。如果订单显示“已发货”，说明订单已经出库，请您耐心等待收货。', 'zh_cn'),
+(14, 34, 'onlinepayment', '网上支付小贴士', '<h4>\r\n	1、银行卡网上支付的开通手续\r\n</h4>\r\n因各地银行政策不同，建议您在网上支付前拨打所在地银行电话，咨询该行可供网上支付的银行卡种类及开通手续。\r\n<table class="liststyle data ke-zeroborder" border="0" cellpadding="0" cellspacing="2">\r\n	<tbody>\r\n		<tr>\r\n			<th width="174">\r\n				<strong>银行名称</strong>\r\n			</th>\r\n			<th width="153">\r\n				<strong>服务热线</strong>\r\n			</th>\r\n			<th width="195">\r\n				<strong>银行名称</strong>\r\n			</th>\r\n			<th width="184">\r\n				<strong>服务热线</strong>\r\n			</th>\r\n			<th width="195">\r\n				银行名称\r\n			</th>\r\n			<th width="243">\r\n				服务热线\r\n			</th>\r\n		</tr>\r\n	</tbody>\r\n	<tbody>\r\n		<tr>\r\n			<th>\r\n				招商银行\r\n			</th>\r\n			<td>\r\n				95555\r\n			</td>\r\n			<th>\r\n				中国银行\r\n			</th>\r\n			<td>\r\n				95566\r\n			</td>\r\n			<th>\r\n				交通银行\r\n			</th>\r\n			<td>\r\n				95559\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				中国工商银行\r\n			</th>\r\n			<td>\r\n				95588\r\n			</td>\r\n			<th>\r\n				北京银行\r\n			</th>\r\n			<td>\r\n				010-96169\r\n			</td>\r\n			<th>\r\n				光大银行\r\n			</th>\r\n			<td>\r\n				95595\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				中国建设银行\r\n			</th>\r\n			<td>\r\n				95533\r\n			</td>\r\n			<th>\r\n				中国农业银行\r\n			</th>\r\n			<td>\r\n				95599\r\n			</td>\r\n			<th>\r\n				深圳发展银行\r\n			</th>\r\n			<td>\r\n				95501\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				上海浦东发展银行\r\n			</th>\r\n			<td>\r\n				95528\r\n			</td>\r\n			<th>\r\n				广东发展银行\r\n			</th>\r\n			<td>\r\n				95508\r\n			</td>\r\n			<th>\r\n				中国邮政\r\n			</th>\r\n			<td>\r\n				11185\r\n			</td>\r\n		</tr>\r\n		<tr>\r\n			<th>\r\n				民生银行\r\n			</th>\r\n			<td>\r\n				95568\r\n			</td>\r\n			<th>\r\n				华夏银行\r\n			</th>\r\n			<td>\r\n				95577\r\n			</td>\r\n			<th>\r\n				中信银行\r\n			</th>\r\n			<td>\r\n				86668888\r\n			</td>\r\n		</tr>\r\n	</tbody>\r\n</table>\r\n<h4>\r\n	2、支付金额上限\r\n</h4>\r\n目前各银行对于网上支付均有一定金额的限制，由于各银行政策不同，建议您在申请网上支付功能时向银行咨询相关事宜。\r\n<h4>\r\n	3、怎样判断网上支付是否成功？\r\n</h4>\r\n<ol>\r\n	<li>\r\n		当您完成网上在线支付过程后，系统应提示支付成功；如果系统没有提示支付失败或成功，您可通过电话、atm 、柜台或登录网上银行等各种方式查询银行卡余额，如果款项已被扣除，网上支付交易应该是成功的，请您耐心等待。\r\n	</li>\r\n	<li>\r\n		如果出现信用卡超额透支、存折余额不足、意外断线等导致支付不成功，请您登录会员中心，找到该张未支付成功的订单，重新完成支付。\r\n	</li>\r\n</ol>\r\n<span style="color:#ff0000;">小贴士：请您在48小时之内完成支付，否则我们将不会保留您的订单。</span> \r\n<h4>\r\n	4、造成“支付被拒绝”的原因有哪些？\r\n</h4>\r\n<ol>\r\n	<li>\r\n		所持银行卡尚未开通网上在线支付功能\r\n	</li>\r\n	<li>\r\n		所持银行卡已过期、作废、挂失；\r\n	</li>\r\n	<li>\r\n		所持银行卡内余额不足；\r\n	</li>\r\n	<li>\r\n		输入银行卡卡号或密码不符；\r\n	</li>\r\n	<li>\r\n		输入证件号不符；\r\n	</li>\r\n	<li>\r\n		银行系统数据传输出现异常；\r\n	</li>\r\n	<li>\r\n		网络中断。\r\n	</li>\r\n</ol>', 'zh_cn'),
+(15, 34, 'shippinginfo', '关于送货和验货', '<h2>\r\n	签收商品时需要注意哪些问题？\r\n</h2>\r\n<p>\r\n	1、送货上门、货到付款订单：快递员送货上门时，请您务必当面对照发货单核对商品，如果出现商品数量缺少、商品破损，请您当场办理整单商品的退货。若订单中含有赠品，请一并退回。一旦您确认签字，我们将无法为您办理退换或补发。\r\n</p>\r\n<ol>\r\n	<strong>特别提示：</strong>\r\n	<li>\r\n		如果您的订单使用帐户余额或礼券支付，只有退货商品的金额小于实际应付款金额时才可办理。\r\n	</li>\r\n	<li>\r\n		如果您的订单中含有赠品，将无法提供此项服务；如果是成套商品，您只能整套退货。如果是捆绑商品，您在退主商品的同时需要将赠品一起退回。\r\n	</li>\r\n</ol>\r\n2、\r\n邮局邮寄订单：请您在领取包裹时务必检查外包装，如果发现包裹破损，请您不要签收，随后请及时将包裹单原件邮寄给我们，您的包裹单原件将作为我们为您办理\r\n补发或退款的唯一证明。收到包裹单后，我们将为您办理相关手续。如您未拆开外包装箱，也可以当场全部退货。平邮订单，在收到包裹时，如发现包裹破损，请您\r\n要求邮局出具包裹破损证明。<span style="color:#ff0000;">注：敬请您在验货签收时仔细核对发票，如果出现发票开错或漏开，请您及时联系我们，注明订单号、邮寄地址和收信人姓名，我们接到您的信息后会尽快为您开具，并邮寄给您。</span>', 'zh_cn'),
+(16, 35, 'license', '注册服务条款', '<p>\r\n	尊敬的用户，欢迎您注册成为本网站用户。在注册前请您仔细阅读如下服务条款：<br />\r\n本服务协议双方为本网站与本网站用户，本服务协议具有合同效力。<br />\r\n您确认本服务协议后，本服务协议即在您和本网站之间产生法律效力。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向本网站咨询。<br />\r\n无论您事实上是否在注册之前认真阅读了本服务协议，只要您点击协议正本下方的"注册"按钮并按照本网站注册程序成功注册为用户，您的行为仍然表示您同意并签署了本服务协议。\r\n</p>\r\n<h4>\r\n	1．本网站服务条款的确认和接纳\r\n</h4>\r\n本网站各项服务的所有权和运作权归本网站拥有。\r\n<h4>\r\n	2．用户必须：\r\n</h4>\r\n(1)自行配备上网的所需设备， 包括个人电脑、调制解调器或其他必备上网装置。<br />\r\n(2)自行负担个人上网所支付的与此服务有关的电话费用、 网络费用。\r\n<h4>\r\n	3．用户在本网站上交易平台上不得发布下列违法信息：\r\n</h4>\r\n(1)反对宪法所确定的基本原则的；<br />\r\n(2).危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；<br />\r\n(3).损害国家荣誉和利益的；<br />\r\n(4).煽动民族仇恨、民族歧视，破坏民族团结的；<br />\r\n(5).破坏国家宗教政策，宣扬邪教和封建迷信的；<br />\r\n(6).散布谣言，扰乱社会秩序，破坏社会稳定的；<br />\r\n(7).散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；<br />\r\n(8).侮辱或者诽谤他人，侵害他人合法权益的；<br />\r\n(9).含有法律、行政法规禁止的其他内容的。\r\n<h4>\r\n	4． 有关个人资料\r\n</h4>\r\n用户同意：<br />\r\n(1) 提供及时、详尽及准确的个人资料。<br />\r\n(2).同意接收来自本网站的信息。<br />\r\n(3) 不断更新注册资料，符合及时、详尽准确的要求。所有原始键入的资料将引用为注册资料。<br />\r\n(4)本网站不公开用户的姓名、地址、电子邮箱和笔名，以下情况除外：<br />\r\n（a）用户授权本网站透露这些信息。<br />\r\n（b）相应的法律及程序要求本网站提供用户的个人资料。如果用户提供的资料包含有不正确的信息，本网站保留结束用户使用本网站信息服务资格的权利。\r\n<h4>\r\n	5.\r\n用户在注册时应当选择稳定性及安全性相对较好的电子邮箱，并且同意接受并阅读本网站发往用户的各类电子邮件。如用户未及时从自己的电子邮箱接受电子邮件或\r\n因用户电子邮箱或用户电子邮件接收及阅读程序本身的问题使电子邮件无法正常接收或阅读的，只要本网站成功发送了电子邮件，应当视为用户已经接收到相关的电\r\n子邮件。电子邮件在发信服务器上所记录的发出时间视为送达时间。\r\n</h4>\r\n<h4>\r\n	6． 服务条款的修改\r\n</h4>\r\n本网站有权在必要时修改服务条款，本\r\n网站服务条款一旦发生变动，将会在重要页面上提示修改内容。如果不同意所改动的内容，用户可以主动取消获得的本网站信息服务。如果用户继续享用本网站信息\r\n服务，则视为接受服务条款的变动。本网站保留随时修改或中断服务而不需通知用户的权利。本网站行使修改或中断服务的权利，不需对用户或第三方负责。\r\n<h4>\r\n	7． 用户隐私制度\r\n</h4>\r\n尊重用户个人隐私是本网站的一项基本政策。所以，本网站一定不会在未经合法用户授权时公开、编辑或透露其注册资料及保存在本网站中的非公开内容，除非有法律许可要求或本网站在诚信的基础上认为透露这些信息在以下四种情况是必要的：<br />\r\n(1) 遵守有关法律规定，遵从本网站合法服务程序。<br />\r\n(2) 保持维护本网站的商标所有权。<br />\r\n(3) 在紧急情况下竭力维护用户个人和社会大众的隐私安全。<br />\r\n(4)符合其他相关的要求。<br />\r\n本网站保留发布会员人口分析资询的权利。\r\n<h4>\r\n	8．用户的帐号、密码和安全性\r\n</h4>\r\n你\r\n一旦注册成功成为用户，你将得到一个密码和帐号。如果你不保管好自己的帐号和密码安全，将负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全\r\n责。你可随时根据指示改变你的密码，也可以结束旧的帐户重开一个新帐户。用户同意若发现任何非法使用用户帐号或安全漏洞的情况，请立即通告本网站。\r\n<h4>\r\n	9． 拒绝提供担保\r\n</h4>\r\n用户明确同意信息服务的使用由用户个人承担风险。 本网站不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保，但会在能力范围内，避免出错。\r\n<h4>\r\n	10．有限责任\r\n</h4>\r\n本网站对任何直接、间接、偶然、特殊及继起的损害不负责任，这些损害来自：不正当使用本网站服务，或用户传送的信息不符合规定等。这些行为都有可能导致本网站形象受损，所以本网站事先提出这种损害的可能性，同时会尽量避免这种损害的发生。\r\n<h4>\r\n	11．信息的储存及限制\r\n</h4>\r\n本网站有判定用户的行为是否符合本网站服务条款的要求和精神的权利，如果用户违背本网站服务条款的规定，本网站有权中断其服务的帐号。\r\n<h4>\r\n	12．用户管理\r\n</h4>\r\n<strong>用户必须遵循</strong>：<br />\r\n(1) 使用信息服务不作非法用途。<br />\r\n(2) 不干扰或混乱网络服务。<br />\r\n(3) 遵守所有使用服务的网络协议、规定、程序和惯例。用户的行为准则是以因特网法规，政策、程序和惯例为根据的。\r\n<h4>\r\n	13．保障\r\n</h4>\r\n用户同意保障和维护本网站全体成员的利益，负责支付由用户使用超出服务范围引起的律师费用，违反服务条款的损害补偿费用，其它人使用用户的电脑、帐号和其它知识产权的追索费。\r\n<h4>\r\n	14．结束服务\r\n</h4>\r\n用户或本网站可随时根据实际情况中断一项或多项服务。本网站不需对任何个人或第三方负责而随时中断服务。用户若反对任何服务条款的建议或对后来的条款修改有异议，或对本网站服务不满，用户可以行使如下权利：<br />\r\n(1) 不再使用本网站信息服务。<br />\r\n(2) 通知本网站停止对该用户的服务。<br />\r\n结束用户服务后，用户使用本网站服务的权利马上中止。从那时起，用户没有权利，本网站也没有义务传送任何未处理的信息或未完成的服务给用户或第三方。\r\n<h4>\r\n	15．通告\r\n</h4>\r\n所有发给用户的通告都可通过重要页面的公告或电子邮件或常规的信件传送。服务条款的修改、服务变更、或其它重要事件的通告都会以此形式进行。\r\n<h4>\r\n	16．信息内容的所有权\r\n</h4>\r\n本\r\n网站定义的信息内容包括：文字、软件、声音、相片、录象、图表；在广告中全部内容；本网站为用户提供的其它信息。所有这些内容受版权、商标、标签和其它财\r\n产所有权法律的保护。所以，用户只能在本网站和广告商授权下才能使用这些内容，而不能擅自复制、再造这些内容、或创造与内容有关的派生产品。\r\n<h4>\r\n	17．法律\r\n</h4>\r\n本网站信息服务条款要与中华人民共和国的法律解释一致。用户和本网站一致同意服从本网站所在地有管辖权的法院管辖。如发生本网站服务条款与中华人民共和国法律相抵触时，则这些条款将完全按法律规定重新解释，而其它条款则依旧保持对用户的约束力。', 'zh_cn'),
+(17, 35, 'privacy', '隐私保护政策', '<h4>\r\n	个人信息\r\n</h4>\r\n一般情况下，您无须提供您的姓名或其它个人信息即可访问我们的站点。但有时我们可能需要您提供一些信息，例如为了处理订单、与您联系、提供预订服务或处理工作应聘。我们可能需要这些信息完成以上事务的处理或提供更好的服务。\r\n<h4>\r\n	用途\r\n</h4>\r\n<ol>\r\n	<li>\r\n		供我们网站交易和沟通等相关方使用，以满足您的订单等购物服务；\r\n	</li>\r\n	<li>\r\n		用于与您保持联系，以开展客户满意度调查、市场研究或某些事务的处理；\r\n	</li>\r\n	<li>\r\n		用于不记名的数据分析（例如点击流量数据）；\r\n	</li>\r\n	<li>\r\n		帮助发展我们的业务关系（如果您是我们网站的业务合作伙伴或批发商）；\r\n	</li>\r\n</ol>', 'zh_cn'),
 (18, 13, 'helpcenter', '帮助中心', '<div>\r\n <img src="http://pic.shopex.cn/shop48/welcome.gif" height="130" width="684" /> </div>\r\n <h4>简单的购物流程：</h4>\r\n <img src="http://pic.shopex.cn/shop48/003.png" height="51" width="467" /> <h4>如果您需要和我们联系，可以通过以下方式：</h4>\r\n \r\n\r\n <div class="span-2 textcenter">\r\n <img src="http://pic.shopex.cn/shop48/icon_ser.gif" /> </div>\r\n <div class="span-7">\r\n <h5>在线客服</h5>\r\n点击首页在线客服链接，向客服专员提问。 </div>\r\n <div class="span-2 textcenter">\r\n <img src="http://pic.shopex.cn/shop48/icon_mail.gif" /> </div>\r\n <div class="span-7">\r\n <h5>电子邮件</h5>\r\n您也可以通过电子邮件和我们联系。 </div>\r\n <div class="clear">\r\n <br />\r\n</div>', 'zh_cn'),
 (19, 13, 'about', '公司简介', '我们是一家专注于手表、围巾、太阳镜、皮带、饰品的内销外销时尚购物批发网。<br />', 'zh_cn'),
 (20, 13, 'contact', '联系客服', '<p>客服QQ：</p>\r\n<p>客服旺旺：</p>\r\n<p>客服电话：</p>\r\n<p>公司传真：</p>\r\n<p>公司地址：</p>', 'zh_cn'),
@@ -4649,7 +4654,6 @@ INSERT INTO `page` (`id`, `category_id`, `key`, `title`, `content`, `language`) 
 -- 表的结构 `payment`
 --
 
-DROP TABLE IF EXISTS `payment`;
 CREATE TABLE IF NOT EXISTS `payment` (
   `pay_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `pay_sn` varchar(45) DEFAULT NULL,
@@ -4672,7 +4676,6 @@ CREATE TABLE IF NOT EXISTS `payment` (
 -- 表的结构 `payment_method`
 --
 
-DROP TABLE IF EXISTS `payment_method`;
 CREATE TABLE IF NOT EXISTS `payment_method` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(45) DEFAULT NULL,
@@ -4700,7 +4703,6 @@ INSERT INTO `payment_method` (`id`, `code`, `name`, `desc`, `config`, `enabled`,
 -- 表的结构 `profiles`
 --
 
-DROP TABLE IF EXISTS `profiles`;
 CREATE TABLE IF NOT EXISTS `profiles` (
   `user_id` int(11) NOT NULL,
   `lastname` varchar(50) NOT NULL DEFAULT '',
@@ -4736,7 +4738,7 @@ INSERT INTO `profiles` (`user_id`, `lastname`, `firstname`, `birthday`, `truenam
 (15, '', '', '0000-00-00', '', '', '', '', ''),
 (16, '', '', '0000-00-00', '', '', '', '', ''),
 (17, '', '', '0000-00-00', '', '', '', '', ''),
-(18, '', '', '0000-00-00', '', '', '', '', ''),
+(18, '', '', '0000-00-00', '1111', '111111', '111111', '', '111111'),
 (19, '', '', '0000-00-00', '1121', '2121', '21212', '', '1212'),
 (20, '', '', '0000-00-00', '112233', '112233', '112233', '', '112233');
 
@@ -4746,7 +4748,6 @@ INSERT INTO `profiles` (`user_id`, `lastname`, `firstname`, `birthday`, `truenam
 -- 表的结构 `profiles_fields`
 --
 
-DROP TABLE IF EXISTS `profiles_fields`;
 CREATE TABLE IF NOT EXISTS `profiles_fields` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `varname` varchar(50) NOT NULL,
@@ -4788,7 +4789,6 @@ INSERT INTO `profiles_fields` (`id`, `varname`, `title`, `field_type`, `field_si
 -- 表的结构 `prop_category`
 --
 
-DROP TABLE IF EXISTS `prop_category`;
 CREATE TABLE IF NOT EXISTS `prop_category` (
   `prop_id` int(10) unsigned NOT NULL,
   `category_id` int(10) unsigned NOT NULL,
@@ -4811,7 +4811,6 @@ INSERT INTO `prop_category` (`prop_id`, `category_id`) VALUES
 -- 表的结构 `prop_img`
 --
 
-DROP TABLE IF EXISTS `prop_img`;
 CREATE TABLE IF NOT EXISTS `prop_img` (
   `item_id` int(11) unsigned NOT NULL,
   `url` varchar(255) DEFAULT NULL COMMENT '图片链接地址',
@@ -4827,7 +4826,6 @@ CREATE TABLE IF NOT EXISTS `prop_img` (
 -- 表的结构 `prop_value`
 --
 
-DROP TABLE IF EXISTS `prop_value`;
 CREATE TABLE IF NOT EXISTS `prop_value` (
   `value_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '属性值ID',
   `category_id` int(10) unsigned NOT NULL,
@@ -4919,7 +4917,6 @@ INSERT INTO `prop_value` (`value_id`, `category_id`, `prop_id`, `value_name`, `v
 -- 表的结构 `refund`
 --
 
-DROP TABLE IF EXISTS `refund`;
 CREATE TABLE IF NOT EXISTS `refund` (
   `refund_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `refund_sn` varchar(45) DEFAULT NULL,
@@ -4942,7 +4939,6 @@ CREATE TABLE IF NOT EXISTS `refund` (
 -- 表的结构 `rights`
 --
 
-DROP TABLE IF EXISTS `rights`;
 CREATE TABLE IF NOT EXISTS `rights` (
   `itemname` varchar(64) NOT NULL,
   `type` int(11) NOT NULL,
@@ -4956,7 +4952,6 @@ CREATE TABLE IF NOT EXISTS `rights` (
 -- 表的结构 `setting`
 --
 
-DROP TABLE IF EXISTS `setting`;
 CREATE TABLE IF NOT EXISTS `setting` (
   `name` varchar(45) NOT NULL DEFAULT '',
   `data` longtext,
@@ -4972,7 +4967,6 @@ CREATE TABLE IF NOT EXISTS `setting` (
 -- 表的结构 `shipping`
 --
 
-DROP TABLE IF EXISTS `shipping`;
 CREATE TABLE IF NOT EXISTS `shipping` (
   `ship_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` bigint(20) unsigned DEFAULT NULL,
@@ -4998,7 +4992,6 @@ CREATE TABLE IF NOT EXISTS `shipping` (
 -- 表的结构 `shipping_item`
 --
 
-DROP TABLE IF EXISTS `shipping_item`;
 CREATE TABLE IF NOT EXISTS `shipping_item` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ship_id` int(10) unsigned NOT NULL,
@@ -5016,7 +5009,6 @@ CREATE TABLE IF NOT EXISTS `shipping_item` (
 -- 表的结构 `shipping_method`
 --
 
-DROP TABLE IF EXISTS `shipping_method`;
 CREATE TABLE IF NOT EXISTS `shipping_method` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(45) DEFAULT NULL,
@@ -5043,7 +5035,6 @@ INSERT INTO `shipping_method` (`id`, `code`, `name`, `desc`, `enabled`, `is_cod`
 -- 表的结构 `sku`
 --
 
-DROP TABLE IF EXISTS `sku`;
 CREATE TABLE IF NOT EXISTS `sku` (
   `sku_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'sku的id',
   `item_id` int(11) unsigned NOT NULL,
@@ -5063,7 +5054,6 @@ CREATE TABLE IF NOT EXISTS `sku` (
 -- 表的结构 `specification`
 --
 
-DROP TABLE IF EXISTS `specification`;
 CREATE TABLE IF NOT EXISTS `specification` (
   `spec_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `spec_name` varchar(50) NOT NULL DEFAULT '',
@@ -5093,7 +5083,6 @@ INSERT INTO `specification` (`spec_id`, `spec_name`, `spec_show_type`, `spec_typ
 -- 表的结构 `spec_values`
 --
 
-DROP TABLE IF EXISTS `spec_values`;
 CREATE TABLE IF NOT EXISTS `spec_values` (
   `spec_value_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `spec_id` mediumint(8) unsigned NOT NULL DEFAULT '0',
@@ -5121,7 +5110,6 @@ INSERT INTO `spec_values` (`spec_value_id`, `spec_id`, `spec_value`, `spec_image
 -- 表的结构 `users`
 --
 
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(20) NOT NULL,
@@ -5144,7 +5132,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createtime`, `lastvisit`, `superuser`, `status`) VALUES
-(1, 'demo', '0192023a7bbd73250516f069df18b500', 'webmaster@example.com', '02433b664a3a868684db063c3b8a9ddc', 1261146094, 1364110504, 1, 1),
+(1, 'demo', '0192023a7bbd73250516f069df18b500', 'webmaster@example.com', '02433b664a3a868684db063c3b8a9ddc', 1261146094, 1367222055, 1, 1),
 (18, '112233', 'd0970714757783e6cf17b26fb8e2298f', '112233@qq.com', '37817d13c6f8f595bc20c4d5fcf145d2', 1333340525, 1333541747, 0, 1),
 (19, 'demo123', '62cc2d8b4bf2d8728120d052163a77df', '111@11.com', 'acc56013573352342ac21856d5401d71', 1334069292, 0, 0, 0),
 (20, '123456', 'e10adc3949ba59abbe56e057f20f883e', '123456@qq.com', 'e32fc3f706f598127a336f4f0c6c7b7a', 1334079903, 0, 0, 0);
@@ -5155,7 +5143,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `activkey`, `createt
 -- 表的结构 `wishlist`
 --
 
-DROP TABLE IF EXISTS `wishlist`;
 CREATE TABLE IF NOT EXISTS `wishlist` (
   `wishlist_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(10) unsigned DEFAULT NULL,
@@ -5163,18 +5150,14 @@ CREATE TABLE IF NOT EXISTS `wishlist` (
   `desc` text,
   `create_time` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`wishlist_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- 转存表中的数据 `wishlist`
 --
 
 INSERT INTO `wishlist` (`wishlist_id`, `user_id`, `item_id`, `desc`, `create_time`) VALUES
-(1, 1, 1, NULL, 1338473334),
-(2, 1, 3, NULL, 1338474139),
-(3, 1, 4, NULL, 1338474232),
-(4, 1, 5, NULL, 1338474243),
-(5, 1, 2, NULL, 1338475202);
+(10, 1, 1, NULL, 1367222705);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
