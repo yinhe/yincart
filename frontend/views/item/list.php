@@ -25,7 +25,10 @@ $this->breadcrumbs = array(
         <div class="box-content item-list" style="width:956px">
             <ul>
                 <?php
-                $ids = $category->getMeChildsId($category->category_id);
+                $category = Category::model()->findByPk($category->id);
+                $childs = $category->children()->findAll();
+                foreach ($childs as $child)
+                    $ids[] = $child->id;
                 $cid = implode(',', $ids);
                 if ($key == 'new') {
                     $condition = 'is_new = 1 and ';
@@ -41,9 +44,9 @@ $this->breadcrumbs = array(
                     $condition = '';
                 }
                 $criteria = new CDbCriteria(array(
-                            'condition' => $condition . 'category_id in (' . $cid . ')',
-                            'limit' => '10'
-                        ));
+                    'condition' => $condition . 'category_id in (' .$category->id.', '. $cid . ')',
+                    'limit' => '10'
+                ));
                 $items = Item::model()->findAll($criteria);
                 if ($items) {
                     foreach ($items as $i) {

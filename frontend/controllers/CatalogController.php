@@ -5,13 +5,16 @@ class CatalogController extends Controller {
     public $layout = '//layouts/catalog';
 
     public function actionIndex($key) {
-        $model = Category::model()->findByAttributes(array('url' => $key));
-        $ids = $model->getMeChildsId($model->category_id);
+        $category=Category::model()->findByPk(3);
+        $model = $category->findByAttributes(array('url' => $key));
+        $childs=$model->descendants()->findAll();
+        $ids = array($model->id);
+        foreach($childs as $child)
+        $ids[] = $child->id;
         $cid = implode(',', $ids);
         $criteria = new CDbCriteria(array(
-                    'condition' => 'category_id in ( ' . $cid . ')'
+                    'condition' => 'category_id in ( '.$cid. ')'
                 ));
-
         $count = Item::model()->count($criteria);
         $pages = new CPagination($count);
         // results per page
@@ -19,7 +22,7 @@ class CatalogController extends Controller {
         $pages->applyLimit($criteria);
         $items = Item::model()->findAll($criteria);
         $criteria = new CDbCriteria(array(
-                    'condition' => 'is_hot = 1 and category_id in ( ' . $cid . ')',
+                    'condition' => 'is_hot = 1 and category_id in ( '.$cid. ')',
                     'limit' => '4'
                 ));
         $hotItems = Item::model()->findAll($criteria);

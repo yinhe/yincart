@@ -3,7 +3,7 @@
     <div class="cat1"><?php echo $h->name ?></div> 
     <?php 
     $cri = new CDbCriteria(array(
-                    'condition' => 'category_id = '.$h->category_id,
+                    'condition' => 'category_id = '.$h->id,
                 ));
     $helpChilds = Page::model()->findAll($cri);
     foreach($helpChilds as $hc){

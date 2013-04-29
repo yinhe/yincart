@@ -101,7 +101,8 @@ class CategoryController extends Controller
             $parent_node = $_POST['Category']['node'];
             if ($parent_node != 0) {
                 $node = Category::model()->findByPk($parent_node);
-                if ($node->id !== $model->id) {
+                $parent=$model->parent()->find();
+                if ($node->id !== $model->id && $node->id !== $parent->id) {
 // move 
                     $model->moveAsLast($node);
 

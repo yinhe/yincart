@@ -6,15 +6,13 @@
  */
 
 class WHelpCenter extends CWidget {
-    
-    public function getHelp()
-    {
-        $cri = new CDbCriteria(array(
-                    'condition' => 'parent_id = 3',
-                ));
-        $ContentCategory = ContentCategory::model()->findAll($cri);
-        return $ContentCategory;
+
+    public function getHelp() {
+        $help = Category::model()->findByPk(13);
+        $descendants = $help->children()->findAll();
+        return $descendants;
     }
+
     public function run() {
         $this->render('helpCenter');
     }

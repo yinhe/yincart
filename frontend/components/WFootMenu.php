@@ -8,12 +8,9 @@
 class WFootMenu extends CWidget {
 
     public function getFootMenu() {
-        $cri = new CDbCriteria(array(
-                    'condition' => 'parent_id = 0 and type = "bottom"',
-                    'order' => 'sort_order asc'
-                ));
-        $models = Menu::model()->findAll($cri);
-        return $models;
+        $foot = Menu::model()->findByPk(5);
+        $descendants = $foot->children()->findAll();
+        return $descendants;
     }
 
     public function run() {

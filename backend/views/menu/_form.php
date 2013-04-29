@@ -60,11 +60,11 @@ echo '</select>';
 
 <?php echo $form->textFieldRow($model, 'name', array('class' => 'span5', 'maxlength' => 100)); ?>
 
-<?php echo $form->textFieldRow($model, 'url', array('class' => 'span5', 'maxlength' => 255)); ?>
+<?php echo $form->textFieldRow($model, 'url', array('class' => 'span5', 'maxlength' => 255,'hint'=>'格式为：模块/控制器/动作  Modules/Controller/action 没地址请留空')); ?>
 
 <?php //echo $form->fileFieldRow($model,'pic',array('class'=>'span5','maxlength'=>255)); ?>
 
-<?php echo $form->dropDownListRow($model, 'position', array('middle' => '前台主目录导航', 'bottom' => '前台底部导航', 'admin' => '后台菜单导航')); ?>
+<?php //echo $form->dropDownListRow($model, 'position', array('middle' => '前台主目录导航', 'bottom' => '前台底部导航', 'admin' => '后台菜单导航')); ?>
 
 <?php echo $form->dropDownListRow($model, 'if_show', array('1' => '是', '0' => '否')); ?>
 

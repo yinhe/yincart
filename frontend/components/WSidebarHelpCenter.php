@@ -9,11 +9,9 @@ class WSidebarHelpCenter extends CWidget {
     
     public function getHelp()
     {
-        $cri = new CDbCriteria(array(
-                    'condition' => 'parent_id = 3',
-                ));
-        $ContentCategory = ContentCategory::model()->findAll($cri);
-        return $ContentCategory;
+        $category=Category::model()->findByPk(13);
+        $help=$category->children()->findAll();
+        return $help;
     }
     public function run() {
         $this->render('sidebarHelpCenter');

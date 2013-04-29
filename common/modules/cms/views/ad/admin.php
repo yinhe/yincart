@@ -9,7 +9,8 @@ $this->menu=array(
 );
 ?>
 <h1>广告管理</h1>
-<?php $this->widget('bootstrap.widgets.TbGridView', array(
+<?php 
+$this->widget('bootstrap.widgets.TbGridView', array(
 	'id'=>'flash-ad-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,

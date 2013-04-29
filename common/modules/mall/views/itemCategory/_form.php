@@ -1,5 +1,6 @@
 <?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
 	'id'=>'category-form',
+        'htmlOptions' => array('enctype' => 'multipart/form-data'),
 	'enableAjaxValidation'=>false,
 )); ?>
 
@@ -42,6 +43,10 @@ echo '</select>';
 ?>
 
     <?php echo $form->textFieldRow($model, 'name', array('class' => 'span5', 'maxlength' => 50)); ?>
+        
+    <?php echo $form->textFieldRow($model,'url',array('class'=>'span5','maxlength'=>255)); ?>
+        
+    <?php echo $form->fileFieldRow($model,'pic'); ?>
 
 <div class="form-actions">
     <?php

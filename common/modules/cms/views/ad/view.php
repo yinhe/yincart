@@ -5,6 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
+	array('label'=>'List FlashAd', 'icon'=>'list', 'url'=>array('index')),
 	array('label'=>'Create FlashAd', 'icon'=>'plus','url'=>array('create')),
 	array('label'=>'Update FlashAd', 'icon'=>'pencil','url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete FlashAd', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
@@ -15,7 +16,7 @@ $this->menu=array(
 <div class="box">
 <div class="box-title2">View FlashAd #<?php echo $model->id; ?></div>
 <div class="box-content">
-<?php $this->widget('bootstrap.widgets.TbDetailView', array(
+<?php $this->widget('zii.widgets.CDetailView', array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',

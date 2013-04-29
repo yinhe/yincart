@@ -51,7 +51,7 @@ class ContentCategoryController extends Controller {
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id the ID of the model to be updated
      */
-     public function actionUpdate($id) {
+    public function actionUpdate($id) {
         $model = $this->loadModel($id);
 
 // Uncomment the following line if AJAX validation is needed
@@ -64,16 +64,16 @@ class ContentCategoryController extends Controller {
             $parent_node = $_POST['Category']['node'];
             if ($parent_node != 0) {
                 $node = Category::model()->findByPk($parent_node);
-                if ($node->id !== $model->id) {
+                $parent = $model->parent()->find();
+                if ($node->id !== $model->id && $node->id !== $parent->id) {
 // move 
                     $model->moveAsLast($node);
-
-                    if ($model->saveNode())
-                        $this->redirect(array('admin'));
                 }
+                if ($model->saveNode())
+                    $this->redirect(array('admin'));
             }else {
-                if(!$model->isRoot()){
-                $model->moveAsRoot();
+                if (!$model->isRoot()) {
+                    $model->moveAsRoot();
                 }
                 if ($model->saveNode())
                     $this->redirect(array('admin'));
@@ -147,14 +147,13 @@ class ContentCategoryController extends Controller {
             Yii::app()->end();
         }
     }
-    
+
     /**
      * Fills the JS tree on an AJAX request.
      * Should receive parent node ID in $_GET['root'],
      *  with 'source' when there is no parent.
      */
-    public function actionAjaxFillTree()
-    {
+    public function actionAjaxFillTree() {
         if (!Yii::app()->request->isAjaxRequest) {
             exit();
         }
@@ -163,16 +162,14 @@ class ContentCategoryController extends Controller {
             $parentId = (int) $_GET['root'];
         }
         $req = Yii::app()->db->createCommand(
-            "SELECT m1.category_id, m1.name AS text, m2.category_id IS NOT NULL AS hasChildren "
-            . "FROM cart_content_category AS m1 LEFT JOIN cart_content_category AS m2 ON m1.category_id=m2.parent_id "
-            . "WHERE m1.parent_id <=> $parentId "
-            . "GROUP BY m1.category_id ORDER BY m1.name ASC"
+                "SELECT m1.category_id, m1.name AS text, m2.category_id IS NOT NULL AS hasChildren "
+                . "FROM cart_content_category AS m1 LEFT JOIN cart_content_category AS m2 ON m1.category_id=m2.parent_id "
+                . "WHERE m1.parent_id <=> $parentId "
+                . "GROUP BY m1.category_id ORDER BY m1.name ASC"
         );
         $children = $req->queryAll();
         echo str_replace(
-            '"hasChildren":"0"',
-            '"hasChildren":false',
-            CTreeView::saveDataAsJson($children)
+                '"hasChildren":"0"', '"hasChildren":false', CTreeView::saveDataAsJson($children)
         );
         exit();
     }

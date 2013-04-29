@@ -1,66 +1,64 @@
 <?php
 
-class ItemCategoryController extends Controller
-{
-	/**
-	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
-	 * using two-column layout. See 'protected/views/layouts/column2.php'.
-	 */
-	public $layout='//layouts/mall';
+class ItemCategoryController extends Controller {
 
-	/**
-	 * @return array action filters
-	 */
-	public function filters()
-	{
-		return array(
-			'accessControl', // perform access control for CRUD operations
-		);
-	}
+    /**
+     * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+     * using two-column layout. See 'protected/views/layouts/column2.php'.
+     */
+    public $layout = '//layouts/mall';
 
-	/**
-	 * Specifies the access control rules.
-	 * This method is used by the 'accessControl' filter.
-	 * @return array access control rules
-	 */
-	public function accessRules()
-	{
-		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
-				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
-			),
-			array('deny',  // deny all users
-				'users'=>array('*'),
-			),
-		);
-	}
+    /**
+     * @return array action filters
+     */
+    public function filters() {
+        return array(
+            'accessControl', // perform access control for CRUD operations
+        );
+    }
 
-	/**
-	 * Displays a particular model.
-	 * @param integer $id the ID of the model to be displayed
-	 */
-	public function actionView($id)
-	{
-		$this->render('view',array(
-			'model'=>$this->loadModel($id),
-		));
-	}
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules() {
+        return array(
+            array('allow', // allow all users to perform 'index' and 'view' actions
+                'actions' => array('index', 'view'),
+                'users' => array('*'),
+            ),
+            array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                'actions' => array('create', 'update'),
+                'users' => array('@'),
+            ),
+            array('allow', // allow admin user to perform 'admin' and 'delete' actions
+                'actions' => array('admin', 'delete'),
+                'users' => array('admin'),
+            ),
+            array('deny', // deny all users
+                'users' => array('*'),
+            ),
+        );
+    }
 
-	/**
-	 * Creates a new model.
-	 * If creation is successful, the browser will be redirected to the 'view' page.
-	 */
-	public function actionCreate() {
-        $model = new Category;
+    /**
+     * Displays a particular model.
+     * @param integer $id the ID of the model to be displayed
+     */
+    public function actionView($id) {
+        $this->render('view', array(
+            'model' => $this->loadModel($id),
+        ));
+    }
+
+    /**
+     * Creates a new model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     */
+    public function actionCreate() {
+        $model = new Category('create');
+        $action = 'category';
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
@@ -74,8 +72,31 @@ class ItemCategoryController extends Controller
 //            print_r($_POST['DealCategory']);
 //            exit;
             }
-            if ($model->saveNode())
+            // file handling
+            $imageUploadFile = CUploadedFile::getInstance($model, 'pic');
+            if ($imageUploadFile !== null) { // only do if file is really uploaded
+                $imageFileExt = $imageUploadFile->extensionName;
+
+                $save_path = dirname(Yii::app()->basePath) . '/upload/' . $action . '/';
+                if (!file_exists($save_path)) {
+                    mkdir($save_path, 0777, true);
+                }
+                $ymd = date("Ymd");
+                $save_path .= $ymd . '/';
+                if (!file_exists($save_path)) {
+                    mkdir($save_path, 0777, true);
+                }
+                $img_prefix = date("YmdHis") . '_' . rand(10000, 99999);
+                $imageFileName = $img_prefix . '.' . $imageFileExt;
+                $model->pic = $ymd . '/' . $imageFileName;
+                $save_path .= $imageFileName;
+            }
+            if ($model->saveNode()) {
+                if ($imageUploadFile !== null) { // validate to save file
+                    $imageUploadFile->saveAs($save_path);
+                }
                 $this->redirect(array('admin'));
+            }
         }
 
         $this->render('create', array(
@@ -83,13 +104,15 @@ class ItemCategoryController extends Controller
         ));
     }
 
-	/**
-	 * Updates a particular model.
-	 * If update is successful, the browser will be redirected to the 'view' page.
-	 * @param integer $id the ID of the model to be updated
-	 */
-	public function actionUpdate($id) {
+    /**
+     * Updates a particular model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id the ID of the model to be updated
+     */
+    public function actionUpdate($id) {
         $model = $this->loadModel($id);
+        $model->scenario = 'update';
+        $action = 'category';
 
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
@@ -101,19 +124,46 @@ class ItemCategoryController extends Controller
             $parent_node = $_POST['Category']['node'];
             if ($parent_node != 0) {
                 $node = Category::model()->findByPk($parent_node);
-                if ($node->id !== $model->id) {
+                $parent = $model->parent()->find();
+                if ($node->id !== $model->id && $node->id !== $parent->id) {
 // move 
                     $model->moveAsLast($node);
+                }
+            } else {
+                if (!$model->isRoot()) {
+                    $model->moveAsRoot();
+                }
+            }
+            $imageUploadFile = CUploadedFile::getInstance($model, 'pic');
+            if ($imageUploadFile !== null) { // only do if file is really uploaded
+                $old_image = dirname(Yii::app()->basePath) . '/upload/' . $action . '/' . $model->pic;
+                if (file_exists($old_image)) {
+                    @unlink($old_image);
+                }
+                $imageFileExt = $imageUploadFile->extensionName;
 
-                    if ($model->saveNode())
-                        $this->redirect(array('admin'));
+                $save_path = dirname(Yii::app()->basePath) . '/upload/' . $action . '/';
+                if (!file_exists($save_path)) {
+                    mkdir($save_path, 0777, true);
                 }
-            }else {
-                if(!$model->isRoot()){
-                $model->moveAsRoot();
+                $ymd = date("Ymd");
+                $save_path .= $ymd . '/';
+                if (!file_exists($save_path)) {
+                    mkdir($save_path, 0777, true);
                 }
-                if ($model->saveNode())
-                    $this->redirect(array('admin'));
+                $img_prefix = date("YmdHis") . '_' . rand(10000, 99999);
+                $imageFileName = $img_prefix . '.' . $imageFileExt;
+                $model->pic = $ymd . '/' . $imageFileName;
+                $save_path .= $imageFileName;
+            } else {
+                $model->pic = $model->pic;
+            }
+
+            if ($model->saveNode()) {
+                if ($imageUploadFile !== null) { // validate to save file
+                    $imageUploadFile->saveAs($save_path);
+                }
+                $this->redirect(array('admin'));
             }
         }
 
@@ -122,75 +172,74 @@ class ItemCategoryController extends Controller
         ));
     }
 
-	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
-	 */
-	public function actionDelete($id)
-	{
-		if(Yii::app()->request->isPostRequest)
-		{
-			// we only allow deletion via POST request
-			$this->loadModel($id)->deleteNode();
+    /**
+     * Deletes a particular model.
+     * If deletion is successful, the browser will be redirected to the 'admin' page.
+     * @param integer $id the ID of the model to be deleted
+     */
+    public function actionDelete($id) {
+        if (Yii::app()->request->isPostRequest) {
+            // we only allow deletion via POST request
+            $model = $this->loadModel($id);
+            $image = dirname(Yii::app()->basePath) . '/upload/category/'. $model->pic;
+            if (file_exists($image)) {
+                @unlink($image);
+            }
+            $model->delete();
 
-			// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-			if(!isset($_GET['ajax']))
-				$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-		}
-		else
-			throw new CHttpException(400,'Invalid request. Please do not repeat this request again.');
-	}
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if (!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        }
+        else
+            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+    }
 
-	/**
-	 * Lists all models.
-	 */
-	public function actionIndex()
-	{
-		$dataProvider=new CActiveDataProvider('Category');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
+    /**
+     * Lists all models.
+     */
+    public function actionIndex() {
+        $dataProvider = new CActiveDataProvider('Category');
+        $this->render('index', array(
+            'dataProvider' => $dataProvider,
+        ));
+    }
 
-	/**
-	 * Manages all models.
-	 */
-	public function actionAdmin()
-	{
-		$model=new Category('search');
-		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Category']))
-			$model->attributes=$_GET['Category'];
+    /**
+     * Manages all models.
+     */
+    public function actionAdmin() {
+        $model = new Category('search');
+        $model->unsetAttributes();  // clear any default values
+        if (isset($_GET['Category']))
+            $model->attributes = $_GET['Category'];
 
-		$this->render('admin',array(
-			'model'=>$model,
-		));
-	}
+        $this->render('admin', array(
+            'model' => $model,
+        ));
+    }
 
-	/**
-	 * Returns the data model based on the primary key given in the GET variable.
-	 * If the data model is not found, an HTTP exception will be raised.
-	 * @param integer the ID of the model to be loaded
-	 */
-	public function loadModel($id)
-	{
-		$model=Category::model()->findByPk($id);
-		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
-		return $model;
-	}
+    /**
+     * Returns the data model based on the primary key given in the GET variable.
+     * If the data model is not found, an HTTP exception will be raised.
+     * @param integer the ID of the model to be loaded
+     */
+    public function loadModel($id) {
+        $model = Category::model()->findByPk($id);
+        if ($model === null)
+            throw new CHttpException(404, 'The requested page does not exist.');
+        return $model;
+    }
 
-	/**
-	 * Performs the AJAX validation.
-	 * @param CModel the model to be validated
-	 */
-	protected function performAjaxValidation($model)
-	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='category-form')
-		{
-			echo CActiveForm::validate($model);
-			Yii::app()->end();
-		}
-	}
+    /**
+     * Performs the AJAX validation.
+     * @param CModel the model to be validated
+     */
+    protected function performAjaxValidation($model) {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'category-form') {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+    }
+
 }

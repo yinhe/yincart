@@ -98,13 +98,15 @@ class MenuController extends Controller {
             $parent_node = $_POST['Menu']['node'];
             if ($parent_node != 0) {
                 $node = Menu::model()->findByPk($parent_node);
-                if ($node->id !== $model->id) {
+                $parent=$model->parent()->find();
+                if ($node->id !== $model->id && $node->id !== $parent->id) {
 // move 
+//                    echo $node->id.'-'.$model->id.'===='.$parent->id;
+//                    exit;
                     $model->moveAsLast($node);
-
-                    if ($model->saveNode())
-                        $this->redirect(array('admin'));
                 }
+                if ($model->saveNode())
+                    $this->redirect(array('admin'));
             }else {
                 if (!$model->isRoot()) {
                     $model->moveAsRoot();

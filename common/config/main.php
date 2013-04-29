@@ -3,6 +3,11 @@
 require_once 'alias.php';
 
 return array(
+    'import' => array(
+            'common.components.*',
+            'common.extensions.*',
+            'common.models.*',
+        ),
     'components' => array(
         'cart' => array(
             'class' => 'common.extensions.Cart',

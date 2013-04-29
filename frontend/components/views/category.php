@@ -6,21 +6,19 @@
         <!-- 分类 -->
         <dl class="clearfix">
             <dt> <span class="filter_list_tit">分类</span> </dt>
-            <dd><?php echo CHtml::link('全部', array('/item/index', 'category_id' => $model->category_id), array('class' => 'a')) ?></dd>
+            <dd><?php echo CHtml::link('全部', array('/item/index', 'category_id' => $model->id), array('class' => 'a')) ?></dd>
             <?php
-            $cri = new CDbCriteria(array(
-                        'condition' => 'parent_id = ' . $model->category_id
-                    ));
-            $categories = Category::model()->findAll($cri);
-            foreach ($categories as $c) {
+            $category=Category::model()->findByPk($model->id);
+        $childs=$category->children()->findAll();
+            foreach ($childs as $c) {
                 ?>
-                <dd><?php echo CHtml::link($c->name, array('/item/index', 'category_id' => $c->category_id)) ?></dd>
+                <dd><?php echo CHtml::link($c->name, array('/item/index', 'category_id' => $c->id)) ?></dd>
             <?php } ?>
         </dl>
 
         <?php
         $cri = new CDbCriteria(array(
-                    'condition' => 'category_id =' . $model->category_id,
+                    'condition' => 'category_id =' . $model->id,
                     'order'=>'sort_order asc'
                 ));
         $props = ItemProp::model()->findAll($cri);

@@ -45,7 +45,21 @@ class Category extends CActiveRecord {
             array('level, if_show', 'numerical', 'integerOnly' => true),
             array('root, lft, rgt', 'length', 'max' => 10),
             array('name', 'length', 'max' => 100),
-            array('url, pic', 'length', 'max' => 255),
+            array('url', 'length', 'max' => 255),
+            array('pic', 'file',
+                'types' => 'jpg, gif, png',
+                'maxSize' => 1024 * 1024 * 2, // 2MB
+                'tooLarge' => '文件超过 2MB. 请上传小一点儿的文件.',
+                'allowEmpty' => true,
+                'on' => 'create'
+            ),
+            array('pic', 'file',
+                'types' => 'jpg, gif, png',
+                'maxSize' => 1024 * 1024 * 2, // 2MB
+                'tooLarge' => '文件超过 2MB. 请上传小一点儿的文件.',
+                'allowEmpty' => true,
+                'on' => 'update'
+            ),
             array('position', 'length', 'max' => 45),
             array('memo', 'safe'),
             // The following rule is used by search().
@@ -119,6 +133,18 @@ class Category extends CActiveRecord {
                 'levelAttribute' => 'level',
                 'hasManyRoots' => true,
         ));
+    }
+    
+    public function getThumb() {
+        $img_url = '/../../upload/category/' . $this->pic;
+        $trueimage = Yii::app()->request->hostInfo.Yii::app()->baseUrl.$img_url;
+        if (F::isfile($trueimage)) {
+        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(750, 368, $img_url, array('method' => 'resize'));
+        $img_thumb_now = CHtml::image($img_thumb, $this->name);
+        return CHtml::link($img_thumb_now, $this->url, array('title' => $this->name));
+        }else{
+            return '没有图片';
+        }
     }
 
 }
