@@ -1,6 +1,8 @@
 yincart
 =======
 
+Why call yincart, not yiicart. Yincart means Yii in cart, or u can call it "yi niu", lol.
+
 base on yiiframework , website:yincart.com
 
 ###2013.4.30 1.0.4版本
