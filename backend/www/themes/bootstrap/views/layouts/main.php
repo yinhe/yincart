@@ -71,7 +71,7 @@
                     'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
-                        array('label' => '网站前台', 'url' => '#'),
+                        array('label' => '网站前台', 'url' => Yii::app()->request->hostInfo.Yii::app()->baseUrl.'/../../frontend/www'),
                         array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => Yii::app()->user->name, 'url' => '#', 'items' => array(
                                 array('label' => '个人资料', 'url' => '#'),

@@ -3,6 +3,12 @@ yincart
 
 base on yiiframework , website:yincart.com
 
+###2013.4.30 1.0.4版本
+
+* 前端集成进入左右值无限分类
+
+* 数据库配置文件在/common/config/main-local.php,便于GIT部署项目时直接忽略提交此文件
+
 ###2013.4.24 1.0.3版本
 
 * 分类换成左右值无限分类，编辑器扩展引入最新的kindeditor
