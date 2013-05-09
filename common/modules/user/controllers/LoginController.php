@@ -1,1 +1,39 @@
-<?phpclass LoginController extends Controller {    public $defaultAction = 'login';    /**     * Displays the login page     */    public function actionLogin() {        $this->layout = '//layouts/column2';        if (Yii::app()->user->isGuest) {            $model = new UserLogin;            // collect user input data                        if (isset($_POST['UserLogin'])) {                $model->attributes = $_POST['UserLogin'];                // validate user input and redirect to previous page if valid//                print_r($_POST);//            print_r($_POST['UserLogin']);//            exit;                if ($model->validate()) {                    $this->lastViset();                    if (strpos(Yii::app()->user->returnUrl, '/index.php') !== false)                        $this->redirect(Yii::app()->controller->module->returnUrl);                    else                        $this->redirect(Yii::app()->user->returnUrl);                }            }            // display the login form            $this->render('/user/login', array('model' => $model));        } else            $this->redirect(Yii::app()->controller->module->returnUrl);    }    private function lastViset() {        $lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);        $lastVisit->lastvisit = time();        $lastVisit->save();    }        public function actionIsLogin(){            }}
+<?php
+
+class LoginController extends Controller
+{
+	public $defaultAction = 'login';
+
+	/**
+	 * Displays the login page
+	 */
+	public function actionLogin()
+	{
+		if (Yii::app()->user->isGuest) {
+			$model=new UserLogin;
+			// collect user input data
+			if(isset($_POST['UserLogin']))
+			{
+				$model->attributes=$_POST['UserLogin'];
+				// validate user input and redirect to previous page if valid
+				if($model->validate()) {
+					$this->lastViset();
+					if (Yii::app()->getBaseUrl()."/index.php" === Yii::app()->user->returnUrl)
+						$this->redirect(Yii::app()->controller->module->returnUrl);
+					else
+						$this->redirect(Yii::app()->user->returnUrl);
+				}
+			}
+			// display the login form
+			$this->render('/user/login',array('model'=>$model));
+		} else
+			$this->redirect(Yii::app()->controller->module->returnUrl);
+	}
+	
+	private function lastViset() {
+		$lastVisit = User::model()->notsafe()->findByPk(Yii::app()->user->id);
+		$lastVisit->lastvisit_at = date('Y-m-d H:i:s');
+		$lastVisit->save();
+	}
+
+}

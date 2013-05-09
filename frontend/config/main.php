@@ -21,6 +21,8 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
         'application.components.helpers.*',
         'common.modules.cms.models.*',
         'common.modules.mall.models.*',
+        'common.modules.user.models.*',
+        'common.modules.user.components.*',
         
     ),
     'modules' => array(
@@ -29,9 +31,29 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
         'cms'=> array(
             'class' => 'common.modules.cms.CmsModule'
             ),
-        'user'=> array(
-            'class' => 'common.modules.user.UserModule'
-            ),
+        'user' => array(
+                    'class' => 'common.modules.user.UserModule',
+                    # encrypting method (php hash function)
+                    'hash' => 'md5',
+                    # send activation email
+                    'sendActivationMail' => true,
+                    # allow access for non-activated users
+                    'loginNotActiv' => false,
+                    # activate user on registration (only sendActivationMail = false)
+                    'activeAfterRegister' => false,
+                    # automatically login from registration
+                    'autoLogin' => true,
+                    # registration path
+                    'registrationUrl' => array('/user/registration'),
+                    # recovery password path
+                    'recoveryUrl' => array('/user/recovery'),
+                    # login form path
+                    'loginUrl' => array('/user/login'),
+                    # page after login
+                    'returnUrl' => array('/user/profile'),
+                    # page after logout
+                    'returnLogoutUrl' => array('/user/login'),
+                ),
         'mall'=> array(
             'class' => 'common.modules.mall.MallModule'
             ),
@@ -50,6 +72,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
         'user' => array(
             // enable cookie-based authentication
             'allowAutoLogin' => true,
+            'class' => 'WebUser',
             'loginUrl' => array('/user/login'),
             'stateKeyPrefix' => 'front_',
         ),

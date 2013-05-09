@@ -5,6 +5,12 @@ Why call yincart, not yiicart. Yincart means Yii in cart, or u can call it "yi n
 
 base on yiiframework , website:yincart.com
 
+###2013.5.10 1.0.5版本
+
+* 前端用户模块更新为最新版本的Yii-user,同时添加测试邮件服务器支持发送注册邮件
+
+* 前端测试用户帐号密码更新为demo demo123,数据库引擎全部更新为innodb
+
 ###2013.4.30 1.0.4版本
 
 * 前端集成进入左右值无限分类
