@@ -32,7 +32,7 @@ foreach ($descendants as $category) {
     }
 
     echo CHtml::openTag('li');
-    echo CHtml::encode($category->name).'<span style="float:right">['.
+    echo CHtml::encode($category->name).$category->getLabel().'<span style="float:right;">['.
             CHtml::link('更新', array('/mall/itemCategory/update', 'id'=>$category->id)).']['.
             CHtml::link('删除', '', array('submit'=>array('/mall/itemCategory/delete','id'=>$category->id),'style'=>'cursor:pointer', 'confirm'=>'Are you sure you want to delete this item?')).']</span>';
     $level = $category->level;

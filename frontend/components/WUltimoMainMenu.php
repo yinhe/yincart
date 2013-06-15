@@ -5,9 +5,10 @@
  * and open the template in the editor.
  */
 
-class Header extends CWidget {
+class WUltimoMainMenu extends CWidget {
+
     public function run() {
-        $this->render('header');
+        $this->render('ultimoMainMenu');
     }
 
 }

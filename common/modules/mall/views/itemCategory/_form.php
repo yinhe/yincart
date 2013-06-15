@@ -44,6 +44,11 @@ echo '</select>';
 
     <?php echo $form->textFieldRow($model, 'name', array('class' => 'span5', 'maxlength' => 50)); ?>
         
+    <?php echo $form->radioButtonListRow($model, 'label', array(
+		'1'=>'<span class="label label-info">New</span>',
+		'2'=>'<span class="label label-important">Hot!</span>',
+	))?>    
+        
     <?php echo $form->textFieldRow($model,'url',array('class'=>'span5','maxlength'=>255)); ?>
         
     <?php echo $form->fileFieldRow($model,'pic'); ?>

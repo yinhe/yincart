@@ -42,7 +42,7 @@ class Category extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('name', 'required'),
-            array('level, if_show', 'numerical', 'integerOnly' => true),
+            array('label, level, if_show', 'numerical', 'integerOnly' => true),
             array('root, lft, rgt', 'length', 'max' => 10),
             array('name', 'length', 'max' => 100),
             array('url', 'length', 'max' => 255),
@@ -89,6 +89,7 @@ class Category extends CActiveRecord {
             'rgt' => 'Rgt',
             'level' => 'Level',
             'name' => '名称',
+            'label' => '标签',
             'url' => 'Url',
             'pic' => '图片',
             'position' => '位置',
@@ -146,5 +147,19 @@ class Category extends CActiveRecord {
             return '没有图片';
         }
     }
+    
+    public function getLabel() {
+        if($this->label == '1'){
+            echo '<span class="label label-info" style="margin-right:5px">New</span>';
+        }elseif($this->label == '2') {
+            echo '<span class="label label-important" style="margin-right:5px">Hot!</span>';
+        }
+    }
+    
+    public function getChildCount() {
+        $category = Category::model()->findByPk($this->id);
+        $descendants = $category->children()->findAll();
+        return count($descendants);
+    }   
 
 }

@@ -25,6 +25,46 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 'common.modules.user.components.*',
             ),
             'modules' => array(
+                'comments' => array(
+                    //you may override default config for all connecting models
+                    'defaultModelConfig' => array(
+                        //only registered users can post comments
+                        'registeredOnly' => false,
+                        'useCaptcha' => false,
+                        //allow comment tree
+                        'allowSubcommenting' => true,
+                        //display comments after moderation
+                        'premoderate' => false,
+                        //action for postig comment
+                        'postCommentAction' => 'comments/comment/postComment',
+                        //super user condition(display comment list in admin view and automoderate comments)
+                        'isSuperuser' => 'Yii::app()->user->checkAccess("moderate")',
+                        //order direction for comments
+                        'orderComments' => 'DESC',
+                    ),
+                    //the models for commenting
+                    'commentableModels' => array(
+                        //model with individual settings
+                        'Citys' => array(
+                            'registeredOnly' => true,
+                            'useCaptcha' => true,
+                            'allowSubcommenting' => false,
+                            //config for create link to view model page(page with comments)
+                            'pageUrl' => array(
+                                'route' => 'admin/citys/view',
+                                'data' => array('id' => 'city_id'),
+                            ),
+                        ),
+                        //model with default settings
+                        'ImpressionSet',
+                    ),
+                    //config for user models, which is used in application
+                    'userConfig' => array(
+                        'class' => 'User',
+                        'nameProperty' => 'username',
+                        'emailProperty' => 'email',
+                    ),
+                ),
                 // uncomment the following to enable the Gii tool
                 'member',
                 'translate' => array(
@@ -92,8 +132,8 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                         'list/<category_id:\d+>' => 'item/index',
                         'item-list-<key:\w+>' => 'item/list',
 //                        'item-<id:\d+>' => 'item/view',
-                        'item/<id:\d+>/<title:.*?>'=>'item/view',
-                        'article/<id:\d+>/<title:.*?>'=>'article/view',
+                        'item/<id:\d+>/<title:.*?>' => 'item/view',
+                        'article/<id:\d+>/<title:.*?>' => 'article/view',
                         '<_c:\w+>/<id:\d+>' => '<_c>/view',
                         '<_c:\w+>/<_a:\w+>/<id:\d+>' => '<_c>/<_a>',
                         '<_c:\w+>/<_a:\w+>' => '<_c>/<_a>',

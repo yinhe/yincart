@@ -1,3 +1,10 @@
+<?php
+$this->breadcrumbs=array(
+	'Settings'=>array('index'),
+	'Settings',
+);
+?>
+
 <h3>Site Settings</h3>
 
 <?php echo CHtml::errorSummary($model); ?>

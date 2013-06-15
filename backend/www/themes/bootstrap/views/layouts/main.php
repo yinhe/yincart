@@ -38,7 +38,7 @@
                                 array('label' => '邮件订阅', 'url'=>array('/cms/newsletterSubscriber/admin')),
                                 array('label' => '客服管理', 'url' => array('/cms/customerService/admin')),
                             ), 'visible' => !Yii::app()->user->isGuest),
-                        array('label' => '商品管理', 'url' => '#', 'items' => array(
+                        array('label' => '商城管理', 'url' => '#', 'items' => array(
                                 array('label' => 'ITEM'),
                                 array('label' => '商品分类', 'url' => array('/mall/itemCategory/admin')),
                                 array('label' => '商品类型', 'url' => array('/mall/itemType/admin')),
@@ -68,7 +68,7 @@
                         array('label' => '系统设置', 'url' => '#', 'items' => array(
                                 array('label' => '菜单管理', 'url' => array('/menu/admin')),
                                 array('label' => '分类管理', 'url' => array('/category/admin')),
-                                array('label' => '配置管理', 'url'=>array('/settings/index')),
+                                array('label' => '配置管理', 'url'=>array('/settings')),
                             ), 'visible' => !Yii::app()->user->isGuest),
                     ),
                 ),
