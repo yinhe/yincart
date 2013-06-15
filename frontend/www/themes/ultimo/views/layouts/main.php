@@ -93,9 +93,9 @@ var Translator = new Translate([]);
 <div class="page">
 <div class="header-container" id="top">
 
-<?php $this->widget('widgets.ultimo.WUltimoTopNav') ?>
+<?php $this->widget('widgets.ultimo.WTopNav') ?>
 
-<?php $this->widget('widgets.ultimo.WUltimoMainMenu') ?>
+<?php $this->widget('widgets.ultimo.WMainMenu') ?>
 
 </div> <!-- end: header-container -->
 
@@ -103,7 +103,7 @@ var Translator = new Translate([]);
 
 <div class="footer-container">
 
-<?php $this->widget('widgets.ultimo.WUltimoFootMenu') ?>
+<?php $this->widget('widgets.ultimo.WFootMenu') ?>
 
 </div> <!-- end: footer-container -->
 
