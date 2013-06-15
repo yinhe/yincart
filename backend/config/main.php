@@ -16,13 +16,10 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
             'preload' => array('log'),
             // autoloading model and component classes
             'import' => array(
-                'common.components.*',
-                'common.extensions.*',
-                'common.extensions.ucenter.*',
-                'common.models.*',
                 'application.models.*',
                 'application.components.*',
                 'application.components.helpers.*',
+                'common.modules.user.models.*'
             ),
             'modules' => array(
                 // uncomment the following to enable the Gii tool

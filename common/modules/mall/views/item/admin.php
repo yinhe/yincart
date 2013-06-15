@@ -10,14 +10,26 @@ $this->menu = array(
 ?>
 
 <h3>管理商品</h3>
-
+<?php
+$form = $this->beginWidget('CActiveForm', array(
+    'id' => 'item-form',
+    'action' => 'bulk',
+    'htmlOptions' => array('enctype' => 'multipart/form-data'),
+    'enableAjaxValidation' => false,
+        ));
+?>
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id' => 'item-grid',
     'dataProvider' => $model->search(),
     'filter' => $model,
+    'selectableRows' => 2,
     'columns' => array(
-//        'item_id',
+        array(
+            'class' => 'CCheckBoxColumn',
+            'name' => 'item_id',
+            'value' => '$data->item_id',
+        ),
         'category.name',
         'title',
         'sn',
@@ -27,12 +39,30 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'market_price',
         'shop_price',
 //        'currency',
-//        'is_show',
-//        'is_promote',
-//        'is_new',
-//        'is_hot',
-//        'is_best',
-//        'is_discount',
+        array(
+            'name' => 'is_show',
+            'value' => '$data->getShow()',
+        ),
+        array(
+            'name' => 'is_promote',
+            'value' => '$data->getPromote()',
+        ),
+        array(
+            'name' => 'is_new',
+            'value' => '$data->getNew()',
+        ),
+        array(
+            'name' => 'is_hot',
+            'value' => '$data->getHot()',
+        ),
+        array(
+            'name' => 'is_best',
+            'value' => '$data->getBest()',
+        ),
+        array(
+            'name' => 'is_discount',
+            'value' => '$data->getDiscount()',
+        ),
         /*
           'skus',
           'props',
@@ -53,9 +83,34 @@ $this->widget('bootstrap.widgets.TbGridView', array(
          */
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
-            'viewButtonUrl' => 'Yii::app()->createUrl("/item/view",
-array("id" => $data->item_id))',
+//            'viewButtonUrl' => 'Yii::app()->createUrl("/item/view",
+//array("id" => $data->item_id))',
         ),
     ),
 ));
 ?>
+<div class="control-group bulk" style="padding-top:10px">
+
+<?php
+echo CHtml::radioButtonList('act', '', array(
+    'delete' => '删除产品',
+    'if_show' => '上架',
+    'un_show' => '下架',
+    'is_promote' => '促销',
+    'un_promote' => '取消促销',
+    'is_new' => '新品',
+    'un_new' => '取消新品',
+    'hot' => '热卖',
+    'un_hot' => '取消热卖',
+    'best' => '精品',
+    'un_best' => '取消精品',
+    'discount' => '折扣',
+    'un_discount' => '取消折扣',
+        ), array('separator' => '&nbsp;')
+)
+?>
+
+    <?php echo CHtml::submitButton('提交', array('class'=>'btn btn-primary')); ?>
+
+</div>
+    <?php $this->endWidget(); ?>

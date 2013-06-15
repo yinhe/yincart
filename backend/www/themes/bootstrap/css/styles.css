@@ -15,3 +15,10 @@ footer .copy {
     color: #666666;
     text-align: right;
 }
+.bulk label {
+    display:inline !important;
+}
+.labelForRadio {
+    display:inline-block;width:auto;float:none;
+    padding-right:5px;
+}

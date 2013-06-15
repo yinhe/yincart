@@ -1,91 +1,87 @@
 <?php
-/** @var BootActiveForm $form */
+$action = 'article';
+//$id = Yii::app()->user->id;
+//$id = array_rand(array_fill_keys(range('a','z'), null), 1);
+$id = NULL;
+Yii::app()->getClientScript()->registerScript('editorparam', 'window.KEDITOR_PARAM = "action=' . $action . '&id=' . $id . '"', CClientScript::POS_HEAD);
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id' => 'article-form',
-    'type' => 'horizontal',
+    'htmlOptions' => array('enctype' => 'multipart/form-data'),
     'enableAjaxValidation' => false,
         ));
 ?>
 
-<legend><?php echo $action_text ?></legend>
 
-<p class="help-block">Fields with <span class="required">*</span> are required.</p>
-
-
+<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 <?php echo $form->errorSummary($model); ?>
 
-  <div class="control-group ">
-        <label for="Article_category_id" class="control-label required">文章分类 <span class="required">*</span></label>
-        <div class="controls">
-            <?php
-            
-            echo '<select id="Article_category_id" name="Article[category_id]">';
-            $category = Category::model()->findByPk(5);
-            $descendants = $category->descendants()->findAll();
-            $level = 3;
+<?php
+echo '<select id="Article_category_id" name="Article[category_id]">';
 
-            echo '<option value="0" >请选择分类</option>';
-            foreach ($descendants as $child) {
-                $string = '&nbsp;&nbsp;';
-                $string .= str_repeat('&nbsp;&nbsp;', $child->level - $level);
-                if ($child->isLeaf() && !$child->next()->find()) {
-                    $string .= '';
-                } else {
+$category = Category::model()->findByPk(5);
+$descendants = $category->descendants()->findAll();
+$level = 1;
+echo '<option value="">请选择分类</option>';
+foreach ($descendants as $child) {
+    $string = '&nbsp;&nbsp;';
+    $string .= str_repeat('&nbsp;&nbsp;', $child->level - $level);
+    if ($child->isLeaf() && !$child->next()->find()) {
+        $string .= '&nbsp;&nbsp;';
+    } else {
 
-                    $string .= '';
-                }
-                $string .= '' . $child->name;
+        $string .= '';
+    }
+    $string .= '' . $child->name;
 //		echo $string;
-                if (!$model->isNewRecord) {
-                    if ($model->category_id == $child->id) {
-                        $selected = 'selected';
+    if (!$model->isNewRecord) {
+        if ($model->category_id == $child->id) {
+            $selected = 'selected';
 
-                        echo '<option value="' . $child->id . '" selected="' . $selected . '">' . $string . '</option>';
-                    } else {
-                        echo '<option value="' . $child->id . '" >' . $string . '</option>';
-                    }
-                } else {
-                    echo '<option value="' . $child->id . '" >' . $string . '</option>';
-                }
-            }
-
-            echo '</select>';
-            ?>
-        </div>
-    </div>
-
-<?php echo $form->textFieldRow($model, 'title'); ?>
+            echo '<option value="' . $child->id . '" selected="' . $selected . '">' . $string . '</option>';
+        } else {
+            echo '<option value="' . $child->id . '" >' . $string . '</option>';
+        }
+    } else {
+        echo '<option value="' . $child->id . '" >' . $string . '</option>';
+    }
+}
+echo '</select>';
+?>
+<?php echo $form->textFieldRow($model, 'title', array('class' => 'span5')); ?>
 
 
-<?php echo $form->dropDownListRow($model, 'language', array('zh_cn' => '中文', 'en_us' => 'English')); ?>
+<?php echo $form->dropDownListRow($model, 'language', array('en_us' => 'English' , 'zh_cn' => '中文')); ?>
 
 
-<?php echo $form->textFieldRow($model, 'from', array('size' => 30, 'maxlength' => 100, 'value' => '本站')); ?>
+<?php echo $form->textFieldRow($model, 'from', array('class' => 'span5', 'value' => '本站')); ?>
 
 
-<?php echo $form->textFieldRow($model, 'url', array('size' => 60, 'maxlength' => 100)); ?>
+<?php echo $form->textFieldRow($model, 'url', array('class' => 'span5')); ?>
 
-<?php echo $form->textAreaRow($model, 'content'); ?>
+<?php echo $form->textAreaRow($model, 'summary', array('class' => 'span5', 'style'=>'height:100px')); ?>
 
-    <?php
-    $this->widget('comext.kindeditor.KindEditorWidget', array(
-        'id' => 'Article_content', # Textarea id
-        'language' => 'zh_CN',
+<?php echo $form->textAreaRow($model, 'content', array('visibility' => 'hidden')); ?>
+<?php
+$this->widget('comext.kindeditor.KindEditorWidget', array(
+    'id' => 'Article_content', //Textarea id
+    'items' => array(
+        'width' => '700px',
+        'height' => '300px',
+        'themeType' => 'simple',
+        'allowImageUpload' => true,
+        'allowFileUpload' => true,
+        'allowFileManager' => true,
         'items' => array(
-            'width' => '700px',
-            'height' => '300px',
-            'themeType' => 'simple',
-            'allowFileManager' => true,
-            'allowImageUpload' => true,
-            'allowFlashUpload' => true,
-            'items' => array(
-                'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
-                'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
-                'insertunorderedlist', '|', 'emoticons', 'image', 'link',
-            )),
-    ));
-    ?>
+            'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic',
+            'underline', 'removeformat', '|', 'justifyleft', 'justifycenter',
+            'justifyright', 'insertorderedlist', 'insertunorderedlist', '|',
+            'emoticons', 'image', 'multiimage', 'link',
+        ),
+    ),
+    'options' => array('action' => $action, 'id' => $id)
+));
+?>
 
 <div class="form-actions">
     <?php

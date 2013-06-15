@@ -121,4 +121,18 @@ class Menu extends CActiveRecord {
         ));
     }
 
+    public function getChildMenu() {
+        $menu = Menu::model()->findByPk($this->id);
+        $descendants = $menu->children()->findAll();
+        foreach ($descendants as $model)
+            $items[] = array('label' => F::t($model->name), 'url' => $model->url ? Yii::app()->request->baseUrl . '/' . $model->url : '#');
+
+        return $items;
+    }
+
+    public function getChildCount() {
+        $menu = Menu::model()->findByPk($this->id);
+        $descendants = $menu->children()->findAll();
+        return count($descendants);
+    }    
 }

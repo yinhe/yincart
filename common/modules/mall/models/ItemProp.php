@@ -46,12 +46,12 @@ class ItemProp extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('category_id, prop_name', 'required'),
-            array('category_id, is_key_prop, is_sale_prop, is_color_prop, is_enum_prop, is_item_prop, must, multi, sort_order', 'numerical', 'integerOnly' => true),
+            array('type_id, prop_name', 'required'),
+            array('type_id, is_key_prop, is_sale_prop, is_color_prop, is_enum_prop, is_item_prop, must, multi, sort_order', 'numerical', 'integerOnly' => true),
             array('parent_prop_id, parent_value_id, type', 'length', 'max' => 10),
             array('prop_name, prop_alias', 'length', 'max' => 100),
             array('status', 'length', 'max' => 7),
-            array('category_id, prop_values', 'safe'),
+            array('type_id, prop_values', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('prop_id, parent_prop_id, parent_value_id, prop_name, prop_alias, type, is_key_prop, is_sale_prop, is_color_prop, is_enum_prop, is_item_prop, must, multi, prop_values, status, sort_order', 'safe', 'on' => 'search'),
@@ -65,8 +65,8 @@ class ItemProp extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-//            'categories'=>array(self::MANY_MANY, 'Category', 'prop_category(prop_id, category_id)'),
-            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
+//            'categories'=>array(self::MANY_MANY, 'Category', 'prop_category(prop_id, type_id)'),
+            'itemType' => array(self::BELONGS_TO, 'ItemType', 'type_id'),
         );
     }
 
@@ -76,7 +76,7 @@ class ItemProp extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'prop_id' => '属性ID',
-            'category_id' => '类目',
+            'type_id' => '类目',
             'parent_prop_id' => '上级属性ID',
             'parent_value_id' => '上级属性值ID',
             'prop_name' => '属性名',
@@ -179,7 +179,7 @@ class ItemProp extends CActiveRecord {
                 $db->createCommand()->insert('{{prop_value}}', array(
                     'prop_id' => $this->prop_id,
                     'value_name' => $PropValues['value_name'][$i],
-                    'category_id' => $PropValues['category_id'][$i],
+                    'type_id' => $PropValues['type_id'][$i],
                     'sort_order' => $PropValues['sort_order'][$i],
                 ));
             }
@@ -198,7 +198,7 @@ class ItemProp extends CActiveRecord {
         }
     }
 
-    public function getPropOptionValues($label='') {
+    public function getPropOptionValues($label='', $selected='') {
         $cri = new CDbCriteria(array(
                     'condition' => 'prop_id =' . $this->prop_id,
                     'order' => 'sort_order asc, value_id asc'
@@ -206,8 +206,13 @@ class ItemProp extends CActiveRecord {
         $PropValues = PropValue::model()->findAll($cri);
 
         $list = CHtml::listData($PropValues, 'value_id', 'value_name');
-        echo CHtml::DropDownList('pid_' . $this->prop_id, '', $list, array('empty' => '请选择','label'=>$label));
+        echo CHtml::DropDownList('Item[props][' . $this->prop_id.']', $selected, $list, array('empty' => '请选择','label'=>$label));
     }
+    
+    public function getPropTextFieldValues($label='', $value='') {
+        echo CHtml::textField('Item[props][' . $this->prop_id.']', $value, array('label'=>$label));
+    }
+    
     public function getPropArrayValues() {
         $cri = new CDbCriteria(array(
                     'condition' => 'prop_id =' . $this->prop_id,
@@ -219,7 +224,7 @@ class ItemProp extends CActiveRecord {
         }
         return $array;
     }
-    public function getPropCheckBoxListValues() {
+    public function getPropCheckBoxListValues($label='', $selected='') {
         $cri = new CDbCriteria(array(
                     'condition' => 'prop_id =' . $this->prop_id,
                     'order' => 'sort_order asc, value_id asc'
@@ -227,7 +232,7 @@ class ItemProp extends CActiveRecord {
         $PropValues = PropValue::model()->findAll($cri);
 
         $list = CHtml::listData($PropValues, 'value_id', 'value_name');
-        echo CHtml::checkBoxList('pid_' . $this->prop_id, '', $list, array('separator' => '', 'labelOptions' => array('class' => 'labelForRadio')));
+        echo CHtml::checkBoxList('Item[props]['. $this->prop_id.']', $selected, $list, array('label'=>$label, 'separator' => '', 'labelOptions' => array('class' => 'labelForRadio')));
     }
     
 }

@@ -30,7 +30,8 @@ class CatalogController extends Controller {
             'model' => $model,
             'items' => $items,
             'pages' => $pages,
-            'hotItems' => $hotItems
+            'hotItems' => $hotItems,
+            'key' => $key
         ));
     }
 

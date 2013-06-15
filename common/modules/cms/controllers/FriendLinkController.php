@@ -46,7 +46,7 @@ class FriendLinkController extends Controller {
             }
             if ($model->save()) {
                 $img->saveAs($img_src);
-                $this->redirect(array('/admin/friendLink/admin'));
+                $this->redirect(array('/cms/friendLink/admin'));
             }
         }
         $this->render('create', array(
@@ -85,7 +85,7 @@ class FriendLinkController extends Controller {
                     @unlink(dirname(Yii::app()->basePath) . '/upload/link/' . $FriendLink->image);
                     $img->saveAs($img_src);
                 }
-                $this->redirect(array('/admin/friendLink/admin'));
+                $this->redirect(array('/cms/friendLink/admin'));
             }
         }
         $this->render('update', array(

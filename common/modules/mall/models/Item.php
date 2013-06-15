@@ -62,8 +62,8 @@ class Item extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title, unit, min_number, pic_url, desc, language, category_id', 'required'),
-            array('stock, is_show, is_promote, is_new, is_hot, is_best, is_discount, sort_order', 'numerical', 'integerOnly' => true),
+            array('title, min_number, desc, language, category_id', 'required'),
+            array('type_id, stock, is_show, is_promote, is_new, is_hot, is_best, is_discount, sort_order', 'numerical', 'integerOnly' => true),
             array('category_id, market_price, shop_price, post_fee, express_fee, ems_fee', 'length', 'max' => 10),
             array('title, pic_url', 'length', 'max' => 255),
             array('sn', 'length', 'max' => 60),
@@ -72,6 +72,20 @@ class Item extends CActiveRecord {
             array('location, language', 'length', 'max' => 45),
             array('click_count, create_time, update_time', 'length', 'max' => 11),
             array('skus, props, props_name, item_imgs, prop_imgs, desc', 'safe'),
+//            array('pic_url', 'file',
+//                'types' => 'jpg, gif, png',
+//                'maxSize' => 1024 * 1024 * 2, // 2MB
+//                'tooLarge' => '文件超过 2MB. 请上传小一点儿的文件.',
+//                'allowEmpty' => false,
+//                'on' => 'create'
+//            ),
+//            array('pic_url', 'file',
+//                'types' => 'jpg, gif, png',
+//                'maxSize' => 1024 * 1024 * 2, // 2MB
+//                'tooLarge' => '文件超过 2MB. 请上传小一点儿的文件.',
+//                'allowEmpty' => true,
+//                'on' => 'update'
+//            ),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('item_id, category_id, title, sn, unit, stock, min_number, market_price, shop_price, currency, skus, props, props_name, item_imgs, prop_imgs, pic_url, desc, location, post_fee, express_fee, ems_fee, is_show, is_promote, is_new, is_hot, is_best, is_discount, click_count, sort_order, create_time, update_time, language', 'safe', 'on' => 'search'),
@@ -85,7 +99,9 @@ class Item extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'category' => array(self::BELONGS_TO, 'Category', 'category_id')
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
+            'image' => array(self::HAS_MANY, 'ItemImg', 'item_id'),
+            'type' => array(self::BELONGS_TO, 'ItemType', 'type_id'),
         );
     }
 
@@ -96,6 +112,8 @@ class Item extends CActiveRecord {
         return array(
             'item_id' => 'ID',
             'category_id' => '分类',
+            'category.name' => '分类',
+            'type_id' => '商品类型',
             'title' => '商品标题',
             'sn' => '商品货号',
             'unit' => '计量单位',
@@ -109,7 +127,7 @@ class Item extends CActiveRecord {
             'props_name' => '商品属性名称',
             'item_imgs' => '图片集',
             'prop_imgs' => '属性图片集',
-            'pic_url' => '商品主图片地址',
+            'pic_url' => '主图',
             'desc' => '商品描述',
             'location' => '商品所在地',
             'post_fee' => '平邮费用',
@@ -174,8 +192,8 @@ class Item extends CActiveRecord {
         $criteria->compare('language', $this->language, true);
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                ));
+            'criteria' => $criteria,
+        ));
     }
 
     public function getShow() {
@@ -198,6 +216,10 @@ class Item extends CActiveRecord {
         echo $this->is_best == 1 ? CHtml::image(Yii::app()->request->baseUrl . '/images/yes.gif') : CHtml::image(Yii::app()->request->baseUrl . '/images/no.gif');
     }
 
+    public function getDiscount() {
+        echo $this->is_discount == 1 ? CHtml::image(Yii::app()->request->baseUrl . '/images/yes.gif') : CHtml::image(Yii::app()->request->baseUrl . '/images/no.gif');
+    }
+
     public function beforeSave() {
         if (parent::beforeSave()) {
             if ($this->isNewRecord) {
@@ -212,7 +234,18 @@ class Item extends CActiveRecord {
     }
 
     public function getTitle() {
-        return CHtml::link($this->title, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+        return CHtml::link(F::msubstr($this->title, '0', '40', 'utf-8'), array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+    }
+
+    /**
+     * @return string the URL that shows the detail of the item
+     */
+    public function getUrl() {
+        $title = str_replace('/', '-', $this->title);
+        return Yii::app()->createUrl('item/view', array(
+                    'id' => $this->item_id,
+                    'title' => $title,
+        ));
     }
 
     public function getBtnList() {
@@ -220,17 +253,17 @@ class Item extends CActiveRecord {
                 . CHtml::link(CHtml::image(Yii::app()->request->baseUrl . '/images/btn_buy.gif'), '#', array('id' => 'btn-buy-' . $this->item_id, 'onclick' => 'fastBuy(this, ' . $this->item_id . ', $("#qty_' . $this->item_id . '").val())'
                 ))
                 . '&nbsp;' . CHtml::link(CHtml::image(Yii::app()->request->baseUrl . '/images/btn_addwish.gif'), '#', array('id' => 'btn-addwish-' . $this->item_id, 'onclick' => 'addWish(this, ' . $this->item_id . ')'
-                        ));
+        ));
     }
 
     public function getListThumb() {
-        $img = '/upload/item/' . $this->pic_url;
+        $img = '/../../upload/item/' . $this->pic_url;
         $trueimage = Yii::app()->request->hostInfo . $img;
         if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(150, 150, $img, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        }else{
+            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(300, 300, $img, array('method' => 'resize'));
+            $img_thumb_now = CHtml::image($img_thumb, $this->title);
+            return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+        } else {
             return '没有图片';
         }
     }
@@ -239,22 +272,10 @@ class Item extends CActiveRecord {
         $img = '/upload/item/' . $this->pic_url;
         $trueimage = Yii::app()->request->hostInfo . $img;
         if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return $img_thumb_now;
-        }else{
-            return '没有图片';
-        }
-    }
-
-    public function getSmallThumb() {
-        $img = '/upload/item/' . $this->pic_url;
-        $trueimage = Yii::app()->request->hostInfo . $img;
-        if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(40, 40, $img, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        }else{
+            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
+            $img_thumb_now = CHtml::image($img_thumb, $this->title);
+            return $img_thumb_now;
+        } else {
             return '没有图片';
         }
     }
@@ -263,10 +284,10 @@ class Item extends CActiveRecord {
         $img = '/upload/item/' . $this->pic_url;
         $trueimage = Yii::app()->request->hostInfo . $img;
         if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        }else{
+            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
+            $img_thumb_now = CHtml::image($img_thumb, $this->title);
+            return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+        } else {
             return '没有图片';
         }
     }
@@ -275,12 +296,59 @@ class Item extends CActiveRecord {
         $img = '/upload/item/' . $this->pic_url;
         $trueimage = Yii::app()->request->hostInfo . $img;
         if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(80, 80, $img, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        }else{
+            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(80, 80, $img, array('method' => 'resize'));
+            $img_thumb_now = CHtml::image($img_thumb, $this->title);
+            return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+        } else {
             return '没有图片';
         }
+    }
+
+    /**
+     * 得到商品主图
+     * @return type
+     */
+    public function getMainPic() {
+        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+        foreach ($images as $k => $v) {
+            if ($v['position'] == 0) {
+//                return CHtml::image(Yii::app()->request->baseUrl . '/../../upload/item/image/' . $v['url'], $this->title);
+                return CHtml::image('http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'], $this->title);
+            }
+        }
+    }
+
+    /**
+     * 得到商品主图地址
+     * @return type
+     */
+    public function getMainPicUrl() {
+        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+        foreach ($images as $k => $v) {
+            if ($v['position'] == 0) {
+//                return Yii::app()->request->baseUrl . '/../../upload/item/image/' . $v['url'];
+                return 'http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'];
+            }
+        }
+    }
+
+    public function getSmallThumb() {
+        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+        foreach ($images as $k => $v) {
+            if ($v['position'] == 0) {
+                $img = '/../../upload/item/image/' . $v['url'];
+            }
+        }
+//        $trueimage = Yii::app()->request->hostInfo . $img;
+//        if (F::isfile($trueimage)) {
+        $img_thumb = ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
+        $img_thumb1 = str_replace('/../../upload', 'http://img.' . F::sg('site', 'domain'), $img_thumb);
+        $img_thumb_now = CHtml::image($img_thumb1, $this->title);
+//            echo $img_thumb_now;
+        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+//        } else {
+//            return '没有图片';
+//        }
     }
 
 }

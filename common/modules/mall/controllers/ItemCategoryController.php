@@ -185,7 +185,7 @@ class ItemCategoryController extends Controller {
             if (file_exists($image)) {
                 @unlink($image);
             }
-            $model->delete();
+            $model->deleteNode();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
             if (!isset($_GET['ajax']))
