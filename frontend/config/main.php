@@ -5,7 +5,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
+Yii::setPathOfAlias('widgets', dirname(__FILE__) . '/../widgets');
 
 return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.php'), array(
             'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',

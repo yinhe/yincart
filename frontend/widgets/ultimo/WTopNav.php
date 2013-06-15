@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class WUltimoTopNav extends CWidget {
+class WTopNav extends CWidget {
 
     public function getCount(){
         $cart = Yii::app()->cart;
@@ -13,7 +13,7 @@ class WUltimoTopNav extends CWidget {
         return $count;
     }
     public function run() {
-        $this->render('ultimoTopNav');
+        $this->render('topNav');
     }
 
 }
