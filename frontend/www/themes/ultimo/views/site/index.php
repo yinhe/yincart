@@ -6,18 +6,21 @@
 
                     <!--<div class="viewport" style="overflow: hidden; position: relative; height: 390px;">-->
                         <ul class="slides">
+                            <?php
+    $ad_list = Ad::model()->findAll();
+    foreach ($ad_list as $k => $a) {
+        ?>
                             <li>
-                                <a title="Click to see all features" href="http://ultimo.infortis-themes.com/demo/default/ultimo-responsive-magento-theme/">
-                                    <img alt="Responsive Magento Theme" src="http://ultimo.infortis-themes.com/demo/media/wysiwyg/demo/infortis/ultimo/slideshow/all_1.jpg">
+                                <a title="Click to see all features" href="<?php echo $a->url ?>">
+                                    <?php echo CHtml::image(F::baseUrl().'/../../upload/ad/'.$a->pic) ?>
                                     <div class="caption dark3">
-                                        <h2 class="heading permanent">Responsive Layout</h2>
-                                        <p>This theme can adapt to any mobile screen resolution</p>
-                                        <p>It also supports wide screens</p>
+                                        <h2 class="heading permanent"><?php echo $a->title ?></h2>
+                                        <p><?php echo $a->content ?></p>
                                     </div>
                                 </a>
                             </li>
-
-                            <li>
+    <?php } ?>
+<!--                            <li>
                                 <a title="Click to see all features" href="http://ultimo.infortis-themes.com/demo/default/ultimo-responsive-magento-theme/">
                                     <img alt="Customizable Magento Theme" src="http://ultimo.infortis-themes.com/demo/media/wysiwyg/demo/infortis/ultimo/slideshow/s1_1.jpg">
                                     <div class="caption light1 top-right">
@@ -26,7 +29,7 @@
                                         <p>You have never seen so many options</p>
                                     </div>
                                 </a>					
-                            </li>
+                            </li>-->
                         </ul>
                     <!--</div>-->
                     

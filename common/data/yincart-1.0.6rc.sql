@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 06 月 15 日 03:57
+-- 生成日期: 2013 年 06 月 15 日 05:41
 -- 服务器版本: 5.5.24-log
 -- PHP 版本: 5.3.13
 
@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS `ad` (
   `title` varchar(100) NOT NULL,
   `pic` varchar(100) NOT NULL,
   `url` varchar(50) NOT NULL,
+  `content` text,
   `sort_order` int(11) NOT NULL DEFAULT '255',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
@@ -39,12 +40,12 @@ CREATE TABLE IF NOT EXISTS `ad` (
 -- 转存表中的数据 `ad`
 --
 
-INSERT INTO `ad` (`id`, `title`, `pic`, `url`, `sort_order`) VALUES
-(1, '1', '20130529/20130529083448_71943.jpg', '', 1),
-(2, '2', '20130529/20130529083504_66859.jpg', '', 2),
-(3, '3', '20130529/20130529084406_96355.jpg', '', 3),
-(4, '4', '20130529/20130529084418_38976.jpg', '', 4),
-(5, '5', '20130529/20130529084431_43901.jpg', '', 5);
+INSERT INTO `ad` (`id`, `title`, `pic`, `url`, `content`, `sort_order`) VALUES
+(1, 'WOMEN', '20130615/20130615043050_12315.jpg', '', 'here is your place', 1),
+(2, 'Customizable Theme', '20130615/20130615043115_89562.jpg', '', 'You can change colors of almost every element', 2),
+(3, '3', '20130615/20130615043123_20022.jpg', '', NULL, 3),
+(4, '4', '20130615/20130615043131_21178.jpg', '', NULL, 4),
+(5, '5', '20130615/20130615043143_16435.jpg', '', NULL, 5);
 
 -- --------------------------------------------------------
 
@@ -4819,7 +4820,7 @@ CREATE TABLE IF NOT EXISTS `prop_img` (
 
 CREATE TABLE IF NOT EXISTS `prop_value` (
   `value_id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '属性值ID',
-  `category_id` int(10) unsigned NOT NULL,
+  `type_id` int(10) unsigned NOT NULL,
   `prop_id` int(10) unsigned DEFAULT NULL,
   `value_name` varchar(45) DEFAULT NULL COMMENT '属性值',
   `value_alias` varchar(45) DEFAULT NULL COMMENT '属性值别名',
@@ -4828,54 +4829,44 @@ CREATE TABLE IF NOT EXISTS `prop_value` (
   `sort_order` tinyint(3) unsigned DEFAULT '255' COMMENT '排列序号。取值范围:大于零的整数',
   PRIMARY KEY (`value_id`),
   KEY `fk_prop_value_item_prop` (`prop_id`),
-  KEY `fk_prop_value_category1` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=168 ;
+  KEY `fk_prop_value_category1` (`type_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=178 ;
 
 --
 -- 转存表中的数据 `prop_value`
 --
 
-INSERT INTO `prop_value` (`value_id`, `category_id`, `prop_id`, `value_name`, `value_alias`, `is_parent`, `status`, `sort_order`) VALUES
-(76, 1, 1, '石英', NULL, NULL, NULL, 0),
-(77, 1, 1, '机械', NULL, NULL, NULL, 0),
-(78, 1, 1, '电子', NULL, NULL, NULL, 0),
-(79, 1, 1, '光动能', NULL, NULL, NULL, 0),
-(80, 1, 1, '自动机械', NULL, NULL, NULL, 0),
-(81, 1, 2, '圆形', NULL, NULL, NULL, 0),
-(82, 1, 2, '方形', NULL, NULL, NULL, 0),
-(83, 1, 2, '椭圆', NULL, NULL, NULL, 0),
-(84, 1, 2, '酒桶', NULL, NULL, NULL, 0),
-(85, 1, 2, '其他', NULL, NULL, NULL, 0),
-(97, 1, 4, '军绿色', NULL, NULL, NULL, 0),
-(98, 1, 4, '天蓝色', NULL, NULL, NULL, 0),
-(99, 1, 4, '巧克力色', NULL, NULL, NULL, 0),
-(100, 1, 4, '桔色', NULL, NULL, NULL, 0),
-(101, 1, 4, '浅灰色', NULL, NULL, NULL, 0),
-(102, 1, 4, '浅绿色', NULL, NULL, NULL, 0),
-(103, 1, 3, '名威 Merveille', NULL, NULL, NULL, 0),
-(104, 1, 3, '天梭Tissot', NULL, NULL, NULL, 0),
-(105, 1, 3, '亚力克丽AC', NULL, NULL, NULL, 0),
-(106, 1, 3, '劳力士ROLEX', NULL, NULL, NULL, 0),
-(107, 1, 3, '萝亚克朗Royal Crown', NULL, NULL, NULL, 0),
-(108, 1, 3, '欧古诗丹AUGSDA', NULL, NULL, NULL, 0),
-(109, 1, 3, '欧曼巴amomba', NULL, NULL, NULL, 0),
-(110, 1, 3, '浪琴Longine', NULL, NULL, NULL, 0),
-(111, 1, 3, 'JOJO', NULL, NULL, NULL, 0),
-(112, 1, 3, 'ELLE', NULL, NULL, NULL, 0),
-(113, 1, 3, '卡西欧CASIO', NULL, NULL, NULL, 0),
-(114, 1, 5, '瑞士', NULL, NULL, NULL, 0),
-(115, 1, 5, '欧洲', NULL, NULL, NULL, 0),
-(116, 1, 5, '美国', NULL, NULL, NULL, 0),
-(117, 1, 5, '日本', NULL, NULL, NULL, 0),
-(118, 1, 5, '中国', NULL, NULL, NULL, 0),
-(119, 1, 6, '皮带', NULL, NULL, NULL, 0),
-(120, 1, 6, '钢带', NULL, NULL, NULL, 0),
-(121, 1, 6, '胶带', NULL, NULL, NULL, 0),
-(122, 1, 6, '其他', NULL, NULL, NULL, 0),
-(123, 1, 7, '500元以下', NULL, NULL, NULL, 0),
-(124, 1, 7, '800元左右', NULL, NULL, NULL, 0),
-(125, 1, 7, '1000元以上', NULL, NULL, NULL, 0),
-(126, 1, 7, '2000元以上', NULL, NULL, NULL, 0),
+INSERT INTO `prop_value` (`value_id`, `type_id`, `prop_id`, `value_name`, `value_alias`, `is_parent`, `status`, `sort_order`) VALUES
+(76, 5, 1, '石英', NULL, NULL, NULL, 0),
+(77, 5, 1, '机械', NULL, NULL, NULL, 0),
+(78, 5, 1, '电子', NULL, NULL, NULL, 0),
+(79, 5, 1, '光动能', NULL, NULL, NULL, 0),
+(80, 5, 1, '自动机械', NULL, NULL, NULL, 0),
+(81, 5, 2, '圆形', NULL, NULL, NULL, 0),
+(82, 5, 2, '方形', NULL, NULL, NULL, 0),
+(83, 5, 2, '椭圆', NULL, NULL, NULL, 0),
+(84, 5, 2, '酒桶', NULL, NULL, NULL, 0),
+(85, 5, 2, '其他', NULL, NULL, NULL, 0),
+(103, 5, 3, '名威 Merveille', NULL, NULL, NULL, 0),
+(104, 5, 3, '天梭Tissot', NULL, NULL, NULL, 0),
+(105, 5, 3, '亚力克丽AC', NULL, NULL, NULL, 0),
+(106, 5, 3, '劳力士ROLEX', NULL, NULL, NULL, 0),
+(107, 5, 3, '萝亚克朗Royal Crown', NULL, NULL, NULL, 0),
+(108, 5, 3, '欧古诗丹AUGSDA', NULL, NULL, NULL, 0),
+(109, 5, 3, '欧曼巴amomba', NULL, NULL, NULL, 0),
+(110, 5, 3, '浪琴Longine', NULL, NULL, NULL, 0),
+(111, 5, 3, 'JOJO', NULL, NULL, NULL, 0),
+(112, 5, 3, 'ELLE', NULL, NULL, NULL, 0),
+(113, 5, 3, '卡西欧CASIO', NULL, NULL, NULL, 0),
+(114, 5, 5, '瑞士', NULL, NULL, NULL, 0),
+(115, 5, 5, '欧洲', NULL, NULL, NULL, 0),
+(116, 5, 5, '美国', NULL, NULL, NULL, 0),
+(117, 5, 5, '日本', NULL, NULL, NULL, 0),
+(118, 5, 5, '中国', NULL, NULL, NULL, 0),
+(119, 5, 6, '皮带', NULL, NULL, NULL, 0),
+(120, 5, 6, '钢带', NULL, NULL, NULL, 0),
+(121, 5, 6, '胶带', NULL, NULL, NULL, 0),
+(122, 5, 6, '其他', NULL, NULL, NULL, 0),
 (127, 2, 8, '棉质', NULL, NULL, NULL, 0),
 (128, 2, 8, '麻质', NULL, NULL, NULL, 0),
 (129, 2, 8, '毛线', NULL, NULL, NULL, 0),
@@ -4891,16 +4882,26 @@ INSERT INTO `prop_value` (`value_id`, `category_id`, `prop_id`, `value_name`, `v
 (150, 2, 9, '大方巾', NULL, NULL, NULL, 0),
 (151, 2, 9, '小方巾', NULL, NULL, NULL, 0),
 (152, 2, 9, '其他形状', NULL, NULL, NULL, 0),
-(158, 1, 11, 'Coach', NULL, NULL, NULL, 0),
-(159, 1, 11, 'Esprit', NULL, NULL, NULL, 0),
-(160, 1, 11, 'Ferragamo/佛莱格默', NULL, NULL, NULL, 0),
-(161, 1, 11, 'Gucci', NULL, NULL, NULL, 0),
-(162, 1, 11, 'Hermes/爱玛仕', NULL, NULL, NULL, 0),
-(163, 1, 11, 'Lemonpaier/利玛派尔', NULL, NULL, NULL, 0),
-(164, 1, 11, 'Ports/宝姿', NULL, NULL, NULL, 0),
-(165, 1, 11, 'Uniqlo/优衣库', NULL, NULL, NULL, 0),
-(166, 1, 11, 'Zara', NULL, NULL, NULL, 0),
-(167, 1, 11, 'alexander mcqueen', NULL, NULL, NULL, 0);
+(158, 5, 11, 'Coach', NULL, NULL, NULL, 0),
+(159, 5, 11, 'Esprit', NULL, NULL, NULL, 0),
+(160, 5, 11, 'Ferragamo/佛莱格默', NULL, NULL, NULL, 0),
+(161, 5, 11, 'Gucci', NULL, NULL, NULL, 0),
+(162, 5, 11, 'Hermes/爱玛仕', NULL, NULL, NULL, 0),
+(163, 5, 11, 'Lemonpaier/利玛派尔', NULL, NULL, NULL, 0),
+(164, 5, 11, 'Ports/宝姿', NULL, NULL, NULL, 0),
+(165, 5, 11, 'Uniqlo/优衣库', NULL, NULL, NULL, 0),
+(166, 5, 11, 'Zara', NULL, NULL, NULL, 0),
+(167, 5, 11, 'alexander mcqueen', NULL, NULL, NULL, 0),
+(168, 2, 4, '军绿色', NULL, NULL, NULL, 0),
+(169, 2, 4, '天蓝色', NULL, NULL, NULL, 0),
+(170, 2, 4, '巧克力色', NULL, NULL, NULL, 0),
+(171, 2, 4, '桔色', NULL, NULL, NULL, 0),
+(172, 2, 4, '浅灰色', NULL, NULL, NULL, 0),
+(173, 2, 4, '浅绿色', NULL, NULL, NULL, 0),
+(174, 2, 7, '50元以下', NULL, NULL, NULL, 0),
+(175, 2, 7, '50-100元', NULL, NULL, NULL, 0),
+(176, 2, 7, '100-200元', NULL, NULL, NULL, 0),
+(177, 2, 7, '200元以上', NULL, NULL, NULL, 0);
 
 -- --------------------------------------------------------
 

@@ -5,7 +5,6 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List FlashAd', 'icon'=>'list', 'url'=>array('index')),
 	array('label'=>'Create FlashAd', 'icon'=>'plus','url'=>array('create')),
 	array('label'=>'Update FlashAd', 'icon'=>'pencil','url'=>array('update', 'id'=>$model->id)),
 	array('label'=>'Delete FlashAd', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
@@ -21,6 +20,7 @@ $this->menu=array(
 		'title',
 		'pic',
 		'url',
+                'content:html',
 		'sort_order',
 	),
 )); ?>

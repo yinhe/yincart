@@ -52,6 +52,7 @@ class Ad extends CActiveRecord {
                 'on' => 'update'
             ),
             array('url', 'length', 'max' => 50),
+            array('content', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('id, title, pic, url, sort_order', 'safe', 'on' => 'search'),
@@ -77,6 +78,7 @@ class Ad extends CActiveRecord {
             'title' => '标题',
             'pic' => '图片',
             'url' => 'Url地址',
+            'content' => '内容',
             'sort_order' => '排序',
         );
     }

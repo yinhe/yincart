@@ -12,6 +12,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 <?php echo $form->textFieldRow($model, 'title', array('class' => 'span5'));?>
 <?php echo $form->fileFieldRow($model, 'pic', array('class' => 'span5')); ?>
 <?php echo $form->textFieldRow($model, 'url', array('class' => 'span5')); ?>
+<?php echo $form->textAreaRow($model, 'content', array('class'=>'span8', 'rows'=>5)); ?>
 <?php echo $form->textFieldRow($model, 'sort_order'); ?>
 
 <div class="form-actions">
