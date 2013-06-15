@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 
-class WUltimoFootMenu extends CWidget {
+class WFootMenu extends CWidget {
 
     public function getFootMenu() {
         $foot = Menu::model()->findByPk(5);
@@ -14,7 +14,7 @@ class WUltimoFootMenu extends CWidget {
     }
 
     public function run() {
-        $this->render('ultimoFootMenu');
+        $this->render('footMenu');
     }
 
 }

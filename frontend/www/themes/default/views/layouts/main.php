@@ -25,13 +25,13 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
     <body>
         <div id="header">
             <div class="hd_top">
-                <?php $this->widget('WTopNav') ?>
+                <?php $this->widget('widgets.default.WTopNav') ?>
             </div>
             <div class="hd">
                 <div class="hd2">
                     <div class="common_left"><a href="" title><img alt="logo" src="<?php echo Yii::app()->request->baseUrl ?>/images/logo.png" width="329" height="64"/></a></div>
                     <div class="common_right">
-                        <?php $this->widget('WSearch') ?>
+                        <?php $this->widget('widgets.default.WSearch') ?>
                         <div class="clear"></div>
                         <div class="phone">
                             订购热线：86 0579 86898388
@@ -41,7 +41,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
             </div>
         </div>
         <div id="nav">
-            <?php $this->widget('WMainMenu') ?>
+            <?php $this->widget('widgets.default.WMainMenu') ?>
         </div>
         <div class="container_25">
             <?php
@@ -59,7 +59,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
 
             <div id="footer">
                 <div class="helpcenter">
-                    <?php $this->widget('WHelpCenter') ?>
+                    <?php $this->widget('widgets.default.WHelpCenter') ?>
                 </div>
                 <div class="line"></div>
                 <div class="footnav">
@@ -70,10 +70,10 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
                                     <a href="">行业新资讯</a>&nbsp;|&nbsp;
                                     <a href="">业务合作</a>&nbsp;|&nbsp;
                                     <a href="">网站地图</a>-->
-                    <?php $this->widget('WFootMenu') ?>
+                    <?php $this->widget('widgets.default.WFootMenu') ?>
                 </div>
                 <div class="paylink">
-                    <?php $this->widget('WFriendLink')  ?>
+                    <?php $this->widget('widgets.default.WFriendLink')  ?>
                 </div>
                 <div class="foot_copyright">
                     <p>Copyright © 2012-2015 <?php echo CHtml::link('Yincart', 'http://yincart.com', array('target' => '_blank')) ?>.All Rights Reserved.</p>

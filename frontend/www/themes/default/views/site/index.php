@@ -29,7 +29,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->theme->baseUrl . '/js/f
     #KinSlideshow{ overflow:hidden; width:990px; height:486px;}
 </style>
     <div class="image_scroll">
-        <?php $this->widget('WAd') ?>
+        <?php $this->widget('widgets.default.WAd') ?>
     </div>
     <div class="category">
         <a href="<?php echo Yii::app()->createUrl('/item-list-new') ?>"><img alt="" src="<?php echo Yii::app()->theme->baseUrl; ?>/images/new_pro.png" width="366" height="78"/></a>

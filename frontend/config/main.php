@@ -11,7 +11,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
             'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
             'name' => 'Yincart演示购物网',
             'language' => 'en',
-            'theme' => 'ultimo',
+            'theme' => 'default',
             // preloading 'log' component
             'preload' => array('log'),
             // autoloading model and component classes
