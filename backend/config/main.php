@@ -69,6 +69,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 'bootstrap' => array(
                     'class' => 'comext.bootstrap.components.Bootstrap',
                     'responsiveCss' => true,
+                    'fontAwesomeCss' => true
                 ),
                 // uncomment the following to enable URLs in path-format
                 'urlManager' => array(

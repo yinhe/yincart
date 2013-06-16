@@ -70,9 +70,8 @@ optionalZipCountries = ["HK", "IE", "MO", "PA"];
 </style><script type="text/javascript">//<![CDATA[
 var Translator = new Translate([]);
 //]]></script>
-
-
-<link href="<?php echo F::themeUrl() ?>/media/css" rel="stylesheet" type="text/css">
+<link href="<?php echo F::themeUrl() ?>/media/css" rel="stylesheet" type="text/css"/>
+<?php Yii::app()->seo->run(Yii::app()->language) ?>
 </head>
 <body class="<?php echo isset($this->breadcrumbs) ? ' cms-page-view cms-about-magento-demo-store ' : 'cms-index-index cms-home'?>  ">
 <!-- BEGIN GOOGLE ANALYTICS CODEs -->

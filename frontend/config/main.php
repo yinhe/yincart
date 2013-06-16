@@ -11,7 +11,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
             'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
             'name' => 'Yincart演示购物网',
             'language' => 'en',
-            'theme' => 'default',
+            'theme' => 'ultimo',
             // preloading 'log' component
             'preload' => array('log'),
             // autoloading model and component classes
@@ -23,8 +23,13 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 'common.modules.mall.models.*',
                 'common.modules.user.models.*',
                 'common.modules.user.components.*',
+                'application.modules.yiiseo.models.*',
             ),
             'modules' => array(
+                'yiiseo' => array(
+                    'class' => 'application.modules.yiiseo.YiiseoModule',
+                    'password' => '123', // your default password is 123
+                ),
                 'comments' => array(
                     //you may override default config for all connecting models
                     'defaultModelConfig' => array(
@@ -111,6 +116,9 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
             ),
             // application components
             'components' => array(
+                'seo' => array(
+                        'class' => 'application.modules.yiiseo.components.SeoExt',
+                    ),
                 'user' => array(
                     // enable cookie-based authentication
                     'allowAutoLogin' => true,

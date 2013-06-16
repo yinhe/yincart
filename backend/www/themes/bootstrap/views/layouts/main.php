@@ -35,7 +35,7 @@
                                 array('label' => '广告管理', 'url' => array('/cms/ad/admin')),
                                 array('label' => '友情链接', 'url' => array('/cms/friendLink/admin')),
                                 array('label' => '留言管理', 'url' => array('/cms/feedback/admin')),
-                                array('label' => '邮件订阅', 'url'=>array('/cms/newsletterSubscriber/admin')),
+                                array('label' => '邮件订阅', 'url' => array('/cms/newsletterSubscriber/admin')),
                                 array('label' => '客服管理', 'url' => array('/cms/customerService/admin')),
                             ), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => '商城管理', 'url' => '#', 'items' => array(
@@ -68,7 +68,10 @@
                         array('label' => '系统设置', 'url' => '#', 'items' => array(
                                 array('label' => '菜单管理', 'url' => array('/menu/admin')),
                                 array('label' => '分类管理', 'url' => array('/category/admin')),
-                                array('label' => '配置管理', 'url'=>array('/settings')),
+                                array('label' => '配置管理', 'url' => array('/settings')),
+                                array('label' => '皮肤管理', 'url' => array('/theme/admin')),
+                                array('label' => '语言管理', 'url' => array('/language/admin')),
+                                array('label' => '货币管理', 'url' => array('/currency/admin')),
                             ), 'visible' => !Yii::app()->user->isGuest),
                     ),
                 ),
@@ -76,7 +79,7 @@
                     'class' => 'bootstrap.widgets.TbMenu',
                     'htmlOptions' => array('class' => 'pull-right'),
                     'items' => array(
-                        array('label' => '网站前台', 'url' => Yii::app()->request->hostInfo.Yii::app()->baseUrl.'/../../frontend/www'),
+                        array('label' => '网站前台', 'url' => Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../frontend/www'),
                         array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
                         array('label' => Yii::app()->user->name, 'url' => '#', 'items' => array(
                                 array('label' => '个人资料', 'url' => '#'),
