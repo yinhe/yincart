@@ -2,8 +2,16 @@
 <!-- saved from url=(0047)http://ultimo.infortis-themes.com/demo/default/ -->
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
+    <?php Yii::app()->controller->widget('comext.seo.widgets.SeoHead',array(
+    'httpEquivs'=>array(
+        'Content-Type'=>'text/html; charset=utf-8',
+        'Content-Language'=>'en-US'
+    ),
+    'defaultDescription'=>'This is a sample page description.',
+    'defaultKeywords'=>'these, are, my, default, sample, page, meta, keywords',
+)); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title><?php echo F::sg('site', 'name') . ' - ' . $this->pageTitle ?></title>
+<!--<title><?php echo F::sg('site', 'name') . ' - ' . $this->pageTitle ?></title>-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <meta name="description" content="Ultimo is a responsive Magento theme, extremely customizable, easy to use. Great as a starting point for your custom projects and suitable for every type of store.">
 <meta name="keywords" content="magento, theme, themes, magento premium theme, magento template, responsive theme">
 <meta name="robots" content="INDEX,FOLLOW">
@@ -71,7 +79,6 @@ optionalZipCountries = ["HK", "IE", "MO", "PA"];
 var Translator = new Translate([]);
 //]]></script>
 <link href="<?php echo F::themeUrl() ?>/media/css" rel="stylesheet" type="text/css"/>
-<?php Yii::app()->seo->run(Yii::app()->language) ?>
 </head>
 <body class="<?php echo isset($this->breadcrumbs) ? ' cms-page-view cms-about-magento-demo-store ' : 'cms-index-index cms-home'?>  ">
 <!-- BEGIN GOOGLE ANALYTICS CODEs -->

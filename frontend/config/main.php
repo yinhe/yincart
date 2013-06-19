@@ -23,13 +23,8 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 'common.modules.mall.models.*',
                 'common.modules.user.models.*',
                 'common.modules.user.components.*',
-                'application.modules.yiiseo.models.*',
             ),
             'modules' => array(
-                'yiiseo' => array(
-                    'class' => 'application.modules.yiiseo.YiiseoModule',
-                    'password' => '123', // your default password is 123
-                ),
                 'comments' => array(
                     //you may override default config for all connecting models
                     'defaultModelConfig' => array(
@@ -50,14 +45,14 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                     //the models for commenting
                     'commentableModels' => array(
                         //model with individual settings
-                        'Citys' => array(
-                            'registeredOnly' => true,
+                        'Article' => array(
+                            'registeredOnly' => false,
                             'useCaptcha' => true,
                             'allowSubcommenting' => false,
                             //config for create link to view model page(page with comments)
                             'pageUrl' => array(
-                                'route' => 'admin/citys/view',
-                                'data' => array('id' => 'city_id'),
+                                'route' => 'article/view',
+                                'data' => array('id' => 'article_id'),
                             ),
                         ),
                         //model with default settings

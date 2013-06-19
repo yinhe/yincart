@@ -126,6 +126,16 @@ class Article extends CActiveRecord {
             return false;
     }
 
+    public function behaviors() {
+        return array(
+            array(
+                'class' => 'comext.seo.behaviors.SeoActiveRecordBehavior',
+                'route' => 'article/view',
+                'params' => array('id' => $this->article_id, 'title' => $this->title),
+            ),
+        );
+    }
+
 //        public function afterFind() {
 //           $retVal = parent::afterSave();
 //                $this->create_time=date('m/d/Y', $this->create_time); 
@@ -160,7 +170,7 @@ class Article extends CActiveRecord {
             $title = $pinyin->full2();
             $title = str_replace('/', '-', $title);
         }
-        
+
         return Yii::app()->createUrl('article/view', array(
                     'id' => $this->article_id,
                     'title' => $title,

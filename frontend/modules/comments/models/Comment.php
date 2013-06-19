@@ -334,7 +334,8 @@ class Comment extends CActiveRecord {
             $ownerModel = $this->owner_name;
 
             if(class_exists($ownerModel))
-                $this->_ownerModel = $ownerModel::model()->findByPk($key);
+               // $this->_ownerModel = $ownerModel::model()->findByPk($key);/*php5.3*/
+               $this->_ownerModel = CActiveRecord::model($ownerModel)->findByPk($key);
             else 
                 $this->_ownerModel = null;
         }
