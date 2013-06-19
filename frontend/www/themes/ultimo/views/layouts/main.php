@@ -7,13 +7,12 @@
         'Content-Type'=>'text/html; charset=utf-8',
         'Content-Language'=>'en-US'
     ),
-    'defaultDescription'=>'This is a sample page description.',
-    'defaultKeywords'=>'these, are, my, default, sample, page, meta, keywords',
+    'defaultTitle'=>F::sg('seo', 'mainTitle'),
+    'defaultDescription'=>F::sg('seo', 'mainDescr'),
+    'defaultKeywords'=>F::sg('seo', 'mainKwrds'),
 )); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!--<title><?php echo F::sg('site', 'name') . ' - ' . $this->pageTitle ?></title>-->
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> <meta name="description" content="Ultimo is a responsive Magento theme, extremely customizable, easy to use. Great as a starting point for your custom projects and suitable for every type of store.">
-<meta name="keywords" content="magento, theme, themes, magento premium theme, magento template, responsive theme">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="robots" content="INDEX,FOLLOW">
 <link rel="icon" href="http://ultimo.infortis-themes.com/demo/skin/frontend/ultimo/default/favicon.ico" type="image/x-icon">
 <link rel="shortcut icon" href="http://ultimo.infortis-themes.com/demo/skin/frontend/ultimo/default/favicon.ico" type="image/x-icon">
