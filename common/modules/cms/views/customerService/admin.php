@@ -31,8 +31,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'filter' => $model,
     'columns' => array(
         'id',
-//        'category.name',
-        'type',
+        'category.name',
+        array(
+            'name' => 'type',
+            'value' => '$data->getType()',
+        ),
         'nick_name',
         'account',
         array(

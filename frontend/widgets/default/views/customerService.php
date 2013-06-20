@@ -17,22 +17,26 @@
                 <div class="bk time"><h3>在线时间</h3><span>09:00-23:00</span></div>
                 <div class="kf bk">
                     <?php
-                    $cri = new CDbCriteria(array(
-                                'condition' => 'parent_id = 8'
-                            ));
-                    $service_category = ContentCategory::model()->findAll($cri);
+                    $category = Category::model()->findByPk('104');
+                    $service_category = $category->children()->findAll();
                     foreach ($service_category as $sc) {
                         ?>
                         <h3><?php echo $sc->name ?></h3>
                         <ul>
                             <?php 
                             $cri = new CDbCriteria(array(
-                                'condition' => 'category_id ='.$sc->category_id
+                                'condition' => 'category_id ='.$sc->id
                             ));
                             $CustomerService = CustomerService::model()->findAll($cri);
                             foreach($CustomerService as $cs){
                             ?>
-                            <li><span><?php echo $cs->nick_name ?></span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $cs->account ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $cs->account ?>:45" alt="点击这里给我发消息" title="点击这里给我发消息"></a></li>
+                            <li><span><?php echo $cs->nick_name ?></span>
+                                <?php if($cs->type == 1) {?>
+                                <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=<?php echo $cs->account ?>&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:<?php echo $cs->account ?>:45" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+                                <?php }elseif($cs->type == 2){ ?>
+                                <a target="_blank" href="http://www.taobao.com/webww/ww.php?ver=3&touid=<?php echo $cs->account ?>&siteid=cntaobao&status=2&charset=utf-8"><img border="0" src="http://amos.alicdn.com/realonline.aw?v=2&uid=<?php echo $cs->account ?>&site=cntaobao&s=2&charset=utf-8" alt="点击这里给我发消息" /></a>
+                                <?php } ?>
+                            </li>
                             <?php } ?>
                         </ul>
                     <?php } ?>

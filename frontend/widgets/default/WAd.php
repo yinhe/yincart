@@ -9,6 +9,7 @@ class WAd extends CWidget
     public function getAds()
     {
         $cri = new CDbCriteria(array(
+                    'condition' => 'theme LIKE "%default%"', 
                     'order' => 'sort_order asc',
                 ));
         $ads = Ad::model()->findAll($cri);

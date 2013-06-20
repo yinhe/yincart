@@ -19,6 +19,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 		'title',
 		'pic',
 		'url',
+                'theme',
 		'sort_order',
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',

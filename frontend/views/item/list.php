@@ -25,11 +25,7 @@ $this->breadcrumbs = array(
         <div class="box-content item-list" style="width:956px">
             <ul>
                 <?php
-                $category = Category::model()->findByPk($category->id);
-                $childs = $category->children()->findAll();
-                foreach ($childs as $child)
-                    $ids[] = $child->id;
-                $cid = implode(',', $ids);
+                
                 if ($key == 'new') {
                     $condition = 'is_new = 1 and ';
                 } elseif ($key == 'hot') {
@@ -43,8 +39,14 @@ $this->breadcrumbs = array(
                 } else {
                     $condition = '';
                 }
+                $cid = $category->getDescendantsId();
+                if($cid){
+                    $extra = 'category_id in (' .$category->id.', '. $cid . ')';
+                }else{
+                    $extra = 'category_id in (' .$category->id.')';
+                }
                 $criteria = new CDbCriteria(array(
-                    'condition' => $condition . 'category_id in (' .$category->id.', '. $cid . ')',
+                    'condition' => $condition . $extra,
                     'limit' => '10'
                 ));
                 $items = Item::model()->findAll($criteria);

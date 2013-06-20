@@ -26,6 +26,7 @@ class Language extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
+                        array('code, name', 'required'),
 			array('code', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>20),
 			// The following rule is used by search().

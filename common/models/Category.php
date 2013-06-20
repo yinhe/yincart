@@ -160,6 +160,16 @@ class Category extends CActiveRecord {
         $category = Category::model()->findByPk($this->id);
         $descendants = $category->children()->findAll();
         return count($descendants);
-    }   
+    }
+    
+    public function getDescendantsId() {
+        $category = Category::model()->findByPk($this->id);
+        $descendants = $category->descendants()->findAll();
+        foreach($descendants as $descendant){
+            $ids[] = $descendant->id;
+        }
+        $cid = $ids ?  implode(',', $ids) : NULL;
+        return $cid;
+    }
 
 }

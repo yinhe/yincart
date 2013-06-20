@@ -27,7 +27,7 @@ foreach ($descendants as $child) {
     $string = '&nbsp;&nbsp;';
     $string .= str_repeat('&nbsp;&nbsp;', $child->level - $level);
     if ($child->isLeaf() && !$child->next()->find()) {
-        $string .= '&nbsp;&nbsp;';
+        $string .= '';
     } else {
 
         $string .= '';

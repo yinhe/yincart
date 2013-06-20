@@ -18,7 +18,7 @@
 
         <?php
         $cri = new CDbCriteria(array(
-                    'condition' => 'category_id =' . $model->id,
+                    'condition' => 'type_id =' . $model->id,
                     'order'=>'sort_order asc'
                 ));
         $props = ItemProp::model()->findAll($cri);

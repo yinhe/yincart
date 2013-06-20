@@ -1,65 +1,67 @@
-<div class="form">
+<?php
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id' => 'customer-service-form',
+    'enableAjaxValidation' => false,
+        ));
+?>
 
-<?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'customer-service-form',
-	'enableAjaxValidation'=>false,
-)); ?>
+<p class="note">Fields with <span class="required">*</span> are required.</p>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->errorSummary($model); ?>
-        
-	<div class="row">
-		<?php echo $form->labelEx($model,'type'); ?>
-		<?php echo $form->dropDownList($model,'type', array('1'=>'QQ', '2'=>'阿里旺旺')); ?>
-		<?php echo $form->error($model,'type'); ?>
-	</div>
+<?php
+echo '<select id="CustomerService_category_id" name="CustomerService[category_id]">';
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'nick_name'); ?>
-		<?php echo $form->textField($model,'nick_name',array('size'=>50,'maxlength'=>50)); ?>
-		<?php echo $form->error($model,'nick_name'); ?>
-	</div>
+$category = Category::model()->findByPk(104);
+$descendants = $category->descendants()->findAll();
+$level = 1;
+echo '<option value="">请选择分类</option>';
+foreach ($descendants as $child) {
+    $string = '&nbsp;&nbsp;';
+    $string .= str_repeat('&nbsp;&nbsp;', $child->level - $level);
+    if ($child->isLeaf() && !$child->next()->find()) {
+        $string .= '';
+    } else {
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'account'); ?>
-		<?php echo $form->textField($model,'account',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'account'); ?>
-	</div>
+        $string .= '';
+    }
+    $string .= '' . $child->name;
+//		echo $string;
+    if (!$model->isNewRecord) {
+        if ($model->category_id == $child->id) {
+            $selected = 'selected';
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'is_show'); ?>
-		<?php echo $form->dropDownList($model,'is_show', array('1'=>'是', '0'=>'否')); ?>
-		<?php echo $form->error($model,'is_show'); ?>
-	</div>
+            echo '<option value="' . $child->id . '" selected="' . $selected . '">' . $string . '</option>';
+        } else {
+            echo '<option value="' . $child->id . '" >' . $string . '</option>';
+        }
+    } else {
+        echo '<option value="' . $child->id . '" >' . $string . '</option>';
+    }
+}
+echo '</select>';
+?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'sort_order'); ?>
-		<?php echo $form->textField($model,'sort_order'); ?>
-		<?php echo $form->error($model,'sort_order'); ?>
-	</div>
 
-	<div class="form-actions">
-		<?php $this->widget('bootstrap.widgets.TbButton', array(
-			'buttonType'=>'submit',
-			'type'=>'primary',
-			'label'=>$model->isNewRecord ? 'Create' : 'Save',
-		)); ?>
-	</div>
+<?php echo $form->dropDownListRow($model, 'type', array('1' => 'QQ', '2' => '阿里旺旺', '3' => 'Skype')); ?>
+
+<?php echo $form->textFieldRow($model, 'nick_name', array('size' => 50, 'maxlength' => 50)); ?>
+
+
+<?php echo $form->textFieldRow($model, 'account', array('size' => 60, 'maxlength' => 100)); ?>
+
+<?php echo $form->dropDownListRow($model, 'is_show', array('1' => '是', '0' => '否')); ?>
+
+<?php echo $form->textFieldRow($model, 'sort_order'); ?>
+
+<div class="form-actions">
+    <?php
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'buttonType' => 'submit',
+        'type' => 'primary',
+        'label' => $model->isNewRecord ? 'Create' : 'Save',
+    ));
+    ?>
+</div>
 
 <?php $this->endWidget(); ?>
-
-</div><!-- form -->
-<script type="text/javascript">
-	$(function(){ 
-		var tid = "<?php echo $model->category_id;?>";
-
-					$("#CustomerService_category_id option").each(function(i){
-
-						if(this.value == tid)
-						{
-							$(this).attr("selected","selected");
-						} 
-					}); 
-	});
-</script>

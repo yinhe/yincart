@@ -70,7 +70,7 @@ class ThemeController extends Controller
 		{
 			$model->attributes=$_POST['Theme'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->theme));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('create',array(
@@ -94,7 +94,7 @@ class ThemeController extends Controller
 		{
 			$model->attributes=$_POST['Theme'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->theme));
+				$this->redirect(array('admin'));
 		}
 
 		$this->render('update',array(

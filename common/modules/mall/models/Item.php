@@ -256,54 +256,6 @@ class Item extends CActiveRecord {
         ));
     }
 
-    public function getListThumb() {
-        $img = '/../../upload/item/' . $this->pic_url;
-        $trueimage = Yii::app()->request->hostInfo . $img;
-        if (F::isfile($trueimage)) {
-            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(300, 300, $img, array('method' => 'resize'));
-            $img_thumb_now = CHtml::image($img_thumb, $this->title);
-            return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        } else {
-            return '没有图片';
-        }
-    }
-
-    public function getImage() {
-        $img = '/upload/item/' . $this->pic_url;
-        $trueimage = Yii::app()->request->hostInfo . $img;
-        if (F::isfile($trueimage)) {
-            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
-            $img_thumb_now = CHtml::image($img_thumb, $this->title);
-            return $img_thumb_now;
-        } else {
-            return '没有图片';
-        }
-    }
-
-    public function getRecentThumb() {
-        $img = '/upload/item/' . $this->pic_url;
-        $trueimage = Yii::app()->request->hostInfo . $img;
-        if (F::isfile($trueimage)) {
-            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
-            $img_thumb_now = CHtml::image($img_thumb, $this->title);
-            return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        } else {
-            return '没有图片';
-        }
-    }
-
-    public function getRecommendThumb() {
-        $img = '/upload/item/' . $this->pic_url;
-        $trueimage = Yii::app()->request->hostInfo . $img;
-        if (F::isfile($trueimage)) {
-            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(80, 80, $img, array('method' => 'resize'));
-            $img_thumb_now = CHtml::image($img_thumb, $this->title);
-            return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-        } else {
-            return '没有图片';
-        }
-    }
-
     /**
      * 得到商品主图
      * @return type
@@ -312,8 +264,8 @@ class Item extends CActiveRecord {
         $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
         foreach ($images as $k => $v) {
             if ($v['position'] == 0) {
-//                return CHtml::image(Yii::app()->request->baseUrl . '/../../upload/item/image/' . $v['url'], $this->title);
-                return CHtml::image('http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'], $this->title);
+                return CHtml::image(F::baseUrl() . '/../../upload/item/image/' . $v['url'], $this->title);
+//                return CHtml::image('http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'], $this->title);
             }
         }
     }
@@ -326,8 +278,8 @@ class Item extends CActiveRecord {
         $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
         foreach ($images as $k => $v) {
             if ($v['position'] == 0) {
-//                return Yii::app()->request->baseUrl . '/../../upload/item/image/' . $v['url'];
-                return 'http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'];
+                return F::baseUrl() . '/../../upload/item/image/' . $v['url'];
+//                return 'http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'];
             }
         }
     }
@@ -342,9 +294,61 @@ class Item extends CActiveRecord {
 //        $trueimage = Yii::app()->request->hostInfo . $img;
 //        if (F::isfile($trueimage)) {
         $img_thumb = ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
-        $img_thumb1 = str_replace('/../../upload', 'http://img.' . F::sg('site', 'domain'), $img_thumb);
-        $img_thumb_now = CHtml::image($img_thumb1, $this->title);
+        $img_thumb_now = CHtml::image($img_thumb, $this->title);
+//        $img_thumb1 = str_replace('/../../upload', 'http://img.' . F::sg('site', 'domain'), $img_thumb);
+//        $img_thumb_now = CHtml::image($img_thumb1, $this->title);
 //            echo $img_thumb_now;
+        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+//        } else {
+//            return '没有图片';
+//        }
+    }
+    
+    public function getRecommendThumb() {
+        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+        foreach ($images as $k => $v) {
+            if ($v['position'] == 0) {
+                $img = '/../../upload/item/image/' . $v['url'];
+            }
+        }
+//        $trueimage = Yii::app()->request->hostInfo . $img;
+//        if (F::isfile($trueimage)) {
+        $img_thumb = F::baseUrl().ImageHelper::thumb(80, 80, $img, array('method' => 'resize'));
+        $img_thumb_now = CHtml::image($img_thumb, $this->title);
+        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+//        } else {
+//            return '没有图片';
+//        }
+    }
+    
+    public function getListThumb() {
+        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+        foreach ($images as $k => $v) {
+            if ($v['position'] == 0) {
+                $img = '/../../upload/item/image/' . $v['url'];
+            }
+        }
+//        $trueimage = Yii::app()->request->hostInfo . $img;
+//        if (F::isfile($trueimage)) {
+        $img_thumb = F::baseUrl().ImageHelper::thumb(150, 150, $img, array('method' => 'resize'));
+        $img_thumb_now = CHtml::image($img_thumb, $this->title);
+        return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+//        } else {
+//            return '没有图片';
+//        }
+    }
+    
+    public function getRecentThumb() {
+        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+        foreach ($images as $k => $v) {
+            if ($v['position'] == 0) {
+                $img = '/../../upload/item/image/' . $v['url'];
+            }
+        }
+//        $trueimage = Yii::app()->request->hostInfo . $img;
+//        if (F::isfile($trueimage)) {
+        $img_thumb = F::baseUrl().ImageHelper::thumb(210, 210, $img, array('method' => 'resize'));
+        $img_thumb_now = CHtml::image($img_thumb, $this->title);
         return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
 //        } else {
 //            return '没有图片';

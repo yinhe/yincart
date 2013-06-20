@@ -2010,3 +2010,52 @@ Stack trace:
 REQUEST_URI=/yincart/css/jquery.highlight-3.js
 HTTP_REFERER=http://localhost/yincart/item.html
 ---
+2013/06/20 06:04:50 [error] [php] implode() [<a href='function.implode'>function.implode</a>]: Invalid arguments passed (E:\wamp\www\site-yinhe\yincart\frontend\views\item\list.php:32)
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#1 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#2 E:\wamp\www\yii\framework\web\CController.php(782): ItemController->renderPartial()
+#3 E:\wamp\www\site-yinhe\yincart\frontend\controllers\ItemController.php(56): ItemController->render()
+#4 unknown(0): ItemController->actionList()
+#5 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs()
+#6 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CInlineAction->runWithParamsInternal()
+#7 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#8 E:\wamp\www\yii\framework\web\CController.php(286): ItemController->runAction()
+#9 E:\wamp\www\yii\framework\web\CController.php(265): ItemController->runActionWithFilters()
+#10 E:\wamp\www\yii\framework\web\CWebApplication.php(282): ItemController->run()
+#11 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#12 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#13 E:\wamp\www\site-yinhe\yincart\frontend\www\index.php(16): CWebApplication->run()
+REQUEST_URI=/site-yinhe/yincart/frontend/www/item-list-all
+in E:\wamp\www\site-yinhe\yincart\frontend\views\item\list.php (32)
+in E:\wamp\www\site-yinhe\yincart\frontend\controllers\ItemController.php (56)
+in E:\wamp\www\site-yinhe\yincart\frontend\www\index.php (16)
+2013/06/20 06:10:10 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 10' at line 1. The SQL statement executed was: SELECT * FROM `item` `t` WHERE category_id in (9, ) LIMIT 10.
+in E:\wamp\www\site-yinhe\yincart\frontend\views\item\list.php (50)
+in E:\wamp\www\site-yinhe\yincart\frontend\controllers\ItemController.php (56)
+in E:\wamp\www\site-yinhe\yincart\frontend\www\index.php (16)
+2013/06/20 06:10:10 [error] [exception.CDbException] exception 'CDbException' with message 'CDbCommand 无法执行 SQL 语句: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 10' at line 1. The SQL statement executed was: SELECT * FROM `item` `t` WHERE category_id in (9, ) LIMIT 10' in E:\wamp\www\yii\framework\db\CDbCommand.php:543
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\CDbCommand.php(396): CDbCommand->queryInternal('fetchAll', Array, Array)
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1299): CDbCommand->queryAll()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1418): CActiveRecord->query(Object(CDbCriteria), true)
+#3 E:\wamp\www\site-yinhe\yincart\frontend\views\item\list.php(50): CActiveRecord->findAll(Object(CDbCriteria))
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('list', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\frontend\controllers\ItemController.php(56): CController->render('list', Array)
+#9 [internal function]: ItemController->actionList('all')
+#10 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemController), Array)
+#11 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemController), Object(ReflectionMethod), Array)
+#12 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#13 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#14 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('list')
+#16 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('item/list')
+#17 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#18 E:\wamp\www\site-yinhe\yincart\frontend\www\index.php(16): CApplication->run()
+#19 {main}
+REQUEST_URI=/site-yinhe/yincart/frontend/www/item-list-all
+HTTP_REFERER=http://localhost/site-yinhe/yincart/frontend/www/catalog/fashion
+---

@@ -6,55 +6,31 @@ return array(
     'preload' => array(
         'translate'
     ),
+    // path aliases
+    'aliases' => array(
+        'bootstrap' => realpath(__DIR__ . '/../../common/extensions/bootstrap'), // change this if necessary
+    ),
     'import' => array(
         'common.components.*',
         'common.extensions.*',
         'common.models.*',
     ),
-//    'modules' => array(
-//        'comments' => array(
-//            'class' => 'common.modules.comments.CommentsModule',
-//            //you may override default config for all connecting models
-//            'defaultModelConfig' => array(
-//                //only registered users can post comments
-//                'registeredOnly' => false,
-//                'useCaptcha' => false,
-//                //allow comment tree
-//                'allowSubcommenting' => true,
-//                //display comments after moderation
-//                'premoderate' => false,
-//                //action for postig comment
-//                'postCommentAction' => 'comments/comment/postComment',
-//                //super user condition(display comment list in admin view and automoderate comments)
-//                'isSuperuser' => 'Yii::app()->user->checkAccess("moderate")',
-//                //order direction for comments
-//                'orderComments' => 'DESC',
-//            ),
-//            //the models for commenting
-//            'commentableModels' => array(
-//                //model with individual settings
-//                'Citys' => array(
-//                    'registeredOnly' => true,
-//                    'useCaptcha' => true,
-//                    'allowSubcommenting' => false,
-//                    //config for create link to view model page(page with comments)
-//                    'pageUrl' => array(
-//                        'route' => 'admin/citys/view',
-//                        'data' => array('id' => 'city_id'),
-//                    ),
-//                ),
-//                //model with default settings
-//                'ImpressionSet',
-//            ),
-//            //config for user models, which is used in application
-//            'userConfig' => array(
-//                'class' => 'User',
-//                'nameProperty' => 'username',
-//                'emailProperty' => 'email',
-//            ),
-//        ),
-//    ),
+    'modules' => array(
+        'gii' => array(
+            'class' => 'system.gii.GiiModule',
+            'password' => '123',
+            // If removed, Gii defaults to localhost only. Edit carefully to taste.
+            'ipFilters' => array('127.0.0.1', '::1'),
+            'generatorPaths' => array('bootstrap.gii'),
+        ),
+    ),
     'components' => array(
+        'bootstrap' => array(
+	    'class' => 'bootstrap.components.Bootstrap',
+	    'responsiveCss' => true,
+            'fontAwesomeCss' => true,
+//            'enableCdn' => true,
+	),
         'cart' => array(
             'class' => 'common.extensions.Cart',
         ),

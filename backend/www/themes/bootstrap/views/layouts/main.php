@@ -9,7 +9,7 @@
 
         <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-        <?php Yii::app()->bootstrap; ?>
+        <?php //Yii::app()->bootstrap; ?>
     </head>
 
     <body>
@@ -29,12 +29,12 @@
                                 array('label' => '内容分类', 'url' => array('/cms/contentCategory/admin')),
                                 array('label' => '单页管理', 'url' => array('/cms/page/admin')),
                                 array('label' => '文章管理', 'url' => array('/cms/article/admin')),
-                                array('label' => '评论管理', 'url' => array('/cms/comment/admin')),
+                                array('label' => '留言管理', 'url' => array('/cms/feedback/admin')),
+//                                array('label' => '评论管理', 'url' => array('/cms/comment/admin')),
                                 '---',
                                 array('label' => 'OTHER'),
                                 array('label' => '广告管理', 'url' => array('/cms/ad/admin')),
                                 array('label' => '友情链接', 'url' => array('/cms/friendLink/admin')),
-                                array('label' => '留言管理', 'url' => array('/cms/feedback/admin')),
                                 array('label' => '邮件订阅', 'url' => array('/cms/newsletterSubscriber/admin')),
                                 array('label' => '客服管理', 'url' => array('/cms/customerService/admin')),
                             ), 'visible' => !Yii::app()->user->isGuest),

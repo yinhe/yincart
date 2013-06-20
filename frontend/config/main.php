@@ -11,7 +11,7 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
             'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
             'name' => 'Yincart演示购物网',
             'language' => 'en',
-            'theme' => 'ultimo',
+            'theme' => 'default',
             // preloading 'log' component
             'preload' => array('log'),
             // autoloading model and component classes
@@ -162,23 +162,23 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                         'ru' => 'Russian'
                     )
                 ),
-//        'log' => array(
-//            'class' => 'CLogRouter',
-//            'routes' => array(
-//                array(
-//                    'class' => 'CFileLogRoute',
+        'log' => array(
+            'class' => 'CLogRouter',
+            'routes' => array(
+                array(
+                    'class' => 'CFileLogRoute',
 //                    'class' => 'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
-////                    'ipFilters' => array('127.0.0.1', '192.168.0.101'),
-//                    'levels' => 'error, warning',
-//                ),
-//            // uncomment the following to show log messages on web pages
-//            /*
-//              array(
-//              'class'=>'CWebLogRoute',
-//              ),
-//             */
-//            ),
-//        ),
+//                    'ipFilters' => array('127.0.0.1', '192.168.0.101'),
+                    'levels' => 'error, warning',
+                ),
+            // uncomment the following to show log messages on web pages
+            
+              array(
+              'class'=>'CWebLogRoute',
+              ),
+             
+            ),
+        ),
             ),
             // application-level parameters that can be accessed
             // using Yii::app()->params['paramName']

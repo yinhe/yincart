@@ -52,7 +52,7 @@ class CustomerService extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'category'=>array(self::BELONGS_TO, 'Category', 'category_id'),
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
         );
     }
 
@@ -89,12 +89,28 @@ class CustomerService extends CActiveRecord {
         $criteria->compare('sort_order', $this->sort_order);
 
         return new CActiveDataProvider($this, array(
-                    'criteria' => $criteria,
-                ));
+            'criteria' => $criteria,
+        ));
     }
 
     public function getShow() {
         echo $this->is_show == 1 ? CHtml::image(Yii::app()->request->baseUrl . '/images/yes.gif') : CHtml::image(Yii::app()->request->baseUrl . '/images/no.gif');
+    }
+
+    public function getType() {
+        switch ($this->type) {
+            case 1:
+                return 'QQ';
+                break;
+            case 2:
+                return '阿里旺旺';
+                break;
+            case 3:
+                return 'Skype';
+                break;
+            default:
+                break;
+        }
     }
 
 }

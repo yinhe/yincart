@@ -1,6 +1,6 @@
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('currency_id')); ?>:</b>
+		<b><?php echo CHtml::encode($data->getAttributeLabel('currency_id')); ?>:</b>
 	<?php echo CHtml::link(CHtml::encode($data->currency_id),array('view','id'=>$data->currency_id)); ?>
 	<br />
 

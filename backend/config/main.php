@@ -5,7 +5,7 @@
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
+//Yii::setPathOfAlias('bootstrap', dirname(__FILE__) . '/../extensions/bootstrap');
 
 return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.php'), array(
             'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
@@ -13,13 +13,13 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
             'language' => 'zh_cn',
             'theme' => 'bootstrap',
             // preloading 'log' component
-            'preload' => array('log'),
+            'preload' => array('log', 'bootstrap'),
             // autoloading model and component classes
             'import' => array(
                 'application.models.*',
                 'application.components.*',
                 'application.components.helpers.*',
-                'common.modules.user.models.*'
+                'common.modules.user.models.*',
             ),
             'modules' => array(
                 // uncomment the following to enable the Gii tool
@@ -33,16 +33,6 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 'user' => array(
                     'class' => 'common.modules.user.UserModule',
                 ),
-                'gii' => array(
-                    'class' => 'system.gii.GiiModule',
-                    'password' => '123',
-                    // If removed, Gii defaults to localhost only. Edit carefully to taste.
-                    'ipFilters' => array('127.0.0.1', '::1'),
-                    'generatorPaths' => array(
-                        'bootstrap.gii'
-                    ),
-                ),
-                'backup',
             ),
             // application components
             'components' => array(
@@ -56,20 +46,15 @@ return CMap::mergeArray(require(dirname(__FILE__) . '/../../common/config/main.p
                 'authManager' => array(
                     'class' => 'CDbAuthManager', // Provides support authorization item sorting.
                     'connectionID' => 'db',
-//            'itemTable' => '{{authitem}}',
-//            'itemChildTable' => '{{authitemchild}}',
-//            'assignmentTable' => '{{authassignment}}',
+                    'itemTable' => '{{authitem}}',
+                    'itemChildTable' => '{{authitemchild}}',
+                    'assignmentTable' => '{{authassignment}}',
                     'behaviors' => array(
                         'auth' => array(
                             'class' => 'auth.components.AuthBehavior',
                             'admins' => array('admin'), // users with full access
                         ),
                     ),
-                ),
-                'bootstrap' => array(
-                    'class' => 'comext.bootstrap.components.Bootstrap',
-                    'responsiveCss' => true,
-                    'fontAwesomeCss' => true
                 ),
                 // uncomment the following to enable URLs in path-format
                 'urlManager' => array(

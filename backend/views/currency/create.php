@@ -5,8 +5,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List Currency', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Manage Currency', 'icon'=>'cog', 'url'=>array('admin')),
+array('label'=>'List Currency','icon'=>'list','url'=>array('index')),
+array('label'=>'Manage Currency','icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
