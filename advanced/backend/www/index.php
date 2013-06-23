@@ -6,12 +6,15 @@
  * Date: 7/22/12
  * Time: 11:13 AM
  */
+//error_reporting(E_ALL & ~(E_STRICT | E_NOTICE));
+
 defined('YII_DEBUG') or define('YII_DEBUG',true);
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
 // On dev display all errors
 if(YII_DEBUG) {
-	error_reporting(-1);
+//	error_reporting(-1);
+    error_reporting(E_ALL & ~(E_STRICT | E_NOTICE));
 	ini_set('display_errors', true);
 }
 

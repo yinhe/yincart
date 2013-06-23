@@ -22,28 +22,28 @@ $commonEnvParamsFile = $commonConfigDir . DIRECTORY_SEPARATOR . 'params-env.php'
 $commonEnvParams = file_exists($commonEnvParamsFile) ? require($commonEnvParamsFile) : array();
 
 return CMap::mergeArray(array(
-            // cache settings -if APC is not loaded, then use CDbCache
-            'cache.core' => extension_loaded('apc') ?
-                    array(
-                'class' => 'CApcCache',
-                    ) :
-                    array(
-                'class' => 'CDbCache',
-                'connectionID' => 'db',
-                'autoCreateCacheTable' => true,
-                'cacheTableName' => 'cache',
-                    ),
-            'cache.content' => array(
-                'class' => 'CDbCache',
-                'connectionID' => 'db',
-                'autoCreateCacheTable' => true,
-                'cacheTableName' => 'cache',
-            ),
-            // url rules needed by CUrlManager
-            'url.rules' => array(
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
-                '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
-                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-            ),
-            'php.exePath' => '/usr/bin/php'
-                ), CMap::mergeArray($commonEnvParams, $commonParamsLocal));
+	    // cache settings -if APC is not loaded, then use CDbCache
+	    'cache.core' => extension_loaded('apc') ?
+		    array(
+		'class' => 'CApcCache',
+		    ) :
+		    array(
+		'class' => 'CDbCache',
+		'connectionID' => 'db',
+		'autoCreateCacheTable' => true,
+		'cacheTableName' => 'cache',
+		    ),
+	    'cache.content' => array(
+		'class' => 'CDbCache',
+		'connectionID' => 'db',
+		'autoCreateCacheTable' => true,
+		'cacheTableName' => 'cache',
+	    ),
+	    // url rules needed by CUrlManager
+	    'url.rules' => array(
+//		'<controller:\w+>/<id:\d+>' => '<controller>/view',
+//		'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
+//		'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+	    ),
+	    'php.exePath' => '/usr/bin/php'
+		), CMap::mergeArray($commonEnvParams, $commonParamsLocal));

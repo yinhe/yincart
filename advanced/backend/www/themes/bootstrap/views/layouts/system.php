@@ -1,8 +1,7 @@
 <?php /* @var $this Controller */ ?>
 <?php $this->beginContent('//layouts/main'); ?>
 
-<div class="row">
-    <div class="span2">
+<div id="sidebar-nav">
         <?php $this->widget('bootstrap.widgets.TbMenu', array(
     'type'=>'list',
     'items'=>array_merge(array(
@@ -11,7 +10,6 @@
         '---',
         array('label'=>'菜单管理', 'icon'=>'list', 'url'=>array('/menu/admin')),
         array('label'=>'分类管理', 'icon'=>'leaf', 'url'=>array('/category/admin')),
-        array('label'=>'配置管理', 'icon'=>'cog', 'url'=>array('/settings')),
         array('label'=>'皮肤管理', 'icon'=>'cog', 'url'=>array('/theme/admin')),
         array('label'=>'语言管理', 'icon'=>'flag', 'url'=>array('/language/admin')),
         array('label'=>'货币管理', 'icon'=>'cog', 'url'=>array('/currency/admin')),
@@ -19,11 +17,19 @@
         array('label'=>'CHILD MENU'),
         ),$this->menu),
 )); ?>
-    </div>
-    <div class="span10">
-        <div id="content">
-            <?php echo $content; ?>
-        </div><!-- content -->
+</div>
+<div id="sidebar-content">
+    <div class="row-fluid">
+	<div class="span12">
+	    <?php if (isset($this->breadcrumbs)): ?>
+                <?php
+                $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+                    'links' => $this->breadcrumbs,
+                ));
+                ?><!-- breadcrumbs -->
+            <?php endif ?>
+	    <?php echo $content; ?>
+	</div>
     </div>
 </div>
 <?php $this->endContent(); ?>
