@@ -1,0 +1,567 @@
+2013/06/23 04:51:05 [error] [exception.CException] exception 'CException' with message '别名 "backend.modules.auth.BarModule" 无效。请确认它指向一个存在的PHP文件。' in E:\wamp\www\yii\framework\YiiBase.php:316
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('backend.modules...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(282): YiiBase::createComponent('backend.modules...', 'auth', NULL, Array)
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(533): CModule->getModule('auth')
+#3 E:\wamp\www\yii\framework\YiiBase.php(363): CWebApplication->findModule('auth')
+#4 E:\wamp\www\yii\framework\YiiBase.php(307): YiiBase::getPathOfAlias('auth.components...')
+#5 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('auth.components...', true)
+#6 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#7 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\main.php(35): CModule->__get('user')
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#13 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#14 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#15 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#16 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#17 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#18 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#19 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#20 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#21 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#22 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#23 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#24 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#25 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#26 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#27 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#28 E:\wamp\www\site-yinhe\yincart\basic\backend.php(15): CApplication->run()
+#29 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 04:51:24 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\yii\framework\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 E:\wamp\www\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 E:\wamp\www\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(589): CModule->getComponent('db')
+#4 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(59): CDbAuthManager->getDbConnection()
+#5 E:\wamp\www\yii\framework\base\CModule.php(387): CDbAuthManager->init()
+#6 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('authManager')
+#7 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\modules\auth\components\AuthWebUser.php(23): CModule->__get('authManager')
+#8 E:\wamp\www\yii\framework\base\CModule.php(387): AuthWebUser->init()
+#9 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\main.php(35): CModule->__get('user')
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#13 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#19 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#20 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#21 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#22 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#23 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 E:\wamp\www\site-yinhe\yincart\basic\backend.php(15): CApplication->run()
+#31 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 04:52:09 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\yii\framework\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 E:\wamp\www\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 E:\wamp\www\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(589): CModule->getComponent('db')
+#4 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(59): CDbAuthManager->getDbConnection()
+#5 E:\wamp\www\yii\framework\base\CModule.php(387): CDbAuthManager->init()
+#6 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('authManager')
+#7 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\modules\auth\components\AuthWebUser.php(23): CModule->__get('authManager')
+#8 E:\wamp\www\yii\framework\base\CModule.php(387): AuthWebUser->init()
+#9 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\main.php(35): CModule->__get('user')
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#13 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#19 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#20 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#21 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#22 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#23 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 E:\wamp\www\site-yinhe\yincart\basic\backend.php(15): CApplication->run()
+#31 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 04:52:12 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\yii\framework\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 E:\wamp\www\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 E:\wamp\www\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(589): CModule->getComponent('db')
+#4 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(59): CDbAuthManager->getDbConnection()
+#5 E:\wamp\www\yii\framework\base\CModule.php(387): CDbAuthManager->init()
+#6 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('authManager')
+#7 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\modules\auth\components\AuthWebUser.php(23): CModule->__get('authManager')
+#8 E:\wamp\www\yii\framework\base\CModule.php(387): AuthWebUser->init()
+#9 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\main.php(35): CModule->__get('user')
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#13 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#19 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#20 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#21 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#22 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#23 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 E:\wamp\www\site-yinhe\yincart\basic\backend.php(15): CApplication->run()
+#31 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 04:52:41 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\yii\framework\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 E:\wamp\www\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 E:\wamp\www\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(589): CModule->getComponent('db')
+#4 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(59): CDbAuthManager->getDbConnection()
+#5 E:\wamp\www\yii\framework\base\CModule.php(387): CDbAuthManager->init()
+#6 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('authManager')
+#7 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\modules\auth\components\AuthWebUser.php(23): CModule->__get('authManager')
+#8 E:\wamp\www\yii\framework\base\CModule.php(387): AuthWebUser->init()
+#9 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\main.php(35): CModule->__get('user')
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#13 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#19 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#20 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#21 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#22 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#23 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 E:\wamp\www\site-yinhe\yincart\basic\backend.php(15): CApplication->run()
+#31 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 04:52:58 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\yii\framework\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\CDbConnection.php(330): CDbConnection->open()
+#1 E:\wamp\www\yii\framework\db\CDbConnection.php(308): CDbConnection->setActive(true)
+#2 E:\wamp\www\yii\framework\base\CModule.php(387): CDbConnection->init()
+#3 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(589): CModule->getComponent('db')
+#4 E:\wamp\www\yii\framework\web\auth\CDbAuthManager.php(59): CDbAuthManager->getDbConnection()
+#5 E:\wamp\www\yii\framework\base\CModule.php(387): CDbAuthManager->init()
+#6 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('authManager')
+#7 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\modules\auth\components\AuthWebUser.php(23): CModule->__get('authManager')
+#8 E:\wamp\www\yii\framework\base\CModule.php(387): AuthWebUser->init()
+#9 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#10 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\main.php(35): CModule->__get('user')
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#13 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#15 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#16 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#17 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#18 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#19 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#20 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#21 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#22 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#23 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#24 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#25 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#26 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#29 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#30 E:\wamp\www\site-yinhe\yincart\basic\backend.php(15): CApplication->run()
+#31 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 05:02:08 [error] [exception.CException] exception 'CException' with message '别名 "bootstrap.widgets.TbHeroUnit" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:341
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWidgetFactory.php(146): YiiBase::import('bootstrap.widge...', true)
+#1 E:\wamp\www\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(SiteController), 'bootstrap.widge...', Array)
+#2 E:\wamp\www\yii\framework\web\CBaseController.php(189): CBaseController->createWidget('bootstrap.widge...', Array)
+#3 E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\site\index.php(9): CBaseController->beginWidget('bootstrap.widge...', Array)
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', NULL, true)
+#6 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', NULL, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('index', NULL, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#9 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#10 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#11 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#12 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#13 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#14 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#15 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#16 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#17 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 05:04:22 [error] [exception.CException] exception 'CException' with message '属性 "CWebApplication.settings" 未被定义.' in E:\wamp\www\yii\framework\base\CComponent.php:130
+Stack trace:
+#0 E:\wamp\www\yii\framework\base\CModule.php(105): CComponent->__get('settings')
+#1 E:\wamp\www\site-yinhe\yincart\basic\protected\components\F.php(463): CModule->__get('settings')
+#2 E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\layouts\main.php(114): F::sg('site', 'name')
+#3 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#5 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#7 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#8 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#10 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#13 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#15 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#16 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#17 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#18 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#21 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#22 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#23 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 05:05:31 [error] [php] include(CmsSettings.php) [<a href='function.include'>function.include</a>]: failed to open stream: No such file or directory (E:\wamp\www\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): import()
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): createComponent()
+#2 E:\wamp\www\yii\framework\base\CModule.php(103): CWebApplication->getComponent()
+#3 E:\wamp\www\site-yinhe\yincart\basic\protected\components\F.php(463): CWebApplication->__get()
+#4 E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\layouts\main.php(114): sg()
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#7 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): SiteController->renderFile()
+#8 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate()
+#9 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput()
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(206): CContentDecorator->run()
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(300): SiteController->endWidget()
+#12 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): SiteController->endContent()
+#13 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#14 E:\wamp\www\yii\framework\web\CBaseController.php(95): SiteController->renderInternal()
+#15 E:\wamp\www\yii\framework\web\CController.php(784): SiteController->renderFile()
+#16 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): SiteController->render()
+#17 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#18 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#19 E:\wamp\www\yii\framework\web\CController.php(286): SiteController->runAction()
+#20 E:\wamp\www\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#22 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#23 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CWebApplication->run()
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+in E:\wamp\www\site-yinhe\yincart\basic\protected\components\F.php (463)
+in E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\layouts\main.php (114)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php (6)
+2013/06/23 05:06:13 [error] [exception.CException] exception 'CException' with message '别名 "frontend.ext.CmsSettings" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:341
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('frontend.ext.Cm...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('settings')
+#3 E:\wamp\www\site-yinhe\yincart\basic\protected\components\F.php(463): CModule->__get('settings')
+#4 E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\layouts\main.php(114): F::sg('site', 'name')
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#9 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#12 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#13 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#14 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#15 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#16 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#17 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#18 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#19 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#20 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#22 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#23 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 05:06:47 [error] [exception.CException] exception 'CException' with message '别名 "frontend.ext.CmsSettings" 无效。请确认它指向一个存在的PHP文件。' in E:\wamp\www\yii\framework\YiiBase.php:316
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('frontend.ext.Cm...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('settings')
+#3 E:\wamp\www\site-yinhe\yincart\basic\protected\components\F.php(463): CModule->__get('settings')
+#4 E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\layouts\main.php(114): F::sg('site', 'name')
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#9 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#11 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#12 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#13 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#14 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#15 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#16 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#17 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#18 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#19 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#20 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#22 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#23 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#24 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#25 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 05:10:03 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/backend/css/styles.css"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/backend/...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/themes/backend/css/styles.css
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php
+---
+2013/06/23 05:10:13 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/backend/css/styles.css"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/backend/...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/themes/backend/css/styles.css
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/site/login
+---
+2013/06/23 05:11:10 [error] [exception.CHttpException.404] exception 'CHttpException' with message '无法解析请求 "themes/backend/css/styles.css"。' in E:\wamp\www\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('themes/backend/...')
+#1 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#2 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#3 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/themes/backend/css/styles.css
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/site/login
+---
+2013/06/23 05:41:59 [error] [exception.CException] exception 'CException' with message '别名 "backend.auth.components.AuthWebUser" 无效。请确认它指向一个存在的PHP文件。' in E:\wamp\www\yii\framework\YiiBase.php:316
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('backend.auth.co...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CModule.php(103): CModule->getComponent('user')
+#3 E:\wamp\www\site-yinhe\yincart\basic\themes\backend\views\layouts\main.php(27): CModule->__get('user')
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(76): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\widgets\CContentDecorator.php(54): CContentDecorator->decorate('<div id="conten...')
+#8 E:\wamp\www\yii\framework\web\widgets\COutputProcessor.php(44): CContentDecorator->processOutput('<div id="conten...')
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(206): COutputProcessor->run()
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(300): CBaseController->endWidget('CContentDecorat...')
+#11 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\views\layouts\column1.php(6): CBaseController->endContent()
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#13 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\CController.php(784): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#15 E:\wamp\www\site-yinhe\yincart\basic\protected\backend\controllers\SiteController.php(32): CController->render('index')
+#16 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#17 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('')
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('')
+#22 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#23 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/site/login
+---
+2013/06/23 05:45:37 [error] [exception.CException] exception 'CException' with message '别名 "comext.seo.behaviors.SeoActiveRecordBehavior" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:341
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('comext.seo.beha...', true)
+#1 E:\wamp\www\yii\framework\base\CComponent.php(329): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CComponent.php(298): CComponent->attachBehavior(0, Array)
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(389): CComponent->attachBehaviors(Array)
+#4 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(403): CActiveRecord::model('Article')
+#5 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(77): CActiveRecord->getMetaData()
+#6 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\cms\controllers\ArticleController.php(93): CActiveRecord->__construct('search')
+#7 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ArticleController->actionAdmin()
+#8 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('cms/article/adm...')
+#13 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php/cms/article/admin
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/cms/page/admin
+---
+2013/06/23 05:46:58 [error] [exception.CException] exception 'CException' with message '别名 "seo.behaviors.SeoActiveRecordBehavior" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:341
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('seo.behaviors.S...', true)
+#1 E:\wamp\www\yii\framework\base\CComponent.php(329): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CComponent.php(298): CComponent->attachBehavior(0, Array)
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(389): CComponent->attachBehaviors(Array)
+#4 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(403): CActiveRecord::model('Article')
+#5 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(77): CActiveRecord->getMetaData()
+#6 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\cms\controllers\ArticleController.php(93): CActiveRecord->__construct('search')
+#7 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ArticleController->actionAdmin()
+#8 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#9 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#10 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#11 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#12 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('cms/article/adm...')
+#13 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#14 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#15 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php/cms/article/admin
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/cms/page/admin
+---
+2013/06/23 05:55:31 [error] [exception.CException] exception 'CException' with message '别名 "comext.kindeditor.KindEditorWidget" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:341
+Stack trace:
+#0 E:\wamp\www\yii\framework\web\CWidgetFactory.php(146): YiiBase::import('comext.kindedit...', true)
+#1 E:\wamp\www\yii\framework\web\CBaseController.php(146): CWidgetFactory->createWidget(Object(ItemController), 'comext.kindedit...', Array)
+#2 E:\wamp\www\yii\framework\web\CBaseController.php(172): CBaseController->createWidget('comext.kindedit...', Array)
+#3 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_desc.php(22): CBaseController->widget('comext.kindedit...', Array)
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php(21): CController->renderPartial('_form_desc', Array, true)
+#8 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#10 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\update.php(17): CController->renderPartial('_form', Array)
+#12 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#13 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#14 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#15 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#16 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(244): CController->render('update', Array)
+#17 [internal function]: ItemController->actionUpdate('1')
+#18 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemController), Array)
+#19 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemController), Object(ReflectionMethod), Array)
+#20 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#21 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#22 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#23 E:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#24 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#25 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#26 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#27 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#29 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/updat...')
+#30 E:\wamp\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#31 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#32 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php/mall/item/update/id/1
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/mall/item/admin
+---
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url0" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url1" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url2" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url3" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url4" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url0" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url1" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url2" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url3" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url4" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url0" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url1" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url2" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url3" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url4" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url0" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url1" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url2" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url3" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url4" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url0" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url1" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url2" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url3" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/06/23 07:15:20 [warning] [application] Failed to set unsafe attribute "url4" of "ItemImg".
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (199)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)

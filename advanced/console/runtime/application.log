@@ -1,0 +1,341 @@
+2013/06/22 10:51:54 [info] [application] $_SERVER=array (
+  '1830B7BD-F7A3-4c4d-989B-C004DE465EDE' => '7b0:412ac70',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\Administrator\\AppData\\Roaming',
+  'asl_log' => 'Destination=file',
+  'BIN_PATH' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\',
+  'CommonProgramFiles' => 'C:\\Program Files\\Common Files',
+  'COMPUTERNAME' => 'PC-20100827RXXK',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\Administrator',
+  'LOCALAPPDATA' => 'C:\\Users\\Administrator\\AppData\\Local',
+  'LOGONSERVER' => '\\\\PC-20100827RXXK',
+  'NUMBER_OF_PROCESSORS' => '2',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;c:\\Program Files\\Microsoft SQL Server\\90\\Tools\\binn\\;E:\\wamp\\bin\\php\\php5.3.13;E:\\wamp\\bin\\mysql\\mysql5.5.24\\bin;E:\\wamp\\www\\yii\\framework;C:\\ProgramData\\Composer\\bin',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_IDENTIFIER' => 'x86 Family 6 Model 23 Stepping 10, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '170a',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'SESSIONNAME' => 'Console',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'USERDOMAIN' => 'PC-20100827RXXK',
+  'USERNAME' => 'Administrator',
+  'USERPROFILE' => 'C:\\Users\\Administrator',
+  'VS90COMNTOOLS' => 'D:\\Program Files\\Microsoft Visual Studio 9.0\\Common7\\Tools\\',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  '_DFX_INSTALL_UNSIGNED_DRIVER' => '1',
+  'PHP_SELF' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_NAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1371898314,
+  'argv' => 
+  array (
+    0 => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/22 10:51:54 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 E:\wamp\www\site-yinhe\YiiBoilerplate\console\yiic.php(15): require_once('E:\wamp\www\sit...')
+#14 {main}
+---
+2013/06/22 11:19:42 [info] [application] $_SERVER=array (
+  '1830B7BD-F7A3-4c4d-989B-C004DE465EDE' => '7b0:412ac70',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\Administrator\\AppData\\Roaming',
+  'asl_log' => 'Destination=file',
+  'BIN_PATH' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\',
+  'CommonProgramFiles' => 'C:\\Program Files\\Common Files',
+  'COMPUTERNAME' => 'PC-20100827RXXK',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\Administrator',
+  'LOCALAPPDATA' => 'C:\\Users\\Administrator\\AppData\\Local',
+  'LOGONSERVER' => '\\\\PC-20100827RXXK',
+  'NUMBER_OF_PROCESSORS' => '2',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;c:\\Program Files\\Microsoft SQL Server\\90\\Tools\\binn\\;E:\\wamp\\bin\\php\\php5.3.13;E:\\wamp\\bin\\mysql\\mysql5.5.24\\bin;E:\\wamp\\www\\yii\\framework;C:\\ProgramData\\Composer\\bin',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_IDENTIFIER' => 'x86 Family 6 Model 23 Stepping 10, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '170a',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'SESSIONNAME' => 'Console',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'USERDOMAIN' => 'PC-20100827RXXK',
+  'USERNAME' => 'Administrator',
+  'USERPROFILE' => 'C:\\Users\\Administrator',
+  'VS90COMNTOOLS' => 'D:\\Program Files\\Microsoft Visual Studio 9.0\\Common7\\Tools\\',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  '_DFX_INSTALL_UNSIGNED_DRIVER' => '1',
+  'PHP_SELF' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_NAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1371899982,
+  'argv' => 
+  array (
+    0 => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/22 11:19:42 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 E:\wamp\www\site-yinhe\YiiBoilerplate\console\yiic.php(15): require_once('E:\wamp\www\sit...')
+#14 {main}
+---
+2013/06/22 11:37:36 [info] [application] $_SERVER=array (
+  '1830B7BD-F7A3-4c4d-989B-C004DE465EDE' => '7b0:412ac70',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\Administrator\\AppData\\Roaming',
+  'asl_log' => 'Destination=file',
+  'BIN_PATH' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\',
+  'CommonProgramFiles' => 'C:\\Program Files\\Common Files',
+  'COMPUTERNAME' => 'PC-20100827RXXK',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\Administrator',
+  'LOCALAPPDATA' => 'C:\\Users\\Administrator\\AppData\\Local',
+  'LOGONSERVER' => '\\\\PC-20100827RXXK',
+  'NUMBER_OF_PROCESSORS' => '2',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;c:\\Program Files\\Microsoft SQL Server\\90\\Tools\\binn\\;E:\\wamp\\bin\\php\\php5.3.13;E:\\wamp\\bin\\mysql\\mysql5.5.24\\bin;E:\\wamp\\www\\yii\\framework;C:\\ProgramData\\Composer\\bin',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_IDENTIFIER' => 'x86 Family 6 Model 23 Stepping 10, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '170a',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'SESSIONNAME' => 'Console',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'USERDOMAIN' => 'PC-20100827RXXK',
+  'USERNAME' => 'Administrator',
+  'USERPROFILE' => 'C:\\Users\\Administrator',
+  'VS90COMNTOOLS' => 'D:\\Program Files\\Microsoft Visual Studio 9.0\\Common7\\Tools\\',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  '_DFX_INSTALL_UNSIGNED_DRIVER' => '1',
+  'PHP_SELF' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_NAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1371901056,
+  'argv' => 
+  array (
+    0 => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/22 11:37:36 [error] [exception.CDbException] exception 'CDbException' with message 'CDbConnection.connectionString cannot be empty.' in E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php:370
+Stack trace:
+#0 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php(331): CDbConnection->open()
+#1 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\db\CDbConnection.php(309): CDbConnection->setActive(true)
+#2 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\base\CModule.php(388): CDbConnection->init()
+#3 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(443): CModule->getComponent('db')
+#4 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(452): MigrateCommand->getDbConnection()
+#5 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(483): MigrateCommand->getMigrationHistory(-1)
+#6 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\cli\commands\MigrateCommand.php(85): MigrateCommand->getNewMigrations()
+#7 [internal function]: MigrateCommand->actionUp(Array)
+#8 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleCommand.php(173): ReflectionMethod->invokeArgs(Object(MigrateCommand), Array)
+#9 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleCommandRunner.php(68): CConsoleCommand->run(Array)
+#10 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\console\CConsoleApplication.php(92): CConsoleCommandRunner->run(Array)
+#11 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\base\CApplication.php(162): CConsoleApplication->processRequest()
+#12 E:\wamp\www\site-yinhe\YiiBoilerplate\common\lib\Yii\yiic.php(34): CApplication->run()
+#13 E:\wamp\www\site-yinhe\YiiBoilerplate\console\yiic.php(15): require_once('E:\wamp\www\sit...')
+#14 {main}
+---
+2013/06/22 11:40:45 [info] [application] $_SERVER=array (
+  '1830B7BD-F7A3-4c4d-989B-C004DE465EDE' => '7b0:412ac70',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\Administrator\\AppData\\Roaming',
+  'asl_log' => 'Destination=file',
+  'BIN_PATH' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\',
+  'CommonProgramFiles' => 'C:\\Program Files\\Common Files',
+  'COMPUTERNAME' => 'PC-20100827RXXK',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\Administrator',
+  'LOCALAPPDATA' => 'C:\\Users\\Administrator\\AppData\\Local',
+  'LOGONSERVER' => '\\\\PC-20100827RXXK',
+  'NUMBER_OF_PROCESSORS' => '2',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;c:\\Program Files\\Microsoft SQL Server\\90\\Tools\\binn\\;E:\\wamp\\bin\\php\\php5.3.13;E:\\wamp\\bin\\mysql\\mysql5.5.24\\bin;E:\\wamp\\www\\yii\\framework;C:\\ProgramData\\Composer\\bin',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_IDENTIFIER' => 'x86 Family 6 Model 23 Stepping 10, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '170a',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'SESSIONNAME' => 'Console',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'USERDOMAIN' => 'PC-20100827RXXK',
+  'USERNAME' => 'Administrator',
+  'USERPROFILE' => 'C:\\Users\\Administrator',
+  'VS90COMNTOOLS' => 'D:\\Program Files\\Microsoft Visual Studio 9.0\\Common7\\Tools\\',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  '_DFX_INSTALL_UNSIGNED_DRIVER' => '1',
+  'PHP_SELF' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_NAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1371901245,
+  'argv' => 
+  array (
+    0 => 'E:\\wamp\\www\\site-yinhe\\YiiBoilerplate\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/22 11:40:46 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yiiboilerplate.cache' doesn't exist. The SQL statement executed was: DELETE FROM cache WHERE expire>0 AND expire<1371901246.
+2013/06/22 11:40:46 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yiiboilerplate.tbl_migration' doesn't exist. The SQL statement executed was: SHOW COLUMNS FROM `tbl_migration`.
+2013/06/22 19:57:32 [info] [application] $_SERVER=array (
+  '1830B7BD-F7A3-4c4d-989B-C004DE465EDE' => '7b0:412ac70',
+  'ALLUSERSPROFILE' => 'C:\\ProgramData',
+  'APPDATA' => 'C:\\Users\\Administrator\\AppData\\Roaming',
+  'asl_log' => 'Destination=file',
+  'BIN_PATH' => 'E:\\wamp\\www\\site-yinhe\\yincart\\advanced\\',
+  'CommonProgramFiles' => 'C:\\Program Files\\Common Files',
+  'COMPUTERNAME' => 'PC-20100827RXXK',
+  'ComSpec' => 'C:\\Windows\\system32\\cmd.exe',
+  'FP_NO_HOST_CHECK' => 'NO',
+  'HOMEDRIVE' => 'C:',
+  'HOMEPATH' => '\\Users\\Administrator',
+  'LOCALAPPDATA' => 'C:\\Users\\Administrator\\AppData\\Local',
+  'LOGONSERVER' => '\\\\PC-20100827RXXK',
+  'NUMBER_OF_PROCESSORS' => '2',
+  'OS' => 'Windows_NT',
+  'Path' => 'C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;c:\\Program Files\\Microsoft SQL Server\\90\\Tools\\binn\\;E:\\wamp\\bin\\php\\php5.3.13;E:\\wamp\\bin\\mysql\\mysql5.5.24\\bin;E:\\wamp\\www\\yii\\framework;C:\\ProgramData\\Composer\\bin',
+  'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC',
+  'PHP_COMMAND' => 'php.exe',
+  'PROCESSOR_ARCHITECTURE' => 'x86',
+  'PROCESSOR_IDENTIFIER' => 'x86 Family 6 Model 23 Stepping 10, GenuineIntel',
+  'PROCESSOR_LEVEL' => '6',
+  'PROCESSOR_REVISION' => '170a',
+  'ProgramData' => 'C:\\ProgramData',
+  'ProgramFiles' => 'C:\\Program Files',
+  'PROMPT' => '$P$G',
+  'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\',
+  'PUBLIC' => 'C:\\Users\\Public',
+  'SESSIONNAME' => 'Console',
+  'SystemDrive' => 'C:',
+  'SystemRoot' => 'C:\\Windows',
+  'TEMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'TMP' => 'C:\\Users\\ADMINI~1\\AppData\\Local\\Temp',
+  'USERDOMAIN' => 'PC-20100827RXXK',
+  'USERNAME' => 'Administrator',
+  'USERPROFILE' => 'C:\\Users\\Administrator',
+  'VS90COMNTOOLS' => 'D:\\Program Files\\Microsoft Visual Studio 9.0\\Common7\\Tools\\',
+  'windir' => 'C:\\Windows',
+  'windows_tracing_flags' => '3',
+  'windows_tracing_logfile' => 'C:\\BVTBin\\Tests\\installpackage\\csilogfile.log',
+  '_DFX_INSTALL_UNSIGNED_DRIVER' => '1',
+  'PHP_SELF' => 'E:\\wamp\\www\\site-yinhe\\yincart\\advanced\\console\\yiic.php',
+  'SCRIPT_NAME' => 'E:\\wamp\\www\\site-yinhe\\yincart\\advanced\\console\\yiic.php',
+  'SCRIPT_FILENAME' => 'E:\\wamp\\www\\site-yinhe\\yincart\\advanced\\console\\yiic.php',
+  'PATH_TRANSLATED' => 'E:\\wamp\\www\\site-yinhe\\yincart\\advanced\\console\\yiic.php',
+  'DOCUMENT_ROOT' => '',
+  'REQUEST_TIME' => 1371931052,
+  'argv' => 
+  array (
+    0 => 'E:\\wamp\\www\\site-yinhe\\yincart\\advanced\\console\\yiic.php',
+    1 => 'migrate',
+  ),
+  'argc' => 2,
+)
+2013/06/22 19:57:32 [error] [system.db.CDbCommand] CDbCommand::execute() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.cache' doesn't exist. The SQL statement executed was: DELETE FROM cache WHERE expire>0 AND expire<1371931052.
+2013/06/22 19:57:33 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.tbl_migration' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `tbl_migration`.
+2013/06/22 19:57:43 [error] [php] include(User.php): failed to open stream: No such file or directory (E:\wamp\www\yii\framework\YiiBase.php:421)
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\advanced\console\migrations\m120805_131754_user_table_migration.php(35): spl_autoload_call()
+#1 E:\wamp\www\yii\framework\cli\commands\MigrateCommand.php(385): m120805_131754_user_table_migration->up()
+#2 E:\wamp\www\yii\framework\cli\commands\MigrateCommand.php(109): MigrateCommand->migrateUp()
+#3 unknown(0): MigrateCommand->actionUp()
+#4 E:\wamp\www\yii\framework\console\CConsoleCommand.php(172): ReflectionMethod->invokeArgs()
+#5 E:\wamp\www\yii\framework\console\CConsoleCommandRunner.php(67): MigrateCommand->run()
+#6 E:\wamp\www\yii\framework\console\CConsoleApplication.php(91): CConsoleCommandRunner->run()
+#7 E:\wamp\www\yii\framework\base\CApplication.php(169): CConsoleApplication->processRequest()
+#8 E:\wamp\www\yii\framework\yiic.php(33): CConsoleApplication->run()
+#9 E:\wamp\www\site-yinhe\yincart\advanced\console\yiic.php(18): require_once()
+
