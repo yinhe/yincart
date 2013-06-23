@@ -26,6 +26,7 @@ return array(
         'application.modules.mall.models.*',
         'application.modules.user.models.*',
         'application.modules.user.components.*',
+        'application.modules.translate.TranslateModule'
     ),
     'modules' => array(
         'comments' => array(
@@ -70,9 +71,7 @@ return array(
         ),
         // uncomment the following to enable the Gii tool
         'member',
-        'translate' => array(
-            'class' => 'application.modules.translate.TranslateModule'
-        ),
+        'translate',
         'cms' => array(
             'class' => 'application.modules.cms.CmsModule'
         ),
@@ -161,6 +160,7 @@ return array(
                 '<_m:\w+>/<_c:\w+>/<_a:\w+>' => '<_m>/<_c>/<_a>',
             ),
         ),
+        
         /* setup message translation method */
         'messages' => array(
             'class' => 'CDbMessageSource',

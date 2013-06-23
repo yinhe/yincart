@@ -143,8 +143,9 @@ class Ei18n extends CApplicationComponent {
 				&& !array_key_exists($model->id, self::$_missingTranslations))
 			{
 				Yii::trace('--- ADDED TRANSLATION ---', 'translate');
-				$url = Yii::app()->getController()->createUrl('/translate/translate/create', array('id' => $model->id, 'lang'=> $event->language));
-				self::$_missingTranslations[$model->id] = array(
+//				$url = Yii::app()->getController()->createUrl('/translate/translate/create', array('id' => $model->id, 'lang'=> $event->language));
+				$url = Yii::app()->createUrl('/translate/translate/create', array('id' => $model->id, 'lang'=> $event->language));
+				 self::$_missingTranslations[$model->id] = array(
 					'ref' => $model->id,
 					'text' => self::c(strip_tags($model->message), 45),
 					'url' => $url);
