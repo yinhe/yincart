@@ -2,7 +2,7 @@
 
 class CartController extends Controller {
 
-    public $layout = '//layouts/column2';
+    public $layout = '//layouts/column1';
 
     public function actionIndex() {
 	$cart = Yii::app()->cart;

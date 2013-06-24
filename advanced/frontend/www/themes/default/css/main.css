@@ -9,7 +9,10 @@
 a:hover{
     color:#ff5500;
 }
-.breadcrumbs{
+.breadcrumbs {
     width:990px;
     margin:5px auto;
+}
+.btn-list a img {
+   vertical-align:middle;
 }
