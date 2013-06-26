@@ -24,12 +24,13 @@ footer .copy {
 }
 #sidebar-nav {
     left:0;
-    position: fixed;
+    position:absolute;
     width: 200px;
     float: left;
     margin: 0em;
     border-right:solid 1px #cfcfd6;
-    height:100%;
+    height:auto;
+    min-height:93%;
     background-color:#fff;
     z-index:2;
 }
