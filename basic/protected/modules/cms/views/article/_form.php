@@ -63,7 +63,7 @@ echo '</select>';
 
 <?php echo $form->textAreaRow($model, 'content', array('visibility' => 'hidden')); ?>
 <?php
-$this->widget('ext.kindeditor.KindEditorWidget', array(
+$this->widget('comext.kindeditor.KindEditorWidget', array(
     'id' => 'Article_content', //Textarea id
     'items' => array(
         'width' => '700px',

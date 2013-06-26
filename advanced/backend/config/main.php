@@ -36,7 +36,7 @@ return CMap::mergeArray(
 	    'name' => '后台管理系统',
 	    // @see http://www.yiiframework.com/doc/api/1.1/CApplication#basePath-detail
 	    'basePath' => 'backend',
-	    'theme' => 'bootstrap',
+	    'theme' => 'backend',
 	    // set parameters
 	    'params' => $params,
 	    // preload components required before running applications

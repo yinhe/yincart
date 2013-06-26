@@ -5,11 +5,10 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List NewsletterSubscriber','icon'=>'list','url'=>array('index')),
-	array('label'=>'Create NewsletterSubscriber','icon'=>'plus','url'=>array('create')),
-	array('label'=>'Update NewsletterSubscriber','icon'=>'pencil','url'=>array('update','id'=>$model->subscriber_id)),
-	array('label'=>'Delete NewsletterSubscriber','icon'=>'trash','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->subscriber_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage NewsletterSubscriber','icon'=>'cog','url'=>array('admin')),
+	array('label'=>'创建订阅','icon'=>'plus','url'=>array('create')),
+	array('label'=>'更新订阅','icon'=>'pencil','url'=>array('update','id'=>$model->subscriber_id)),
+	array('label'=>'删除订阅','icon'=>'trash','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->subscriber_id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'管理订阅','icon'=>'cog','url'=>array('admin')),
 );
 ?>
 

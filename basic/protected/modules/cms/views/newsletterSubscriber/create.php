@@ -5,8 +5,7 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List NewsletterSubscriber', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Manage NewsletterSubscriber', 'icon'=>'cog', 'url'=>array('admin')),
+	array('label'=>'管理订阅', 'icon'=>'cog', 'url'=>array('admin')),
 );
 ?>
 

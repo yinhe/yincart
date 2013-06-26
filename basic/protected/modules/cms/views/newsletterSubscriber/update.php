@@ -6,10 +6,9 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-	array('label'=>'List NewsletterSubscriber','icon'=>'list','url'=>array('index')),
-	array('label'=>'Create NewsletterSubscriber','icon'=>'plus','url'=>array('create')),
-	array('label'=>'View NewsletterSubscriber','icon'=>'eye-open','url'=>array('view','id'=>$model->subscriber_id)),
-	array('label'=>'Manage NewsletterSubscriber','icon'=>'cog','url'=>array('admin')),
+	array('label'=>'创建订阅','icon'=>'plus','url'=>array('create')),
+	array('label'=>'查看订阅','icon'=>'eye-open','url'=>array('view','id'=>$model->subscriber_id)),
+	array('label'=>'管理订阅','icon'=>'cog','url'=>array('admin')),
 );
 ?>
 

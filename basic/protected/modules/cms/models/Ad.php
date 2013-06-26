@@ -104,17 +104,46 @@ class Ad extends CActiveRecord {
             'criteria' => $criteria,
         ));
     }
+
+    /**
+     * 得到图片地址
+     * @return type
+     */
+    public function getImagePath() {
+	return '/upload/ad/' . $this->pic;
+    }
     
-    public function getImage() {        
-        $img_url = '/upload/ad/' . $this->pic;
-        $trueimage = Yii::app()->request->hostInfo.Yii::app()->baseUrl.$img_url;
-        if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(990, 486, $img_url, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return CHtml::link($img_thumb_now, $this->url, array('title' => $this->title));
-        }else{
-            return '没有图片';
-        }
+    /**
+     * 得到图片URL
+     * @return type
+     */
+    public function getImageUrl() {
+	return F::baseUrl() . $this->getImageUrl();
+    }
+
+    /**
+     * 得到HolderJs
+     * @param type $width
+     * @param type $height
+     * @return type
+     */
+    public function getHolderJs($width = '150', $height = '150', $text = '囧，图呢') {
+	return 'holder.js/' . $width . 'x' . $height . '/text:' . $text;
+    }
+
+    /**
+     * 得到图片图像
+     * @return type
+     */
+    public function getImage() {
+	$img = $this->getImagePath();
+	if (file_exists($img)) {
+	    $img_thumb = ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
+	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
+	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+	} else {
+	    return CHtml::link(CHtml::image($this->getHolderJs('310', '310')), $this->getUrl(), array('title' => $this->title));
+	}
     }
 
 }
