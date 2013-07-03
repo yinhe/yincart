@@ -275,7 +275,12 @@ class Item extends CActiveRecord {
      * @return type
      */
     public function getMainPicUrl() {
-	return F::baseUrl() . $this->getMainPicPath();
+	$img = $this->getMainPicPath();
+	if (file_exists(dirname(F::basePath()) . $img)) {
+	    return F::baseUrl() . $this->getMainPicPath();
+	} else {
+	    return $this->getHolderJs('350', '350');
+	}
     }
 
     /**
@@ -284,7 +289,7 @@ class Item extends CActiveRecord {
      * @param type $height
      * @return type
      */
-    public function getHolderJs($width = '150', $height = '150', $text = '囧，图呢') {
+    public function getHolderJs($width = '150', $height = '150', $text = 'No Picture') {
 	return 'holder.js/' . $width . 'x' . $height . '/text:' . $text;
     }
 
@@ -294,8 +299,8 @@ class Item extends CActiveRecord {
      */
     public function getMainPic() {
 	$img = $this->getMainPicPath();
-	if (file_exists($img)) {
-	    $img_thumb = ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
+	if (file_exists(dirname(F::basePath()) . $img)) {
+	    $img_thumb = F::baseUrl() . ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
 	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
 	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
 	} else {
@@ -309,8 +314,8 @@ class Item extends CActiveRecord {
      */
     public function getSmallThumb() {
 	$img = $this->getMainPicPath();
-	if (file_exists($img)) {
-	    $img_thumb = ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
+	if (file_exists(dirname(F::basePath()) . $img)) {
+	    $img_thumb = F::baseUrl() . ImageHelper::thumb(50, 50, $img, array('method' => 'resize'));
 	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
 	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
 	} else {
@@ -324,7 +329,7 @@ class Item extends CActiveRecord {
      */
     public function getRecommendThumb() {
 	$img = $this->getMainPicPath();
-	if (file_exists($img)) {
+	if (file_exists(dirname(F::basePath()) . $img)) {
 	    $img_thumb = F::baseUrl() . ImageHelper::thumb(80, 80, $img, array('method' => 'resize'));
 	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
 	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
@@ -339,7 +344,7 @@ class Item extends CActiveRecord {
      */
     public function getListThumb() {
 	$img = $this->getMainPicPath();
-	if (file_exists($img)) {
+	if (file_exists(dirname(F::basePath()) . $img)) {
 	    $img_thumb = F::baseUrl() . ImageHelper::thumb(150, 150, $img, array('method' => 'resize'));
 	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
 	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
@@ -354,7 +359,7 @@ class Item extends CActiveRecord {
      */
     public function getRecentThumb() {
 	$img = $this->getMainPicPath();
-	if (file_exists($img)) {
+	if (file_exists(dirname(F::basePath()) . $img)) {
 	    $img_thumb = F::baseUrl() . ImageHelper::thumb(210, 210, $img, array('method' => 'resize'));
 	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
 	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));

@@ -15,7 +15,8 @@
 	position: fixed;
 	bottom:0;
 	width: 100%;
-	z-index: 1021;
+	/*z-index: 1021;*/
+	z-index: 1002;
 }
 #wtranslator-footerSlideButton {
 	background: url(sliderButton.png) top left no-repeat transparent;

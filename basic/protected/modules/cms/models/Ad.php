@@ -110,7 +110,7 @@ class Ad extends CActiveRecord {
      * @return type
      */
     public function getImagePath() {
-	return '/upload/ad/' . $this->pic;
+	return '/upload/ad/'. $this->pic;
     }
     
     /**
@@ -118,7 +118,7 @@ class Ad extends CActiveRecord {
      * @return type
      */
     public function getImageUrl() {
-	return F::baseUrl() . $this->getImageUrl();
+	return F::baseUrl() . $this->getImagePath();
     }
 
     /**
@@ -127,7 +127,7 @@ class Ad extends CActiveRecord {
      * @param type $height
      * @return type
      */
-    public function getHolderJs($width = '150', $height = '150', $text = '囧，图呢') {
+    public function getHolderJs($width = '150', $height = '150', $text = 'No Picture') {
 	return 'holder.js/' . $width . 'x' . $height . '/text:' . $text;
     }
 
@@ -137,12 +137,13 @@ class Ad extends CActiveRecord {
      */
     public function getImage() {
 	$img = $this->getImagePath();
-	if (file_exists($img)) {
-	    $img_thumb = ImageHelper::thumb(310, 310, $img, array('method' => 'resize'));
+	
+	if (file_exists(dirname(F::basePath()).$img)) {
+	    $img_thumb = F::baseUrl().ImageHelper::thumb(990, 486, $img, array('method' => 'resize'));
 	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
-	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+	    return CHtml::link($img_thumb_now, $this->url, array('title' => $this->title));
 	} else {
-	    return CHtml::link(CHtml::image($this->getHolderJs('310', '310')), $this->getUrl(), array('title' => $this->title));
+	    return CHtml::link(CHtml::image($this->getHolderJs('990', '486')), $this->url, array('title' => $this->title));
 	}
     }
 

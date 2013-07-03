@@ -50,6 +50,9 @@ return array(
 	'user' => array(
 	    'class' => 'application.modules.user.UserModule',
 	),
+	'cck' => array(
+	    'class' => 'application.modules.cck.CckModule',
+	),
     ),
     // application components
     'components' => array(
