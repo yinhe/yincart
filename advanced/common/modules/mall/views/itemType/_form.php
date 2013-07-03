@@ -2,25 +2,44 @@
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id' => 'item-type-form',
     'enableAjaxValidation' => false,
+    'htmlOptions' => array(
+        'class' => 'form-horizontal',
+    )
         ));
 ?>
 
-<p class="help-block">Fields with <span class="required">*</span> are required.</p>
+    <div class="control-group"><p class="help-block">带 <span class="required">*</span> 的字段为必填项.</p></div>
 
-<?php echo $form->errorSummary($model); ?>
+    <?php if($model->hasErrors()):?>
+    <div class="control-group">
+        <?php echo $form->errorSummary($model); ?>
+    </div>
+    <?php endif;?>
+    
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'name', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'name', array('class' => 'span5', 'maxlength' => 100)); ?>
+            <?php echo $form->error($model,'name'); ?>
+        </div>
+    </div>
+    
+    <div class="control-group">
+        <?php echo $form->labelEx($model,'enabled', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropdownList($model,'enabled', $model->attrEnabled()); ?>
+            <?php echo $form->error($model,'enabled'); ?>
+        </div>
+    </div>
 
-<?php echo $form->textFieldRow($model, 'name', array('class' => 'span5', 'maxlength' => 100)); ?>
-
-    <?php echo $form->dropdownListRow($model, 'enabled', array('1' => '是', '0' => '否')); ?>
-
-<div class="form-actions">
-    <?php
-    $this->widget('bootstrap.widgets.TbButton', array(
-        'buttonType' => 'submit',
-        'type' => 'primary',
-        'label' => $model->isNewRecord ? 'Create' : 'Save',
-    ));
-    ?>
-</div>
+    <div class="form-actions">
+        <?php
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'buttonType' => 'submit',
+            'type' => 'primary',
+            'label' => $model->isNewRecord ? 'Create' : 'Save',
+        ));
+        ?>
+    </div>
 
 <?php $this->endWidget(); ?>

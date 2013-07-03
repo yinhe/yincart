@@ -48,31 +48,42 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
     $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         'id' => 'item-prop-form',
         'enableAjaxValidation' => false,
+        'htmlOptions' => array(
+            'class' => 'form-horizontal',
+        )
     ));
     ?>
 
-    <p class="note">Fields with <span class="required">*</span> are required.</p>
+    <div class="control-group"><p class="help-block">带 <span class="required">*</span> 的字段为必填项.</p></div>
 
-    <?php echo $form->errorSummary($model); ?>
+	<?php if($model->hasErrors()):?>
+    <div class="control-group">
+        <?php echo $form->errorSummary($model); ?>
+    </div>
+    <?php endif;?>
 
     <div class="control-group">
-        <?php echo $form->labelEx($model, 'type_id'); ?>
-        <?php
-        $cri = new CDbCriteria(array(
-            'condition' => 'enabled = 1'
-        ));
-        $ItemType = ItemType::model()->findAll($cri);
-        $list = CHtml::listData($ItemType, 'type_id', 'name');
-        echo CHtml::DropDownList('ItemProp[type_id]', $model->type_id ? $model->type_id : '', $list, array('empty' => '请选择类目'));
-        ?>
+        <?php echo $form->labelEx($model, 'type_id', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php
+            $cri = new CDbCriteria(array(
+                'condition' => 'enabled = 1'
+            ));
+            $ItemType = ItemType::model()->findAll($cri);
+            $list = CHtml::listData($ItemType, 'type_id', 'name');
+            echo CHtml::DropDownList('ItemProp[type_id]', $model->type_id ? $model->type_id : '', $list, array('empty' => '请选择类目'));
+            ?>
+        </div>
     </div>
 
     <div class="control-group">
-        <?php echo $form->labelEx($model, 'parent_prop_id'); ?>
-        <select name="ItemProp[parent_prop_id]" id="ItemProp_parent_prop_id"> 
-            <?php echo $this->parent; ?>
-        </select> 
-        <?php echo $form->error($model, 'parent_prop_id'); ?>
+        <?php echo $form->labelEx($model, 'parent_prop_id', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <select name="ItemProp[parent_prop_id]" id="ItemProp_parent_prop_id"> 
+                <?php echo $this->parent; ?>
+            </select> 
+            <?php echo $form->error($model, 'parent_prop_id'); ?>
+        </div>
     </div>
 
     <!--	<div class="row">
@@ -81,35 +92,100 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
     <?php echo $form->error($model, 'parent_value_id'); ?>
     </div>-->
 
-    <?php echo $form->textFieldRow($model, 'prop_name'); ?>
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'prop_name', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'prop_name'); ?>
+            <?php echo $form->error($model,'prop_name'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'prop_alias', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'prop_alias',array('size'=>60,'maxlength'=>100)); ?>
+            <?php echo $form->error($model,'prop_alias'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'type', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->radioButtonList($model,'type', $model->attrType()); ?>
+            <?php echo $form->error($model,'type'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'is_key_prop', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_key_prop', $model->attrBool('is_key_prop')); ?>
+            <?php echo $form->error($model,'is_key_prop'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'is_sale_prop', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_sale_prop', $model->attrBool('is_sale_prop')); ?>
+            <?php echo $form->error($model,'is_sale_prop'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'is_color_prop', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_color_prop', $model->attrBool('is_color_prop')); ?>
+            <?php echo $form->error($model,'is_color_prop'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'is_enum_prop', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_enum_prop', $model->attrBool('is_enum_prop')); ?>
+            <?php echo $form->error($model,'is_enum_prop'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'is_item_prop', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_item_prop', $model->attrBool('is_item_prop')); ?>
+            <?php echo $form->error($model,'is_item_prop'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'must', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'must', $model->attrBool('must')); ?>
+            <?php echo $form->error($model,'must'); ?>
+        </div>
+	</div>
+    
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'multi', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'multi', $model->attrBool('multi')); ?>
+            <?php echo $form->error($model,'multi'); ?>
+        </div>
+	</div>
 
-    <?php echo $form->textFieldRow($model, 'prop_alias', array('size' => 60, 'maxlength' => 100)); ?>
-
-    <?php echo $form->radioButtonListRow($model, 'type', array('input' => '输入', 'optional' => '枚举', 'multiCheck' => '多选')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'is_key_prop', array('1' => '是', '0' => '否')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'is_sale_prop', array('1' => '是', '0' => '否')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'is_color_prop', array('1' => '是', '0' => '否')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'is_enum_prop', array('1' => '是', '0' => '否')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'is_item_prop', array('1' => '是', '0' => '否')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'must', array('1' => '是', '0' => '否')); ?>
-
-    <?php echo $form->dropDownListRow($model, 'multi', array('1' => '是', '0' => '否')); ?>
-
-    <div class="clear"></div>
     <!--	<div class="row">
     <?php echo $form->labelEx($model, 'prop_values'); ?>
     <?php echo $form->textArea($model, 'prop_values', array('rows' => 6, 'cols' => 50)); ?>
     <?php echo $form->error($model, 'prop_values'); ?>
     </div>-->
 
-    <?php echo $form->dropDownListRow($model, 'status', array('normal' => '正常', 'deleted' => '删除')); ?>
-
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'status', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'status', $model->attrStatus()); ?>
+            <?php echo $form->error($model,'status'); ?>
+        </div>
+	</div>
+    
     <h2><a id="add-row" href="#">添加属性值</a></h2>  
     <fieldset>
         <legend>属性值</legend>

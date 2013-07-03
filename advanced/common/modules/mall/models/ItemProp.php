@@ -253,4 +253,87 @@ class ItemProp extends CActiveRecord {
         echo CHtml::checkBoxList('Item[props]['. $this->prop_id.']', $selected, $list, array('label'=>$label, 'separator' => '', 'labelOptions' => array('class' => 'labelForRadio')));
     }
     
+    /**
+     * 类型
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrType($returnAttr = false, $index = null)
+    {
+        $data = array(
+            'input' => '输入', 
+            'optional' => '枚举', 
+            'multiCheck' => '多选'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->type;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
+    
+    /**
+     * 
+     * @param string $attr 字段名字
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrBool($attr, $returnAttr = false, $index = null)
+    {
+        $data = array(
+            '1' => '是', 
+            '0' => '否'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->$attr;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
+    
+    /**
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrStatus($returnAttr = false, $index = null)
+    {
+        $data = array(
+            'normal' => '正常', 
+            'deleted' => '删除'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->$attr;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
 }

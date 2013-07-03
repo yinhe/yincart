@@ -112,5 +112,107 @@ class CustomerService extends CActiveRecord {
                 break;
         }
     }
+    
+    /**
+     * 分类属性
+     * 
+     * @param int $id 分类ID
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @param type $level 层级
+     * @return mixed
+     */
+    public function attrCategory($id, $returnAttr = false, $index = null, $level = 1)
+    {
+        $data = array();
+        $category = Category::model()->findByPk($id);
+        $descendants = $category->descendants()->findAll();
+        foreach ($descendants as $k1 => $child)
+        {
+            $string = '  ';
+            $string .= str_repeat('  ', $child->level - $level);
+            if ($child->isLeaf() && !$child->next()->find())
+            {
+                $string .= '';
+            }
+            else
+            {
+                $string .= '';
+            }
+            $string .= '' . $child->name;
+            
+            $data[$child->id] = $string;
+            
+        }
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->category_id;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
+    
+    /**
+     * 类型
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrType($returnAttr = false, $index = null)
+    {
+        $data = array(
+            '1' => 'QQ', 
+            '2' => '阿里旺旺',
+            '3' => 'Skype'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->type;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
+    
+    /**
+     * 显示
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrShow($returnAttr = false, $index = null)
+    {
+        $data = array(
+            '1' => '是', 
+            '0' => '否'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->type;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
 
 }
