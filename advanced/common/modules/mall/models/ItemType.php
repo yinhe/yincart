@@ -95,4 +95,32 @@ class ItemType extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+    
+    /**
+     * 是否允许
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrEnabled($returnAttr = false, $index = null)
+    {
+        $data = array(
+            '1' => '是', 
+            '0' => '否'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->enabled;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
 }

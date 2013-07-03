@@ -4,34 +4,49 @@
 	'id'=>'friend-link-form',
         'htmlOptions'=>array('enctype'=>'multipart/form-data'),
 	'enableAjaxValidation'=>false,
+    'htmlOptions' => array(
+        'class' => 'form-horizontal',
+    )
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<div class="control-group"><p class="help-block">带 <span class="required">*</span> 的字段为必填项.</p></div>
 
-	<?php echo $form->errorSummary($model); ?>
+	<?php if($model->hasErrors()):?>
+    <div class="control-group">
+        <?php echo $form->errorSummary($model); ?>
+    </div>
+    <?php endif;?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
-		<?php echo $form->error($model,'name'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'name', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>100)); ?>
+            <?php echo $form->error($model,'name'); ?>
+        </div>
 	</div>
         
-        <div class="row">
-		<?php echo $form->labelEx($model,'image'); ?>
-		<?php echo $form->fileField($model,'image'); ?>
-		<?php echo $form->error($model,'image'); ?>
+    <div class="control-group">
+		<?php echo $form->labelEx($model,'image', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->fileField($model,'image'); ?>
+            <?php echo $form->error($model,'image'); ?>
+        </div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'website'); ?>
-		<?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>200)); ?>
-		<?php echo $form->error($model,'website'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'website', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'website',array('size'=>60,'maxlength'=>200)); ?>
+            <?php echo $form->error($model,'website'); ?>
+        </div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'sort_order'); ?>
-		<?php echo $form->textField($model,'sort_order'); ?>
-		<?php echo $form->error($model,'sort_order'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'sort_order', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'sort_order'); ?>
+            <?php echo $form->error($model,'sort_order'); ?>
+        </div>
 	</div>
 
 	<div class="form-actions">

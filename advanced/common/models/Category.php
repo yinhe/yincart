@@ -171,5 +171,33 @@ class Category extends CActiveRecord {
         $cid = $ids ?  implode(',', $ids) : NULL;
         return $cid;
     }
+    
+    /**
+     * 显示
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrLabelHtml($returnAttr = false, $index = null)
+    {
+        $data = array(
+            '1'=>'<span class="label label-info">New</span>',
+            '2'=>'<span class="label label-important">Hot!</span>',
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->label;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
 
 }
