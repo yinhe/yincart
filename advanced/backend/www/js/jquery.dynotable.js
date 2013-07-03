@@ -18,7 +18,7 @@
                 removeFadeSpeed: "fast",
                 hideTableOnEmpty: true,
                 onRowRemove: function(){},
-                onRowClone: function(){},
+                onRowClone: function(clonedRow){},
                 onRowAdd: function(){},
                 onTableEmpty: function(){},
                 onRowReorder: function(){}
@@ -30,7 +30,7 @@
                 var clonedRow = $(btn).closest('tr').clone();  
                 var tbod = $(btn).closest('tbody');
                 insertRow(clonedRow, tbod); 
-                options.onRowClone();
+                options.onRowClone(clonedRow);
             }
                         
             var insertRow = function(clonedRow, tbod) {                
