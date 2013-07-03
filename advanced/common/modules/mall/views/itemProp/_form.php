@@ -1,7 +1,8 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <?php
-echo CGoogleApi::init();
+//echo CGoogleApi::init();
 //echo CHtml::script(CGoogleApi::load('jquery', '1.4.2'));
-echo CHtml::script(CGoogleApi::load("jqueryui", "1.8.2"));
+//echo CHtml::script(CGoogleApi::load("jqueryui", "1.8.2"));
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.dynotable.js');
 ?>
 <script type="text/javascript">
