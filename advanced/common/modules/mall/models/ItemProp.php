@@ -168,22 +168,40 @@ class ItemProp extends CActiveRecord {
      * 群Zend Framework(95700611) zwp(279795206)友情提示
      */
 
-    public function setPropValues($PropValues) {
-        $db = Yii::app()->db;
+	public function setPropValues($PropValues) {
+		if (is_array($PropValues['value_name']) && count($PropValues['value_name']))
+		{
+			$count = count($PropValues['value_name']);
+			for ($i = 0; $i < $count; $i++) {
+				$model = empty($PropValues['value_id'][$i]) ? new PropValue : PropValue::model()->findByPk($PropValues['value_id'][$i]);
+				$model->prop_id = $this->prop_id;
+				$model->value_name = $PropValues['value_name'][$i];
+				$model->type_id = $PropValues['type_id'][$i];
+				$model->sort_order = $i;
+				$model->save();
 
-        $db->createCommand()->delete('{{prop_value}}', 'prop_id = :prop_id', array(
-            ':prop_id' => $this->prop_id));
-        
-        if ($PropValues['value_name'] != '') {
-            for ($i = 0; $i < count($PropValues['value_name']); $i++) {
-                $db->createCommand()->insert('{{prop_value}}', array(
-                    'prop_id' => $this->prop_id,
-                    'value_name' => $PropValues['value_name'][$i],
-                    'type_id' => $PropValues['type_id'][$i],
-                    'sort_order' => $PropValues['sort_order'][$i],
-                ));
-            }
-        }
+				$PropValues['value_id'][$i] = $model->value_id;
+			}
+
+			//删除
+			$models = PropValue::model()->findAll('prop_id = ' . $this->prop_id);
+			$delArr = array();
+			foreach ($models as $k1 => $v1)
+			{
+				if (!in_array($v1->value_id, $PropValues['value_id']))
+				{
+					$delArr[] = $v1->value_id;
+				}
+			}
+			if (count($delArr))
+			{
+				PropValue::model()->deleteAll('value_id IN ('.implode(', ', $delArr).')');
+			}
+		}
+		else 
+		{//已经没有属性了，要清除数据表内容
+			PropValue::model()->deleteAll('prop_id = ' . $this->prop_id);
+		}
     }
 
     public function getPropValues() {
@@ -235,4 +253,87 @@ class ItemProp extends CActiveRecord {
         echo CHtml::checkBoxList('Item[props]['. $this->prop_id.']', $selected, $list, array('label'=>$label, 'separator' => '', 'labelOptions' => array('class' => 'labelForRadio')));
     }
     
+    /**
+     * 类型
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrType($returnAttr = false, $index = null)
+    {
+        $data = array(
+            'input' => '输入', 
+            'optional' => '枚举', 
+            'multiCheck' => '多选'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->type;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
+    
+    /**
+     * 
+     * @param string $attr 字段名字
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrBool($attr, $returnAttr = false, $index = null)
+    {
+        $data = array(
+            '1' => '是', 
+            '0' => '否'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->$attr;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
+    
+    /**
+     * 
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @return mixed
+     */
+    public function attrStatus($returnAttr = false, $index = null)
+    {
+        $data = array(
+            'normal' => '正常', 
+            'deleted' => '删除'
+        );
+        
+        if ($returnAttr !== false)
+        {
+            is_null($index) && $index = $this->$attr;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        }
+        else
+        {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
 }

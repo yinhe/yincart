@@ -3,58 +3,81 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'payment-method-form',
 	'enableAjaxValidation'=>false,
+    'htmlOptions' => array(
+        'class' => 'form-horizontal',
+    )
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+	<div class="control-group"><p class="help-block">带 <span class="required">*</span> 的字段为必填项.</p></div>
 
-	<?php echo $form->errorSummary($model); ?>
+    <?php if($model->hasErrors()):?>
+    <div class="control-group">
+        <?php echo $form->errorSummary($model); ?>
+    </div>
+    <?php endif;?>
 
-<!--	<div class="row">
-		<?php echo $form->labelEx($model,'code'); ?>
-		<?php echo $form->textField($model,'code',array('size'=>45,'maxlength'=>45)); ?>
-		<?php echo $form->error($model,'code'); ?>
+<!--	<div class="control-group">
+		<?php echo $form->labelEx($model,'code', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'code',array('size'=>45,'maxlength'=>45)); ?>
+            <?php echo $form->error($model,'code'); ?>
+        </div>
 	</div>-->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'name'); ?>
-		<?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>120)); ?>
-		<?php echo $form->error($model,'name'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'name', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'name',array('size'=>60,'maxlength'=>120)); ?>
+            <?php echo $form->error($model,'name'); ?>
+        </div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'desc'); ?>
-		<?php echo $form->textArea($model,'desc',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'desc'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'desc', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textArea($model,'desc',array('rows'=>6, 'cols'=>50)); ?>
+            <?php echo $form->error($model,'desc'); ?>
+        </div>
 	</div>
 
-<!--	<div class="row">
-		<?php echo $form->labelEx($model,'config'); ?>
-		<?php echo $form->textArea($model,'config',array('rows'=>6, 'cols'=>50)); ?>
-		<?php echo $form->error($model,'config'); ?>
+<!--	<div class="control-group">
+		<?php echo $form->labelEx($model,'config', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textArea($model,'config',array('rows'=>6, 'cols'=>50)); ?>
+            <?php echo $form->error($model,'config'); ?>
+        </div>
 	</div>-->
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'enabled'); ?>
-		<?php echo $form->dropDownList($model,'enabled', array('1'=>'启用', '0'=>'禁用')); ?>
-		<?php echo $form->error($model,'enabled'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'enabled', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'enabled', array('1'=>'启用', '0'=>'禁用')); ?>
+            <?php echo $form->error($model,'enabled'); ?>
+        </div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'is_cod'); ?>
-		<?php echo $form->dropDownList($model,'is_cod', array('1'=>'是', '0'=>'否')); ?>
-		<?php echo $form->error($model,'is_cod'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'is_cod', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_cod', array('1'=>'是', '0'=>'否')); ?>
+            <?php echo $form->error($model,'is_cod'); ?>
+        </div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'is_online'); ?>
-		<?php echo $form->dropDownList($model,'is_online', array('1'=>'是', '0'=>'否')); ?>
-		<?php echo $form->error($model,'is_online'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'is_online', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model,'is_online', array('1'=>'是', '0'=>'否')); ?>
+            <?php echo $form->error($model,'is_online'); ?>
+        </div>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'sort_order'); ?>
-		<?php echo $form->textField($model,'sort_order'); ?>
-		<?php echo $form->error($model,'sort_order'); ?>
+	<div class="control-group">
+		<?php echo $form->labelEx($model,'sort_order', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->textField($model,'sort_order'); ?>
+            <?php echo $form->error($model,'sort_order'); ?>
+        </div>
 	</div>
 
 	<div class="form-actions">
