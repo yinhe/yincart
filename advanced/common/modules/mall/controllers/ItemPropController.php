@@ -68,8 +68,10 @@ class ItemPropController extends Controller {
         if (isset($_POST['ItemProp'])) {
             $model->attributes = $_POST['ItemProp'];
             
-            if (isset($_POST['PropValue']))
-                $model->setPropValues($_POST['PropValue']);
+			if (isset($_POST['PropValue']))
+			{
+				$model->setPropValues($_POST['PropValue']);
+			}
             
             if ($model->save())
                 $this->redirect(array('view', 'id' => $model->prop_id));

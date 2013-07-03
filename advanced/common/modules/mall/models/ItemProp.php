@@ -168,22 +168,40 @@ class ItemProp extends CActiveRecord {
      * 群Zend Framework(95700611) zwp(279795206)友情提示
      */
 
-    public function setPropValues($PropValues) {
-        $db = Yii::app()->db;
+	public function setPropValues($PropValues) {
+		if (is_array($PropValues['value_name']) && count($PropValues['value_name']))
+		{
+			$count = count($PropValues['value_name']);
+			for ($i = 0; $i < $count; $i++) {
+				$model = empty($PropValues['value_id'][$i]) ? new PropValue : PropValue::model()->findByPk($PropValues['value_id'][$i]);
+				$model->prop_id = $this->prop_id;
+				$model->value_name = $PropValues['value_name'][$i];
+				$model->type_id = $PropValues['type_id'][$i];
+				$model->sort_order = $i;
+				$model->save();
 
-        $db->createCommand()->delete('{{prop_value}}', 'prop_id = :prop_id', array(
-            ':prop_id' => $this->prop_id));
-        
-        if ($PropValues['value_name'] != '') {
-            for ($i = 0; $i < count($PropValues['value_name']); $i++) {
-                $db->createCommand()->insert('{{prop_value}}', array(
-                    'prop_id' => $this->prop_id,
-                    'value_name' => $PropValues['value_name'][$i],
-                    'type_id' => $PropValues['type_id'][$i],
-                    'sort_order' => $PropValues['sort_order'][$i],
-                ));
-            }
-        }
+				$PropValues['value_id'][$i] = $model->value_id;
+			}
+
+			//删除
+			$models = PropValue::model()->findAll('prop_id = ' . $this->prop_id);
+			$delArr = array();
+			foreach ($models as $k1 => $v1)
+			{
+				if (!in_array($v1->value_id, $PropValues['value_id']))
+				{
+					$delArr[] = $v1->value_id;
+				}
+			}
+			if (count($delArr))
+			{
+				PropValue::model()->deleteAll('value_id IN ('.implode(', ', $delArr).')');
+			}
+		}
+		else 
+		{//已经没有属性了，要清除数据表内容
+			PropValue::model()->deleteAll('prop_id = ' . $this->prop_id);
+		}
     }
 
     public function getPropValues() {
