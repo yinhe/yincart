@@ -47,6 +47,8 @@ return CMap::mergeArray(
 	    // setup import paths aliases
 	    // @see http://www.yiiframework.com/doc/api/1.1/YiiBase#import-detail
 	    'import' => array(
+		'common.modules.user.components.*',
+		'common.modules.user.models.*',
 		'common.components.*',
 		'common.extensions.*',
 		'common.models.*',
@@ -61,8 +63,7 @@ return CMap::mergeArray(
 		'application.models.*',
 		'common.modules.cms.models.*',
 		'common.modules.mall.models.*',
-		'common.modules.user.models.*',
-		'common.modules.user.components.*',
+		
 	    ),
 	    /* uncomment and set if required */
 	    // @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail

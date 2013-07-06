@@ -6,13 +6,13 @@
         foreach ($item_ids as $item_id) {
 
             $item = Item::model()->findByPk($item_id);
+	    if($item){
             ?>
             <li><div class="i-img"><?php echo $item->getRecentThumb() ?></div><div class="i-name"><?php echo $item->getTitle()  ?></div></li>
                     <?php
-                }
-            } else {
+                }else {
                 echo '<div style="padding:20px">没有商品浏览记录!</div>';
-            }
+    }}}
             ?>    
 
 </ul>
