@@ -79,8 +79,8 @@
 		    'class' => 'bootstrap.widgets.TbMenu',
 		    'htmlOptions' => array('class' => 'pull-right'),
 		    'items' => array(
-			array('label' => '网站前台', 'url' => Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../frontend/www'),
-			array('label' => '站点配置', 'icon' => 'wrench', 'url' => array('/settings/index')),
+			array('label' => '网站前台', 'url' =>F::sg('site', 'domain') ? F::sg('site', 'domain') : Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../frontend/www'),
+			array('label' => '站点配置', 'icon' => 'wrench', 'url' => array('/settings/index'), 'visible' => !Yii::app()->user->isGuest),
 			array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
 			array('label' => Yii::app()->user->name, 'icon' => 'user', 'url' => '#', 'items' => array(
 				array('label' => '个人资料', 'icon' => 'user', 'url' => '#'),
