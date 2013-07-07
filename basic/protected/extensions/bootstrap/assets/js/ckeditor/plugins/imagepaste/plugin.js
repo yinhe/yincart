@@ -1,4 +1,4 @@
-﻿/*
+/*
  * @file image paste plugin for CKEditor
 	Feature introduced in: https://bugzilla.mozilla.org/show_bug.cgi?id=490879
 	doesn't include images inside HTML (paste from word): https://bugzilla.mozilla.org/show_bug.cgi?id=665341

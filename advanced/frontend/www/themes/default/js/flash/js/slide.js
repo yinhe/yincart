@@ -1,4 +1,4 @@
-﻿var timer = null;
+var timer = null;
 var offset = 5000;
 var index = 0;
 

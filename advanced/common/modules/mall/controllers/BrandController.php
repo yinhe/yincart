@@ -16,7 +16,7 @@ class BrandController extends Controller {
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
-	}
+    }
 
 	/**
 	 * Creates a new model.

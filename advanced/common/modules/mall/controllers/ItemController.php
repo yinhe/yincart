@@ -33,7 +33,7 @@ class ItemController extends Controller {
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete', 'getPropValues', 'bulk'),
+                'actions' => array('admin', 'delete', 'getPropValues', 'bulk', 'upload'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -50,7 +50,12 @@ class ItemController extends Controller {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
-    }
+	}
+
+	public function actionUpload()
+	{
+		
+	}
 
     /**
      * Creates a new model.
