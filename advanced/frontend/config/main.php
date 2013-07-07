@@ -47,6 +47,8 @@ return CMap::mergeArray(
 	    // setup import paths aliases
 	    // @see http://www.yiiframework.com/doc/api/1.1/YiiBase#import-detail
 	    'import' => array(
+		'common.modules.user.components.*',
+		'common.modules.user.models.*',
 		'common.components.*',
 		'common.extensions.*',
 		'common.models.*',
@@ -61,8 +63,7 @@ return CMap::mergeArray(
 		'application.models.*',
 		'common.modules.cms.models.*',
 		'common.modules.mall.models.*',
-		'common.modules.user.models.*',
-		'common.modules.user.components.*',
+		
 	    ),
 	    /* uncomment and set if required */
 	    // @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
@@ -146,6 +147,26 @@ return CMap::mergeArray(
 		'cart' => array(
 		    'class' => 'common.extensions.Cart',
 		),
+		'user' => array(
+		    // enable cookie-based authentication
+		    'allowAutoLogin' => true,
+		    'class' => 'WebUser',
+		    'loginUrl' => array('/site/login'),
+//                    'stateKeyPrefix' => 'front_',
+		),
+		'cache' => array(
+		    'class' => 'system.caching.CFileCache',
+		),
+		'settings' => array(
+		    'class' => 'CmsSettings',
+		    'cacheComponentId' => 'cache',
+		    'cacheId' => 'global_website_settings',
+		    'cacheTime' => 0,
+		    'tableName' => '{{settings}}',
+		    'dbComponentId' => 'db',
+		    'createTable' => true,
+		    'dbEngine' => 'InnoDB',
+		),
 		'errorHandler' => array(
 		    // @see http://www.yiiframework.com/doc/api/1.1/CErrorHandler#errorAction-detail
 		    'errorAction' => 'site/error'
@@ -184,6 +205,11 @@ return CMap::mergeArray(
 			'en_us' => 'America',
 			'ru' => 'Russian'
 		    )
+		),
+		'mailer' => array(
+		    'class' => 'common.extensions.mailer.EMailer',
+		    'pathViews' => 'application.views.email',
+		    'pathLayouts' => 'application.views.email.layouts'
 		),
 	    /* make sure you have your cache set correctly before uncommenting */
 	    /* 'cache' => $params['cache.core'], */

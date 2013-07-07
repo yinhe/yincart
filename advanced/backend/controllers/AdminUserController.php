@@ -118,16 +118,6 @@ class AdminUserController extends Controller {
     }
 
     /**
-     * Lists all models.
-     */
-    public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('AdminUser');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
-    }
-
-    /**
      * Manages all models.
      */
     public function actionAdmin() {
