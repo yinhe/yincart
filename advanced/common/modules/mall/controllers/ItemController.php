@@ -33,7 +33,7 @@ class ItemController extends Controller {
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete', 'getPropValues', 'bulk', 'upload'),
+                'actions' => array('admin', 'delete', 'getPropValues', 'bulk', 'upload', 'itemImgDel'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -52,10 +52,120 @@ class ItemController extends Controller {
         ));
 	}
 
+    /**
+     * actionUpload 
+     * 
+     * @access public
+     * @return void
+     */
 	public function actionUpload()
-	{
+    {
+        $rs = array(
+			'status' => 0,
+            'msg' => '',
+            'data' => array(),
+        );
+		//ini_set('post_max_size','1024M');  
+        //ini_set('upload_max_filesize','1024M');
+        //set_time_limit(0);
 		
-	}
+        if (is_array($_FILES) && count($_FILES))
+        {
+            foreach ($_FILES as $k1 => $v1)
+            {
+                if ($v1['error'] == 0)
+                {
+                    $ext = '';
+                    if(($pos=strrpos($v1['name'], '.'))!==false)
+                    {
+                        $ext = strtolower((string)substr($v1['name'], $pos+1));
+                    }
+                    
+                    $path = 'upload/item/image/'.date("Ymd");
+                    YcFileHelper::mkdir($path);
+                    $data = $path . '/' . date('YmdHis', time()).'_'.md5(YcStringHelper::randString()) . '.' . $ext;
+                    $mv = move_uploaded_file($v1['tmp_name'], Yii::getPathOfAlias("root") . '/' . $data);
+                    if ($mv)
+                    {
+                        //找到最大排序的图片
+                        $criteria = new CDbCriteria;
+                        $criteria->compare('item_id', $_POST['item_id']);
+                        $criteria->order = 'position DESC';
+                        $itemImgTmp = ItemImg::model()->find($criteria);
+                        $index = 0;
+                        if (!empty($itemImgTmp))
+                        {
+                            $index = $itemImgTmp->position+1;
+                        }
+
+                        $itemImg = new ItemImg;
+                        $itemImg->item_id = $_POST['item_id'];
+                        $itemImg->url = $data;
+                        $itemImg->position = $index;
+                        $itemImg->create_time = time();
+
+                        if ($itemImg->save())
+                        {
+                            $rs = array(
+                                'status' => 1,
+                                'msg' => '',
+                                'data' => array(
+                                    'img_id' => $itemImg->img_id,
+                                    'url' => YcImageHelper::getImageUrl($data),
+                                ),
+                            );
+                        }
+                    }
+                    else
+                    {
+                        $rs['msg'] = '保存文件时出错';
+                    }
+                }
+            }
+        }
+
+        echo YcStringHelper::jsonEncode($rs);
+    }
+
+    /**
+     * actionItemImgDel 
+     * 
+     * @access public
+     * @return void
+     */
+    public function actionItemImgDel()
+    {
+        $rs = array(
+			'status' => 0,
+            'msg' => '',
+            'data' => array(),
+        );
+
+        if (!empty($_GET['img_id']))
+        {
+            $model = ItemImg::model()->find('img_id = :img_id', array(':img_id'=>$_GET['img_id']));
+            if (!empty($model))
+            {
+                if ($model->delete())
+                {
+                    $path = Yii::getPathOfAlias("root") . '/' . $model->url;
+                    @unlink($path);
+
+                    $rs = array(
+                        'status' => 1,
+                        'msg' => '',
+                        'data' => array(),
+                    );
+                }
+            }
+            else
+            {
+                $rs['msg'] = '数据不存在';
+            }
+        }
+
+        echo YcStringHelper::jsonEncode($rs);
+    }
 
     /**
      * Creates a new model.

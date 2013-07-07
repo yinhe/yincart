@@ -21,7 +21,7 @@ $this->widget('bootstrap.widgets.TbTabs', array(
         array('label' => '详细描述', 'content' => $this->renderPartial("_form_desc", array("model" => $model, 'form'=>$form), true)),
         array('label' => '其他信息', 'content' => $this->renderPartial("_form_other", array("model" => $model, 'form'=>$form), true)),
         array('label' => '商品类型', 'content' => $this->renderPartial("_form_type", array("model" => $model, 'form'=>$form), true)),
-        array('label' => '商品图片', 'content' => $this->renderPartial("_form_image", array('form'=>$form, 'img'=>$img), true)),
+        array('label' => '商品图片', 'content' => $this->renderPartial("_form_image", array('model' => $model, 'form'=>$form, 'img'=>$img), true)),
     ),
 ));
 ?>
