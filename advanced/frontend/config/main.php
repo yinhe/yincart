@@ -183,7 +183,7 @@ return CMap::mergeArray(
 		'urlManager' => array(
 		    'urlFormat' => 'path',
 		    'showScriptName' => false,
-//		    'urlSuffix' => '/',
+		    'urlSuffix' => '.html',
 		    'rules' => $params['url.rules']
 		),
 		/* setup message translation method */
