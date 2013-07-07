@@ -1,4 +1,4 @@
-﻿API Changes in CKEditor 4
+API Changes in CKEditor 4
 ========
 
 

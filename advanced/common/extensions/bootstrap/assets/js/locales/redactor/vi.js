@@ -1,4 +1,4 @@
-﻿var RELANG = {};
+var RELANG = {};
 RELANG['vi'] = {
 	html: 'Xem HTML',
 	video: 'Chèn Video...',
