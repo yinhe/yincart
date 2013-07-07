@@ -1,4 +1,4 @@
-﻿CKEditor "Kama" Skin
+CKEditor "Kama" Skin
 ====================
 
 The Kama skin is currently the default skin of CKEditor. It is the one included on the standard CKEditor distributions. It is actively maintained by the CKEditor core developers.

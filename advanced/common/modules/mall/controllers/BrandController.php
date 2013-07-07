@@ -16,7 +16,21 @@ class BrandController extends Controller {
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
-	}
+    }
+
+    public static function getUrl($path)
+    {
+        static $index = 0;
+        $rs = $path;
+        $domainsImg = Yii::app()->params['domainsImg'];
+        if (is_array($domainsImg) && count($domainsImg))
+        {
+            $rs = $domainsImg[$index] . '/' . $path;
+
+            count($domainsImg) == ++$index && $index = 0;;
+        }
+        return $rs;
+    }
 
 	/**
 	 * Creates a new model.
