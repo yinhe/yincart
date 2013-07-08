@@ -70,8 +70,8 @@ class Item extends CActiveRecord {
 	    array('unit, currency', 'length', 'max' => 20),
 	    array('min_number', 'length', 'max' => 100),
 	    array('location, language', 'length', 'max' => 45),
-	    array('click_count, create_time, update_time', 'length', 'max' => 11),
-	    array('skus, props, props_name, item_imgs, prop_imgs, desc', 'safe'),
+	    array('item_id, click_count, create_time, update_time', 'length', 'max' => 11),
+	    array('item_id, skus, props, props_name, item_imgs, prop_imgs, desc', 'safe'),
 	    // The following rule is used by search().
 	    // Please remove those attributes that should not be searched.
 	    array('item_id, category_id, title, sn, unit, stock, min_number, market_price, shop_price, currency, skus, props, props_name, item_imgs, prop_imgs, pic_url, desc, location, post_fee, express_fee, ems_fee, is_show, is_promote, is_new, is_hot, is_best, is_discount, click_count, sort_order, create_time, update_time, language', 'safe', 'on' => 'search'),
@@ -187,7 +187,7 @@ class Item extends CActiveRecord {
 	// should not be searched.
 
 	$criteria = new CDbCriteria;
-	$criteria->condition = 'user_id =' . Yii::app()->user->id;
+	//$criteria->condition = 'user_id =' . Yii::app()->user->id;
 	$criteria->order = 'item_id desc, sort_order asc';
 
 	$criteria->compare('item_id', $this->item_id, true);
@@ -256,7 +256,7 @@ class Item extends CActiveRecord {
 	if (parent::beforeSave()) {
 	    if ($this->isNewRecord) {
 		$this->create_time = $this->update_time = time();
-		$this->user_id = Yii::app()->user->id;
+		//$this->user_id = Yii::app()->user->id;
 	    }
 	    else
 		$this->update_time = time();

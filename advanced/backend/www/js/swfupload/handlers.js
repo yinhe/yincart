@@ -147,6 +147,7 @@ function uploadSuccessItemImg(file, serverData) {
         serverData = eval('(' + serverData + ')');
         if (serverData.status) {
             var html = '\
+				<input type="hidden" name="ItemImg[]" value="'+serverData.data.img_id+'">\n\
                 <li class="span2" data-id="'+serverData.data.img_id+'">\n\
                     <div class="it-img"><img src="'+serverData.data.url+'" width="70" height="70"></div>\n\
                     <div><a href="javascript:;" class="item-img-del">删除</a></div>\n\
