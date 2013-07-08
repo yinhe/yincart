@@ -33,7 +33,7 @@ class ItemController extends Controller {
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete', 'getPropValues', 'bulk', 'upload'),
+                'actions' => array('admin', 'delete', 'getPropValues', 'bulk', 'upload', 'itemImgDel'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -46,16 +46,144 @@ class ItemController extends Controller {
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
-    public function actionView($id) {
+	public function actionView($id) {
         $this->render('view', array(
             'model' => $this->loadModel($id),
         ));
 	}
 
+    /**
+     * actionUpload 
+     * 
+     * @access public
+     * @return void
+     */
 	public function actionUpload()
-	{
+    {
+        $rs = array(
+			'status' => 0,
+            'msg' => '',
+            'data' => array(),
+        );
+		//ini_set('post_max_size','1024M');  
+        //ini_set('upload_max_filesize','1024M');
+        //set_time_limit(0);
 		
-	}
+        if (is_array($_FILES) && count($_FILES))
+        {
+            foreach ($_FILES as $k1 => $v1)
+            {
+                if ($v1['error'] == 0)
+                {
+                    $ext = '';
+                    if(($pos=strrpos($v1['name'], '.'))!==false)
+                    {
+                        $ext = strtolower((string)substr($v1['name'], $pos+1));
+                    }
+                    
+                    $path = 'upload/item/image/'.date("Ymd");
+                    YcFileHelper::mkdir($path);
+                    $data = $path . '/' . date('YmdHis', time()).'_'.md5(YcStringHelper::randString()) . '.' . $ext;
+                    $mv = move_uploaded_file($v1['tmp_name'], Yii::getPathOfAlias("root") . '/' . $data);
+                    if ($mv)
+					{
+						$index = 0; 
+						if (!empty($_POST['item_id']))
+						{
+							//找到最大排序的图片
+							$criteria = new CDbCriteria;
+							$criteria->compare('item_id', $_POST['item_id']);
+							$criteria->order = 'position DESC';
+							$itemImgTmp = ItemImg::model()->find($criteria);
+							if (!empty($itemImgTmp))
+							{
+								$index = $itemImgTmp->position+1;
+							}
+						}
+
+                        $itemImg = new ItemImg;
+                        $itemImg->item_id = empty($_POST['item_id']) ? '' : $_POST['item_id'];
+                        $itemImg->url = $data;
+                        $itemImg->position = $index;
+                        $itemImg->create_time = time();
+
+                        if ($itemImg->save())
+                        {
+                            $rs = array(
+                                'status' => 1,
+                                'msg' => '',
+                                'data' => array(
+                                    'img_id' => $itemImg->img_id,
+                                    'url' => YcImageHelper::getImageUrl($data),
+                                ),
+                            );
+                        }
+                    }
+                    else
+                    {
+                        $rs['msg'] = '保存文件时出错';
+                    }
+                }
+            }
+        }
+
+        echo YcStringHelper::jsonEncode($rs);
+    }
+
+    /**
+     * actionItemImgDel 
+     * 
+     * @access public
+     * @return void
+     */
+    public function actionItemImgDel()
+    {
+        $rs = array(
+			'status' => 0,
+            'msg' => '',
+            'data' => array(),
+        );
+
+        if (!empty($_GET['img_id']))
+        {
+            $model = ItemImg::model()->find('img_id = :img_id', array(':img_id'=>$_GET['img_id']));
+            if (!empty($model))
+            {
+                if ($model->delete())
+                {
+                    $path = Yii::getPathOfAlias("root") . '/' . $model->url;
+					@unlink($path);
+
+					//对其它图片进行重新排序
+					if (!empty($model->item_id))
+					{
+						$criteria = new CDbCriteria;
+						$criteria->compare('t.item_id', $model->item_id);
+						$criteria->order = 'position DESC';
+						$models = ItemImg::model()->findAll($criteria);
+
+						foreach ($models as $k1 => $v1)
+						{
+							$model->position = $k1;
+							$model->save();
+						}
+					}
+
+                    $rs = array(
+                        'status' => 1,
+                        'msg' => '',
+                        'data' => array(),
+                    );
+                }
+            }
+            else
+            {
+                $rs['msg'] = '数据不存在';
+            }
+        }
+
+        echo YcStringHelper::jsonEncode($rs);
+    }
 
     /**
      * Creates a new model.
@@ -63,9 +191,8 @@ class ItemController extends Controller {
      */
     public function actionCreate() {
         $model = new Item('create');
-        $img = new ItemImg('create');
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
         $action = 'item';
         if (isset($_POST['Item'])) {
             $model->attributes = $_POST['Item'];
@@ -98,49 +225,23 @@ class ItemController extends Controller {
                 $model->props = $props;
                 $props_name = implode($v_arr, ';');
                 $model->props_name = $props_name;
-            }
-            if ($model->validate() && $img->validate()) {
-//                print_r($_POST);
-//                exit;
-                if ($model->save()) {
-                    if ($_POST['ItemImg']) {
-                        for ($i = 0; $i <= 4; $i++) {
-                            $img->isNewRecord = true;
-                            $img->attributes = $_POST['ItemImg'];
-                            $img->item_id = $model->item_id;
-                            $img->position = $i;
-                            $img->create_time = time();
-// file handling
-                            $imageUploadFile = CUploadedFile::getInstance($img, 'url' . $i);
-                            if ($imageUploadFile !== null) { // only do if file is really uploaded
-                                $imageFileExt = $imageUploadFile->extensionName;
-
-                                $save_path = dirname(Yii::app()->basePath) . '/upload/' . $action . '/image/';
-                                if (!file_exists($save_path)) {
-                                    mkdir($save_path, 0777, true);
-                                }
-                                $ymd = date("Ymd");
-                                $save_path .= $ymd . '/';
-                                if (!file_exists($save_path)) {
-                                    mkdir($save_path, 0777, true);
-                                }
-                                $img_prefix = date("YmdHis") . '_' . rand(10000, 99999);
-                                $imageFileName = $img_prefix . '.' . $imageFileExt;
-                                $img->url = $ymd . '/' . $imageFileName;
-                                $save_path .= $imageFileName;
-                                $img->save();
-                                $imageUploadFile->saveAs($save_path);
-                            }
-                        }
-                    }
-                    $this->redirect(array('view', 'id' => $model->item_id));
-                }
+			}
+			if ($model->save()) {
+				if (isset($_POST['ItemImg']) && count($_POST['ItemImg'])) {
+					foreach ($_POST['ItemImg'] as $k1 => $v1)
+					{
+						$modelTmp = ItemImg::model()->find('img_id = :img_id', array(':img_id' => $v1));
+						$modelTmp->item_id = $model->item_id;
+						$modelTmp->position = $k1;
+						$modelTmp->save();
+					}
+				}
+				$this->redirect(array('view', 'id' => $model->item_id));
             }
         }
 
         $this->render('create', array(
             'model' => $model,
-            'img' => $img
         ));
     }
 
@@ -153,15 +254,11 @@ class ItemController extends Controller {
         $model = $this->loadModel($id);
 
         $model->scenario = 'update';
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
 
-        $img = new ItemImg('update');
-
-
-
-// Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
         $action = 'item';
         if (isset($_POST['Item'])) {
             $model->attributes = $_POST['Item'];
@@ -195,57 +292,21 @@ class ItemController extends Controller {
                 $props_name = implode($v_arr, ';');
                 $model->props_name = $props_name;
             }
-            if ($model->validate() && $img->validate()) {
-
-                if ($model->save()) {
-                    if ($_POST['ItemImg']) {
-                        for ($i = 0; $i <= 4; $i++) {
-                            $img->isNewRecord = true;
-                            $img->attributes = $_POST['ItemImg'];
-                            $img->item_id = $model->item_id;
-                            $img->position = $i;
-                            $img->create_time = time();
-// file handling
-                            $imageUploadFile = CUploadedFile::getInstance($img, 'url' . $i);
-                            if ($imageUploadFile !== null) { // only do if file is really uploaded
-                                $cri = new CDbCriteria(array(
-                                    'condition' => 'item_id = ' . $id . ' and position = ' . $i
-                                ));
-                                $images = ItemImg::model()->find($cri);
-                                $old_image = dirname(Yii::app()->basePath) . '/upload/' . $action . '/' . 'image' . '/' . $images->url;
-                                if (file_exists($old_image)) {
-                                    @unlink($old_image);
-                                    ItemImg::model()->deleteAllByAttributes(array("item_id" => $id), "position=:position", array(":position" => $i));
-                                }
-                                $imageFileExt = $imageUploadFile->extensionName;
-
-                                $save_path = dirname(Yii::app()->basePath) . '/upload/' . $action . '/image/';
-                                if (!file_exists($save_path)) {
-                                    mkdir($save_path, 0777, true);
-                                }
-                                $ymd = date("Ymd");
-                                $save_path .= $ymd . '/';
-                                if (!file_exists($save_path)) {
-                                    mkdir($save_path, 0777, true);
-                                }
-                                $img_prefix = date("YmdHis") . '_' . rand(10000, 99999);
-                                $imageFileName = $img_prefix . '.' . $imageFileExt;
-                                $img->url = $ymd . '/' . $imageFileName;
-                                $save_path .= $imageFileName;
-                                $img->save();
-                                $imageUploadFile->saveAs($save_path);
-                            } else {
-                                $img->url = $img->url;
-                            }
-                        }
-                    }
-                    $this->redirect(array('view', 'id' => $model->item_id));
-                }
+			if ($model->save()) {
+                if (isset($_POST['ItemImg']) && count($_POST['ItemImg'])) {
+					foreach ($_POST['ItemImg'] as $k1 => $v1)
+					{
+						$model = ItemImg::model()->find('img_id = :img_id', array(':img_id' => $v1));
+						$model->position = $k1;
+						$model->save();
+					}
+				}
+				$this->redirect(array('view', 'id' => $model->item_id));
             }
-        }
+		}
+		
         $this->render('update', array(
             'model' => $model,
-            'img' => $img
         ));
     }
 
@@ -305,7 +366,7 @@ class ItemController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = Item::model()->findByPk($id);
+        $model = Item::model()->with(array('image'=>array('order'=>'position ASC')))->findByPk($id);
         if ($model === null)
             throw new CHttpException(404, 'The requested page does not exist.');
         return $model;

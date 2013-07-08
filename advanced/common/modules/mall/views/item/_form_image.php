@@ -1,8 +1,3 @@
-<?php echo $form->fileFieldRow($img, 'url', array('name' => 'ItemImg[url0]', 'hint'=>'商品主图，必须上传一张')); ?>
-<?php echo $form->fileFieldRow($img, 'url', array('name' => 'ItemImg[url1]')); ?>
-<?php echo $form->fileFieldRow($img, 'url', array('name' => 'ItemImg[url2]')); ?>
-<?php echo $form->fileFieldRow($img, 'url', array('name' => 'ItemImg[url3]')); ?>
-<?php echo $form->fileFieldRow($img, 'url', array('name' => 'ItemImg[url4]')); ?>
 <?php 
 
 Yii::app()->clientScript->registerScriptFile('http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js');
@@ -21,20 +16,20 @@ $(function() {
 	$( "#sortable" ).sortable();
 	$( "#sortable" ).disableSelection();
 
-	$('.item-img-del').click(function(){
-		var $_this = $(this);
+    $(document).on('click', '.item-img-del', function(){
+        var $_this = $(this);
 
 		if (confirm('你确定要进行删除？')) {
-			$_this.parents('li').remove();
-			return false;
+			//$_this.parents('li').remove();
+			//return false;
 
 			$.ajax({
-				url: '<?php echo $this->createUrl('mall/itemImgDel');?>',
+				url: '<?php echo $this->createUrl('item/itemImgDel');?>',
 				type: 'get',
 				dataType: 'json',
 				async: false,
 				data: {
-					'id': $_this.parents('li').attr('data-id')
+					'img_id': $_this.parents('li').attr('data-id')
 				},
 				success: function(rs) {
 					try {
@@ -55,7 +50,8 @@ $(function() {
 		
 
 		return false;
-	});
+    });
+
 
 	/**
 	 *
@@ -68,10 +64,10 @@ $(function() {
 
         // File Upload Settings
         file_size_limit : "512",	// TODO 这里限制上传大小最多为512K
-        file_types : "*.jpg;*.gif",
+		file_types : "*.jpg;*.gif;*.png;*.bmp;*.jpeg",
         file_types_description : "Image Files",
         file_upload_limit : "30",
-        file_queue_limit : "30",
+        file_queue_limit : "4",
 
         // Event Handler Settings (all my handlers are in the Handler.js file)
         file_dialog_start_handler : fileDialogStart,
@@ -81,7 +77,7 @@ $(function() {
         upload_start_handler : uploadStart,
         upload_progress_handler : uploadProgress,
         upload_error_handler : uploadError,
-        upload_success_handler : uploadSuccessContentImg,
+        upload_success_handler : uploadSuccessItemImg,
         upload_complete_handler : uploadComplete,
 
         // Button Settings
@@ -101,7 +97,7 @@ $(function() {
 		
 		post_params : {
             "YII_CSRF_TOKEN" : "<?php echo Yii::app()->request->csrfToken;?>",
-            "YII_CSRF_TOKEN_DATA" : "<?php echo session_id(); ?>"
+            "item_id" : "<?php echo $model->item_id;?>"
 		},
 
         // Debug Settings
@@ -110,55 +106,32 @@ $(function() {
 });
 </script>
 <style>
-#sortable li {
+.it-img-lt li {
 list-style-type: none;
 margin: 3px 3px 3px 0;
+width: 145px;
+height: 90px;
 text-align: center;
 cursor: pointer;
 }
 </style>
-<div class="row-fluid">
-	<div class="span5"></div>
-	<div class="span7">
-		<span id="spanButtonPlaceholder">上传图片</div>
-		<div class="fieldset flash" id="fsUploadProgress"></div>
-	</div>
+<div class="control-group ">
+    <div class="control-label">
+        <div id="spanButtonPlaceholder">上传图片</div>
+    </div>
+    <div class="controls">
+        <div class="fieldset flash" id="fsUploadProgress"></div>
+    </div>
 </div>
-<ul id="sortable">
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-	<li class="span2" data-id="1">
-		<div><img src="<?php echo Yii::app()->baseUrl;?>/upload/ad/20130429/20130429113116_16789.jpg" width="70" height="70"></div>
-		<div><a href="javascript:;" class="item-img-del">删除</a></div>
-	</li>
-</ul>
+<div class="row-fluid">
+	<ul id="sortable" class="it-img-lt">
+		<?php foreach ($model->image as $k1 => $v1):?>
+		<li class="span2" data-id="<?php echo $v1->img_id;?>">
+			<input type="hidden" name="ItemImg[]" value="<?php echo $v1->img_id;?>" />
+            <div class="it-img"><img src="<?php echo YcImageHelper::getImageUrl($v1->url);?>" width="70" height="70"></div>
+            <div><a href="javascript:;" class="item-img-del">删除</a></div>
+		</li>
+		<?php endforeach;?>
+    </ul>
+</div>
+

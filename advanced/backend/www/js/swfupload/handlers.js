@@ -140,65 +140,20 @@ function uploadSuccess(file, serverData) {
 	}
 }
 
-function uploadSuccessContentImg(file, serverData) {
+function uploadSuccessItemImg(file, serverData) {
 	try {
 		var progress = new FileProgress(file, this.customSettings.progressTarget);
 		
         serverData = eval('(' + serverData + ')');
         if (serverData.status) {
-			var html = '\
-				<span class="ct-ig-im">\n\
-					<input type="hidden" name="upload_field[content_img][]" value="'+serverData.data+'" field="content_img" />\n\
-					<div>\n\
-						<a class="fancybox" href="'+serverData.data+'" data-fancybox-group="gallery" title=""><img width="50" height="50" src="'+serverData.data+'" alt=""></a>\n\
-					</div>\n\
-					<div>\n\
-						<a class="c4095ce ct-ig-dt" href="javascript:;" onclick="rm_content_img($(this))">删除</a>\n\
-					</div>\n\
-				</span>\n\
-			';
-			jQuery('.ct-ig-ne').hide();
-			jQuery('.ct-ig-ls').prepend(html);
-			$('.fancybox').fancybox();
-            progress.setComplete();
-            progress.setStatus("完成");
-            progress.toggleCancel(false);
-        } else {
-            progress.setStatus("错误: "+serverData.msg);
-        }
-	} catch (ex) {
-		this.debug(ex);
-	}
-}
-
-function uploadSuccessContentAudio(file, serverData) {
-	try {
-		var progress = new FileProgress(file, this.customSettings.progressTarget);
-		
-        serverData = eval('(' + serverData + ')');
-        if (serverData.status) {
-			jQuery('.ct-ad-ne').hide();
-			jQuery('.ct-ad-nn').show().find('input').val(serverData.data);
-            jQuery('.ct-ad-nn').parents('.inp').siblings('.tips').hide();
-            progress.setComplete();
-            progress.setStatus("完成");
-            progress.toggleCancel(false);
-        } else {
-            progress.setStatus("错误: "+serverData.msg);
-        }
-	} catch (ex) {
-		this.debug(ex);
-	}
-}
-
-function uploadSuccessContentAudioThumb(file, serverData) {
-	try {
-		var progress = new FileProgress(file, this.customSettings.progressTarget);
-		
-        serverData = eval('(' + serverData + ')');
-        if (serverData.status) {
-			jQuery('.ct-at-ne').hide();
-			jQuery('.ct-at-nn').show().find('input').val(serverData.data);
+            var html = '\
+				<input type="hidden" name="ItemImg[]" value="'+serverData.data.img_id+'">\n\
+                <li class="span2" data-id="'+serverData.data.img_id+'">\n\
+                    <div class="it-img"><img src="'+serverData.data.url+'" width="70" height="70"></div>\n\
+                    <div><a href="javascript:;" class="item-img-del">删除</a></div>\n\
+                </li>\n\
+                ';
+			jQuery('.it-img-lt').append(html);
             progress.setComplete();
             progress.setStatus("完成");
             progress.toggleCancel(false);
