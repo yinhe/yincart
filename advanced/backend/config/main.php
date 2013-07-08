@@ -64,7 +64,8 @@ return CMap::mergeArray(
 		'application.components.*',
 		'application.controllers.*',
 		'application.models.*',
-		'common.modules.user.models.*',
+        'common.modules.user.models.*',
+        'common.helpers.*',
 	    ),
 	    /* uncomment and set if required */
 	    // @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail

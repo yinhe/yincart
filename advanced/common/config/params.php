@@ -45,5 +45,6 @@ return CMap::mergeArray(array(
 //		'<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
 //		'<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 	    ),
-	    'php.exePath' => '/usr/bin/php'
+        'php.exePath' => '/usr/bin/php',
+        'domainsImg' => array(),
 		), CMap::mergeArray($commonEnvParams, $commonParamsLocal));
