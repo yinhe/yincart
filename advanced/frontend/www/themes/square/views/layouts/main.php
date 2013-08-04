@@ -34,7 +34,7 @@
 		    <div class="row show-grid">
 			<div class="col-span-4">
 			    <div class="logo">
-				<?php echo CHtml::image(F::baseUrl() . '/images/logo.png') ?>
+				<?php echo Yii::app()->name ?>
 			    </div>
 			</div>
 			<div class="col-span-5">
