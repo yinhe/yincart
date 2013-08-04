@@ -81,7 +81,7 @@ $(function() {
         upload_complete_handler : uploadComplete,
 
         // Button Settings
-		button_image_url : "<?php echo Yii::app()->request->baseUrl;?>/js/swfupload/icon.png",
+	button_image_url : "<?php echo Yii::app()->request->baseUrl;?>/js/swfupload/icon.png",
         button_text: '选择图片',
         button_placeholder_id : "spanButtonPlaceholder",
         button_width: 55,
@@ -135,3 +135,13 @@ cursor: pointer;
     </ul>
 </div>
 
+
+<?php
+
+$this->widget('bootstrap.widgets.TbFileUpload', array(
+    'model'=>$model,
+    'attribute' => 'url',
+    'url'=>Yii::app()->createUrl("/mall/item/upload"),
+    'multiple'=>true,
+))
+?>

@@ -25,13 +25,13 @@ return array(
 	'env.code' => 'prod',
 	// DB connection configurations
 	'db.name' => '',
-	'db.connectionString' => 'mysql:host={DATABASE-HOST};dbname={DATABASE-NAME}',
-	'db.username' => '{DATABASE-USERNAME}',
-	'db.password' => '{DATABASE-PASSWORD}',
+	'db.connectionString' => 'mysql:host=localhost;dbname=yincart',
+	'db.username' => 'root',
+	'db.password' => '',
 
 	// test database {
 	'testdb.name' => '',
-	'testdb.connectionString' => 'mysql:host={DATABASE-HOST};dbname={DATABASE-NAME}_test',
-	'testdb.username' => '{DATABASE-USERNAME}',
-	'testdb.password' => '{DATABASE-PASSWORD}',
+	'testdb.connectionString' => 'mysql:host=localhost;dbname=yincart_test',
+	'testdb.username' => 'root',
+	'testdb.password' => '',
 );

@@ -1,0 +1,25 @@
+.square-ui-header {
+  color: #ffffff;
+  margin: 50px 0;
+  text-align: center;
+}
+.square-ui-header hr {
+  margin: 29px auto 30px;
+}
+.square-ui-header hr.white {
+  border-color: #ffffff;
+}
+.square-ui-header hr.mini {
+  border-width: 2px;
+  max-width: 4em;
+}
+.square-ui-hexagon {
+  height: 150px;
+  margin: 25px auto 36px;
+  padding: 56px;
+}
+.lightest-background {
+  background-color: #ffffff;
+  display: block;
+  padding: 20px;
+}

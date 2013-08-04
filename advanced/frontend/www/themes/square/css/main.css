@@ -1,0 +1,182 @@
+/* 
+    Document   : main
+    Created on : 2013-7-10, 0:22:31
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body { 
+    font-family:"微软雅黑", "Montserrat", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+a {
+    color:white;
+}
+a:hover {
+    color:white;
+}
+ul li {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.top_nav {
+    text-align:right;
+    padding:10px;
+    color:#fff;
+}
+.top_nav a {
+    color:#fff;
+}
+.top_left {
+    text-align:left;
+}
+.header {
+    padding:30px 0 10px 0;
+}
+.btn-group .btn {
+    border-color:#efefef;  
+}
+.catalog {
+    color:#000;
+}
+.catalog-content {
+    color:#000;
+    overflow:hidden;
+    padding:20px;
+}
+.catalog-content a {
+    color:#000;
+}
+.item-list {
+    overflow:hidden;
+    padding:20px 0;
+}
+.item-list .title a{
+    color:#000;   
+}
+.item-detail {
+
+}
+.item-detail-content {
+    margin-top:20px;
+}
+.main-content {
+    margin:20px 0;
+}
+.menu.btn-group {
+    font-family: "微软雅黑", "Open Sans", Monaco, Menlo, Consolas, "Courier New", monospace;
+}
+.page-container {
+    padding:20px;
+    line-height:150%;
+}
+.page-container p {
+    font-family:"微软雅黑", "Montserrat", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.help-wrap {
+    overflow:hidden;
+}
+.help-wrap a {
+    color:#000;
+}
+.help-wrap ul {
+    margin:0;
+    padding:10px;
+}
+.help-wrap ul li{
+    /*font-size:14px;*/   
+}
+.footer {
+    text-align:center;
+    /*color:white;*/
+    font-family:"微软雅黑", "Montserrat", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.footer a {
+    color:#fff;   
+    font-family:"微软雅黑", "Montserrat", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.footer .copyright {
+    margin:10px 0;
+    padding:10px 0;
+    vertical-align:bottom;
+}
+.help-center {
+    padding:20px;
+    overflow:hidden;
+}
+.help-center ul {
+    margin:0;
+}
+.help-center h5 {
+    color:#fff;
+    font-family:"微软雅黑", "Montserrat", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.help-center ul li{
+    list-style:none;
+}
+.friend-link{
+
+}
+.friend-link ul {
+    margin:20px 20px;
+}
+.friend-link ul li{
+    list-style:none;
+    float:left;
+    padding-right:10px;
+    margin:0;
+}
+/*
+item view
+*/
+.d-action{
+    margin:0;
+    padding:0;
+}
+.d-btn-buy {
+    float:left;
+}
+.d-btn-add {
+    float:left;
+}
+.item-detail-meta ul li {
+    line-height:150%;
+}
+.tab-pane {
+    padding:20px;
+}
+.item-detail-content a:hover {
+    color:#555555;
+}
+.recent-item-list, .recommend-item-list {
+    padding:10px 0;
+}
+
+/*
+form
+*/
+.form-actions {
+    background:none;
+}
+.registration a {
+    color:#555;
+}
+.item-form .nav-tabs > li > a:hover, .item-form .nav-tabs > li > a:focus, .item-form .nav-tabs > .active > a {
+    background-color:#28555b;
+    color:#fff;
+}
+
+/*
+checkout
+*/
+.checkout-address-content, .checkout-payment-content {
+    padding:20px;
+}
+
+/*
+member center
+*/
+.member-right-conent, .member-left-conent {
+    margin:0 0 20px 0;
+}

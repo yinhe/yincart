@@ -1,0 +1,220 @@
+/* 
+    Document   : main
+    Created on : 2013-7-15, 17:46:35
+    Author     : Administrator
+    Description:
+        Purpose of the stylesheet follows.
+*/
+body {
+    line-height: 18px;
+    font-size: 14px;
+    color: #444;
+    font-family: "ProximaNovaRegular","Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: #57666f;
+}
+a:hover {
+color: #3a9ef0;
+text-decoration: underline;
+}
+#body {
+    padding-top: 40px;
+    min-height: 576px;
+}
+#content, .wrapper {
+    max-width: 1620px;
+    margin: 0 auto;
+    position: relative;
+}
+#content {
+    padding: 0 0 20px 178px;
+    width: 100%;
+    background: #fff;
+    min-width: 996px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow:hidden;
+}
+#wrapper {
+    min-height: 100%;
+    background: #fff;
+    overflow:hidden;
+}
+#sidebar {
+    position:fixed;
+    top: 40px;
+    bottom: 0px;
+    width: 178px;
+    padding: 0;
+    z-index: 220;
+    background: #f2f7fa;
+    border-right: 1px solid #dde2eb;
+    overflow: hidden;
+}
+.nav-admin {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+    -o-transition: all 0.3s ease-in-out 0s;
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    -moz-transition: all 0.3s ease-in-out 0s;
+}
+.sidebar-heading {
+    font-size: 12px;
+    font-weight: 400;
+    color: #aab6bd;
+    text-transform: uppercase;
+    padding: 8px 0 0 20px;
+    line-height: 28px;
+}
+#sidebar li.selected>a {
+    color: #fff;
+    background-color: #479ccf !important;
+}
+.sidebar-link:hover {
+    color: #042333;
+    text-decoration: none;
+    background-color: #dfeaf0;
+}
+.sidebar-link {
+    display: block;
+    font-family: "ProximaNovaRegular","ProximaNovaRegular","Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    padding: 8px 5px 7px 20px;
+    color: #042333;
+    font-weight: 400;
+    width: 179px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#sidebar ol {
+    padding: 0 0 5px 0;
+}
+ol {
+    list-style: decimal outside none;
+}
+.main-content {
+    background:#fff;
+    min-height:100%;
+    display:block;
+}
+footer {
+    padding:20px 0;
+    background:#fff;
+}
+/* Move down content because we have a fixed navbar that is 50px tall */
+/*	    body {
+		padding-top: 50px;
+		padding-bottom: 20px;
+	    }*/
+
+/* Set widths on the navbar form inputs since otherwise they're 100% wide */
+.navbar-form input[type="text"],
+.navbar-form input[type="password"] {
+    width: 180px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    /* Let the jumbotron breathe */
+    .jumbotron {
+	margin-top: 20px;
+    }
+    /* Remove padding from wrapping element since we kick in the grid classes here */
+    .body-content {
+	padding: 0;
+    }
+}
+.header-row header {
+    position: relative;
+    height: 70px;
+    border-bottom: 1px solid #e6e6e6;
+    padding: 0 0 0 20px;
+    box-shadow: 0 0px 4px 1px rgba(0,0,0,0.04);
+}
+.header-row header {
+    box-shadow: none;
+}
+.main-content {
+    padding:20px;
+}
+.header-main {
+    position: absolute;
+    bottom: 12px;
+    font-size:24px;
+    font-family: "ProximaNovaLight","ProximaNovaRegular","Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+    line-height: 32px;
+    height: 32px;
+    font-weight: 300;
+    width: 100%;
+    max-width: 718px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.ke-dialog-content input {
+    margin:0;
+    min-height:24px;
+    display:inline;
+}
+span.required {
+    color:red;
+}
+/*
+sku
+*/
+.sku-wrap {
+overflow: hidden;
+background-color: #F8F8F8;
+border: 1px solid #ECECEC;
+}
+.sku-group {
+margin: 5px 20px 15px;
+}
+.sku-label {
+display: inline-block;
+margin-bottom: 5px;
+}
+label {
+width: auto;
+float: none;
+text-align: left;
+padding: 0;
+line-height: 1.5;
+}
+.sku-box {
+overflow: hidden;
+}
+.sku-list li {
+display: inline-block;
+width: 200px;
+height: 25px;
+overflow: hidden;
+vertical-align: middle;
+}
+li {
+clear: none;
+margin: 0;
+}
+ul,li,ol{
+    list-style:none;
+}

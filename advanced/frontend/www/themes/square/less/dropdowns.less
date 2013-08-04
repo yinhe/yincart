@@ -1,0 +1,293 @@
+//
+// Dropdown menus
+// --------------------------------------------------
+
+
+// Use the .menu class on any <li> element within the topbar or ul.tabs and you'll get some superfancy dropdowns
+.dropup,
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  background-color: #ffffff;
+  box-sizing: border-box;
+  color: #232323;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 20px;
+  position: relative;
+  vertical-align: middle;
+  width: 100%;
+
+  &:before {
+    .before;
+    .absLayout(0, 0, inherit, inherit);
+    .three-black-bars;
+    border-color: @gray0;
+    border-style: solid;
+    border-width: 0 0 0 1px;
+    height: 60px;
+    width: 60px;
+
+
+  }
+
+  &:hover:before {
+    .three-white-bars;
+    background-color: @green;
+  }
+}
+
+.dropdown-toggle:active,
+.open .dropdown-toggle {
+  outline: 0;
+}
+
+// Dropdown arrow/caret
+// --------------------
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: top;
+  border-top:   4px solid #000;
+  border-right: 4px solid transparent;
+  border-left:  4px solid transparent;
+  content: "";
+}
+
+// Place the caret
+.dropdown .caret {
+  margin-top: 8px;
+  margin-left: 2px;
+}
+
+// The dropdown menu (ul)
+// ----------------------
+.dropdown-menu {
+  color: @white;
+  display: none; // none by default, but block on "open" of the menu
+  float: left;
+  font-size: 18px;
+  list-style: none;
+  margin: 0; // override default ul
+  min-width: 160px;
+  padding: 0px;
+  position: absolute;
+  top: 100%;
+  z-index: @zindex-dropdown;
+
+  &.typeahead {
+    li {
+      padding: 0;
+    }
+  }
+
+  .dropdown-submenu .dropdown-menu {
+    .btn-group {
+      white-space: nowrap;
+    }
+  }
+
+  .btn-group .btn {
+    float: none;
+  }
+
+  li {
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    padding: 20px 30px 20px 20px;
+    cursor: pointer;
+
+    &:last-of-type {
+      border-width: 0;
+    }
+  }
+
+  .dropdown-image {
+    width: 66px;
+    height: 60px;
+    float: left;
+    position: relative;
+    top: -20px;
+    left: -20px;
+  }
+
+  // Aligns the dropdown menu to right
+  &.pull-right {
+    right: 0;
+    left: auto;
+  }
+
+  // Dividers (basically an hr) within the dropdown
+  .divider {
+    .nav-divider(@dropdown-divider-top, @dropdown-divider-bottom);
+  }
+
+  // Links within the dropdown menu
+  > li > a {
+    display: block;
+    padding: 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: @line-height-base;
+    color: @dropdown-link-color;
+  }
+}
+
+.dropdown-menu-full {
+  left: 0;
+  right: 0;
+}
+
+.dropdown-menu-right {
+  right: 0;
+}
+
+// Hover/Focus state
+// -----------
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus,
+.dropdown-submenu:hover > a,
+.dropdown-submenu:focus > a {
+  color: @green;
+  text-decoration: none;
+  outline: 0;
+  background-color: @white;
+}
+
+// Active state
+// ------------
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: @green;
+  text-decoration: none;
+  outline: 0;
+  background-color: @white;
+}
+
+// Disabled state
+// --------------
+// Gray out text and ensure the hover/focus state remains gray
+.dropdown-menu > .disabled > a,
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+  color: @grayLight;
+}
+// Nuke hover/focus effects
+.dropdown-menu > .disabled > a:hover,
+.dropdown-menu > .disabled > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  background-image: none; // Remove CSS gradient
+  .reset-filter();
+  cursor: default;
+}
+
+// Open state for the dropdown
+// ---------------------------
+.open {
+  & > .dropdown-menu {
+    display: block;
+  }
+}
+
+// Right aligned dropdowns
+// ---------------------------
+.pull-right > .dropdown-menu {
+  right: 0;
+  left: auto;
+}
+
+// Allow for dropdowns to go bottom up (aka, dropup-menu)
+// ------------------------------------------------------
+// Just add .dropup after the standard .dropdown class and you're set, bro.
+// TODO: abstract this so that the navbar fixed styles are not placed here?
+.dropup,
+.navbar-fixed-bottom .dropdown {
+  // Reverse the caret
+  .caret {
+    border-top: 0;
+    border-bottom: 4px solid #000;
+    content: "";
+  }
+  // Different positioning for bottom up menu
+  .dropdown-menu {
+    top: auto;
+    bottom: 100%;
+    margin-bottom: 1px;
+  }
+}
+
+// Sub menus
+// ---------------------------
+.dropdown-submenu {
+  position: relative;
+}
+// Default dropdowns
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: 100%;
+}
+.dropdown-submenu:hover > .dropdown-menu {
+  display: block;
+}
+
+// Dropups
+.dropup .dropdown-submenu > .dropdown-menu {
+  top: auto;
+  bottom: 0;
+  margin-top: 0;
+  margin-bottom: -2px;
+  border-bottom-left-radius: 0; // Nuke the closest corner as appropriate
+}
+
+// Caret to indicate there is a submenu
+.dropdown-submenu > a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: darken(@dropdown-bg, 20%);
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover > a:after {
+  border-left-color: @dropdown-link-hover-color;
+}
+
+// Left aligned submenus
+.dropdown-submenu.pull-left {
+  // Undo the float
+  // Yes, this is awkward since .pull-left adds a float, but it sticks to our conventions elsewhere.
+  float: none;
+
+  // Positioning the submenu
+  > .dropdown-menu {
+    left: -100%;
+    margin-left: 10px;
+    border-top-right-radius: 0; // Remove the rounded corner here
+  }
+}
+
+// Tweak nav headers
+// ---------------------------
+// Increase padding from 15px to 20px on sides
+.dropdown .dropdown-menu .nav-header {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+// Typeahead
+// ---------------------------
+.typeahead {
+  z-index: 1051;
+}

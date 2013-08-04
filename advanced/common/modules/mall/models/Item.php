@@ -105,8 +105,8 @@ class Item extends CActiveRecord {
 	    'unit' => '计量单位',
 	    'stock' => '库存',
 	    'min_number' => '最少订货量',
-	    'market_price' => '原价',
-	    'shop_price' => '现价',
+	    'market_price' => '建议零售价',
+	    'shop_price' => '分销价',
 	    'currency' => '货币',
 	    'skus' => '库存量单位',
 	    'props' => '商品属性',
@@ -320,7 +320,7 @@ class Item extends CActiveRecord {
 	    }
 	}
     }
-    
+
     /**
      * 得到商品主图原始路径
      * @return type
@@ -332,7 +332,7 @@ class Item extends CActiveRecord {
 		return dirname(F::basePath()) . '/upload/item/image/' . $v['url'];
 	    }
 	}
-    }    
+    }
 
     /**
      * 得到商品主图Url地址
@@ -351,37 +351,54 @@ class Item extends CActiveRecord {
     public function getHolderJs($width = '150', $height = '150', $text = ':-(') {
 	return 'holder.js/' . $width . 'x' . $height . '/text:' . $text;
     }
-    
+
     /**
      * 得到商品主图
      * @return type
      */
-//    public function getMainPic($width='310px', $height='310px') {
-//        $images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
-//        foreach ($images as $k => $v) {
-//            if ($v['position'] == 0) {
-//                if(!F::sg('site', 'domain')){
-//                return CHtml::image(Yii::app()->request->baseUrl . '/../../upload/item/image/' . $v['url'], $this->title, array('style'=>'width:'.$width.';height:'.$height));
-//                }else{
-//                return CHtml::image('http://img.' . F::sg('site', 'domain') . '/item/image/' . $v['url'], $this->title, array('style'=>'width:'.$width.';height:'.$height));
-//                }
-//            }
-//        }
-//    }
+    public function getMainPic($width = '310px', $height = '310px') {
+	$images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+	foreach ($images as $k => $v) {
+	    if ($v['position'] == 0) {
+		if (!F::sg('site', 'domain')) {
+		    return CHtml::image(Yii::app()->request->baseUrl . '/../../upload/item/image/' . $v['url'], $this->title, array('style' => 'width:' . $width . ';height:' . $height));
+		} else {
+		    return CHtml::image('http://img.' . F::sg('site', 'domain') . '/store/' . $v->store_id . '/item/image/' . $v['url'], $this->title, array('style' => 'width:' . $width . ';height:' . $height));
+		}
+	    }
+	}
+    }
 
     /**
      * 得到商品主图2
      * @return type
      */
-    public function getMainPic($width = '310', $height = '310') {
-	$img = $this->getMainPicPath();;
-	if (file_exists($this->getMainPicOriginalPath())) {
-	    $img_thumb = F::baseUrl() . ImageHelper::thumb($width, $height, $img, array('method' => 'resize'));
-	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
-	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
-	} else {
-	    return CHtml::link(CHtml::image($this->getHolderJs('310', '310')), $this->getUrl(), array('title' => $this->title));
+//    public function getMainPic($width = '310', $height = '310') {
+//	$img = $this->getMainPicPath();
+//	if (file_exists($this->getMainPicOriginalPath())) {
+//	    $img_thumb = F::baseUrl() . ImageHelper::thumb($width, $height, $img, array('method' => 'resize'));
+//	    $img_thumb_now = CHtml::image($img_thumb, $this->title);
+//	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
+//	} else {
+//	    return CHtml::link(CHtml::image($this->getHolderJs('310', '310')), $this->getUrl(), array('title' => $this->title));
+//	}
+//    }
+
+    /**
+     * 得到商品相册
+     * @return type
+     */
+    public function getItemGallery($width = '100px', $height = '100px') {
+	$images = ItemImg::model()->findAllByAttributes(array('item_id' => $this->item_id));
+	foreach ($images as $k => $v) {
+	    echo CHtml::image('http://img.' . F::sg('site', 'domain') . '/store/' . $v->store_id . '/item/image/' . $v['url'], $this->title, array('style' => 'width:' . $width . ';height:' . $height));
 	}
+//      小南(57477631)友情提示
+//	foreach($images as $v){
+//	$arr[] = $v->xx;
+//	}
+//	return $arr;
+//	这样才能返回图片组
     }
 
     /**
@@ -441,6 +458,91 @@ class Item extends CActiveRecord {
 	    return CHtml::link($img_thumb_now, array('/item/view', 'id' => $this->item_id), array('title' => $this->title));
 	} else {
 	    return CHtml::link(CHtml::image($this->getHolderJs('210', '210')), $this->getUrl(), array('title' => $this->title));
+	}
+    }
+
+    /**
+     * 分类属性
+     * 
+     * @param int $id 分类ID
+     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @param type $level 层级
+     * @return mixed
+     */
+    public function attrCategory($id, $returnAttr = false, $index = null, $level = 1) {
+	$data = array();
+	$category = Category::model()->findByPk($id);
+	$descendants = $category->descendants()->findAll();
+	foreach ($descendants as $k1 => $child) {
+	    $string = '';
+	    $string .= str_repeat('--', $child->level - $level);
+//	    if ($child->isLeaf() && !$child->next()->find()) {
+//		$string .= '|--';
+//	    } else {
+//		$string .= '';
+//	    }
+	    $string .= $child->name;
+
+	    $data[$child->id] = $string;
+	}
+	if ($returnAttr !== false) {
+	    is_null($index) && $index = $this->category_id;
+	    $rs = empty($data[$index]) ? null : $data[$index];
+	} else {
+	    $rs = $data;
+	}
+
+	return $rs;
+    }
+
+    public function afterSave() {
+	$this->addImages();
+	parent::afterSave();
+    }
+
+    public function addImages() {
+	//If we have pending images
+	if (Yii::app()->user->hasState('images')) {
+	    $userImages = Yii::app()->user->getState('images');
+	    //Resolve the final path for our images
+//	    $path = Yii::app()->getBasePath() . "/../images/uploads/";
+//	    $path = realpath(Yii::app()->getBasePath() . "/../upload/item/image") . "/";
+//	    //Create the folder and give permissions if it doesnt exists
+//	    if (!is_dir($path)) {
+//		mkdir($path);
+//		chmod($path, 0777);
+//	    }
+	    //Now lets create the corresponding models and move the files
+	    foreach ($userImages as $k => $image) {
+		if (is_file($image["path"])) {
+//		    if (rename($image["path"], $path . $image["url"])) {
+//			chmod($path . $image["filename"], 0777);
+		    $img = new ItemImg( );
+//			$img->size = $image["size"];
+//			$img->mime = $image["mime"];
+//			$img->name = $image["name"];
+		    $img->url = $image["url"];
+		    $img->item_id = $this->item_id;
+		    $img->store_id = $_SESSION['store']['store_id'] ? $_SESSION['store']['store_id'] : 0;
+		    $img->position = $k;
+		    $img->create_time = time();
+		    if (!$img->save()) {
+			//Its always good to log something
+			Yii::log("Could not save Image:\n" . CVarDumper::dumpAsString(
+					$img->getErrors()), CLogger::LEVEL_ERROR);
+			//this exception will rollback the transaction
+			throw new Exception('Could not save Image');
+		    }
+//		    }
+		} else {
+		    //You can also throw an execption here to rollback the transaction
+		    Yii::log($image["path"] . " is not a file", CLogger::LEVEL_WARNING);
+		}
+	    }
+	    //Clear the user's session
+	    Yii::app()->user->setState('images', null);
 	}
     }
 

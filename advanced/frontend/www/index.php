@@ -1,17 +1,43 @@
 <?php
-error_reporting(E_ALL & ~(E_STRICT | E_NOTICE));
-// change the following paths if necessary
-$yii=dirname(__FILE__).'/../../../../../yii/framework/yii.php';
-$config=dirname(__FILE__).'/protected/config/main.php';
 
-// remove the following lines when in production mode
 defined('YII_DEBUG') or define('YII_DEBUG',true);
-// specify how many levels of call stack should be shown in each log message
 defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 
-require_once($yii);
-$local=require('../config/main-local.php');
-$base=require('../config/main.php');
-$config=CMap::mergeArray($base, $local);
-Yii::createWebApplication($config)->run();
+// On dev display all errors
+if(YII_DEBUG) {
+//	error_reporting(-1);
+    error_reporting(E_ALL & ~(E_STRICT | E_NOTICE));
+	ini_set('display_errors', true);
+}
 
+date_default_timezone_set('UTC');
+
+chdir(dirname(__FILE__).'/../..');
+
+$root=dirname(__FILE__).'/..';
+$common=$root.'/../common';
+
+//require_once($common.'/lib/Yii/yii.php');
+$yiipath = $root.'/../../../../yii/framework/yii.php';
+require_once($yiipath);
+$config=require('frontend/config/main.php');
+require_once($common.'/components/WebApplication.php');
+require_once('common/lib/global.php');
+
+
+$app = Yii::createApplication('WebApplication', $config);
+
+/* please, uncomment the following if you are using ZF library */
+/*
+Yii::import('common.extensions.EZendAutoloader', true);
+
+EZendAutoloader::$prefixes = array('Zend');
+EZendAutoloader::$basePath = Yii::getPathOfAlias('common.lib') . DIRECTORY_SEPARATOR;
+
+Yii::registerAutoloader(array("EZendAutoloader", "loadClass"), true);
+*/
+
+$app->run();
+
+/* uncomment if you wish to debug your resulting config */
+/* echo '<pre>' . dump($config) . '</pre>'; */

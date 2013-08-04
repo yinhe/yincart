@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, width=500px">
+    <title>Bootstrap Square UI</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/square-ui.css"/>
+    <link rel="stylesheet" href="css/rainbow/zenburnesque.css"/>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/rainbow/rainbow.min.js"></script>
+</head>
+<body>
+
+<div class="col-span-12 square-ui-header">
+    <div class="square-ui-hexagon"></div>
+    <h4 class="big">nice user interface for your site</h4>
+    <hr class="background-color-0 mini-hr"/>
+    <h1 class="big" style="word-break: break-all">elements</h1>
+</div>
+
+<!--****************************************    Edit Box    *********************************************************-->
+<div class="col-span-12">
+        <div class="panel">
+
+            <div class="panel-heading">
+                <span class="panel-heading-primary">edit box</span>
+                <span class="panel-heading-secondary">01</span>
+            </div>
+            <div class="panel-primary">
+                <div class="col-span-6">
+                    <input type="text" value="Normal"/>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<input type="text" value="Normal"/>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+<input class="input-large" type="text" value="Big Text"/>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<input class="input-large" type="text" value="Big Text"/>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="input-search-wrapper">
+                        <input class="input-search" type="search" value="Search"/>
+                        <input class="input-search-submit" type="submit"/>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="input-search-wrapper">
+    <input class="input-search" type="search" value="Search"/>
+    <input class="input-search-submit" type="submit"/>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <input class="input-small" type="text" value="Small"/>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<input class="input-small" type="text" value="Small"/>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="input-search-wrapper">
+                        <input class="input-search input-small" type="text" value="Search Small"/>
+                        <input class="input-search-submit input-small" type="submit"/>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="input-search-wrapper">
+    <input class="input-search input-small" type="text" value="Search Small"/>
+    <input class="input-search-submit input-small" type="submit"/>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <input type="number" value="1"/>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<input type="number" value="1"/>
+                    </pre>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+
+
+<!--****************************************    Combo Box    ********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">combo box</span>
+            <span class="panel-heading-secondary">02</span>
+        </div>
+        <div class="panel-primary">
+            <!--Classic Select-->
+            <div class="col-span-6">
+                <span class="select-wrapper">
+                    <select>
+                        <option value="classic" selected>Classic</option>
+                        <option value="classically">Classically</option>
+                        <option value="classicalest">Classicalest</option>
+                    </select>
+                </span>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<span class="select-wrapper">
+    <select>
+        <option value="classic" selected>Classic</option>
+        <option value="classically">Classically</option>
+        <option value="classicalest">Classicalest</option>
+    </select>
+</span>
+                </pre>
+            </div>
+
+
+            <!--Bootstrap DropDown-->
+            <div class="col-span-6">
+                <div class="dropdown">
+                    <div id="dlabel-0" class="dropdown-toggle" data-toggle="dropdown">Bootstrap Dropdown</div>
+                    <ul id="dropdown-0" class="dropdown-menu dropdown-menu-full" role="menu" aria-labelledby="dlabel-0">
+                        <li class="highlight-color-1" role="menuitem" data-value="Send Message"><div class="dropdown-image eye-transparent"></div>Send Message</li>
+                        <li class="highlight-color-1" role="menuitem" data-value="Settings"><div class="dropdown-image person-transparent"></div>Settings</li>
+                        <li class="highlight-color-1" role="menuitem" data-value="Favorite"><div class="dropdown-image beaker-transparent"></div>Favorite</li>
+                    </ul>
+                </div>
+                <script type="text/javascript">
+                    $('#dropdown-1').on('click', 'li', function(e) {
+                        var target = $(e.target),
+                            value = target.attr('data-value');
+                        target.parents('.dropdown').find('.dropdown-toggle').text(value);
+                    });
+                </script>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<div class="dropdown">
+    <div id="dlabel-0" class="dropdown-toggle" data-toggle="dropdown">Bootstrap Dropdown</div>
+    <ul id="dropdown-0" class="dropdown-menu dropdown-menu-full" role="menu" aria-labelledby="dlabel-0">
+        <li class="highlight-color-1" role="menuitem" data-value="Send Message"><div class="dropdown-image eye-transparent"></div>Send Message</li>
+        <li class="highlight-color-1" role="menuitem" data-value="Settings"><div class="dropdown-image person-transparent"></div>Settings</li>
+        <li class="highlight-color-1" role="menuitem" data-value="Favorite"><div class="dropdown-image beaker-transparent"></div>Favorite</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $('#dropdown-1').on('click', 'li', function(e) {
+        var target = $(e.target),
+                value = target.attr('data-value');
+        target.parents('.dropdown').find('.dropdown-toggle').text(value);
+    });
+</script>
+                </pre>
+            </div>
+
+            <!--Bootstrap Typeahead-->
+            <div class="col-span-6">
+                <input id="venue-name-0" type="text" data-provide="typeahead" placeholder="Typeahead"/>
+                <script type="text/javascript">
+                    $('#venue-name-0').typeahead({
+                        minLength: 3,
+                        source: function(query, process) {
+                            var hardcodedOptions = ['a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'b', 'bb', 'bbb', 'bbbb', 'bbbbb', 'bbbbbb', 'bbbbbbb'];
+                            process(hardcodedOptions)
+                        }
+                    });
+                </script>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<input id="venue-name" type="text" data-provide="typeahead" placeholder="Typeahead... type aaa or bbb"/>
+<script type="text/javascript">
+    $('#venue-name').typeahead({
+        minLength: 3,
+        source: function(query, process) {
+            var hardcodedOptions = ['a', 'aa', 'aaa', 'aaaa', 'aaaaa', 'aaaaaa', 'aaaaaaa', 'b', 'bb', 'bbb', 'bbbb', 'bbbbb', 'bbbbbb', 'bbbbbbb'];
+            process(hardcodedOptions)
+        }
+    });
+</script>
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Checkbox & Radio    *************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Checkbox & Radio</span>
+            <span class="panel-heading-secondary">03</span>
+        </div>
+        <div class="panel-primary">
+            <!--Checkbox-->
+            <div class="col-span-6 lightest-background extra-padding">
+                <span class="checkbox-wrapper">
+                    <input id="checkbox-0" type="checkbox"/>
+                    <label for="checkbox-0"></label>
+
+                    <input id="checkbox-00" type="checkbox" checked="checked"/>
+                    <label for="checkbox-00"></label>
+                </span>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<span class="checkbox-wrapper">
+    <input id="checkbox-1" type="checkbox"/>
+    <label for="checkbox-1"></label>
+
+    <input id="checkbox-2" type="checkbox" checked/>
+    <label for="checkbox-2"></label>
+</span>
+                </pre>
+            </div>
+
+
+            <!--Radio Button-->
+            <div class="col-span-6 lightest-background extra-padding">
+                <span class="radio-wrapper">
+                    <input name="radio-group" id="radio-0" type="radio"/>
+                    <label for="radio-0"></label>
+
+                    <input name="radio-group" id="radio-00" type="radio" checked="checked"/>
+                    <label for="radio-00"></label>
+                </span>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<span class="radio-wrapper">
+    <input name="radio-group" id="radio-1" type="radio"/>
+    <label for="radio-1"></label>
+
+    <input name="radio-group" id="radio-2" type="radio" checked/>
+    <label for="radio-2"></label>
+</span>
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--****************************************    Button    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Button</span>
+            <span class="panel-heading-secondary">04</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <button class="btn btn-large background-color-1">button color 1</button>
+                    <button class="btn btn-large background-color-2">button color 2</button>
+                    <button class="btn btn-large background-color-3">button color 3</button>
+                    <button class="btn btn-large background-color-4">button color 4</button>
+                    <button class="btn btn-large background-color-5">button color 5</button>
+                    <button class="btn btn-large background-color-6">button color 6</button>
+                    <button class="btn btn-large background-color-7">button color 7</button>
+                    <button class="btn btn-large">new message</button>
+                </div>
+
+                <div class="col-span-6">
+                    <pre data-language="html">
+<button class="btn btn-large background-color-1">button color 1</button>
+<button class="btn btn-large background-color-2">button color 2</button>
+<button class="btn btn-large background-color-3">button color 3</button>
+<button class="btn btn-large background-color-4">button color 4</button>
+<button class="btn btn-large background-color-5">button color 5</button>
+<button class="btn btn-large background-color-6">button color 6</button>
+<button class="btn btn-large background-color-7">button color 7</button>
+<button class="btn btn-large">new message</button>
+                        </pre>
+                </div>
+            </div>
+
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <button class="btn btn-large background-color-6">button badge<span class="badge background-color-3">2</span></button>
+                </div>
+                <div class="col-span-6">
+                        <pre data-language="html">
+<button class="btn btn-large background-color-6">button badge<span class="badge background-color-3">2</span></button>
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <button class="btn btn-large btn-left-image">
+                            <span class="btn-image background-color-1 dollar-bill"></span>
+                            <span class="btn-text">button left image</span>
+                        </button>
+                    </div>
+                    <div class="col-span-6">
+                        <pre data-language="html">
+<button class="btn btn-large btn-left-image">
+    <span class="btn-image background-color-1 dollar-bill"></span>
+    <span class="btn-text">button left image</span>
+</button>
+                        </pre>
+                    </div>
+                </div>
+
+
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <span class="btn-group">
+                            <button class="btn btn-small background-color-2 thumbs-up"></button>
+                            <button class="btn btn-small gears"></button>
+                            <button class="btn btn-small bubble-medium"></button>
+                        </span>
+                    </div>
+                    <div class="col-span-6">
+                        <pre data-language="html">
+<span class="btn-group">
+    <button class="btn btn-small background-color-2 thumbs-up"></button>
+    <button class="btn btn-small gears"></button>
+    <button class="btn btn-small bubble-medium"></button>
+</span>
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <span class="btn-group">
+                            <button class="btn btn-small arrow-left-white-large"></button>
+                            <button class="btn btn-small arrow-right-white-large"></button>
+                        </span>
+                    </div>
+                    <div class="col-span-6">
+                        <pre data-language="html">
+<span class="btn-group">
+    <button class="btn btn-small arrow-left-white-large"></button>
+    <button class="btn btn-small arrow-right-white-large"></button>
+</span>
+                    </pre>
+                </div>
+            </div>
+
+
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <span class="btn-group-justified">
+                        <button class="btn btn-small person-white"></button>
+                        <button class="btn btn-small gears"></button>
+                        <button class="btn btn-small mailbox"></button>
+                        <button class="btn btn-small eye-white"></button>
+                        <button class="btn btn-small dollar-bill background-color-1"></button>
+                        <button class="btn btn-small speaker-diagonal"></button>
+                        <button class="btn btn-small placemark-white background-color-5"></button>
+                        <button class="btn btn-small thumbs-up"></button>
+                        <button class="btn btn-small video-large"></button>
+                        <button class="btn btn-small camera"></button>
+                        <button class="btn btn-small tuners"></button>
+                        <button class="btn btn-small truck"></button>
+                        <button class="btn btn-small diamond"></button>
+                        <button class="btn btn-small light-bulb background-color-7"></button>
+                        <button class="btn btn-small record"></button>
+                        <button class="btn btn-small beaker-white"></button>
+                    </span>
+                </div>
+
+                <div class="col-span-6">
+                    <pre data-language="html">
+<span class="btn-group-justified">
+    <button class="btn btn-small person-white"></button>
+    <button class="btn btn-small gears"></button>
+    <button class="btn btn-small mailbox"></button>
+    <button class="btn btn-small eye-white"></button>
+    <button class="btn btn-small dollar-bill background-color-1"></button>
+    <button class="btn btn-small speaker-diagonal"></button>
+    <button class="btn btn-small placemark-white background-color-5"></button>
+    <button class="btn btn-small thumbs-up"></button>
+    <button class="btn btn-small video-large"></button>
+    <button class="btn btn-small camera"></button>
+    <button class="btn btn-small tuners"></button>
+    <button class="btn btn-small truck"></button>
+    <button class="btn btn-small diamond"></button>
+    <button class="btn btn-small light-bulb background-color-7"></button>
+    <button class="btn btn-small record"></button>
+    <button class="btn btn-small beaker-white"></button>
+</span>
+                    </pre>
+                </div>
+           </div>
+
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <span class="btn-group-justified">
+                        <button class="btn btn-mini play"></button>
+                        <button class="btn btn-mini pause background-color-1"></button>
+                        <button class="btn btn-mini speaker-white-small background-color-2"></button>
+                        <button class="btn btn-mini expand-white-small background-color-3"></button>
+                        <button class="btn btn-mini airplane-small background-color-4"></button>
+                        <button class="btn btn-mini link-white-small background-color-5"></button>
+                        <button class="btn btn-mini arrow-swoop-left background-color-6"></button>
+                    </span>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<span class="btn-group-justified">
+    <button class="btn btn-mini play background-color-0"></button>
+    <button class="btn btn-mini pause background-color-1"></button>
+    <button class="btn btn-mini speaker-white-small background-color-2"></button>
+    <button class="btn btn-mini expand-white-small background-color-3"></button>
+    <button class="btn btn-mini airplane-small background-color-4"></button>
+    <button class="btn btn-mini link-white-small background-color-5"></button>
+    <button class="btn btn-mini arrow-swoop-left background-color-6"></button>
+</span>
+                    </pre>
+                </div>
+            </div>
+
+
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <span class="btn-group-vertical">
+                        <button class="btn btn-small thumbs-up background-color-3"></button>
+                        <button class="btn btn-small gears"></button>
+                        <button class="btn btn-small bubble-medium"></button>
+                    </span>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<span class="btn-group-vertical">
+    <button class="btn btn-small thumbs-up background-color-3"></button>
+    <button class="btn btn-small gears"></button>
+    <button class="btn btn-small bubble-medium"></button>
+</span>
+                    </pre>
+                </div>
+            </div>
+
+
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <span class="btn-group-vertical">
+                        <button class="btn btn-medium thumbs-up-large background-color-1"></button>
+                        <button class="btn btn-medium bubble-extra-large background-color-5"></button>
+                    </span>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<span class="btn-group-vertical">
+    <button class="btn btn-medium thumbs-up-large background-color-1"></button>
+    <button class="btn btn-medium bubble-large background-color-5"></button>
+</span>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Calendar    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Calendar</span>
+            <span class="panel-heading-secondary">05</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+                <div class="col-span-6">
+
+                    <div class="calendar">
+                        <div class="calendar-nav btn-group block">
+                            <div class="table-cell">
+                                <button class="btn btn-small arrow-left-white-large"></button>
+                            </div>
+                            <div class="table-cell full-width">
+                                <button class="btn btn-large cursor-default">January</button>
+                            </div>
+                            <div class="table-cell">
+                                <button class="btn btn-small arrow-right-white-large"></button>
+                            </div>
+                        </div>
+                        <table class="calendar-body">
+                            <thead>
+                                <tr class="background-color-1">
+                                    <th>sun</th>
+                                    <th>mon</th>
+                                    <th>tue</th>
+                                    <th>wed</th>
+                                    <th>thu</th>
+                                    <th>fri</th>
+                                    <th>sat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>2</td>
+                                    <td>3</td>
+                                    <td>4</td>
+                                    <td>5</td>
+                                    <td>6</td>
+                                    <td>7</td>
+                                </tr>
+
+                                <tr>
+                                    <td>8</td>
+                                    <td>9</td>
+                                    <td>10</td>
+                                    <td>11</td>
+                                    <td>12</td>
+                                    <td>13</td>
+                                    <td>14</td>
+                                </tr>
+
+                                <tr>
+                                    <td>15</td>
+                                    <td>16</td>
+                                    <td>17</td>
+                                    <td class="active">18</td>
+                                    <td>19</td>
+                                    <td>20</td>
+                                    <td>21</td>
+                                </tr>
+
+                                <tr>
+                                    <td>21</td>
+                                    <td>23</td>
+                                    <td class="active">24</td>
+                                    <td class="active">25</td>
+                                    <td>26</td>
+                                    <td>27</td>
+                                    <td>28</td>
+                                </tr>
+
+                                <tr>
+                                    <td>29</td>
+                                    <td>30</td>
+                                    <td>31</td>
+                                    <td class="inactive">1</td>
+                                    <td class="inactive">2</td>
+                                    <td class="inactive">3</td>
+                                    <td class="inactive">4</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="calendar">
+    <div class="calendar-nav btn-group block">
+        <div class="table-cell">
+            <button class="btn btn-small arrow-left-white-large"></button>
+        </div>
+        <div class="table-cell full-width">
+            <button class="btn btn-large cursor-default">January</button>
+        </div>
+        <div class="table-cell">
+            <button class="btn btn-small arrow-right-white-large"></button>
+        </div>
+    </div>
+    <table class="calendar-body">
+        <thead>
+        <tr class="background-color-1">
+            <th>sun</th>
+            <th>mon</th>
+            <th>tue</th>
+            <th>wed</th>
+            <th>thu</th>
+            <th>fri</th>
+            <th>sat</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+        </tr>
+
+        <tr>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+        </tr>
+
+        <tr>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td class="active">18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+        </tr>
+
+        <tr>
+            <td>21</td>
+            <td>23</td>
+            <td class="active">24</td>
+            <td class="active">25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+        </tr>
+
+        <tr>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td class="inactive">1</td>
+            <td class="inactive">2</td>
+            <td class="inactive">3</td>
+            <td class="inactive">4</td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Bar    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Bar</span>
+            <span class="panel-heading-secondary">06</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+                <div class="col-span-6">
+                    <div class="bar">
+                        <div class="bar-left background-color-1" style="width: 45%">
+                            <div class="bar-slider background-color-7 light-text">450</div>
+                        </div>
+                        <div class="bar-spacer bar-normal"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="bar">
+    <div class="bar-left background-color-1" style="width: 45%;">
+        <div class="bar-slider background-color-7 light-text">450</div>
+    </div>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="bar">
+                        <div class="bar-left bar-spacer" style="width: 45%; z-index: 1;">
+                            <div class="bar-slider background-color-7 light-text">450</div>
+                        </div>
+                        <div class="bar-left background-color-1" style="width: 65%;">
+                            <div class="bar-slider background-color-7 light-text">650</div>
+                        </div>
+                        <div class="bar-spacer bar-normal"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="bar">
+    <div class="bar-left bar-spacer" style="width: 45%; z-index: 1">
+        <div class="bar-slider background-color-7 light-text">450</div>
+    </div>
+    <div class="bar-left background-color-1" style="width: 65%;">
+        <div class="bar-slider background-color-7 light-text">650</div>
+    </div>
+    <div class="bar-spacer bar-normal"></div>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="bar">
+                        <div class="bar-left bar-normal background-color-1" style="width: 45%; z-index: 1"></div>
+                        <div class="bar-spacer bar-normal"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="bar">
+    <div class="bar-left bar-normal background-color-1" style="width: 45%; z-index: 1"></div>
+    <div class="bar-spacer bar-normal"></div>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="progress">
+                        <div class="progress-bar background-color-1" style="width: 75%">Uploading (75%)</div>
+                        <div class="progress-bar-spacer"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="progress">
+    <div class="progress-bar background-color-1" style="width: 75%">Uploading (75%)</div>
+    <div class="progress-bar-spacer"></div>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="progress">
+                        <div class="btn btn-small background-color-1 ellipse-white-large table-cell"></div>
+                        <div class="inline background-color-00 table-cell full-width light-text">
+                            <span class="progress-bar-text">Upload.jpg</span>
+                            <div class="progress-bar abs-left background-color-7" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="progress">
+    <div class="btn btn-small background-color-1 ellipse-white-large table-cell"></div>
+    <div class="inline background-color-00 table-cell full-width light-text">
+        <span class="progress-bar-text">Upload.jpg</span>
+        <div class="progress-bar abs-left background-color-7" style="width: 75%"></div>
+    </div>
+</div>
+                    </pre>
+                </div>
+
+
+                <div class="col-span-6">
+                    <div class="bar">
+                        <div class="bar-left background-color-1" style="width: 25%;"></div>
+                        <div class="bar-spacer bar-small"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="bar">
+    <div class="bar-left background-color-1" style="width: 25%;"></div>
+    <div class="bar-spacer bar-small"></div>
+</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="bar">
+                        <div class="bar-left bar-mini background-color-1" style="width: 75%;"></div>
+                        <div class="bar-spacer bar-mini"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="bar">
+    <div class="bar-left bar-mini background-color-1" style="width: 75%;"></div>
+    <div class="bar-spacer bar-mini"></div>
+</div>
+                    </pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    On & Off    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">On & Off</span>
+            <span class="panel-heading-secondary">07</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+
+                <div class="col-span-6">
+                    <div class="toggle toggle-on">
+                        <div class="slider"></div>
+                    </div>
+
+                    <div class="toggle toggle-off">
+                        <div class="slider"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="toggle toggle-on">
+    <div class="slider"></div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('.toggle').click(function() {
+            $(this).toggleClass('toggle-off').toggleClass('toggle-on');
+        });
+    });
+</script>
+                    </pre>
+                </div>
+
+            </div>
+
+            <div class="col-span-12">
+
+                <div class="col-span-6">
+                    <div class="toggle toggle-dark toggle-on">
+                        <div class="slider"></div>
+                    </div>
+
+                    <div class="toggle toggle-dark toggle-off">
+                        <div class="slider"></div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="toggle toggle-dark toggle-on">
+    <div class="slider"></div>
+</div>
+                    </pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Tag    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">On & Off</span>
+            <span class="panel-heading-secondary">07</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+
+                <div class="col-span-6">
+                    <div class="tag tag-rounded tag-padded background-color-1 light-text">Pop</div>
+                    <div class="tag tag-padded background-color-1 light-text">Metal</div>
+                    <div class="tag tag-circle link-white-small background-color-1 light-text"></div>
+                    <div class="tag tag-rounded background-color-1 light-text">2</div>
+                    <div class="tag tag-callout light-text">26</div>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="tag tag-rounded tag-padded background-color-1 light-text">Pop</div>
+<div class="tag tag-padded background-color-1 light-text">Metal</div>
+<div class="tag tag-circle link-white-small background-color-1 light-text"></div>
+<div class="tag tag-rounded background-color-1 light-text">2</div>
+<div class="tag tag-callout light-text">26</div>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="tag-remove">Design</div>
+                    <div class="tag tag-rounded tag-padded background-color-1 light-text">12</div>
+                    <div class="tag-arrow-right"></div>
+                </div>
+
+                <div class="col-span-6">
+                    <pre data-language="html">
+<div class="tag-remove">Design</div>
+<div class="tag tag-rounded tag-padded background-color-1 light-text">12</div>
+<div class="tag-arrow-right"></div>
+                    </pre>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Typography    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Typography</span>
+            <span class="panel-heading-secondary">09</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <h1>Heading One</h1>
+                        <h2>Heading Two</h2>
+                        <h3>Heading Three</h3>
+                        <h4>Heading Four</h4>
+                        <h5>Heading Five</h5>
+                    </div>
+                    <div class="col-span-6">
+                        <pre data-language="html">
+<h1>Heading One</h1>
+<h2>Heading Two</h2>
+<h3>Heading Three</h3>
+<h4>Heading Four</h4>
+<h5>Heading Five</h5>
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <h5 class="big">web developing</h5>
+                        <p>
+                            Interstate 80 Business (BL-80) isa business loop of Interstate 80.
+                        </p>
+                    </div>
+                    <div class="col-span-6">
+                    <pre data-language="html">
+<h5 class="big">web developing</h5>
+<p>
+    Interstate 80 Business (BL-80) isa business loop of Interstate 80.
+</p>
+                    </pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--****************************************    Listing    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Listing</span>
+            <span class="panel-heading-secondary">010</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <ul class="listing">
+                            <li>Dribble.com</li>
+                            <li class="active">Behance</li>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                        </ul>
+                    </div>
+                    <div class="col-span-6">
+                        <pre data-language="html">
+<ul class="listing">
+    <li>Dribble.com</li>
+    <li class="active">Behance</li>
+    <li>Facebook</li>
+    <li>Twitter</li>
+</ul>
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="col-span-12">
+                    <div class="col-span-6">
+                        <ul class="listing listing-justified">
+                            <li>
+                                <div class="table-cell full-width">
+                                    Designmodo
+                                </div>
+                                <div class="table-cell full-width">
+                                    <div class="tag">230</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="table-cell full-width">
+                                    Design Legion
+                                </div>
+                                <div class="table-cell">
+                                    <div class="tag">115</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="table-cell full-width">
+                                    CSS Liars
+                                </div>
+                                <div class="table-cell full-width">
+                                    <div class="tag">234</div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="table-cell full-width">
+                                    Smashing Magazine
+                                </div>
+                                <div class="table-cell">
+                                    <div class="tag">35</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-span-6">
+                        <pre data-language="html">
+<ul class="listing listing-justified">
+    <li>
+        <div class="table-cell full-width">
+            Designmodo
+        </div>
+        <div class="table-cell full-width">
+            <div class="tag">230</div>
+        </div>
+    </li>
+    <li>
+        <div class="table-cell full-width">
+            Design Legion
+        </div>
+        <div class="table-cell">
+            <div class="tag">115</div>
+        </div>
+    </li>
+    <li>
+        <div class="table-cell full-width">
+            CSS Liars
+        </div>
+        <div class="table-cell full-width">
+            <div class="tag">234</div>
+        </div>
+    </li>
+    <li>
+        <div class="table-cell full-width">
+            Smashing Magazine
+        </div>
+        <div class="table-cell">
+            <div class="tag">35</div>
+        </div>
+    </li>
+</ul>
+                        </pre>
+                    </div>
+                </div>
+
+                <div class="col-span-6">
+                    <ul class="listing listing-justified">
+                        <li>
+                            <div class="table-cell full-width">
+                                Like a brilliant
+                                <div class="sub">She entered political</div>
+                            </div>
+                            <div class="table-cell">
+                                <div class="toggle toggle-dark toggle-on">
+                                    <div class="slider"></div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="table-cell full-width">
+                                Tune Up!
+                                <div class="sub">She entered political</div>
+                            </div>
+                            <div class="table-cell">
+                                <div class="toggle toggle-dark toggle-off">
+                                    <div class="slider"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<ul class="listing listing-justified">
+    <li>
+        <div class="table-cell full-width">
+            Like a brilliant
+            <div class="sub">She entered political</div>
+        </div>
+        <div class="table-cell">
+            <div class="toggle toggle-dark toggle-on">
+                <div class="slider"></div>
+            </div>
+        </div>
+    </li>
+
+    <li>
+        <div class="table-cell full-width">
+            Tune Up!
+            <div class="sub">She entered political</div>
+        </div>
+        <div class="table-cell">
+            <div class="toggle toggle-dark toggle-off">
+                <div class="slider"></div>
+            </div>
+        </div>
+    </li>
+</ul>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <ul class="listing">
+                        <li>
+                            <div class="table-cell">
+                                <div class="btn btn-small diamond background-color-6 circle"></div>
+                            </div>
+                            <div class="table-cell full-width listing-centered">
+                                Like a brilliant
+                                <div class="sub">She entered political</div>
+                            </div>
+                            <div class="table-cell listing-centered">
+                                <div class="arrow-right"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="table-cell">
+                                <div class="btn btn-small tuners background-color-7 circle"></div>
+                            </div>
+                            <div class="table-cell full-width listing-centered">
+                                Tune Up!
+                                <div class="sub">She entered political</div>
+                            </div>
+                            <div class="table-cell listing-centered">
+                                <div class="arrow-right"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<ul class="listing">
+    <li>
+        <div class="table-cell">
+            <div class="btn btn-small diamond background-color-6 circle"></div>
+        </div>
+        <div class="table-cell full-width listing-centered">
+            Like a brilliant
+            <div class="sub">She entered political</div>
+        </div>
+        <div class="table-cell listing-centered">
+            <div class="arrow-right"></div>
+        </div>
+    </li>
+    <li>
+        <div class="table-cell">
+            <div class="btn btn-small tuners background-color-7 circle"></div>
+        </div>
+        <div class="table-cell full-width listing-centered">
+            Tune Up!
+            <div class="sub">She entered political</div>
+        </div>
+        <div class="table-cell listing-centered">
+            <div class="arrow-right"></div>
+        </div>
+    </li>
+</ul>
+                    </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <ul class="listing">
+                        <li>
+                            <div class="table-cell full-width listing-centered">
+                                Like a brilliant
+                            </div>
+                            <div class="table-cell full-width listing-centered">
+                                <div class="tag tag-rounded tag-padded">12</div>
+                            </div>
+                            <div class="table-cell listing-centered">
+                                <div class="arrow-right"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="table-cell full-width listing-centered">
+                                Tune Up!
+                            </div>
+                            <div class="table-cell full-width listing-centered text-muted">
+                                Normal
+                            </div>
+                            <div class="table-cell listing-centered">
+                                <div class="arrow-right"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<ul class="listing">
+    <li>
+        <div class="table-cell full-width listing-centered">
+            Like a brilliant
+        </div>
+        <div class="table-cell full-width listing-centered">
+            <div class="tag tag-rounded tag-padded">12</div>
+        </div>
+        <div class="table-cell listing-centered">
+            <div class="arrow-right"></div>
+        </div>
+    </li>
+    <li>
+        <div class="table-cell full-width listing-centered">
+            Tune Up!
+        </div>
+        <div class="table-cell full-width listing-centered text-muted">
+            Normal
+        </div>
+        <div class="table-cell listing-centered">
+            <div class="arrow-right"></div>
+        </div>
+    </li>
+</ul>
+                    </pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--****************************************    Head    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Head</span>
+            <span class="panel-heading-secondary">11</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+
+                <div class="col-span-6">
+                    <div class="block btn-group">
+                        <div class="table-cell">
+                            <button class="btn btn-small arrow-left-white-large"></button>
+                        </div>
+                        <div class="table-cell full-width">
+                            <button class="btn btn-large cursor-default">FOLLOW US</button>
+                        </div>
+                        <div class="table-cell">
+                            <button class="btn btn-small no-border three-white-bars"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                        <pre data-language="html">
+<div class="block btn-group">
+    <div class="table-cell">
+        <button class="btn btn-small arrow-left-white-large"></button>
+    </div>
+    <div class="table-cell full-width">
+        <button class="btn btn-large cursor-default">FOLLOW US</button>
+    </div>
+    <div class="table-cell">
+        <button class="btn btn-small no-border three-white-bars"></button>
+    </div>
+</div>
+                        </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="block btn-group">
+                        <div class="table-cell">
+                            <button class="btn btn-small arrow-left-white-large"></button>
+                        </div>
+                        <div class="table-cell full-width">
+                            <button class="btn btn-large cursor-default">FOLLOW US</button>
+                        </div>
+                        <div class="table-cell">
+                            <button class="btn btn-small no-border background-color-5 three-white-bars"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                        <pre data-language="html">
+<div class="block btn-group">
+    <div class="table-cell">
+        <button class="btn btn-small arrow-left-white-large"></button>
+    </div>
+    <div class="table-cell full-width">
+        <button class="btn btn-large cursor-default">FOLLOW US</button>
+    </div>
+    <div class="table-cell">
+        <button class="btn btn-small no-border background-color-5 three-white-bars"></button>
+    </div>
+</div>
+                        </pre>
+                </div>
+
+                <div class="col-span-6">
+                    <div class="block btn-group block">
+                        <div class="table-cell">
+                            <button class="btn btn-small reload-white-large"></button>
+                        </div>
+                        <div class="table-cell full-width">
+                            <button class="btn btn-large cursor-default">Square Calendar</button>
+                        </div>
+                        <div class="table-cell">
+                            <button class="btn btn-small no-border background-color-6 three-white-bars"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-6">
+                        <pre data-language="html">
+<div class="block btn-group block">
+    <div class="table-cell">
+        <button class="btn btn-small reload-white-large"></button>
+    </div>
+    <div class="table-cell full-width">
+        <button class="btn btn-large cursor-default">Square Calendar</button>
+    </div>
+    <div class="table-cell">
+        <button class="btn btn-small no-border background-color-6 three-white-bars"></button>
+    </div>
+</div>
+                        </pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Table    *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Table</span>
+            <span class="panel-heading-secondary">12</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+
+
+                <div class="col-span-6">
+                  <table class="table-dark">
+                      <thead class="light-text background-color-2">
+                        <tr>
+                            <th>Col1</th>
+                            <th>Col2</th>
+                            <th>Col3</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <tr>
+                          <td class="icon background-color-hover-1 check-white"></td>
+                          <td class="icon background-color-hover-8 star-outline"></td>
+                          <td>Dribble.com</td>
+                      </tr>
+                      <tr>
+                          <td class="icon background-color-hover-1 check-white"></td>
+                          <td class="icon background-color-hover-8 star-outline"></td>
+                          <td>Behance</td>
+                      </tr>
+                      <tr>
+                          <td class="icon background-color-hover-1 check-white"></td>
+                          <td class="icon background-color-hover-8 star-outline"></td>
+                          <td>Dehance</td>
+                      </tr>
+                      <tr>
+                          <td class="icon background-color-hover-1 check-white"></td>
+                          <td class="icon background-color-hover-8 star-outline"></td>
+                          <td>Twitter</td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<table class="table-dark">
+    <thead class="light-text background-color-2">
+    <tr>
+        <th>Col1</th>
+        <th>Col2</th>
+        <th>Col3</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td class="icon background-color-hover-1 check-white"></td>
+        <td class="icon background-color-hover-8 star-outline"></td>
+        <td>Dribble.com</td>
+    </tr>
+    <tr>
+        <td class="icon background-color-hover-1 check-white"></td>
+        <td class="icon background-color-hover-8 star-outline"></td>
+        <td>Behance</td>
+    </tr>
+    <tr>
+        <td class="icon background-color-hover-1 check-white"></td>
+        <td class="icon background-color-hover-8 star-outline"></td>
+        <td>Dehance</td>
+    </tr>
+    <tr>
+        <td class="icon background-color-hover-1 check-white"></td>
+        <td class="icon background-color-hover-8 star-outline"></td>
+        <td>Twitter</td>
+    </tr>
+    </tbody>
+</table>
+                    </pre>
+                </div>
+
+
+                <div class="col-span-6">
+                    <table class="table-dark">
+                        <tr class="highlight-color-0">
+                            <td>Dribble.com</td>
+                        </tr>
+                        <tr class="highlight-color-0">
+                            <td>Behance</td>
+                        </tr>
+                        <tr class="highlight-color-0">
+                            <td>Dehance</td>
+                        </tr>
+                        <tr class="highlight-color-0">
+                            <td>Twitter</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-span-6">
+                    <pre data-language="html">
+<table class="table-dark">
+    <tr class="highlight-color-0">
+        <td>Dribble.com</td>
+    </tr>
+    <tr class="highlight-color-0">
+        <td>Behance</td>
+    </tr>
+    <tr class="highlight-color-0">
+        <td>Dehance</td>
+    </tr>
+    <tr class="highlight-color-0">
+        <td>Twitter</td>
+    </tr>
+</table>
+                    </pre>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--*****************************************************************************************************************-->
+<!--****************************************    Navigation  *********************************************************-->
+<!--*****************************************************************************************************************-->
+<div class="col-span-12 square-ui-header">
+    <h1 class="big" style="word-break: break-all">navigation</h1>
+</div>
+
+<!--****************************************    Main Header *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Main Header</span>
+            <span class="panel-heading-secondary">01</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-6">
+                <div class="nav btn-group background-color-000">
+                    <div class="table-cell">
+                        <div class="btn btn-small arrow-left-white-large background-color-hover-6"></div>
+                    </div>
+                    <div class="table-cell full-width">
+                        <div class="btn btn-large cursor-default">Main Application</div>
+                    </div>
+                    <div class="table-cell">
+                        <div class="btn btn-small three-white-bars background-color-hover-6"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<div class="nav btn-group background-color-000">
+    <div class="table-cell">
+        <div class="btn btn-small arrow-left-white-large background-color-hover-6"></div>
+    </div>
+    <div class="table-cell full-width">
+        <div class="btn btn-large cursor-default">Main Application</div>
+    </div>
+    <div class="table-cell">
+        <div class="btn btn-small three-white-bars background-color-hover-6"></div>
+    </div>
+</div>
+                </pre>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--****************************************    Menu        *********************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+
+        <div class="panel-heading">
+            <span class="panel-heading-primary">Menu</span>
+            <span class="panel-heading-secondary">02</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-12">
+                <h1>Beware! This menu does not wrap for small screen sizes.</h1>
+                <div class="menu btn-group background-color-000">
+                    <div class="table-cell">
+                        <div class="btn btn-small gears"></div>
+                    </div>
+                    <div class="table-cell">
+                        <div class="btn btn-large">Application</div>
+                    </div>
+                    <div class="table-cell">
+                        <div class="btn btn-large background-color-000">Board</div>
+                    </div>
+                    <div class="table-cell full-width">
+                        <div class="input-search-wrapper background-color-1">
+                            <input class="input-search" type="search" value="Search">
+                            <input class="input-search-submit" type="submit">
+                        </div>
+                    </div>
+                    <div class="table-cell">
+                        <div class="btn btn-large borderless no-pad">
+                            <div id="dlabel" class="menu-dropdown" data-toggle="dropdown">Options <span class="caret-down"></span></div>
+                            <ul id="dropdown-2" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dlabel">
+                                <li class="highlight-color-1" role="menuitem" data-value="Send Message"><div class="dropdown-image eye-transparent"></div>Send Message</li>
+                                <li class="highlight-color-1" role="menuitem" data-value="Settings"><div class="dropdown-image person-transparent"></div>Settings</li>
+                                <li class="highlight-color-1" role="menuitem" data-value="Favorite"><div class="dropdown-image beaker-transparent"></div>Favorite</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12">
+                <pre data-language="html">
+<div class="menu btn-group background-color-000">
+    <div class="table-cell">
+        <div class="btn btn-small gears"></div>
+    </div>
+    <div class="table-cell">
+        <div class="btn btn-large">Application</div>
+    </div>
+    <div class="table-cell">
+        <div class="btn btn-large background-color-000">Board</div>
+    </div>
+    <div class="table-cell full-width">
+        <div class="input-search-wrapper background-color-1">
+            <input class="input-search" type="search" value="Search">
+            <input class="input-search-submit" type="submit">
+        </div>
+    </div>
+    <div class="table-cell">
+        <div class="btn btn-large borderless no-pad">
+            <div id="dlabel" class="menu-dropdown" data-toggle="dropdown">Options <span class="caret-down"></span></div>
+            <ul id="dropdown-2" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dlabel">
+                <li role="menuitem" data-value="Send Message"><div class="dropdown-image eye-transparent"></div>Send Message</li>
+                <li role="menuitem" data-value="Settings"><div class="dropdown-image person-transparent"></div>Settings</li>
+                <li role="menuitem" data-value="Favorite"><div class="dropdown-image beaker-transparent"></div>Favorite</li>
+            </ul>
+        </div>
+    </div>
+</div>
+                </pre>
+            </div>
+
+            <div class="col-span-12">
+                <h1>Beware! This menu requires a media query to resize.</h1>
+                <div class="menu btn-group background-color-000 full-width">
+                    <div class="btn btn-small gears background-color-hover-1"></div>
+                    <div class="btn btn-large">Application</div>
+                    <div class="btn btn-large">Board</div>
+                    <div class="btn btn-large">Developer</div>
+                    <div class="btn btn-large">Design</div>
+                    <div class="btn btn-large">Help</div>
+                    <div class="btn btn-large borderless no-pad pull-right">
+                        <div id="dlabel" class="menu-dropdown" data-toggle="dropdown">Options <span class="caret-down"></span></div>
+                        <ul id="dropdown-3" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dlabel">
+                            <li class="highlight-color-1" role="menuitem" data-value="Send Message"><div class="dropdown-image eye-transparent"></div>Send Message</li>
+                            <li class="highlight-color-1" role="menuitem" data-value="Settings"><div class="dropdown-image person-transparent"></div>Settings</li>
+                            <li class="highlight-color-1" role="menuitem" data-value="Favorite"><div class="dropdown-image beaker-transparent"></div>Favorite</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12">
+                <pre data-language="html">
+<div class="menu btn-group background-color-000 full-width">
+    <div class="btn btn-small gears background-color-hover-1"></div>
+    <div class="btn btn-large">Application</div>
+    <div class="btn btn-large">Board</div>
+    <div class="btn btn-large">Developer</div>
+    <div class="btn btn-large">Design</div>
+    <div class="btn btn-large">Help</div>
+    <div class="btn btn-large borderless no-pad pull-right">
+        <div id="dlabel" class="menu-dropdown text-right" data-toggle="dropdown">Options <span class="caret-down"></span></div>
+        <ul id="dropdown-3" class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dlabel">
+            <li role="menuitem" data-value="Send Message"><div class="dropdown-image eye-transparent"></div>Send Message</li>
+            <li role="menuitem" data-value="Settings"><div class="dropdown-image person-transparent"></div>Settings</li>
+            <li role="menuitem" data-value="Favorite"><div class="dropdown-image beaker-transparent"></div>Favorite</li>
+        </ul>
+    </div>
+</div>
+                </pre>
+            </div>
+
+            <div class="col-span-6">
+                <div class="menu btn-group background-color-000 full-width">
+                    <div class="table-cell">
+                        <div class="btn btn-small airplane-large"></div>
+                    </div>
+                    <div class="table-cell full-width">
+                        <div class="btn btn-large full-width">follow us</div>
+                    </div>
+                    <div class="table-cell">
+                        <div id="dlabel" data-toggle="dropdown" class="btn btn-small three-white-bars background-color-hover-5"></div>
+                        <ul id="dropdown-4" class="dropdown-menu dropdown-menu-full" role="menu" aria-labelledby="dlabel">
+                            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                                <div class="table-cell">
+                                    <div class="btn btn-small calendar"></div>
+                                </div>
+                                <div class="table-cell full-width">
+                                    <div class="btn btn-large full-width">Dashboard</div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="btn btn-small arrow-right"></div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small calendar table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small bubble-medium table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Messages</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small person-white table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Profile</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small gears table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Settings</div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                                <div class="table-cell">
+                                    <div class="btn btn-small bubble-medium"></div>
+                                </div>
+                                <div class="table-cell full-width">
+                                    <div class="btn btn-large full-width">Messages</div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="btn btn-small arrow-right"></div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small calendar table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small bubble-medium table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Messages</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small person-white table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Profile</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small gears table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Settings</div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                                <div class="table-cell">
+                                    <div class="btn btn-small person-white"></div>
+                                </div>
+                                <div class="table-cell full-width">
+                                    <div class="btn btn-large full-width">Profile</div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="btn btn-small arrow-right"></div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small calendar table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small bubble-medium table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Messages</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small person-white table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Profile</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small gears table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Settings</div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                                <div class="table-cell">
+                                    <div class="btn btn-small gears"></div>
+                                </div>
+                                <div class="table-cell full-width">
+                                    <div class="btn btn-large full-width">Settings</div>
+                                </div>
+                                <div class="table-cell">
+                                    <div class="btn btn-small arrow-right"></div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small calendar table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small bubble-medium table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Messages</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small person-white table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Profile</div>
+                                    </li>
+                                    <li class="btn-group no-pad highlight-color-5-inverse">
+                                        <div class="btn btn-small gears table-cell"></div>
+                                        <div class="btn btn-large table-cell full-width">Settings</div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<div class="menu btn-group background-color-000 full-width">
+    <div class="table-cell">
+        <div class="btn btn-small airplane-large"></div>
+    </div>
+    <div class="table-cell full-width">
+        <div class="btn btn-large full-width">follow us</div>
+    </div>
+    <div class="table-cell">
+        <div id="dlabel" data-toggle="dropdown" class="btn btn-small three-white-bars background-color-hover-5"></div>
+        <ul id="dropdown-4" class="dropdown-menu dropdown-menu-full" role="menu" aria-labelledby="dlabel">
+            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                <div class="table-cell">
+                    <div class="btn btn-small calendar"></div>
+                </div>
+                <div class="table-cell full-width">
+                    <div class="btn btn-large full-width">Dashboard</div>
+                </div>
+                <div class="table-cell">
+                    <div class="btn btn-small arrow-right"></div>
+                </div>
+                <ul class="dropdown-menu">
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small calendar table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small bubble-medium table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Messages</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small person-white table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Profile</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small gears table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Settings</div>
+                    </li>
+                </ul>
+            </li>
+
+            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                <div class="table-cell">
+                    <div class="btn btn-small bubble-medium"></div>
+                </div>
+                <div class="table-cell full-width">
+                    <div class="btn btn-large full-width">Messages</div>
+                </div>
+                <div class="table-cell">
+                    <div class="btn btn-small arrow-right"></div>
+                </div>
+                <ul class="dropdown-menu">
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small calendar table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small bubble-medium table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Messages</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small person-white table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Profile</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small gears table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Settings</div>
+                    </li>
+                </ul>
+            </li>
+
+            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                <div class="table-cell">
+                    <div class="btn btn-small person-white"></div>
+                </div>
+                <div class="table-cell full-width">
+                    <div class="btn btn-large full-width">Profile</div>
+                </div>
+                <div class="table-cell">
+                    <div class="btn btn-small arrow-right"></div>
+                </div>
+                <ul class="dropdown-menu">
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small calendar table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small bubble-medium table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Messages</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small person-white table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Profile</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small gears table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Settings</div>
+                    </li>
+                </ul>
+            </li>
+
+            <li role="menuitem" class="btn-group highlight-color-5 no-pad dropdown-submenu">
+                <div class="table-cell">
+                    <div class="btn btn-small gears"></div>
+                </div>
+                <div class="table-cell full-width">
+                    <div class="btn btn-large full-width">Settings</div>
+                </div>
+                <div class="table-cell">
+                    <div class="btn btn-small arrow-right"></div>
+                </div>
+                <ul class="dropdown-menu">
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small calendar table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Dashboard</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small bubble-medium table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Messages</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small person-white table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Profile</div>
+                    </li>
+                    <li class="btn-group no-pad highlight-color-5-inverse">
+                        <div class="btn btn-small gears table-cell"></div>
+                        <div class="btn btn-large table-cell full-width">Settings</div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</div>
+                </pre>
+            </div>
+
+            <div class="col-span-6">
+                <div class="menu background-color-000">
+                    <div class="btn-group highlight-color-0 border-bottom">
+                        <div class="table-cell">
+                            <div class="btn btn-small gears"></div>
+                        </div>
+                        <div class="table-cell full-width">
+                            <div class="btn btn-large full-width text-left">Application Settings</div>
+                        </div>
+                    </div>
+                    <div class="btn-group highlight-color-0 border-bottom">
+                        <div class="table-cell">
+                            <div class="btn btn-small bubble-medium"></div>
+                        </div>
+                        <div class="table-cell full-width border-bottom">
+                            <div class="btn btn-large full-width text-left">Messages</div>
+                        </div>
+                    </div>
+                    <div class="btn-group highlight-color-0 border-bottom">
+                        <div class="table-cell">
+                            <div class="btn btn-small person-white"></div>
+                        </div>
+                        <div class="table-cell full-width">
+                            <div class="btn btn-large full-width text-left">Profile</div>
+                        </div>
+                    </div>
+                    <div class="callout">
+                        <h4 class="light-text">Square UI Professional UI Kit for Designers</h4>
+                        <hr class="background-color-3 mini-hr">
+                        <p class="dark-text">
+                            She entered into a political marriage with Rainilaiarivony who, in his role as Prime Minister
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<div class="menu background-color-000">
+    <div class="btn-group highlight-color-0 border-bottom">
+        <div class="table-cell">
+            <div class="btn btn-small gears"></div>
+        </div>
+        <div class="table-cell full-width">
+            <div class="btn btn-large full-width text-left">Application Settings</div>
+        </div>
+    </div>
+    <div class="btn-group highlight-color-0 border-bottom">
+        <div class="table-cell">
+            <div class="btn btn-small bubble-medium"></div>
+        </div>
+        <div class="table-cell full-width border-bottom">
+            <div class="btn btn-large full-width text-left">Messages</div>
+        </div>
+    </div>
+    <div class="btn-group highlight-color-0 border-bottom">
+        <div class="table-cell">
+            <div class="btn btn-small person-white"></div>
+        </div>
+        <div class="table-cell full-width">
+            <div class="btn btn-large full-width text-left">Profile</div>
+        </div>
+    </div>
+    <div class="callout">
+        <h4 class="light-text">Square UI Professional UI Kit for Designers</h4>
+        <hr class="background-color-3 mini-hr">
+        <p class="dark-text">
+            She entered into a political marriage with Rainilaiarivony who, in his role as Prime Minister
+        </p>
+    </div>
+</div>
+                </pre>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--****************************************    Page Navigation   ***************************************************-->
+<div class="col-span-12">
+    <div class="panel">
+
+        <div id="page-navigation" class="panel-heading">
+            <span class="panel-heading-primary">Page Navigation</span>
+            <span class="panel-heading-secondary">03</span>
+        </div>
+        <div class="panel-primary">
+            <div class="col-span-6">
+                <ul id="pagination-slider-0" class="pagination pagination-slider background-color-000">
+                    <li>1</li>
+                    <li>2</li>
+                    <li class="active slider-left">3</li>
+                    <li class="active">4</li>
+                    <li class="active slider-right">5</li>
+                    <li>6</li>
+                    <li>7</li>
+                </ul>
+                <script>
+                    $(document).ready(function() {
+                        var pagination = $('#pagination-slider-0');
+                        pagination.mousedown(function(e) {
+                            var target = $(e.target),
+                                lastItem = target,
+                                items = $(this).children('li'),
+                                syncFirstLast = function() {
+                                	items.removeClass('slider-left').removeClass('slider-right');
+                                    items.filter('.active').first().addClass('slider-left');
+                                    items.filter('.active').last().addClass('slider-right');
+                                };
+                            items.on('mouseenter', (function(e) {
+                            	var enterTarget = $(e.target),
+                                    isLeft = enterTarget.hasClass('slider-left'),
+                                    isRight = enterTarget.hasClass('slider-right'),
+                                    isActive = enterTarget.hasClass('active'),
+                                    isLastSlider = lastItem.hasClass('slider-left') || lastItem.hasClass('slider-right');
+
+
+                                if (!(isLeft && isRight)) {
+                                    if (isActive && isLastSlider) {
+                                        lastItem.removeClass('active');
+                                    } else if (!isActive) {
+                                        enterTarget.addClass('active');
+                                    }
+                                    syncFirstLast();
+                                }
+
+                                lastItem = enterTarget;
+                            }));
+
+                            $(document).one('mouseup', function() {
+                                items.off('mouseenter');
+                            });
+                            pagination.one('mouseleave', function() {
+                                items.off('mouseenter');
+                            });
+
+                            return false; //Prevent selection cursor
+                    	});
+                    });
+                </script>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<ul id="pagination-slider-1" class="pagination pagination-slider background-color-000">
+    <li>1</li>
+    <li>2</li>
+    <li class="active slider-left">3</li>
+    <li class="active">4</li>
+    <li class="active slider-right">5</li>
+    <li>6</li>
+    <li>7</li>
+</ul>
+<script>
+    $(document).ready(function() {
+        var pagination = $('#pagination-slider-1');
+        pagination.mousedown(function(e) {
+            var target = $(e.target),
+                    lastItem = target,
+                    items = $(this).children('li'),
+                    syncFirstLast = function() {
+                        items.removeClass('slider-left').removeClass('slider-right');
+                        items.filter('.active').first().addClass('slider-left');
+                        items.filter('.active').last().addClass('slider-right');
+                    };
+            items.on('mouseenter', (function(e) {
+                var enterTarget = $(e.target),
+                        isLeft = enterTarget.hasClass('slider-left'),
+                        isRight = enterTarget.hasClass('slider-right'),
+                        isActive = enterTarget.hasClass('active'),
+                        isLastSlider = lastItem.hasClass('slider-left') || lastItem.hasClass('slider-right');
+
+
+                if (!(isLeft && isRight)) {
+                    if (isActive && isLastSlider) {
+                        lastItem.removeClass('active');
+                    } else if (!isActive) {
+                        enterTarget.addClass('active');
+                    }
+                    syncFirstLast();
+                }
+
+                lastItem = enterTarget;
+            }));
+
+            $(document).one('mouseup', function() {
+                items.off('mouseenter');
+            });
+            pagination.one('mouseleave', function() {
+                items.off('mouseenter');
+            });
+
+            return false; //Prevent selection cursor
+        });
+    });
+</script>
+                </pre>
+            </div>
+
+            <div class="col-span-6">
+                <ul class="pagination pagination-text">
+                    <li class="active highlight-color-1">All</li>
+                    <li class="highlight-color-1">Favorite</li>
+                    <li class="highlight-color-1">Latest</li>
+                    <li class="highlight-color-1">Crew</li>
+                </ul>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<ul class="pagination pagination-text">
+    <li class="active highlight-color-1">All</li>
+    <li class="highlight-color-1">Favorite</li>
+    <li class="highlight-color-1">Latest</li>
+    <li class="highlight-color-1">Crew</li>
+</ul>
+                </pre>
+            </div>
+
+
+            <div class="col-span-6">
+                <ul class="pagination light-text">
+                    <li class="active highlight-color-0">1</li>
+                    <li class="highlight-color-0">2</li>
+                    <li class="highlight-color-0">3</li>
+                    <li class="highlight-color-0">4</li>
+                    <li class="highlight-color-0">5</li>
+                    <li class="highlight-color-0">6</li>
+                    <li class="highlight-color-0">7</li>
+                </ul>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<ul class="pagination light-text">
+    <li class="active highlight-color-0">1</li>
+    <li class="highlight-color-0">2</li>
+    <li class="highlight-color-0">3</li>
+    <li class="highlight-color-0">4</li>
+    <li class="highlight-color-0">5</li>
+    <li class="highlight-color-0">6</li>
+    <li class="highlight-color-0">7</li>
+</ul>
+                </pre>
+            </div>
+
+            <div class="col-span-6">
+                <div class="btn-group">
+                    <div class="btn btn-small highlight-color-0 bubble-medium"></div>
+                    <div class="btn btn-small highlight-color-0 eye-white"></div>
+                    <div class="btn btn-small highlight-color-0 star-outline active"></div>
+                    <div class="btn btn-small highlight-color-0 dollar-bill"></div>
+                    <div class="btn btn-small highlight-color-0 gears"></div>
+                    <div class="btn btn-small highlight-color-0 heart"></div>
+                </div>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<div class="btn-group">
+    <div class="btn btn-small highlight-color-0 bubble-medium"></div>
+    <div class="btn btn-small highlight-color-0 eye-white"></div>
+    <div class="btn btn-small highlight-color-0 star-outline active"></div>
+    <div class="btn btn-small highlight-color-0 dollar-bill"></div>
+    <div class="btn btn-small highlight-color-0 gears"></div>
+    <div class="btn btn-small highlight-color-0 heart"></div>
+</div>
+                </pre>
+            </div>
+
+            <div class="col-span-6">
+                <div class="pagination btn-group">
+                    <div class="btn btn-medium highlight-color-0">
+                        <div class="btn-image heart"></div>
+                        <span class="btn-text">Like me</span>
+                    </div>
+                    <div class="btn btn-medium highlight-color-0">
+                        <div class="btn-image star-outline"></div>
+                        <span class="btn-text">Settings</span>
+                    </div>
+                    <div class="btn btn-medium highlight-color-0">
+                        <div class="btn-image gears"></div>
+                        <span class="btn-text">Message</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-6">
+                <pre data-language="html">
+<div class="pagination btn-group">
+    <div class="btn btn-medium highlight-color-0">
+        <div class="btn-image heart"></div>
+        <span class="btn-text">Like me</span>
+    </div>
+    <div class="btn btn-medium highlight-color-0">
+        <div class="btn-image star-outline"></div>
+        <span class="btn-text">Settings</span>
+    </div>
+    <div class="btn btn-medium highlight-color-0">
+        <div class="btn-image gears"></div>
+        <span class="btn-text">Message</span>
+    </div>
+</div>
+                </pre>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="http://localhost:35729/livereload.js"></script>
+</body>
+</html>

@@ -13,7 +13,8 @@ class CatalogController extends Controller {
         $ids[] = $child->id;
         $cid = implode(',', $ids);
         $criteria = new CDbCriteria(array(
-                    'condition' => 'category_id in ( '.$cid. ')'
+                    'condition' => 'category_id in ( '.$cid. ')',
+	            'order' => 'item_id desc, sort_order desc'
                 ));
         $count = Item::model()->count($criteria);
         $pages = new CPagination($count);
@@ -21,9 +22,13 @@ class CatalogController extends Controller {
         $pages->pageSize = 20;
         $pages->applyLimit($criteria);
         $items = Item::model()->findAll($criteria);
+//	$items = new CActiveDataProvider('Item', array(
+//            'criteria' => $criteria
+//        ));
         $criteria = new CDbCriteria(array(
                     'condition' => 'is_hot = 1 and category_id in ( '.$cid. ')',
-                    'limit' => '4'
+                    'limit' => '4',
+	            'order' => 'item_id desc, sort_order desc'
                 ));
         $hotItems = Item::model()->findAll($criteria);
         $this->render('index', array(

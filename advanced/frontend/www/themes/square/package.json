@@ -1,0 +1,36 @@
+{
+  "name": "bootstrap-square-ui",
+  "description": "Bootstrap 3.0 mashup with designmodo.com's Square UI theme.",
+  "version": "0.0.1",
+  "keywords": [
+    "bootstrap",
+    "css",
+    "designmodo",
+    "square",
+    "ui"
+  ],
+  "homepage": "http://deltaepsilon.github.io/",
+  "author": "Christopher Esplin",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:deltaepsilon/bootstrap-square-ui.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  ],
+  "devDependencies": {
+    "jshint": "0.9.1",
+    "express": "3.2.6",
+    "grunt-contrib-less": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-html": "*"
+  },
+  "dependencies": {
+    "grunt": "~0.4.1"
+  }
+}

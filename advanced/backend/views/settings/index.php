@@ -6,7 +6,11 @@ $this->breadcrumbs=array(
 ?>
 
 <h3>Site Settings</h3>
-
+<p class="help-block">配置完毕，请清理缓存才会生效</p>
+<?php echo CHtml::link('清理后台缓存', array('clear')).'&nbsp;&nbsp;&nbsp;&nbsp;'.
+	CHtml::link('清理前台缓存', 'http://1688gou.com/site/clear').'&nbsp;&nbsp;&nbsp;&nbsp;'.
+	CHtml::link('清理店铺缓存', 'http://store.1688gou.com/site/clear')
+	?>
 <?php echo CHtml::errorSummary($model); ?>
 <?php
 echo CHtml::beginForm();

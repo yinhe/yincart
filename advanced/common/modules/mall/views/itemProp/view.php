@@ -5,10 +5,10 @@ $this->breadcrumbs = array(
 );
 
 $this->menu = array(
-    array('label' => 'Create ItemProp', 'icon' => 'plus', 'url' => array('create')),
-    array('label' => 'Update ItemProp', 'url' => array('update', 'id' => $model->prop_id)),
-    array('label' => 'Delete ItemProp', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->prop_id), 'confirm' => 'Are you sure you want to delete this item?')),
-    array('label' => 'Manage ItemProp', 'icon'=>'cog','icon'=>'cog','url'=>array('admin')),
+    array('label' => '创建商品属性', 'icon' => 'plus', 'url' => array('create')),
+    array('label' => '更新商品属性', 'icon' => 'pencil', 'url' => array('update', 'id' => $model->prop_id)),
+    array('label' => '删除商品属性', 'icon' => 'trash', 'url' => '#', 'linkOptions' => array('submit' => array('delete', 'id' => $model->prop_id), 'confirm' => 'Are you sure you want to delete this item?')),
+    array('label' => '管理商品属性', 'icon'=>'cog','icon'=>'cog','url'=>array('admin')),
 );
 ?>
 
@@ -33,6 +33,10 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         'multi',
         'status',
         'sort_order',
+//	array(
+//	    'name'=>'属性值列表',
+//	    'value'=>CHtml::encode($model->getPropValues())
+//	)
     ),
 ));
 ?>

@@ -1,0 +1,32 @@
+# cache directories
+Thumbs.db
+*.DS_Store
+*.empty
+
+#phpstorm project files
+.idea
+
+#netbeans project files
+nbproject
+
+#zend studio project files
+.buildpath
+.project
+.settings
+
+# sass cache files
+*.sass-cache
+
+# mac deployment helpers
+switch
+
+# Node modules
+node_modules
+
+# Composer files
+composer*
+vendor/*
+
+# docs app
+docs/app/runtime
+docs/web/assets

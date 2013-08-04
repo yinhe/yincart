@@ -44,7 +44,8 @@ class ItemPropController extends Controller {
                 
                 if (isset($_POST['PropValue']))
                 $model->setPropValues($_POST['PropValue']);
-                
+//                print_r($_POST);
+//		exit;
                 $this->redirect(array('view', 'id' => $model->prop_id));
             }
         }
@@ -73,8 +74,11 @@ class ItemPropController extends Controller {
 				$model->setPropValues($_POST['PropValue']);
 			}
             
-            if ($model->save())
+            if ($model->save()){
+//		print_r($_POST);
+//		exit;
                 $this->redirect(array('view', 'id' => $model->prop_id));
+	    }
         }
 
         $this->render('update', array(

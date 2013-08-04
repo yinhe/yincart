@@ -156,4 +156,43 @@ class Order extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+	
+	public function ownerSearch()
+	{
+		// Warning: Please modify the following code to remove attributes that
+		// should not be searched.
+
+		$criteria=new CDbCriteria;
+		$criteria->condition = 'user_id ='.Yii::app()->user->id;
+
+		$criteria->compare('order_id',$this->order_id,true);
+		$criteria->compare('user_id',$this->user_id,true);
+		$criteria->compare('status',$this->status);
+		$criteria->compare('pay_status',$this->pay_status);
+		$criteria->compare('ship_status',$this->ship_status);
+		$criteria->compare('refund_status',$this->refund_status);
+		$criteria->compare('total_fee',$this->total_fee,true);
+		$criteria->compare('ship_fee',$this->ship_fee,true);
+		$criteria->compare('pay_fee',$this->pay_fee,true);
+		$criteria->compare('pay_method',$this->pay_method,true);
+		$criteria->compare('ship_method',$this->ship_method,true);
+		$criteria->compare('receiver_name',$this->receiver_name,true);
+		$criteria->compare('receiver_country',$this->receiver_country,true);
+		$criteria->compare('receiver_state',$this->receiver_state,true);
+		$criteria->compare('receiver_city',$this->receiver_city,true);
+		$criteria->compare('receiver_district',$this->receiver_district,true);
+		$criteria->compare('receiver_address',$this->receiver_address,true);
+		$criteria->compare('receiver_zip',$this->receiver_zip,true);
+		$criteria->compare('receiver_mobile',$this->receiver_mobile,true);
+		$criteria->compare('receiver_phone',$this->receiver_phone,true);
+		$criteria->compare('memo',$this->memo,true);
+		$criteria->compare('pay_time',$this->pay_time,true);
+		$criteria->compare('ship_time',$this->ship_time,true);
+		$criteria->compare('create_time',$this->create_time,true);
+		$criteria->compare('update_time',$this->update_time,true);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+		));
+	}
 }

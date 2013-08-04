@@ -1,0 +1,55 @@
+.toggle {
+  cursor: pointer;
+  display: inline-block;
+  height: 40px;
+  width: 80px;
+  position: relative;
+
+  &.toggle-dark {
+    background-color: @gray6;
+    border: none;
+  }
+
+  .slider {
+    width: 20px;
+    height: 100%;
+    .transition(margin-left 300ms ease 0ms);
+  }
+}
+
+.toggle-off {
+  border: 2px solid @salmon;
+  .x-red;
+  background-position: -130px -205px;
+
+  &.toggle-dark {
+    .x-white;
+    background-position: -128px -302px;
+
+    .slider {
+      margin-left: 60px;
+    }
+  }
+
+  .slider {
+    background-color: @salmon;
+    margin-left: 58px;
+  }
+}
+
+
+.toggle-on {
+  border: 2px solid @green;
+
+  .check-green;
+  background-position: -109px -149px;
+
+  &.toggle-dark {
+    .check-white;
+    background-position: -107px -251px;
+  }
+
+  .slider {
+    background-color: @green;
+  }
+}

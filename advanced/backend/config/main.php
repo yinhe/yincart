@@ -64,15 +64,15 @@ return CMap::mergeArray(
 		'application.components.*',
 		'application.controllers.*',
 		'application.models.*',
-        'common.modules.user.models.*',
-        'common.helpers.*',
+		'common.modules.user.models.*',
+		'common.helpers.*',
 	    ),
 	    /* uncomment and set if required */
 	    // @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
 	    'modules' => array(
 		'gii' => array(
 		    'class' => 'system.gii.GiiModule',
-		    'password' => 'clevertech',
+		    'password' => '123',
 		    'generatorPaths' => array(
 			'bootstrap.gii'
 		    )

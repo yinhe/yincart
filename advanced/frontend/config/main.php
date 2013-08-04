@@ -21,6 +21,7 @@ Yii::setPathOfAlias('common', $root . DIRECTORY_SEPARATOR . 'common');
 //Yii::setPathOfAlias('frontend', $root . DIRECTORY_SEPARATOR . 'frontend');
 //Yii::setPathOfAlias('www', $root. DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . 'www');
 Yii::setPathOfAlias('widgets', $root . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . 'widgets');
+Yii::setPathOfAlias('bootstrap', $root . DIRECTORY_SEPARATOR . 'frontend' . DIRECTORY_SEPARATOR . 'extensions'. DIRECTORY_SEPARATOR . 'bootstrap');
 Yii::setPathOfAlias('comext', $root . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'extensions');
 
 $mainLocalFile = $frontendConfigDir . DIRECTORY_SEPARATOR . 'main-local.php';
@@ -33,8 +34,8 @@ return CMap::mergeArray(
 		array(
 	    // @see http://www.yiiframework.com/doc/api/1.1/CApplication#basePath-detail
 	    'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
-	    'name' => 'Yincart@Yii开源商城演示站',
-	    'theme' => 'default',
+	    'name' => 'Yincart演示网',
+	    'theme' => 'square',
 	    // set parameters
 	    'params' => $params,
 	    // preload components required before running applications
@@ -61,13 +62,20 @@ return CMap::mergeArray(
 		'application.components.helpers.*',
 		'application.controllers.*',
 		'application.models.*',
+		'bootstrap.helpers.TbHtml',
 		'common.modules.cms.models.*',
 		'common.modules.mall.models.*',
-		
 	    ),
 	    /* uncomment and set if required */
 	    // @see http://www.yiiframework.com/doc/api/1.1/CModule#setModules-detail
 	    'modules' => array(
+		'gii' => array(
+		    'class' => 'system.gii.GiiModule',
+		    'password' => '123',
+		    'generatorPaths' => array(
+			'bootstrap.gii'
+		    )
+		),
 		'comments' => array(
 		    //you may override default config for all connecting models
 		    'defaultModelConfig' => array(
@@ -144,6 +152,9 @@ return CMap::mergeArray(
 		),
 	    ),
 	    'components' => array(
+		'bootstrap' => array(
+		    'class' => 'bootstrap.components.TbApi',
+		),
 		'cart' => array(
 		    'class' => 'common.extensions.Cart',
 		),

@@ -7,9 +7,31 @@ base on yiiframework , website:yincart.com
 
 ###Yincart项目结构说明
 
-* advanced为中大型项目管理结构分支，前台入口为frontend/www，后台入口为backend/www
-* basic为小型项目管理结构分支，后台入口为backend.php
+* advanced为中大型项目管理结构分支，前台入口为frontend/www，后台入口为backend/www；定位于B2B2C
+* basic为小型项目管理结构分支，后台入口为backend.php；定位于B2C
 * 请根据自己的业务需求选择
+
+###2013.8.04 1.0.7预览版
+
+1.07版带来的变化：
+
+* 商品相册更换为jquery upload
+
+* 弃用商品类型，商品终极分类与其对应的属性相关联
+
+* 商品的属性添加更新完善
+
+* 商品的sku添加更新完善(开发中)
+
+* 前台商品搜索实现(未完成)
+
+* 商品详情页能展示商品的销售属性以及其他属性(未完成)
+
+* 订单创建流程完善(未完成)
+
+* 订单统计基本功能呈现(未完成)
+
+* A版(advanced) 增加多店铺功能
 
 ###2013.6.16 1.0.6版本
 

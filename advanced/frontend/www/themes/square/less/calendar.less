@@ -1,0 +1,50 @@
+.calendar-body {
+  color: @white;
+  width: 100%;
+  text-align: center;
+
+  thead {
+    font-family: @font-family-monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    th {
+      text-align: center;
+      font-weight: lighter;
+      padding: 7px;
+    }
+  }
+
+  tbody {
+    background-color: @black;
+
+    tr {
+      &:last-of-type {
+        td {
+          border-bottom: none;
+        }
+      }
+    }
+
+    td {
+      border-color: @gray6;
+      border-style: solid;
+      border-width: 0 1px 1px 0;
+      cursor: pointer;
+      padding: 11px;
+
+      &:last-of-type {
+        border-width: 0 0 1x 0;
+      }
+    }
+
+    .inactive {
+      color: @gray5;
+    }
+
+    td:hover, .active {
+      background-color: @purple1;
+      border-color: @purple1;
+      color: @white;
+    }
+  }
+}

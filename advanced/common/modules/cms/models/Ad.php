@@ -106,15 +106,18 @@ class Ad extends CActiveRecord {
     }
     
     public function getImage() {        
-        $img_url = '/../../upload/ad/' . $this->pic;
-        $trueimage = Yii::app()->request->hostInfo.Yii::app()->baseUrl.$img_url;
-        if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(990, 486, $img_url, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->title);
-        return CHtml::link($img_thumb_now, $this->url, array('title' => $this->title));
-        }else{
-            return '没有图片';
-        }
+        $img_url = 'http://img.'.F::sg('site', 'domain').'/ad/' . $this->pic;
+	return CHtml::image(F::baseUrl().$img_url, $this->title, array('style'=>'width:600px;height:300px'));
     }
+    
+    public function getAd() {
+        $ad = array(
+            'image' => Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../upload/ad/' . $this->pic,
+            'label' => $this->title,
+            'caption' => ''
+        );
+        return $ad;
+    }
+
 
 }

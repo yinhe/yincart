@@ -7,17 +7,21 @@
  * 如果您确定直接使用本程序，使用之前请仔细确认相关安全设置。
  *
  */
+error_reporting(E_ALL & ~(E_STRICT | E_NOTICE));
 require_once 'JSON.php';
 
 $php_path = dirname(__FILE__) . '/';
 $php_url = dirname($_SERVER['PHP_SELF']) . '/';
 $id = $_POST['id'];
 $action = $_POST['action'];
+$type = $_POST['type'];
+$base_url = $_POST['base_url'];
 // var_dump($_POST);
 //文件保存目录路径
-$save_path = $php_path . '../../../../../upload/';
+$save_path = $php_path . '../../../../../upload/'.$type.'/';
 //文件保存目录URL
-$save_url = $php_url . '../../../../../upload/';
+//$save_url = $php_url . '../../../../../upload/';
+$save_url = $base_url.'/'.$type.'/';
 //定义允许上传的文件扩展名
 $ext_arr = array(
     'image' => array('gif', 'jpg', 'jpeg', 'png', 'bmp'),
@@ -105,8 +109,8 @@ if (empty($_FILES) === false) {
     }
     //创建文件夹
     if ($dir_name !== '') {
-        $save_path .= $action . "/" . $id . "/" . $dir_name . "/";
-        $save_url .= $action . "/" . $id . "/" . $dir_name . "/";
+        $save_path .= $id . "/" .$action . "/" . $dir_name . "/";
+        $save_url .= $id . "/" .$action . "/" . $dir_name . "/";
     }
     $ymd = date("Ymd");
     $save_path .= $ymd. "/";

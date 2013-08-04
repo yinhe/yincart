@@ -38,7 +38,7 @@ dd{
 }
 .box-title a{
     text-decoration: none;
-    color: #B7D6E7;
+    color:#0081c2;
 }
 .box-title a:hover{
     color: #0099FF
@@ -634,4 +634,87 @@ dd{
 }
 .shop_right a {
     float: left;
+}
+/*search css */
+.wg_logo_mid {
+    float: left;
+    padding-top: 10px;
+    width: 565px;
+}
+.wg_searchbar {
+    clear: both;
+    height: 38px;
+    overflow: hidden;
+}
+.wg_txt_wrap {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #FFFFFF;
+    border-color: #48413F -moz-use-text-color #48413F #48413F;
+    border-image: none;
+    border-style: solid none solid solid;
+    border-width: 1px 0 1px 1px;
+    float: left;
+    height: 36px;
+    overflow: hidden;
+    padding: 0 4px;
+}
+.wg_txt_wrap input {
+    border: 0 none;
+    color: #999999;
+    font-family: Arial;
+    height: 100%;
+    width: 506px;
+}
+.wg_txt_wrap input.focus {
+    color: #333333;
+}
+.wg_txt_wrap input:focus {
+    outline: medium none;
+}
+.wg_btn_search_wrap {
+    float: left;
+    height: 38px;
+    overflow: hidden;
+    width: 50px;
+}
+.wg_btn_search {
+    background-position: 0 -50px;
+    border: 0 none;
+    cursor: pointer;
+    float: left;
+    font-size: 0;
+    height: 38px;
+    line-height: 200px;
+    overflow: hidden;
+    text-indent: -100px;
+    width: 100%;
+}
+.wg_logo_extra {
+    float: right;
+    padding-top: 10px;
+    width: 220px;
+}
+.wg_home_nav_right, .wg_notice_close, .wg_global_ad_close, .wg_mark_3c, .wg_btn_search_all, .wg_btn_search_3c, .wg_btn_search, .wg_sublogo_icson_logo, .wg_assure_mini, .wg_assure, .wg_buycart, .wg_fish_gift i, .wg_nt_hd .arrow, .wg_tt_hd .arrow {
+    background-image: url("../images/common.png");
+    background-repeat: no-repeat;
+}
+/*分页css*/
+ul.yiiPager .selected a {
+    background: none repeat scroll 0 0 #C9C9C9 !important;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+ul.yiiPager a:link, ul.yiiPager a:visited {
+    border: 1px solid #464646;
+    color: #555;
+    font-weight: bold;
+    padding: 8px 12px;
+    text-decoration: none;
+}
+ul.yiiPager {
+    font-size: 12px !important;
+    line-height: 100%;
 }

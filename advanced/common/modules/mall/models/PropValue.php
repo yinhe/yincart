@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'prop_value':
  * @property string $value_id
- * @property string $type_id
+ * @property string $category_id
  * @property string $prop_id
  * @property string $value_name
  * @property string $value_alias
@@ -38,14 +38,14 @@ class PropValue extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('type_id, value_name', 'required'),
+            array('value_name', 'required'),
             array('is_parent, sort_order', 'numerical', 'integerOnly' => true),
-            array('type_id, prop_id', 'length', 'max' => 10),
+            array('category_id, prop_id', 'length', 'max' => 10),
             array('value_name, value_alias', 'length', 'max' => 45),
             array('status', 'length', 'max' => 7),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('value_id, type_id, prop_id, value_name, value_alias, is_parent, status, sort_order', 'safe', 'on' => 'search'),
+            array('value_id, category_id, prop_id, value_name, value_alias, is_parent, status, sort_order', 'safe', 'on' => 'search'),
         );
     }
 
@@ -66,7 +66,7 @@ class PropValue extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'value_id' => '属性值ID',
-            'type_id' => '商品类目',
+            'category_id' => '商品类目',
             'prop_id' => '属性ID',
             'value_name' => '属性值名称',
             'value_alias' => '属性值别名',
@@ -87,7 +87,7 @@ class PropValue extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('value_id', $this->value_id, true);
-        $criteria->compare('type_id', $this->type_id, true);
+        $criteria->compare('category_id', $this->category_id, true);
         $criteria->compare('prop_id', $this->prop_id, true);
         $criteria->compare('value_name', $this->value_name, true);
         $criteria->compare('value_alias', $this->value_alias, true);

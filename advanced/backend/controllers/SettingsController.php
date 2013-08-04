@@ -29,11 +29,11 @@ class SettingsController extends Controller {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'list'),
+                'actions' => array('create', 'update'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('admin', 'delete', 'list'),
+                'actions' => array('admin', 'delete', 'clear'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -66,8 +66,9 @@ class SettingsController extends Controller {
         $this->render('index', array('model' => $model));
     }
 
-    public function actionList() {
-        $this->render('list');
+    public function actionClear() {
+        Yii::app()->cache->flush();
+	$this->redirect(array('index'));
     }
 
 }

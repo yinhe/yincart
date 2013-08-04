@@ -9,13 +9,47 @@ class FriendLinkController extends Controller {
     public $layout = '//layouts/cms';
 
     /**
+     * @return array action filters
+     */
+    public function filters() {
+	return array(
+	    'accessControl', // perform access control for CRUD operations
+	);
+    }
+
+    /**
+     * Specifies the access control rules.
+     * This method is used by the 'accessControl' filter.
+     * @return array access control rules
+     */
+    public function accessRules() {
+	return array(
+	    array('allow', // allow all users to perform 'index' and 'view' actions
+		'actions' => array('index', 'view'),
+		'users' => array('*'),
+	    ),
+	    array('allow', // allow authenticated user to perform 'create' and 'update' actions
+		'actions' => array('create', 'update'),
+		'users' => array('@'),
+	    ),
+	    array('allow', // allow admin user to perform 'admin' and 'delete' actions
+		'actions' => array('admin', 'delete'),
+		'users' => array('admin'),
+	    ),
+	    array('deny', // deny all users
+		'users' => array('*'),
+	    ),
+	);
+    }
+
+    /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */
     public function actionView($id) {
-        $this->render('view', array(
-            'model' => $this->loadModel($id),
-        ));
+	$this->render('view', array(
+	    'model' => $this->loadModel($id),
+	));
     }
 
     /**
@@ -23,35 +57,45 @@ class FriendLinkController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new FriendLink;
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-        if (isset($_POST['FriendLink'])) {
-            $model->attributes = $_POST['FriendLink'];
-            $img = CUploadedFile::getInstance($model, 'image');
-            if ($img) {
-                if ($img->size > 2000000) {
-                    $img_size = ($img->size) / 1000;
-                    echo '<script>alert("图片大小为' . $img_size . 'KB,请小于2M")</script>';
-                } else {
-                    $extensionName = explode('.', $img->getName());
-                    $extensionName = $extensionName[count($extensionName) - 1];
-                    $dir = dirname(Yii::app()->basePath) . '/upload/link/';
-                    $img_src = $dir . md5(time()) . '.' . $extensionName;
-                    $img1 = md5(time()) . '.' . $extensionName;
-                    $model->image = $img1;
-                }
-            } else {
-                echo '<script>alert("请上传图片.")</script>';
-            }
-            if ($model->save()) {
-                $img->saveAs($img_src);
-                $this->redirect(array('/cms/friendLink/admin'));
-            }
-        }
-        $this->render('create', array(
-            'model' => $model,
-        ));
+	$model = new FriendLink('create');
+	$action = 'link';
+
+	// Uncomment the following line if AJAX validation is needed
+	// $this->performAjaxValidation($model);
+
+	if (isset($_POST['FriendLink'])) {
+	    $model->attributes = $_POST['FriendLink'];
+	    // file handling
+	    $imageUploadFile = CUploadedFile::getInstance($model, 'pic');
+	    if ($imageUploadFile !== null) { // only do if file is really uploaded
+		$imageFileExt = $imageUploadFile->extensionName;
+
+		$save_path = dirname(Yii::app()->basePath) . '/upload/' . $action . '/';
+		if (!file_exists($save_path)) {
+		    mkdir($save_path, 0777, true);
+		}
+		$ymd = date("Ymd");
+		$save_path .= $ymd . '/';
+		if (!file_exists($save_path)) {
+		    mkdir($save_path, 0777, true);
+		}
+		$img_prefix = date("YmdHis") . '_' . rand(10000, 99999);
+		$imageFileName = $img_prefix . '.' . $imageFileExt;
+		$model->pic = $ymd . '/' . $imageFileName;
+		$save_path .= $imageFileName;
+	    }
+	    if ($model->save()) {
+		if ($imageUploadFile !== null) { // validate to save file
+		    $imageUploadFile->saveAs($save_path);
+		}
+		$this->redirect(array('view', 'id' => $model->link_id));
+	    }
+	    return true;
+	}
+
+	$this->render('create', array(
+	    'model' => $model
+	));
     }
 
     /**
@@ -60,37 +104,51 @@ class FriendLinkController extends Controller {
      * @param integer $id the ID of the model to be updated
      */
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
-        // Uncomment the following line if AJAX validation is needed
-        // $this->performAjaxValidation($model);
-        if (isset($_POST['FriendLink'])) {
+	$model = $this->loadModel($id);
+	$model->scenario = 'update';
+	$action = 'link';
 
-            $model->attributes = $_POST['FriendLink'];
-            $FriendLink = FriendLink::model()->findByPk($id);
-            $img = $_FILES['FriendLink']['name']['image'];
-            if ($img !== '') {
-                $img = CUploadedFile::getInstance($model, 'image');
-                $extensionName = explode('.', $img->getName());
-                $extensionName = $extensionName[count($extensionName) - 1];
-                $dir = dirname(Yii::app()->basePath) . '/upload/link/';
-                $img_src = $dir . md5(time()) . '.' . $extensionName;
-                $img1 = md5(time()) . '.' . $extensionName;
-                $model->image = $img1;
-            } else {
-                $model->image = $FriendLink->image;
-            }
-            //$model->cate_id = $_POST['Caigou']['cate_id'];
-            if ($model->save()) {
-                if ($img !== '') {
-                    @unlink(dirname(Yii::app()->basePath) . '/upload/link/' . $FriendLink->image);
-                    $img->saveAs($img_src);
-                }
-                $this->redirect(array('/cms/friendLink/admin'));
-            }
-        }
-        $this->render('update', array(
-            'model' => $model,
-        ));
+	// Uncomment the following line if AJAX validation is needed
+	// $this->performAjaxValidation($model);
+
+	if (isset($_POST['FriendLink'])) {
+	    $model->attributes = $_POST['FriendLink'];
+	    $imageUploadFile = CUploadedFile::getInstance($model, 'pic');
+	    if ($imageUploadFile !== null) { // only do if file is really uploaded
+		$old_image = dirname(Yii::app()->basePath) . '/upload/' . $action . '/' . $model->pic;
+		if (file_exists($old_image)) {
+		    @unlink($old_image);
+		}
+		$imageFileExt = $imageUploadFile->extensionName;
+
+		$save_path = dirname(Yii::app()->basePath) . '/upload/' . $action . '/';
+		if (!file_exists($save_path)) {
+		    mkdir($save_path, 0777, true);
+		}
+		$ymd = date("Ymd");
+		$save_path .= $ymd . '/';
+		if (!file_exists($save_path)) {
+		    mkdir($save_path, 0777, true);
+		}
+		$img_prefix = date("YmdHis") . '_' . rand(10000, 99999);
+		$imageFileName = $img_prefix . '.' . $imageFileExt;
+		$model->pic = $ymd . '/' . $imageFileName;
+		$save_path .= $imageFileName;
+	    } else {
+		$model->pic = $model->pic;
+	    }
+
+	    if ($model->save()) {
+		if ($imageUploadFile !== null) { // validate to save file
+		    $imageUploadFile->saveAs($save_path);
+		}
+		$this->redirect(array('view', 'id' => $model->link_id));
+	    }
+	}
+
+	$this->render('update', array(
+	    'model' => $model
+	));
     }
 
     /**
@@ -99,38 +157,45 @@ class FriendLinkController extends Controller {
      * @param integer $id the ID of the model to be deleted
      */
     public function actionDelete($id) {
-        if (Yii::app()->request->isPostRequest) {
-            // we only allow deletion via POST request
-            $this->loadModel($id)->delete();
-            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-        }
-        else
-            throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+	if (Yii::app()->request->isPostRequest) {
+	    // we only allow deletion via POST request
+	    $model = $this->loadModel($id);
+	    $image = dirname(Yii::app()->basePath) . '/upload/link/' . $model->pic;
+	    if (file_exists($image)) {
+		@unlink($image);
+	    }
+	    $model->delete();
+
+	    // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+	    if (!isset($_GET['ajax']))
+		$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+	else
+	    throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
     }
 
     /**
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('FriendLink');
-        $this->render('index', array(
-            'dataProvider' => $dataProvider,
-        ));
+	$dataProvider = new CActiveDataProvider('FriendLink');
+	$this->render('index', array(
+	    'dataProvider' => $dataProvider,
+	));
     }
 
     /**
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new FriendLink('search');
-        $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['FriendLink']))
-            $model->attributes = $_GET['FriendLink'];
-        $this->render('admin', array(
-            'model' => $model,
-        ));
+	$model = new FriendLink('search');
+	$model->unsetAttributes();  // clear any default values
+	if (isset($_GET['FriendLink']))
+	    $model->attributes = $_GET['FriendLink'];
+
+	$this->render('admin', array(
+	    'model' => $model,
+	));
     }
 
     /**
@@ -139,10 +204,10 @@ class FriendLinkController extends Controller {
      * @param integer the ID of the model to be loaded
      */
     public function loadModel($id) {
-        $model = FriendLink::model()->findByPk($id);
-        if ($model === null)
-            throw new CHttpException(404, 'The requested page does not exist.');
-        return $model;
+	$model = FriendLink::model()->findByPk($id);
+	if ($model === null)
+	    throw new CHttpException(404, 'The requested page does not exist.');
+	return $model;
     }
 
     /**
@@ -150,10 +215,10 @@ class FriendLinkController extends Controller {
      * @param CModel the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'friend-link-form') {
-            echo CActiveForm::validate($model);
-            Yii::app()->end();
-        }
+	if (isset($_POST['ajax']) && $_POST['ajax'] === 'friend-link-form') {
+	    echo CActiveForm::validate($model);
+	    Yii::app()->end();
+	}
     }
 
 }

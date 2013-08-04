@@ -1,0 +1,221 @@
+//
+// Buttons
+// --------------------------------------------------
+
+
+// Base styles
+// --------------------------------------------------
+
+// Core styles
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0; // For input.btn
+  font-size: @font-size-base;
+  font-weight: 500;
+  line-height: @line-height-base;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  white-space: nowrap;
+
+  &:focus {
+    .tab-focus();
+  }
+
+  &:hover,
+  &:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  &:active,
+  &.active {
+    cursor: default;
+    outline: 0;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    cursor: default;
+    pointer-events: none; // Future-proof disabling of clicks
+    .opacity(.65);
+    .box-shadow(none);
+  }
+
+}
+
+
+// Button Sizes
+// -------------------------
+
+// Large
+.btn-large {
+  padding: @padding-large;
+  font-size: @font-size-base;
+  border-radius: @border-radius-large;
+  width: 100%;
+}
+
+// Medium
+.btn-medium {
+  padding: @padding-medium;
+  max-height: @padding-medium * 2;
+
+  .btn-image {
+    height: 40px;
+    width: 60px;
+    margin: -14px auto 12px;
+  }
+
+  .btn-text {
+    font-size: 14px;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+  }
+}
+
+// Small
+.btn-small {
+  padding: @padding-small;
+  font-size: @font-size-small;
+  border-radius: @border-radius-small;
+  max-height: @padding-small * 2;
+}
+
+// Mini
+.btn-mini {
+  padding: @padding-mini;
+  font-size: @font-size-mini;
+  border-radius: @border-radius-small;
+  max-height: @padding-mini * 2;
+}
+
+
+// Icons in buttons
+// -------------------------
+
+// TODO: figure this shit out
+
+// Block button
+// -------------------------
+
+.btn-block {
+  display: block;
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+// Vertically space out multiple block buttons
+.btn-block + .btn-block {
+  margin-top: 5px;
+}
+
+// Specificity overrides
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+
+// Alternate buttons
+// --------------------------------------------------
+button {
+  background-color: @black;
+}
+.btn {
+  color: @btn-color;
+  border: none;
+  text-transform: uppercase;
+}
+.btn-primary {
+  .background-color-6;
+}
+// Warning appears as orange
+.btn-warning {
+  .background-color-7;
+}
+// Danger and error appear as red
+.btn-danger {
+  .background-color-3;
+}
+// Success appears as green
+.btn-success {
+  .background-color-1;
+}
+// Info appears as blue-green
+.btn-info {
+  .background-color-4;
+}
+
+
+// Link buttons
+// --------------------------------------------------
+
+// Make a button look and behave like a link
+.btn-link,
+.btn-link:active,
+.btn-link[disabled],
+fieldset[disabled] .btn-link {
+  background-color: transparent;
+  background-image: none;
+  .box-shadow(none);
+}
+.btn-link,
+.btn-link:hover,
+.btn-link:focus,
+.btn-link:active {
+  border-color: transparent;
+}
+.btn-link {
+  color: @link-color;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 0;
+}
+.btn-link:hover,
+.btn-link:focus {
+  color: @link-hover-color;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.btn-link {
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus {
+      color: @grayDark;
+      text-decoration: none;
+    }
+  }
+}
+
+// Link left image
+// --------------------------------------------------
+.btn-left-image {
+  padding: 0;
+
+  .btn-image {
+    float: left;
+    display: inline-block;
+  }
+
+  .btn-text {
+    display: inline-block;
+  }
+
+  &.btn-large {
+    .btn-image {
+      width: 60px;
+      height: 60px;
+    }
+    .btn-text {
+      padding: @padding-large;
+    }
+  }
+}

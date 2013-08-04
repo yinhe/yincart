@@ -1,0 +1,57 @@
+.tag {
+  display: inline-block;
+  font-family: @font-family-monospace;
+  padding: 2px 8px;
+}
+
+.tag-padded {
+  padding: 4px 14px;
+}
+
+.tag-rounded {
+  border-radius: 100px;
+}
+
+.tag-circle {
+  height: 42px;
+  width: 42px;
+  border-radius: 100px;
+  vertical-align: middle;
+}
+
+.tag-callout {
+  .blurb-box-green;
+
+  padding: 0 4px;
+  font-size: 12px;
+  width: 23px;
+  height: 22px;
+}
+
+.tag-remove {
+  border: 1px solid @gray1;
+  box-sizing: content-box;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 50px 10px 10px;
+  position: relative;
+
+  &:after {
+    .before();
+    .absLayout(0, 0, 0, inherit);
+    .x-white;
+    .background-color-1;
+
+    background-position: -138px -302px;
+    width: 40px;
+  }
+}
+
+.tag-arrow-right {
+  .arrow-right-green;
+
+  height: 16px;
+  width: 12px;
+  vertical-align: middle;
+  display: inline-block;
+}

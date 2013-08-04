@@ -67,6 +67,7 @@
 				array('label' => '权限管理', 'url' => array('/auth/assignment/index')),
 			    ), 'visible' => !Yii::app()->user->isGuest),
 			array('label' => '系统设置', 'url' => '#', 'items' => array(
+			        array('label' => '店铺管理', 'url' => array('/store/admin')),
 				array('label' => '菜单管理', 'url' => array('/menu/admin')),
 				array('label' => '分类管理', 'url' => array('/category/admin')),
 				array('label' => '皮肤管理', 'url' => array('/theme/admin')),
@@ -79,7 +80,7 @@
 		    'class' => 'bootstrap.widgets.TbMenu',
 		    'htmlOptions' => array('class' => 'pull-right'),
 		    'items' => array(
-			array('label' => '网站前台', 'url' =>F::sg('site', 'domain') ? F::sg('site', 'domain') : Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../frontend/www'),
+			array('label' => '网站前台', 'url' =>F::sg('site', 'domain') ? 'http://'.F::sg('site', 'domain') : Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../frontend/www'),
 			array('label' => '站点配置', 'icon' => 'wrench', 'url' => array('/settings/index'), 'visible' => !Yii::app()->user->isGuest),
 			array('label' => '登录', 'url' => array('/site/login'), 'visible' => Yii::app()->user->isGuest),
 			array('label' => Yii::app()->user->name, 'icon' => 'user', 'url' => '#', 'items' => array(

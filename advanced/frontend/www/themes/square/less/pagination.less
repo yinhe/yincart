@@ -1,0 +1,152 @@
+//
+// Pagination (multiple pages)
+// --------------------------------------------------
+.pagination {
+  display: inline-block;
+  margin: @line-height-base 0;
+  border-radius: @border-radius-base;
+
+  .btn-medium {
+    padding: 16px 30px;
+  }
+}
+.pagination > li {
+  border-width: 0 1px 0 0;
+  cursor: pointer;
+  display: inline; // Remove list-style and block-level defaults
+  float: left; // Collapse white-space
+  padding: 20px 30px;
+  line-height: @line-height-base;
+  text-decoration: none;
+
+  &:last-of-type {
+    border-width: 0;
+  }
+  
+  &.active {
+    cursor: default;
+  }
+}
+
+.pagination > .active > a,
+.pagination > .active > span {
+  color: @grayLight;
+  cursor: default;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: @grayLight;
+  background-color: @pagination-bg;
+  cursor: default;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span {
+  border-left-width: 1px;
+  .border-left-radius(@border-radius-base);
+}
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  .border-right-radius(@border-radius-base);
+}
+
+.pagination-slider {
+  .no-select;
+
+  padding: 6px 0;
+
+  li {
+    border-right: 1px solid @black;
+    padding: 14px 18px;
+  }
+
+  .slider-left {
+    border-left: 4px solid @green1 !important;
+    cursor: col-resize !important;
+  }
+
+  .slider-right {
+    border-right: 4px solid @green1 !important;
+    cursor: col-resize !important;
+  }
+  
+  .active {
+    border-right: 1px solid @green2;
+    position: relative;
+    .light-text;
+
+    &:before {
+      .before();
+      .absLayout();
+      background-color: @green;
+      opacity: .4;
+    }
+
+    &:last-of-type {
+      .slider-right;
+    }
+  }
+}
+
+.pagination-text {
+  li {
+    border-style: solid;
+    border-width: 0 1px 0 0;
+
+    &:last-of-type {
+      border-width: 0;
+    }
+  }
+}
+
+
+// Sizing
+// --------------------------------------------------
+
+// Large
+.pagination-large {
+  > li > a,
+  > li > span {
+    padding: @padding-large;
+    font-size: @font-size-large;
+  }
+  > li:first-child > a,
+  > li:first-child > span {
+    .border-left-radius(@border-radius-large);
+  }
+  > li:last-child > a,
+  > li:last-child > span {
+    .border-right-radius(@border-radius-large);
+  }
+}
+
+// Small and mini
+.pagination-mini,
+.pagination-small {
+  > li:first-child > a,
+  > li:first-child > span {
+    .border-left-radius(@border-radius-small);
+  }
+  > li:last-child > a,
+  > li:last-child > span {
+    .border-right-radius(@border-radius-small);
+  }
+}
+
+// Small
+.pagination-small {
+  > li > a,
+  > li > span {
+    padding: @padding-small;
+    font-size: @font-size-small;
+  }
+}
+// Mini
+.pagination-mini {
+  > li > a,
+  > li > span {
+    padding: @padding-mini;
+    font-size: @font-size-mini;
+  }
+}

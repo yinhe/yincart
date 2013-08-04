@@ -1,0 +1,59 @@
+#page {
+    padding-top: 60px;
+}
+a:hover{
+    color:#ff5500;
+}
+table.detail-view th, table.detail-view td {
+    font-size:12px !important;
+}
+/*h3{
+    font-weight:normal !important;
+    font-size:14px !important;
+}*/
+/*
+会员中心
+*/
+.member_menu ul li{
+    padding:2px 0;
+    padding-left:20px;
+}
+.member_menu ul li:hover{
+    text-decoration:underline;
+}
+.catalog ul{
+    margin-left:0 !important;
+}
+.box-title {
+    font-size:14px;
+    line-height:24px;
+    font-weight:bold;
+    border-bottom:solid 1px #ff5500;
+}
+.thumbnails {
+    margin-left:0 !important;
+}
+.main-content{
+    margin-top:20px;
+}
+.tuijian ul {
+    margin-left:0;
+    overflow:hidden;
+    margin-top:10px;
+}
+.tuijian ul li{
+    width:160px;
+    float:left;
+    padding-left:10px
+}
+.tuijian .title{
+    height:40px;
+    overflow:hidden;
+}
+.item-detail-img {
+    width:320px;
+    text-align:center
+}
+.search-query {
+    
+}

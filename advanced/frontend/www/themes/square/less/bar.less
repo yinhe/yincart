@@ -1,0 +1,36 @@
+.bar {
+  background-color: @gray1;
+  position: relative;
+
+  .bar-spacer {
+    width: 100%;
+    height: 100%;
+    background-color: @gray1;
+  }
+
+  .bar-normal {
+    min-height: 20px;
+  }
+
+  .bar-small {
+    height: 10px;
+  }
+
+  .bar-mini {
+    height: 7px;
+  }
+
+  .bar-left {
+    text-align: right;
+    .absLayout(0, inherit, 0, 0);
+  }
+
+  .bar-slider {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: lighter;
+    padding: 0px 10px;
+    vertical-align: top;
+    height: 100%;
+  }
+}
