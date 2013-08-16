@@ -5,6 +5,9 @@ Why call yincart, not yiicart. Yincart means Yii in cart, or u can call it "yi n
 
 base on yiiframework , website:yincart.com
 
+[![Latest Stable Version](https://poser.pugx.org/yinhe/yincart/v/stable.png)](https://packagist.org/packages/yinhe/yincart)
+[![Total Downloads](https://poser.pugx.org/yinhe/yincart/downloads.png)](https://packagist.org/packages/yinhe/yincart)
+
 ###Yincart项目结构说明
 
 * advanced为中大型项目管理结构分支，前台入口为frontend/www，后台入口为backend/www；定位于B2B2C
