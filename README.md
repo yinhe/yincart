@@ -7,6 +7,8 @@ base on yiiframework , website:yincart.com
 
 [![Latest Stable Version](https://poser.pugx.org/yinhe/yincart/v/stable.png)](https://packagist.org/packages/yinhe/yincart)
 [![Total Downloads](https://poser.pugx.org/yinhe/yincart/downloads.png)](https://packagist.org/packages/yinhe/yincart)
+[![Build Status](https://secure.travis-ci.org/yinhe/yincart.png)](http://travis-ci.org/yinhe/yincart) 
+[![Dependency Status](https://www.versioneye.com/php/yinhe:yincart/dev-master/badge.png)](https://www.versioneye.com/php/yinhe:yincart/dev-master)
 
 ###Yincart项目结构说明
 
