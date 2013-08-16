@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 5.1
+  - 5.2 
+  - 5.3
+  - 5.4
+  - 5.5
+
+before_script:
+  - composer self-update && composer --version
+  - composer require satooshi/php-coveralls 0.6.*
+  - mysql -e 'CREATE DATABASE yincart_test;';
+  - psql -U postgres -c 'CREATE DATABASE yincart_test;';
+
+script:
+  - phpunit --coverage-clover advanced/tests/unit/runtime/coveralls/clover.xml
+
+after_script:
+  - php advanced/vendor/bin/coveralls
