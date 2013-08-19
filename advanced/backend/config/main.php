@@ -78,6 +78,7 @@ return CMap::mergeArray(
 		    )
 		),
 		'auth',
+                'groupon',
 		'cms' => array(
 		    'class' => 'common.modules.cms.CmsModule'
 		),
