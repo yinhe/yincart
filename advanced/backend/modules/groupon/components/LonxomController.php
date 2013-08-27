@@ -8,7 +8,7 @@
 /**
  * Description of LonxomController
  * 团购公共控制器类
- * @author Administrator
+ * @author kowloon29320@163.com
  */
 class LonxomController extends Controller{
     public $now;    //当前时间戳

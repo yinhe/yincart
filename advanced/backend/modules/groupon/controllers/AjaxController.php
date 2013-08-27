@@ -8,7 +8,7 @@
 /**
  * Description of AjaxController
  *
- * @author Administrator
+ * @author kowloon29320@163.com
  */
 class AjaxController extends LonxomController{
     
@@ -17,8 +17,15 @@ class AjaxController extends LonxomController{
             'subarea' => array(
                 'class' => 'application.actions.area.SubareaAction'
             ),
+            'baidumap'=>array(
+                'class'=>'application.actions.baidu.BaidumapAction'
+            ),
+            'showmap'=>array(
+                'class'=>'application.actions.baidu.ShowmapAction'
+            ),
         );
     }
+    
 }
 
 ?>

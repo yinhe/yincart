@@ -8,7 +8,7 @@
 /**
  * Description of SellbizController
  * 销售商家控制器
- * @author Administrator
+ * @author kowloon29320@163.com
  */
 class SellbizController extends LonxomController{
     //商家列表

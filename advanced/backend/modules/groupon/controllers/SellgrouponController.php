@@ -8,7 +8,7 @@
 /**
  * Description of SellgrouponController
  * 销售团购控制器
- * @author Administrator
+ * @author kowloon29320@163.com
  */
 class SellgrouponController extends LonxomController{
     
