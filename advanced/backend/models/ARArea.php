@@ -69,6 +69,11 @@ class ARArea extends Area{
         
         return $optionStr;
     }
+    
+    //根据id和级别获取分类
+    static public function getName($id,$grade=self::GRADE_CITY){
+        return Yii::app()->db->createCommand()->select('name')->from('area')->where('id=:id and grade=:grade',array(':id'=>$id,':grade'=>$grade))->queryScalar();
+    }
 }
 
 ?>

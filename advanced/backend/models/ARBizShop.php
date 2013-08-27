@@ -60,6 +60,14 @@ class ARBizShop extends DBGrouponBizShop{
                    'update_time' => 'Update Time',
            );
     }
+    
+    public function behaviors() {
+        return array(
+            'timestamp' => array(
+                    'class' => 'zii.behaviors.CTimestampBehavior',
+            )
+	);
+    }
 }
 
 ?>
