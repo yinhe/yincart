@@ -1,4 +1,9 @@
 <?php /* @var $this Controller */ ?>
+<?php 
+    $script = Yii::app()->clientScript;
+    $script->registerCssFile("/js/facebox/facebox.css");
+    $script->registerscriptFile('/js/facebox/facebox.js');
+?>
 <?php $this->beginContent('//layouts/main'); ?>
 <?php $this->renderPartial('//layouts/_alert');?>
 <div class="row">
@@ -17,6 +22,7 @@
                 array('label' => 'BIZ'),
                 array('label' => '我的商家', 'icon' => 'bookmark', 'url' => array('/groupon/sellbiz/index')),
                 array('label' => '添加商家', 'icon' => 'bookmark', 'url' => array('/groupon/sellbiz/create')),
+                array('label' => '商家分店列表', 'icon' => 'bookmark', 'url' => array('/groupon/sellshop/index')),
                 '---',
                 array('label' => 'CHILD MENU'),
                     ), $this->menu),
