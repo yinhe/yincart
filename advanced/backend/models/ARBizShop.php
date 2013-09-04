@@ -65,6 +65,7 @@ class ARBizShop extends DBGrouponBizShop{
         return array(
             'timestamp' => array(
                     'class' => 'zii.behaviors.CTimestampBehavior',
+                    'setUpdateOnCreate'=>true,
             )
 	);
     }
