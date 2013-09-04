@@ -40,7 +40,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',
             'header' => '操作',
-            'template' => "{edit} {addshop} {shops}",
+            'template' => "{edit} {addshop} {shops} {addcontract}",
             'buttons' => array(
                 'edit' => array(
                     'label' => '修改',
@@ -49,16 +49,23 @@ $this->widget('bootstrap.widgets.TbGridView', array(
                     'options' => array('style' => 'margin-left:8px;'),
                 ),
                 'addshop' => array(
-                    'label' => '添加商户分店信息',
+                    'label' => '添加商户分店',
                     'url' => 'Yii::app()->controller->createUrl("sellshop/create",array("biz_id"=>$data["id"]))',
                     'icon' => 'icon-plus',
                     'options' => array('style' => 'margin-left:8px;'),
                 ),
                 'shops' => array(
-                    'label' => '查看项目分店信息',
+                    'label' => '查看项目分店',
                     'url' => 'Yii::app()->controller->createUrl("sellshop/index",array("biz_id"=>$data["id"]))',
                     'icon' => 'icon-film',
                     'options' => array('style' => 'margin-left:8px;','target'=>'_blank'),
+                ),
+                'addcontract' => array(
+                    'label' => '添加商户合同',
+                    'url' => 'Yii::app()->controller->createUrl("contract/create",array("biz_id"=>$data["id"]))',
+                    'icon' => 'icon-book',
+                    'options' => array('style' => 'margin-left:8px;'),
+//                    'visible'=>''
                 ),
 //                'shops' => array(
 //                    'label' => '查看项目分店信息',
