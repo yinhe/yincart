@@ -97,6 +97,15 @@ class ARContract extends DBGrouponContract{
 	    Yii::app()->user->setState('images', null);
 	}
     }
+    
+    //获取当前用户创建的合同
+    public static function myContracts(){
+        $user_id = Yii::app()->user->id;
+        $concat = new CDbExpression('concat("合同编号:",id," ",name) as name');
+        $contracts = Yii::app()->db->createCommand()->select(array('id',$concat))->from('groupon_contract')->where('create_id=:uid',array(':uid'=>$user_id))->queryAll();
+        $contracts = A::map($contracts, 'id', 'name');
+        return $contracts;
+    }
 }
 
 ?>

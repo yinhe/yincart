@@ -62,8 +62,6 @@ class ARArea extends Area{
                 foreach ($data as $value => $name) {
                     $optionStr .= CHtml::tag('option', array('value' => $value), CHtml::encode($name), true);
                 }
-            }else{
-                $optionStr .= CHtml::tag('option', array('value' => ''), '请选择', true);
             }
         }
         

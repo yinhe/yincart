@@ -92,6 +92,16 @@ class ARBiz extends DBGrouponBiz{
    public function getPhotoPath(){
        return Yii::app()->request->hostInfo.'/'.$this->license_photo;
    }
+   
+   public static function myBiz($biz_id){
+       if($biz_id > 0){
+            $biz = Yii::app()->db->createCommand()->select('id,title')->from('groupon_biz')->where('id=:id',array(':id'=>$biz_id))->queryRow();
+            if(!empty($biz)){
+                return array($biz['id']=>$biz['title']);
+            }
+       }
+       return array();
+   }
 }
 
 ?>
