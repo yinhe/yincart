@@ -53,6 +53,24 @@ class ARCates extends DBGrouponCates{
         }
         return $optionStr;
     }
+    
+    /**
+     * 根据分类id获取分类名
+     * @param type $id
+     * @param type $level
+     * @return type
+     */
+    public static function getCateName($id,$level=null){
+        $query = new Query(Yii::app()->db);
+        $query->select('name');
+        $query->from('groupon_cates');
+        $query->andWhere('id=:id', array(':id'=>$id));
+        if($level){
+            $query->andWhere('level=:level',array(':level'=>$level));
+        }
+        $name = $query->queryScalar();
+        return $name;
+    }
 }
 
 ?>
