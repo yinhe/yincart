@@ -63,7 +63,7 @@
 			    ), 'visible' => !Yii::app()->user->isGuest),
                         array('label' => '团购管理', 'url' => '#', 'items' => array(
                                 array('label' => 'ITEM'),
-                                array('label' => '团购列表', 'url' => array('/groupon/sellgroupon/index')),
+                                array('label' => '团购列表', 'url' => array('/groupon/groupon/index')),
 //                                array('label' => '商品类型', 'url' => array('/mall/itemType/admin')),
 //                                array('label' => '商品属性', 'url' => array('/mall/itemProp/admin')),
 ////                                array('label' => '商品规格', 'url' => array('/mall/specification/admin')),
