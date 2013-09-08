@@ -1,6 +1,6 @@
 <?php
 $this->breadcrumbs=array(
-	'商家列表'=>array('sellbiz/index'),
+	'商家列表'=>array('biz/index'),
 	'修改商家',
 );
 ?>

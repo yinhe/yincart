@@ -14,13 +14,14 @@ class SellGrouponSFM extends SFM{
     public $id;
     public $title;
     public $state;//项目上线状态
-
+    public $status;//项目审核状态
 
     public function attributeLabels() {
         return array(
             'id'=>'团购ID',
             'title'=>'团购标题',
             'state'=>'上线状态',
+            'status'=>'审核状态',
         );
     }
     
@@ -53,6 +54,12 @@ class SellGrouponSFM extends SFM{
                     'class'=>'input-small',
                     'prompt'=>'请选择',
                     'items'=>  ARGroupon::$states,
+                ),
+                'status'=>array(
+                    'type'=>'dropdownlist',
+                    'class'=>'input-small',
+                    'prompt'=>'请选择',
+                    'items'=>  ARGroupon::$status,
                 ),
             ),
             'buttons' => array(

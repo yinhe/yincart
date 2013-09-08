@@ -6,11 +6,11 @@
  */
 
 /**
- * Description of SellshopController
+ * Description of ShopController
  * 商家分店控制器
  * @author kowloon29320@163.com
  */
-class SellshopController extends LonxomController{
+class ShopController extends LonxomController{
     
     public function actionCreate(){
         $biz_id = Yii::app()->request->getParam('biz_id');

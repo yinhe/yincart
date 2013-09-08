@@ -1,0 +1,3 @@
+<?php echo $form->datePickerRow($model, 'begin_time', array('value'=>$model->begin_time>0?date('Y-m-d',$model->begin_time):'','options'=>array('language'=>'zh-CN','format'=>'yyyy-mm-dd')))?>
+<?php echo $form->datePickerRow($model, 'end_time', array('value'=>$model->begin_time>0?date('Y-m-d',$model->begin_time):'','options'=>array('language'=>'zh-CN','format'=>'yyyy-mm-dd')))?>
+<?php echo $form->datePickerRow($model, 'expire_time', array('value'=>$model->begin_time>0?date('Y-m-d',$model->begin_time):'','options'=>array('language'=>'zh-CN','format'=>'yyyy-mm-dd')))?>

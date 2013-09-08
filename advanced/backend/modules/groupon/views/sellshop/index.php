@@ -10,7 +10,7 @@ echo $form;
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'id' => 'sellshop-grid',
+    'id' => 'shop-grid',
     'dataProvider' => $dataProvider,
     'type' => 'striped bordered condensed hover',
 //    'selectableRows' => 2,
@@ -46,7 +46,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'buttons' => array(
                 'edit' => array(
                     'label' => '修改',
-                    'url' => 'Yii::app()->controller->createUrl("sellshop/update",array("id"=>$data["id"]))',
+                    'url' => 'Yii::app()->controller->createUrl("shop/update",array("id"=>$data["id"]))',
                     'icon' => 'icon-edit',
                     'options' => array('style' => 'margin-left:8px;'),
                 ),

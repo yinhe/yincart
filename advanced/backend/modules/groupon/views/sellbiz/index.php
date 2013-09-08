@@ -14,7 +14,7 @@ echo $form;
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'id' => 'sellgroupon-grid',
+    'id' => 'groupon-grid',
     'dataProvider' => $dataProvider,
     'type' => 'striped bordered condensed',
 //    'selectableRows' => 2,
@@ -44,19 +44,19 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'buttons' => array(
                 'edit' => array(
                     'label' => '修改',
-                    'url' => 'Yii::app()->controller->createUrl("sellbiz/update",array("id"=>$data["id"]))',
+                    'url' => 'Yii::app()->controller->createUrl("biz/update",array("id"=>$data["id"]))',
                     'icon' => 'icon-edit',
                     'options' => array('style' => 'margin-left:8px;'),
                 ),
                 'addshop' => array(
                     'label' => '添加商户分店',
-                    'url' => 'Yii::app()->controller->createUrl("sellshop/create",array("biz_id"=>$data["id"]))',
+                    'url' => 'Yii::app()->controller->createUrl("shop/create",array("biz_id"=>$data["id"]))',
                     'icon' => 'icon-plus',
                     'options' => array('style' => 'margin-left:8px;'),
                 ),
                 'shops' => array(
                     'label' => '查看项目分店',
-                    'url' => 'Yii::app()->controller->createUrl("sellshop/index",array("biz_id"=>$data["id"]))',
+                    'url' => 'Yii::app()->controller->createUrl("shop/index",array("biz_id"=>$data["id"]))',
                     'icon' => 'icon-film',
                     'options' => array('style' => 'margin-left:8px;','target'=>'_blank'),
                 ),

@@ -16,7 +16,7 @@
 
     <?php echo $form->errorSummary($model); ?>
     <?php echo $form->textFieldRow($model, 'name', array('class' => 'span3')); ?>
-    <?php echo $form->datepickerRow($model, 'sign_time', array('class' => 'span2', 'options' => array('language' => 'zh-CN', 'format' => 'yyyy-mm-dd'))); ?>
+    <?php echo $form->datePickerRow($model, 'sign_time', array('class'=>'span2','options'=>array('language'=>'zh-CN','format'=>'yyyy-mm-dd')))?>
     <?php echo $form->datepickerRow($model, 'online_time', array('class' => 'span2', 'options' => array('language' => 'zh-CN', 'format' => 'yyyy-mm-dd'))); ?>
     <?php echo $form->datepickerRow($model, 'end_time', array('class' => 'span2', 'options' => array('language' => 'zh-CN', 'format' => 'yyyy-mm-dd'))); ?>
     <?php echo $form->radioButtonListInlineRow($model, 'if_billing', array('1' => '需要', '0' => '不需要'), array('lable' => '开具发票')); ?>

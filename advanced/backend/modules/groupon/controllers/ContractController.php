@@ -154,6 +154,7 @@ class ContractController extends LonxomController{
         if(Yii::app()->request->isPostRequest && !empty($_POST['ARContract'])){
 //            dump($_POST);
             $model->attributes = $_POST['ARContract'];
+            $model->create_id = Yii::app()->user->id;
             $model->sign_time = strtotime($model->sign_time);
             $model->online_time = strtotime($model->online_time);
             $model->end_time = strtotime($model->end_time);

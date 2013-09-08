@@ -29,6 +29,14 @@ class LonxomController extends Controller{
         Yii::app()->user->setFlash($type,$msg);
         $this->redirect($url);
     }
+    
+    public function performAjaxValidation($model){
+        if(isset($_POST['ajax']))
+        {
+            echo CActiveForm::validate($model);
+            Yii::app()->end();
+        }
+    }
 }
 
 ?>

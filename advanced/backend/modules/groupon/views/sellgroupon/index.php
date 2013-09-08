@@ -15,7 +15,7 @@ echo $form;
 
 <?php
 $this->widget('bootstrap.widgets.TbGridView', array(
-    'id' => 'sellgroupon-grid',
+    'id' => 'groupon-grid',
     'dataProvider' => $dataProvider,
     'type'=>'striped bordered condensed',
 //    'selectableRows' => 2,
