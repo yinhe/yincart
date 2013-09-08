@@ -105,7 +105,7 @@ class SellGrouponSFM extends SFM{
     }
     
     static public function imageInfo($data){
-        return H::image($data['image'], $data['short_title'], array('width'=>100));
+        return H::image('http://img.yincart.com/'.$data['image'], $data['short_title'], array('width'=>100));
     }
 }
 
