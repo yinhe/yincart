@@ -63,6 +63,7 @@ return CMap::mergeArray(
 		'application.components.helpers.*',
 		'application.controllers.*',
 		'application.models.*',
+		'widgets.fashion.*',
 		'bootstrap.helpers.TbHtml',
 		'common.modules.cms.models.*',
 		'common.modules.mall.models.*',

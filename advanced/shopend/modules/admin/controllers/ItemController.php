@@ -19,6 +19,12 @@ class ItemController extends Controller {
 //	));
 //    }
 
+	public function init(){
+				
+		Yii::app()->theme = 'default'; 
+	} 
+
+
     /**
      * @return array action filters
      */
@@ -228,20 +234,28 @@ class ItemController extends Controller {
 //	    exit;
 	    try {
 		if ($model->save()) {
-		    if ($_POST['Item']['skus']) {
-			foreach ($_POST['Item']['skus']['table'] as $s_key => $s_value) {
-			    $sku = new Sku;
-			    $sku->item_id = $model->item_id;
-			    $sku->props = CJSON::encode(($s_value['props']));
-			    $sku->quantity = $s_value['quantity'];
-			    $sku->price = $s_value['price'];
-			    $sku->outer_id = $s_value['outer_id'];
-			    $sku->status = $s_value ? 'normal' : 'delete';
-			    $sku->save();
-			}
+			$skuIds = array();
+		    if ($_POST['Item']['skus']) {			  
+			  foreach ($_POST['Item']['skus']['table'] as $s_key => $s_value) {
+				  $sku = new Sku;
+				  $sku->item_id = $model->item_id;
+				  $sku->props = CJSON::encode(($s_value['props']));
+				  $sku->quantity = $s_value['quantity'];
+				  $sku->price = $s_value['price'];
+				  $sku->outer_id = $s_value['outer_id'];
+				  $sku->status = $s_value ? 'normal' : 'deleted';
+				  $sku->save();
+				  if ($sku->sku_id > 0) $skuIds[] = $sku->sku_id;
+			  }
 		    }
 		    $transaction->commit();
-		    $this->redirect(array('view', 'id' => $model->item_id));
+		    $skus_data = implode(",",$skuIds); //储存为淘宝sku[]格式。
+			
+			$sql = 'UPDATE {{item}} SET `skus_data`="'.$skus_data.'" WHERE item_id='.$model->item_id;
+		
+			Yii::app()->db->createCommand($sql)->execute();
+			
+			$this->redirect(array('view', 'id' => $model->item_id));
 		}
 	    } catch (Exception $e) {
 		$transaction->rollback();
@@ -263,63 +277,88 @@ class ItemController extends Controller {
      */
     public function actionUpdate($id) {
 	$model = $this->loadModel($id);
-	$model->scenario = 'update';
+	$model->scenario = 'update';	
 	$upload = new XUploadForm;
 	$image = new ItemImg;
 // Uncomment the following line if AJAX validation is needed
-// $this->performAjaxValidation($model);
+// $this->performAjaxValisdation($model);
 // Uncomment the following line if AJAX validation is needed
 // $this->performAjaxValidation($model);
 	$action = 'item';
+	
+	$skuIds = array();
+	
 	if (isset($_POST['Item'])) {
 	    $model->attributes = $_POST['Item'];
+		
+		
 
 	    if ($_POST['Item']['props']) {
-		foreach ($_POST['Item']['props'] as $key => $value) {
-		    $p = ItemProp::model()->findByPk($key);
-
-		    if ($p->type == 'multiCheck') {
-			$values = implode($value, ',');
-			$p_arr[] = $key . ':' . $values;
-			foreach ($value as $kk => $vv) {
-			    $v = PropValue::model()->findByPk($vv);
-			    $value_name[] = $v->value_name;
-			}
-			$value_names = implode($value_name, ',');
-			$v_arr[] = $p->prop_name . ':' . $value_names;
-		    } elseif ($p->type == 'optional') {
-			$p_arr[] = $key . ':' . $value;
-			$v = PropValue::model()->findByPk($value);
-			$v_arr[] = $p->prop_name . ':' . $v->value_name;
-		    } elseif ($p->type == 'input') {
-//如果是文本框输入的话 不纳入搜索
-//也就不纳入到props里 只保存到prop_names里
-			$p_arr[] = $key . ':' . $value;
-			$v_arr[] = $p->prop_name . ':' . $value;
-		    }
-		}
-		$props = implode($p_arr, ';');
-		$model->props = $props;
-		$props_name = implode($v_arr, ';');
-		$model->props_name = $props_name;
+		
+			$model->props = CJSON::encode($_POST['Item']['props']);
+		
 	    }
-	    if ($model->save()) {
-		if (isset($_POST['ItemImg']) && count($_POST['ItemImg'])) {
-		    foreach ($_POST['ItemImg'] as $k1 => $v1) {
-			$model = ItemImg::model()->find('img_id = :img_id', array(':img_id' => $v1));
-			$model->position = $k1;
-			$model->save();
-		    }
+	
+	 if ($_POST['Item']['skus']) {
+		$model->skus = CJSON::encode($_POST['Item']['skus']);			  
+		foreach ($_POST['Item']['skus']['table'] as $s_key => $s_value) {		  
+		  if ($s_value['sku_id']>0 ) {
+			$sku = Sku::model()->findByPk($s_value['sku_id']);			
+			$sku->props = CJSON::encode(($s_value['props']));
+			$sku->quantity = $s_value['quantity'];
+			$sku->price = $s_value['price'];
+			$sku->outer_id = $s_value['outer_id'];
+			$sku->status = $s_value ? 'normal' : 'deleted';
+			$sku->save();
+			$skuIds[] = $sku->sku_id;
+		  } else {			  
+			  $jsp = CJSON::encode(($s_value['props']));
+			  $sku = Sku::model()->findByAttributes(array("props"=>$jsp,"item_id"=>$model->item_id));
+			  if(!$sku) {
+			  	$sku = new Sku;
+				$sku->item_id = $model->item_id;				
+			  }
+			 
+			  $sku->props =  $jsp;
+			  $sku->quantity = $s_value['quantity'];
+			  $sku->price = $s_value['price'];
+			  $sku->outer_id = $s_value['outer_id'];
+			  $sku->status = $s_value ? 'normal' : 'deleted';
+			  $sku->save();
+			  if ($sku->sku_id > 0) $skuIds[] = $sku->sku_id;			
+		  }
+		  
+		 
 		}
-		$this->redirect(array('view', 'id' => $model->item_id));
+
+		//删除
+		$rawData = Sku::model()->findAll('item_id = ' . $model->item_id);
+		$delArr = array();
+		foreach ($rawData as $k1 => $v1) {
+		  if (!in_array($v1->sku_id, $skuIds)) {
+			  $delArr[] = $v1->sku_id;
+		  }
+		}
+				
+		if (count($delArr)) {
+		  Sku::model()->updateAll(array("status"=>"deleted"),'sku_id IN (' . implode(', ', $delArr) . ')');
+		}
+	   }
+	   
+	   
+	    $model->skus_data = implode(",",$skuIds);
+
+	    if ($model->save()) {
+		 
+		//$this->redirect(array('view', 'id' => $model->item_id));
 	    }
 	}
 
-	$this->render('update', array(
-	    'model' => $model,
-	    'image' => $image,
-	    'upload' => $upload
-	));
+	  $this->render('update', array(
+		  'model' => $model,
+		  'image' => $image,
+		  'upload' => $upload
+	  ));
     }
 
     /**
@@ -362,6 +401,7 @@ class ItemController extends Controller {
      * Manages all models.
      */
     public function actionList() {
+	if(!isset($_SESSION['store']['store_id'])) $_SESSION['store']['store_id'] = 1;
 	$criteria = new CDbCriteria(array(
 	    'condition' => 'store_id =' . $_SESSION['store']['store_id'],
             'order'=>'item_id desc'
@@ -706,16 +746,18 @@ class ItemController extends Controller {
 	    echo '<label class="col-lg-2 control-label" for="">商品规格</label>';
 	    echo '<div class="col-lg-9">';
 	    echo '<div class="sku-wrap">';
+		$ii=0;
 	    foreach ($props as $p) {
 
-		echo '<div class="sku-group"><label class="sku-head">' . $p->prop_name . '</label>';
-		echo '<div class="sku-box  sku-color">';
-		if ($p->type == 'multiCheck') {
-		    echo $p->getPropCheckBoxListValues($p->prop_name, $skus_arr['checkbox'][$p->prop_id], 'change', 'skus', 'checkbox');
-		}
-
-		$thead .= '<th>' . $p->prop_name . '</th>';
-		echo '</div></div>';
+		  echo '<div class="sku-group"><label class="sku-head">' . $p->prop_name . '</label>';
+		  echo '<div class="sku-box  sku-color">';
+		  if ($p->type == 'multiCheck') {
+			  echo $p->getPropCheckBoxListValues($p->prop_name, $skus_arr['checkbox'][$p->prop_id], 'change', 'skus', 'checkbox');
+		  }
+  
+		  $thead .= '<th> <span id="thop_'.$ii.'">'. $p->prop_name . '</span></th>';
+		  $ii++;
+		  echo '</div></div>';
 	    }
 
 	    echo '<p id="output"></p>';
@@ -818,5 +860,20 @@ EOF;
 //EOF;
 //    }
     }
+	
+	
+	public function actionAjaxGetSkus(){
+		
+		if (!Yii::app()->request->isAjaxRequest) {
+			exit();
+		}
+		
+		$id = $_POST["item_id"];
+		$skus = Sku::getSkusData($id);
+		
+		echo CJSON::encode($skus,true);
+		
+		Yii::app()->end();	
+	}
 
 }
