@@ -540,5 +540,24 @@ setTimeout(function() { $('.errorSummary').fadeOut('slow'); }, 5000);
 	    return '2';  //纯汉字
 	return '3';  //汉英混合
     }
+	
+	public static function convert_props_js_id($string){
+		$json = CJSON::decode($string);
+		$result = implode("_",$json);
+		return $result;
+	}
+	
+	public static function strip_prop_strto_csv($str){
+		$string = str_replace(":","#cln#",$str);
+		$string = str_replace(";","#scln#",$string);
+		return $string;
+	  }
+
+
+	public static function strip_prop_csvto_string($str){
+		$string = str_replace("#cln#",":",$str);
+		$string = str_replace("#scln#",";",$string);
+		return $string;
+	}
 
 }
