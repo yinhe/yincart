@@ -1,10 +1,9 @@
-Options +FollowSymLinks
-    IndexIgnore */*
-    RewriteEngine on
-
-    # if a directory or a file exists, use it directly
-    RewriteCond %{REQUEST_FILENAME} !-f
+<IfModule mod_rewrite.c>
+    RewriteEngine On 
+    RewriteBase /
+    
     RewriteCond %{REQUEST_FILENAME} !-d
-
-    # otherwise forward it to index.php
-    RewriteRule . index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule . index.php [L]
+ 
+</IfModule>
