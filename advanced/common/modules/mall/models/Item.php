@@ -89,7 +89,6 @@ class Item extends CActiveRecord {
 	return array(
 	    'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 	    'image' => array(self::HAS_MANY, 'ItemImg', 'item_id'),
-	    'type' => array(self::BELONGS_TO, 'ItemType', 'type_id'),
 	);
     }
 

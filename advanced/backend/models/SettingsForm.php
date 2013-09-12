@@ -5,7 +5,11 @@ class SettingsForm extends CFormModel
  
     public $site = array(
         'name' => '',
-        'domain' => '',
+        'frontDomain' => '',
+        'backDomain' => '',
+        'shopDomain' => '',
+        'imageDomain' => '',
+        'apiDomain' => '',
         'googleAPIKey' => '',
         'numSearchResults' => '',
         'defaultLanguage' => '',

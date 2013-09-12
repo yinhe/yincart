@@ -2,7 +2,7 @@
 <html>
     <head>
 	<meta charset="UTF-8">
-	<title>Yincart云商城 - 免费创建您自己的在线商城！</title>
+	<title><?php echo Yii::app()->name ?> - 免费创建您自己的在线店铺！</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Bootstrap -->
 	<link href="<?php echo F::themeUrl() ?>/css/bootstrap.css" rel="stylesheet" media="screen">
@@ -23,27 +23,10 @@
 			    <span class="icon-bar"></span>
 			    <span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Yincart<#云#>商城 Beta</a>
+			<a class="navbar-brand" href="#"><?php echo Yii::app()->name ?></a>
 			<div class="nav-collapse collapse pull-right">
 			    <ul class="nav navbar-nav">
-				<li class="active"><a href="#">特点</a></li>
-				<li><a href="#about">案例</a></li>
-				<li><a href="#about">价格</a></li>
-				<li><a href="#about">博客</a></li>
-				<li class="dropdown">
-				    <a href="#" class="dropdown-toggle" data-toggle="dropdown">资源 <b class="caret"></b></a>
-				    <ul class="dropdown-menu">
-					<li><a href="#">技术支持</a></li>
-					<li><a href="#">在线文档</a></li>
-					<li><a href="#">交流论坛</a></li>
-					<li class="divider"></li>
-					<li class="nav-header">进阶</li>
-					<li><a href="#">主题商店</a></li>
-					<li><a href="#">应用商店</a></li>
-					<li><a href="#">专家指南</a></li>
-					<li><a href="#">商务合作</a></li>
-				    </ul>
-				</li>
+				<li class="active"><a href="#">店铺指南</a></li>
 				<li><a href="#contact">登录</a></li>
 			    </ul>
 			</div>
