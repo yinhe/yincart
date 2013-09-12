@@ -1,43 +1,49 @@
 <?php
 
-class CatalogController extends Controller {
+class CatalogController extends Controller
+{
 
     public $layout = '//layouts/catalog';
 
-    public function actionIndex($key) {
-        $category=Category::model()->findByPk(3);
+    public function actionIndex($key)
+    {
+        $category = Category::model()->findByPk(3);
         $model = $category->findByAttributes(array('url' => $key));
-        $childs=$model->descendants()->findAll();
-        $ids = array($model->id);
-        foreach($childs as $child)
-        $ids[] = $child->id;
-        $cid = implode(',', $ids);
-        $criteria = new CDbCriteria(array(
-                    'condition' => 'category_id in ( '.$cid. ')',
-	            'order' => 'item_id desc, sort_order desc'
-                ));
-        $count = Item::model()->count($criteria);
-        $pages = new CPagination($count);
-        // results per page
-        $pages->pageSize = 20;
-        $pages->applyLimit($criteria);
-        $items = Item::model()->findAll($criteria);
+        if ($model) {
+            $childs = $model->descendants()->findAll();
+            $ids = array($model->id);
+            foreach ($childs as $child)
+                $ids[] = $child->id;
+            $cid = implode(',', $ids);
+            $criteria = new CDbCriteria(array(
+                'condition' => 'category_id in ( ' . $cid . ')',
+                'order' => 'item_id desc, sort_order desc'
+            ));
+            $count = Item::model()->count($criteria);
+            $pages = new CPagination($count);
+            // results per page
+            $pages->pageSize = 20;
+            $pages->applyLimit($criteria);
+            $items = Item::model()->findAll($criteria);
 //	$items = new CActiveDataProvider('Item', array(
 //            'criteria' => $criteria
 //        ));
-        $criteria = new CDbCriteria(array(
-                    'condition' => 'is_hot = 1 and category_id in ( '.$cid. ')',
-                    'limit' => '4',
-	            'order' => 'item_id desc, sort_order desc'
-                ));
-        $hotItems = Item::model()->findAll($criteria);
-        $this->render('index', array(
-            'model' => $model,
-            'items' => $items,
-            'pages' => $pages,
-            'hotItems' => $hotItems,
-            'key' => $key
-        ));
+            $criteria = new CDbCriteria(array(
+                'condition' => 'is_hot = 1 and category_id in ( ' . $cid . ')',
+                'limit' => '4',
+                'order' => 'item_id desc, sort_order desc'
+            ));
+            $hotItems = Item::model()->findAll($criteria);
+            $this->render('index', array(
+                'model' => $model,
+                'items' => $items,
+                'pages' => $pages,
+                'hotItems' => $hotItems,
+                'key' => $key
+            ));
+        } else {
+            $this->render('index');
+        }
     }
 
     // Uncomment the following methods and override them if needed
