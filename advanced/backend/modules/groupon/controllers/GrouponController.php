@@ -102,16 +102,13 @@ class GrouponController extends LonxomController{
                 $model->begin_time = strtotime($model->begin_time);
                 $model->end_time = strtotime($model->end_time);
                 $model->expire_time = strtotime($model->expire_time);
-                $model->create_id = Yii::app()->user->id;
                 if($model->save()){
                     Yii::app()->user->setFlash('success','商品修改成功');
 //                    $url = $_POST['return_url'];
-//                    $this->go('商品添加成功', $url, 'success');
+//                    $this->go('商品修改成功', $url, 'success');
                 }
                 
             }
-            
-            
         }
         $this->render('update',array(
             'model'=>$model,
