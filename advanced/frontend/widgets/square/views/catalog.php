@@ -121,6 +121,7 @@
 	    </div>
 </div>
 <div class="catalog-content">
+    <?php if($model) {?>
 <div class="filter_menu box">
     <div id="filter"> 
         <!-- 分类 -->
@@ -137,7 +138,7 @@
 
         <?php
         $cri = new CDbCriteria(array(
-            'condition' => 'is_sale_prop = 1 and type_id = 1',
+            'condition' => 'is_sale_prop = 1 and category_id = '.$model->id,
             'order' => 'sort_order asc'
         ));
         $props = ItemProp::model()->findAll($cri);
@@ -168,4 +169,8 @@
         </div>-->
     </div>
 </div>
+    <?php }else{
+    echo '找不到这个分类';
+    }
+    ?>
 </div>

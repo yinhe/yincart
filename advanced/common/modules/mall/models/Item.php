@@ -15,7 +15,9 @@
  * @property string $shop_price
  * @property string $currency
  * @property string $skus
+ * @property string $skus_data
  * @property string $props
+ * @property string $props_data
  * @property string $props_name
  * @property string $item_imgs
  * @property string $prop_imgs
@@ -71,10 +73,10 @@ class Item extends CActiveRecord {
 	    array('min_number', 'length', 'max' => 100),
 	    array('location, language', 'length', 'max' => 45),
 	    array('item_id, click_count, create_time, update_time', 'length', 'max' => 11),
-	    array('item_id, skus, props, props_name, item_imgs, prop_imgs, desc', 'safe'),
+	    array('item_id, skus, skus_data, props, props_data, props_name, item_imgs, prop_imgs, desc', 'safe'),
 	    // The following rule is used by search().
 	    // Please remove those attributes that should not be searched.
-	    array('item_id, category_id, title, sn, unit, stock, min_number, market_price, shop_price, currency, skus, props, props_name, item_imgs, prop_imgs, pic_url, desc, location, post_fee, express_fee, ems_fee, is_show, is_promote, is_new, is_hot, is_best, is_discount, click_count, sort_order, create_time, update_time, language', 'safe', 'on' => 'search'),
+	    array('item_id, category_id, title, sn, unit, stock, min_number, market_price, shop_price, currency, skus,skus_data, props, props_data,props_name, item_imgs, prop_imgs, pic_url, desc, location, post_fee, express_fee, ems_fee, is_show, is_promote, is_new, is_hot, is_best, is_discount, click_count, sort_order, create_time, update_time, language', 'safe', 'on' => 'search'),
 	);
     }
 
@@ -87,7 +89,6 @@ class Item extends CActiveRecord {
 	return array(
 	    'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 	    'image' => array(self::HAS_MANY, 'ItemImg', 'item_id'),
-	    'type' => array(self::BELONGS_TO, 'ItemType', 'type_id'),
 	);
     }
 
@@ -155,7 +156,9 @@ class Item extends CActiveRecord {
 	$criteria->compare('shop_price', $this->shop_price, true);
 	$criteria->compare('currency', $this->currency, true);
 	$criteria->compare('skus', $this->skus, true);
+	$criteria->compare('skus_data', $this->skus_data, true);
 	$criteria->compare('props', $this->props, true);
+	$criteria->compare('props_data', $this->props_data, true);
 	$criteria->compare('props_name', $this->props_name, true);
 	$criteria->compare('item_imgs', $this->item_imgs, true);
 	$criteria->compare('prop_imgs', $this->prop_imgs, true);
@@ -498,9 +501,58 @@ class Item extends CActiveRecord {
     }
 
     public function afterSave() {
-	$this->addImages();
-	parent::afterSave();
+	  parent::afterSave();
+	  $this->addImages();
+	  $this->update_props_data();	
     }
+	
+	public function update_props_data(){
+		$rawData =  CJSON::decode($this->props,true);
+		$opids = array();
+		$opnames = array();
+		
+		print_r($rawData);
+		
+		foreach($rawData as $k=>$v){
+			if (is_array($v)){
+				
+				foreach($v as $sk => $sv){					
+					$tmpArr = explode(":",$sv);				
+					if(count($tmpArr)>1){
+						$opids[]= $sv;
+						$opnames[] = self::get_props_values_combine($sv);
+					}
+				}
+				
+				
+			} else {
+				$tmpArr = explode(":",$v);
+				
+				if(count($tmpArr)>1){
+					$opids[]= $sv;
+					$opnames[] = self::get_props_values_combine($v);
+				}
+			}
+			
+		}
+		
+		$props_data = implode(";",$opids);
+		$props_name = implode(";",$opnames);
+		
+		$sql = 'UPDATE {{item}} SET `props_data`="'.$props_data.'",`props_name`="'.$props_name.'" WHERE item_id='.$this->item_id;
+		
+		Yii::app()->db->createCommand($sql)->execute();
+		
+	
+	}
+	
+	public static function get_props_values_combine($arr){
+		$op = ItemProp::model()->findByPk($arr[0]);
+		$opv = PropValue::model()->findByPk($arr[1]);
+		$data = $arr[0].":".$arr[1].":".F::strip_prop_strto_csv($op->prop_name).":".F::strip_prop_strto_csv($opv->value_name);
+		
+		return $data;
+	}
 
     public function addImages() {
 	//If we have pending images

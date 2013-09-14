@@ -15,6 +15,12 @@ base on yiiframework , website:yincart.com
 * advanced为中大型项目管理结构分支，前台入口为frontend/www，后台入口为backend/www；定位于B2B2C
 * basic为小型项目管理结构分支，后台入口为backend.php；定位于B2C
 * 请根据自己的业务需求选择
+* Advanced Install
+* use shopend.com redirect to the shopend/www directory
+* use backend.com redirect to the backend/www directory
+* use frontend.com redirect to the frontend/www directory
+* use image.com redirect to the upload directory
+* database: common/data/yincart-*(latest).sql
 
 ###2013.8.04 1.0.7预览版
 
@@ -26,7 +32,7 @@ base on yiiframework , website:yincart.com
 
 * 商品的属性添加更新完善
 
-* 商品的sku添加更新完善(开发中)
+* 商品的sku添加更新完善(已完成)
 
 * 前台商品搜索实现(未完成)
 

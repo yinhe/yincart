@@ -10,27 +10,31 @@
  * @property string $url
  * @property integer $sort_order
  */
-class Ad extends CActiveRecord {
+class Ad extends CActiveRecord
+{
 
     /**
      * Returns the static model of the specified AR class.
      * @return FlashAd the static model class
      */
-    public static function model($className = __CLASS__) {
+    public static function model($className = __CLASS__)
+    {
         return parent::model($className);
     }
 
     /**
      * @return string the associated database table name
      */
-    public function tableName() {
+    public function tableName()
+    {
         return '{{ad}}';
     }
 
     /**
      * @return array validation rules for model attributes.
      */
-    public function rules() {
+    public function rules()
+    {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
@@ -62,17 +66,18 @@ class Ad extends CActiveRecord {
     /**
      * @return array relational rules.
      */
-    public function relations() {
+    public function relations()
+    {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
-        );
+        return array();
     }
 
     /**
      * @return array customized attribute labels (name=>label)
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array(
             'id' => 'ID',
             'title' => '标题',
@@ -88,7 +93,8 @@ class Ad extends CActiveRecord {
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
-    public function search() {
+    public function search()
+    {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
@@ -104,13 +110,15 @@ class Ad extends CActiveRecord {
             'criteria' => $criteria,
         ));
     }
-    
-    public function getImage() {        
-        $img_url = 'http://img.'.F::sg('site', 'domain').'/ad/' . $this->pic;
-	return CHtml::image(F::baseUrl().$img_url, $this->title, array('style'=>'width:600px;height:300px'));
+
+    public function getImage()
+    {
+        $img_url = 'http://' . F::sg('site', 'imageDomain') . '/ad/' . $this->pic;
+        return CHtml::image(F::baseUrl() . $img_url, $this->title, array('style' => 'width:600px;height:300px'));
     }
-    
-    public function getAd() {
+
+    public function getAd()
+    {
         $ad = array(
             'image' => Yii::app()->request->hostInfo . Yii::app()->baseUrl . '/../../upload/ad/' . $this->pic,
             'label' => $this->title,

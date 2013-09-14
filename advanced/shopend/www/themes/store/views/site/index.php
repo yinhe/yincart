@@ -61,27 +61,24 @@
 
 <div class="container marketing">
 
-    <!-- Three columns of text below the carousel -->
+    <!-- Example row of columns -->
     <div class="row">
-	<div class="col-lg-4">
-	    <?php //echo CHtml::image(F::baseUrl().'/images/rocket.jpg', '',array('class'=>'thumbnail', 'style'=>'width:140px;height:140px;display:inline')) ?>
-	    <h2>快速创建网上商城</h2>
-	    <p>在这里，您可以快速创建您的网上商城，让您抢占市场的先机，比对手更迅速占领市场。只需要几分钟便完成您的商城创建。简单，快捷，并且功能强大</p>
-	    <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-	</div><!-- /.col-lg-4 -->
-	<div class="col-lg-4">
-	    <?php //echo CHtml::image(F::baseUrl().'/images/sale.jpg', '',array('class'=>'thumbnail', 'style'=>'width:140px;height:140px;display:inline')) ?>
-	    <h2>强大的营销平台</h2>
-	    <p>以往的独立商城往往需要花费很多资金在营销推广上，在这里，你可以直接推送自己的产品到我们的分销平台，成千上万的顾客将为您创造更多的销售业绩。</p>
-	    <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-	</div><!-- /.col-lg-4 -->
-	<div class="col-lg-4">
-	    <?php //echo CHtml::image(F::baseUrl().'/images/extension.jpg', '',array('class'=>'thumbnail', 'style'=>'width:140px;height:140px;display:inline')) ?>
-	    <h2>海量的主题应用市场</h2>
-	    <p>模板皮肤看腻了，功能不够强大？我们引入了第三方开发平台，在这里有众多的主题皮肤和应用插件供你选择，你将找到自己喜爱的皮肤和符合您需求的应用扩展。</p>
-	    <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-	</div><!-- /.col-lg-4 -->
-    </div><!-- /.row -->
+        <div class="col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="col-lg-4">
+            <h2>Heading</h2>
+            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+        </div>
+    </div>
 
 
     <!-- START THE FEATURETTES -->
