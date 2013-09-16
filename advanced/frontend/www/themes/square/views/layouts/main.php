@@ -84,7 +84,7 @@
 		<div class="footer background-color-00 dark-text">
 		    <?php $this->widget('widgets.square.WFriendLink') ?>
 		    <p><?php $this->widget('widgets.square.WFootMenu') ?></p>
-		    <p class="copyright">Copyright © 2012-2015 <?php echo CHtml::link('小商品分销网', 'http://1688gou.com', array('target' => '_blank')) ?>.All Rights Reserved.</p>
+		    <p class="copyright">Copyright © 2012-2015 <?php echo CHtml::link(Yii::app()->name, 'http://'.F::sg('site', 'frontDomain'), array('target' => '_blank')) ?>.All Rights Reserved.</p>
 		</div>
 	    </div>
 	</div>

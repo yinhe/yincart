@@ -8,7 +8,7 @@
             $item = Item::model()->findByPk($item_id);
 	    if($item){
             ?>
-            <li><div class="i-img"><?php echo $item->getRecentThumb() ?></div><div class="i-name"><?php echo $item->getTitle()  ?></div></li>
+            <li><div class="i-img"><?php echo $item->getMainPic('209', '209') ?></div><div class="i-name"><?php echo $item->getTitle()  ?></div></li>
                     <?php
                 }else {
                 echo '<div style="padding:20px">没有商品浏览记录!</div>';

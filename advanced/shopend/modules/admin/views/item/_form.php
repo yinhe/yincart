@@ -23,7 +23,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	    '详细描述' => $this->renderPartial("_form_desc", array("model" => $model, 'form' => $form, 'action' => $action, 'base_url' => $base_url, 'id' => $id, 'type' => $type), true),
 	    '其他信息' => $this->renderPartial("_form_other", array("model" => $model, 'form' => $form), true),
 	    '商品类型' => $this->renderPartial("_form_type", array("model" => $model, 'form' => $form), true),
-	    '商品图片' => $this->renderPartial("_form_image", array('image' => $image, 'form' => $form, 'upload' => $upload), true),
+	    '商品图片' => $this->renderPartial("_form_image", array('image' => $image, 'form' => $form, 'upload' => $upload, 'id'=>$id, 'item'=>$model), true),
 	),
     ));
     ?>

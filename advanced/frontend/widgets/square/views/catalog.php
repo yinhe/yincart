@@ -132,7 +132,7 @@
             $childs = $model->children()->findAll();
             foreach ($childs as $c) {
                 ?>
-                <dd><div><a><span><?php echo $c->name ?></span></a></div></dd>
+                <dd><div><a><span><?php echo CHtml::link($c->name, array('/catalog/index', 'key'=>$c->url)) ?></span></a></div></dd>
             <?php } ?>
         </dl>
 

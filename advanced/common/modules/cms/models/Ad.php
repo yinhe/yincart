@@ -113,7 +113,7 @@ class Ad extends CActiveRecord
 
     public function getImage()
     {
-        $img_url = 'http://' . F::sg('site', 'imageDomain') . '/ad/' . $this->pic;
+        $img_url = 'http://' . F::sg('site', 'imageDomain') . '/core/ad/' . $this->pic;
         return CHtml::image(F::baseUrl() . $img_url, $this->title, array('style' => 'width:600px;height:300px'));
     }
 

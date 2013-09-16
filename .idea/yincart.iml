@@ -8,9 +8,25 @@
       <library name="PHP">
         <CLASSES>
           <root url="file://$MODULE_DIR$/../../../bin/php/php5.4.12/pear" />
+          <root url="file://$MODULE_DIR$/../../yii/framework" />
         </CLASSES>
         <SOURCES>
           <root url="file://$MODULE_DIR$/../../../bin/php/php5.4.12/pear" />
+          <root url="file://$MODULE_DIR$/../../yii/framework" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="PHARS">
+        <CLASSES>
+          <root url="phar://$MODULE_DIR$/advanced/common/lib/Behat/extensions/mink_extension.phar" />
+          <root url="phar://$MODULE_DIR$/advanced/common/lib/Behat/behat.phar" />
+          <root url="phar://$MODULE_DIR$/advanced/common/lib/Behat/mink.phar" />
+        </CLASSES>
+        <SOURCES>
+          <root url="phar://$MODULE_DIR$/advanced/common/lib/Behat/extensions/mink_extension.phar" />
+          <root url="phar://$MODULE_DIR$/advanced/common/lib/Behat/behat.phar" />
+          <root url="phar://$MODULE_DIR$/advanced/common/lib/Behat/mink.phar" />
         </SOURCES>
       </library>
     </orderEntry>

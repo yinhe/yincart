@@ -73,12 +73,18 @@ class ItemController extends Controller
         ));
     }
 
+    /**
+     * upload images
+     * @throws CHttpException
+     * @author milkyway(yhxxlm@gmail.com)
+     */
     public function actionUpload()
     {
         Yii::import("xupload.models.XUploadForm");
-//Here we define the paths where the files will be stored temporarily
-        $path = realpath(Yii::app()->getBasePath() . "/../upload/store/" . $_SESSION['store']['store_id'] . "/item/image") . "/";
-        $publicPath = 'http://img.' . F::sg('site', 'domain') . "/store/" . $_SESSION['store']['store_id'] . "/item/image/";
+        //Here we define the paths where the files will be stored temporarily
+        //remove realpath
+        $path = Yii::app()->getBasePath() . "/../upload/store/" . $_SESSION['store']['store_id'] . "/item/image" . "/";
+        $publicPath = 'http://' . F::sg('site', 'imageDomain') . "/store/" . $_SESSION['store']['store_id'] . "/item/image/";
 
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
@@ -90,7 +96,7 @@ class ItemController extends Controller
         }
 
 
-//This is for IE which doens't handle 'Content-type: application/json' correctly
+        //This is for IE which doens't handle 'Content-type: application/json' correctly
         header('Vary: Accept');
         if (isset($_SERVER['HTTP_ACCEPT']) && (strpos($_SERVER['HTTP_ACCEPT'], 'application/json') !== false)) {
             header('Content-type: application/json');
@@ -98,7 +104,7 @@ class ItemController extends Controller
             header('Content-type: text/plain');
         }
 
-//Here we check if we are deleting and uploaded file
+        //Here we check if we are deleting and uploaded file
         if (isset($_GET["_method"])) {
             if ($_GET["_method"] == "delete") {
                 if ($_GET["file"][0] !== '.') {
@@ -371,6 +377,7 @@ class ItemController extends Controller
      * Deletes a particular model.
      * If deletion is successful, the browser will be redirected to the 'admin' page.
      * @param integer $id the ID of the model to be deleted
+     * @throws CHttpException
      */
     public function actionDelete($id)
     {
@@ -433,6 +440,7 @@ class ItemController extends Controller
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
+     * @throws CHttpException
      */
     public function loadModel($id)
     {
