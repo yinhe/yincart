@@ -22,8 +22,8 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'columns' => array(
 //        array(
 //            'class' => 'CCheckBoxColumn',
-//            'name' => 'item_id',
-//            'value' => '$data->item_id',
+//            'name' => 'id',
+//            'value' => '$data["id"]',
 //        ),
         array(
             'name' => 'ID',
@@ -34,9 +34,34 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'value' => '$data["short_title"]',
         ),
         array(
+            'name' => '状态',
+            'type'=>'raw',
+            'value' => 'SellGrouponSFM::statusInfo($data)',
+        ),
+        array(
             'name' => '团购主图',
             'type'=>'raw',
             'value' => 'SellGrouponSFM::imageInfo($data)',
+        ),
+        array(
+            'name' => '商家信息',
+            'type'=>'raw',
+            'value' => 'SellGrouponSFM::bizInfo($data)',
+        ),
+        array(
+            'name' => '分类信息',
+            'type'=>'raw',
+            'value' => 'SellGrouponSFM::cateInfo($data)',
+        ),
+        array(
+            'name' => '价格',
+            'type'=>'raw',
+            'value' => 'SellGrouponSFM::priceInfo($data)',
+        ),
+        array(
+            'name' => '时间',
+            'type'=>'raw',
+            'value' => 'SellGrouponSFM::timeInfo($data)',
         ),
         array(
             'class' => 'bootstrap.widgets.TbButtonColumn',

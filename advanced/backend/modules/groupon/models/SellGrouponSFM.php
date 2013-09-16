@@ -107,6 +107,55 @@ class SellGrouponSFM extends SFM{
     static public function imageInfo($data){
         return H::image('http://img.yincart.com/'.$data['image'], $data['short_title'], array('width'=>100));
     }
+    
+    public static function bizInfo($data){
+        $biz = ARBiz::model()->findByPk($data['biz_id']);
+        if($biz == null){
+            return '该商品没有对应商家';
+        }
+        $str = $biz->title.'<span style="color:teal;">[商户ID：'.$biz->id.']</span>';
+        return $str;
+    }
+    
+    public static function cateInfo($data){
+        $str = '';
+        $str .= '一级分类：'.ARCates::getCateName($data['cate_1_id'], ARCates::LEVEL_ONE).'<br />';
+        $str .= '二级分类：'.ARCates::getCateName($data['cate_2_id'],  ARCates::LEVEL_TWO).'<br />';
+        if($data['cate_3_id'] > 0){
+            $str .= '三级分类：'.ARCates::getCateName($data['cate_3_id'], ARCates::LEVEL_THREE);
+        }
+        return $str;
+    }
+    
+    public static function priceInfo($data){
+        $str = '';
+        $str .= '团购价：'.$data['price'].'<br />';
+        $str .= '市场价：'.$data['market_price'];
+        return $str;
+    }
+     
+    public static function timeInfo($data){
+        $str = '';
+        $str .= '开始时间：'.date('Y-m-d',$data['begin_time']).'<br />';
+        $str .= '结束时间：'.date('Y-m-d',$data['end_time']).'<br />';
+        $str .= '过期时间：'.date('Y-m-d',$data['expire_time']);
+        return $str;
+    }
+    
+    public static function statusInfo($data){
+        $str = '';
+        $str .= '审核状态：'.ARGroupon::$status[$data['examine_status']].'<br />';
+        $now = time();
+        //如果开始时间小于当前，结束时间大于当前
+        if(($data['begin_time'] < $now) && ($data['begin_time'] > $now)){
+            $str .= CHtml::tag('span', array('style'=>'color:teal;'), '在线');
+        }  elseif ($data['begin_time'] > $now) {
+            $str .= CHtml::tag('span', array('style'=>'color:green;'), '等待上线');
+        }  elseif ($data['end_time'] < $now) {
+            $str .= CHtml::tag('span', array('style'=>'color:red;'), '已下线');
+        }
+        return $str;
+    }
 }
 
 ?>
