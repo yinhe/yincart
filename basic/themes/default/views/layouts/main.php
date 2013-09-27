@@ -74,7 +74,7 @@ $cs->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.blockUI.1.33.
                     <?php $this->widget('widgets.default.WFootMenu') ?>
                 </div>
                 <div class="paylink">
-                    <?php $this->widget('widgets.default.WFriendLink')  ?>
+                    <?php //$this->widget('widgets.default.WFriendLink')  ?>
                 </div>
                 <div class="foot_copyright">
                     <p>Copyright © 2012-2015 <?php echo CHtml::link('Yincart', 'http://yincart.com', array('target' => '_blank')) ?>.All Rights Reserved.</p>

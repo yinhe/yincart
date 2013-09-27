@@ -81,13 +81,48 @@ $this->breadcrumbs = array(
                 <?php echo CHtml::hiddenField('name', $model->item_id) ?>
                 <?php echo CHtml::hiddenField('price', $model->shop_price) ?>
                 <ul>
-                    <li class="price1">建议零售价：<?php echo $model->currency . $model->market_price ?></li>
-                    <li class="price2">批发价：<em><?php echo $model->currency . $model->shop_price ?></em></li>
-                    <li class="sn">商品编号：<?php echo $model->sn ?></li>
-                    <li class="unit">计量单位：<?php echo $model->unit ?></li>
-                    <li class="min_number">最少订货量：<?php echo $model->min_number ?> <?php echo $model->unit ?></li>
-                    <li class="stock">库存：<?php echo $model->stock ?> <?php echo $model->unit ?></li>
+                    <li class="price1">市场价：<del><?php echo $model->currency . $model->market_price ?></del></li>
+                    <li class="price2">本店价：<em><?php echo $model->currency . $model->shop_price ?></em></li>
                     <li class="click_count">浏览次数：<?php echo $model->click_count ?>次</li>
+                    <?php
+                    /**
+                     * 显示
+                     */
+                    $cri = new CDbCriteria(array(
+                        'condition'=>'item_id ='.$model->item_id
+                    ));
+                    $sku_list = Sku::model()->findAll($cri);
+                    foreach($sku_list as $skus){
+                        $props = CJSON::decode($skus->props, TRUE);
+                        $count = count($props);
+                        for($i=0;$i<$count;$i++){
+                            $p[$i][] = $props[$i];
+                        }
+                    }
+                    for($i=0;$i<$count;$i++){
+                        foreach(array_unique($p[$i]) as $k=>$v) {
+                            $new_v = explode(':', $v);
+                            $new_arr[$new_v[0]][] = $new_v[1];
+                        }
+
+                    }
+                    foreach($new_arr as $k=>$v){
+                        $list = ItemProp::model()->findByPk($k);
+                        echo $list->prop_name.': ';
+                        foreach($v as $v){
+                            $v_list = PropValue::model()->findByPk($v);
+                            echo $v_list->value_name.' ';
+                        }
+                        echo '<br />';
+                    }
+
+                    /**
+                     * 计算
+                     */
+//                    foreach($sku_list as $skus) {
+//                        $arr[$skus]
+//                    }
+                    ?>
                     <li>
                         <div style='width:150px;margin:0'>我要订购：<input type="number"
                                                                       value="<?php echo $model->min_number ?>"
@@ -105,7 +140,7 @@ $this->breadcrumbs = array(
                     </dd>
                     <dd class="d-btn-add">
                         <a data-type="purchase" class="btn btn-info" id="LinkPurchase" href="#" target="_self"
-                           title="加入进货单" rel="nofollow">加入进货单</a>
+                           title="加入购物车" rel="nofollow">加入购物车</a>
                     </dd>
                 </dl>
             </div>
@@ -157,22 +192,6 @@ $this->breadcrumbs = array(
 
             <div class="item-detail-content">
                 <div class="col-span-9 background-color-0" style="overflow:hidden">
-                    <?php
-                    //		    $this->widget('zii.widgets.jui.CJuiTabs', array(
-                    //			'tabs' => array(
-                    //			    '商品详情' => $this->renderPartial("_desc", array("model" => $model), true),
-                    ////                '支付方式' => array('content' => 'Content for tab 2', 'id' => 'tab2'),
-                    //			    '支付方式' => $this->renderPartial("_payment", array("model" => $model), true),
-                    //			    // panel 3 contains the content rendered by a partial view
-                    //			    '配送方式' => $this->renderPartial("_shipping", array("model" => $model), true),
-                    //			    '常见问题' => $this->renderPartial("_faq", array("model" => $model), true),
-                    //			),
-                    //			// additional javascript options for the tabs plugin
-                    //			'options' => array(
-                    //			    'collapsible' => true,
-                    //			),
-                    //		    ));
-                    ?>
                     <ul class="nav nav-tabs background-color-6" id="myTab">
                         <li class="active"><a href="#home">商品详情</a></li>
                         <li><a href="#profile">支付方式</a></li>

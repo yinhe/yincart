@@ -62,6 +62,7 @@
 				array('label' => '管理员列表', 'url' => array('/adminUser/admin')),
 				array('label' => '权限管理', 'url' => array('/auth/assignment/index')),
 			    ), 'visible' => !Yii::app()->user->isGuest),
+                array('label' => '插件列表', 'url' => array('/plugin/pluginmanage/index'),  'visible' => !Yii::app()->user->isGuest),
 			array('label' => '系统设置', 'url' => '#', 'items' => array(
 				array('label' => '菜单管理', 'url' => array('/menu/admin')),
 				array('label' => '分类管理', 'url' => array('/category/admin')),
