@@ -19,6 +19,16 @@ class ItemPropController extends Controller {
     }
 
     /**
+     * @return array action filters
+     */
+    public function filters()
+    {
+        return array(
+            array('auth.filters.AuthFilter'),
+        );
+    }
+
+    /**
      * Displays a particular model.
      * @param integer $id the ID of the model to be displayed
      */

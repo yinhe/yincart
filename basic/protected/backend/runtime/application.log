@@ -2313,3 +2313,32 @@ Stack trace:
 REQUEST_URI=/site-yinhe/yincart/basic/backend.php/cck/nodeField/admin/node_id/1
 HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/cck/node/admin
 ---
+2013/09/27 05:11:23 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.plugins' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `plugins`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\lib\PluginManger.php (92)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\lib\PluginManger.php (53)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\controllers\PluginManageController.php (161)
+2013/09/27 05:11:23 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "Plugins" 对应的 table "{{plugins}}".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(Plugins))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\lib\PluginManger.php(92): CActiveRecord->__construct()
+#3 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\lib\PluginManger.php(53): PluginManger->loadModel()
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\controllers\PluginManageController.php(161): PluginManger->Status(Object(QQLogin2Plugin))
+#5 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\plugin\controllers\PluginManageController.php(40): PluginManageController->_loadPlugins()
+#6 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): PluginManageController->actionIndex()
+#7 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#8 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#9 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#10 E:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#11 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#12 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#13 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#14 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#15 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('index')
+#16 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('plugin/pluginma...')
+#17 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#18 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#19 {main}
+REQUEST_URI=/site-yinhe/yincart/basic/backend.php/plugin/pluginmanage/index
+HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/plugin/pluginmanage/index
+---
