@@ -1,0 +1,26 @@
+body {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+    display: block;
+    position: static;
+    margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+    margin: 5px 0;
+}
+.search {
+    margin-top: 20px;
+}
+.main-menu {
+    margin-top: 20px;
+}
+.index-section-1 {
+    margin-top: 20px;
+}
+.item-detail {
+    margin-top: 20px;
+}

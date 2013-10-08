@@ -9,7 +9,7 @@ class ItemController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '/layouts/admin';
+    public $layout = '/layouts/column2';
 
 //     public function actions() {
 //	return array(
@@ -19,13 +19,6 @@ class ItemController extends Controller
 //		"publicPath" => 'http://img.'.F::sg('site', 'domain'). "/item/image",
 //	));
 //    }
-
-    public function init()
-    {
-
-        Yii::app()->theme = 'default';
-    }
-
 
     /**
      * @return array action filters

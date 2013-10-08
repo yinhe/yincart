@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,30 +7,30 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>shop demo</title>
+    <title>Theme Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="<?php echo F::themeUrl() ?>/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <!-- Bootstrap theme -->
-    <link href="<?php echo F::themeUrl() ?>/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="<?php echo F::themeUrl() ?>/css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <!-- link to the CSS files for this menu type -->
-    <link rel="stylesheet" media="screen" href="<?php echo F::themeUrl() ?>/css/superfish.css">
-    <link rel="stylesheet" media="screen" href="<?php echo F::themeUrl() ?>/css/superfish-vertical.css">
+    <link rel="stylesheet" media="screen" href="css/superfish.css">
+    <link rel="stylesheet" media="screen" href="css/superfish-vertical.css">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="<?php echo F::themeUrl() ?>/js/html5shiv.js"></script>
-    <script src="<?php echo F::themeUrl() ?>/js/respond.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
 
 <!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -37,7 +38,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">ShopTest</a>
+            <a class="navbar-brand" href="#">HaoFine</a>
             <p class="navbar-text">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
         </div>
         <div class="navbar-collapse collapse navbar-right">
@@ -65,7 +66,7 @@
 <div class="container theme-showcase">
 <div class="header">
     <div class="row">
-        <div class="col-lg-3 logo"><h1>Shop Test</h1></div>
+        <div class="col-lg-3 logo"><h1>Hao Fine</h1></div>
         <div class="col-lg-9 search">
             <form class="form-inline" role="form">
                 <div class="col-lg-7">
@@ -86,20 +87,74 @@
         </div>
     </div>
 </div>
-<?php echo $content ?>
+    <div class="page-header">
+        <ol class="breadcrumb">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Library</a></li>
+            <li class="active">Data</li>
+        </ol>
+        <h3>商品详情</h3>
+    </div>
+    <div class="row">
+<div class="col-lg-4">
+    <img data-src="holder.js/100%x360" alt="...">
+</div>
+        <div class="col-lg-8">
+            <ul>
+                <li>1111</li>
+                <li>1111</li>
+                <li>1111</li>
+                <li>1111</li>
+                <li>1111</li>
+            </ul>
+        </div>
+    </div>
+    <div class="item-detail">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="javascript:void()">商品描述</a></li>
+            <li><a href="javascript:void()">配送和支付方式</a></li>
+            <li><a href="javascript:void()">评价详情</a></li>
+        </ul>
+    </div>
+<div class="page-header">
+    <h3>推荐商品</h3>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img data-src="holder.js/100%x180" alt="...">
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img data-src="holder.js/100%x180" alt="...">
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img data-src="holder.js/100%x180" alt="...">
+        </a>
+    </div>
+    <div class="col-sm-6 col-md-3">
+        <a href="#" class="thumbnail">
+            <img data-src="holder.js/100%x180" alt="...">
+        </a>
+    </div>
+</div>
+
 </div> <!-- /container -->
 
 
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="<?php echo F::themeUrl() ?>/js/jquery.js"></script>
-<script src="<?php echo F::themeUrl() ?>/js/bootstrap.min.js"></script>
-<script src="<?php echo F::themeUrl() ?>/js/holder.js"></script>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/holder.js"></script>
 <!-- link to the JavaScript files (hoverIntent is optional) -->
 <!-- if you use hoverIntent, use the updated r7 version (see FAQ) -->
-<script src="<?php echo F::themeUrl() ?>/js/hoverIntent.js"></script>
-<script src="<?php echo F::themeUrl() ?>/js/superfish.js"></script>
+<script src="js/hoverIntent.js"></script>
+<script src="js/superfish.js"></script>
 <!-- initialise Superfish -->
 <script>
     jQuery(document).ready(function(){

@@ -1,0 +1,13 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+.main-content {
+    margin-top: 20px;
+}
+#content, #sidebar {
+    margin-top: 20px;
+}
