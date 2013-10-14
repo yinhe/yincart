@@ -172,13 +172,6 @@ return CMap::mergeArray(
                 'urlSuffix' => '.html',
                 'rules' => $params['url.rules']
             ),
-            /* setup message translation method */
-            'messages' => array(
-                'class' => 'CDbMessageSource',
-                'onMissingTranslation' => array('Ei18n', 'missingTranslation'),
-                'sourceMessageTable' => 'source_message',
-                'translatedMessageTable' => 'message'
-            ),
             'mailer' => array(
                 'class' => 'common.extensions.mailer.EMailer',
                 'pathViews' => 'application.views.email',
