@@ -9,7 +9,7 @@ class ItemController extends Controller
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
-    public $layout = '/layouts/column2';
+    public $layout = 'mall';
 
 //     public function actions() {
 //	return array(
@@ -409,23 +409,18 @@ class ItemController extends Controller
      */
     public function actionList()
     {
-        if (!isset($_SESSION['store']['store_id'])) $_SESSION['store']['store_id'] = 1;
-        $criteria = new CDbCriteria(array(
-            'condition' => 'store_id =' . $_SESSION['store']['store_id'],
-            'order' => 'item_id desc'
-
+        $dataProvider=new CActiveDataProvider('Item', array(
+            'criteria'=>array(
+                'condition'=>'store_id =' . $_SESSION['store']['store_id'],
+                'order' => 'item_id desc',
+            ),
+            'pagination'=>array(
+                'pageSize'=>15,
+            ),
         ));
-        $count = Item::model()->count($criteria);
-        $pages = new CPagination($count);
-
-// results per page
-        $pages->pageSize = 10;
-        $pages->applyLimit($criteria);
-        $models = Item::model()->findAll($criteria);
 
         $this->render('list', array(
-            'models' => $models,
-            'pages' => $pages
+            'dataProvider' => $dataProvider,
         ));
     }
 
@@ -433,6 +428,7 @@ class ItemController extends Controller
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer the ID of the model to be loaded
+     * @return CActiveRecord
      * @throws CHttpException
      */
     public function loadModel($id)
@@ -706,11 +702,11 @@ class ItemController extends Controller
         foreach ($props as $p) {
             echo '<div class="row">';
             if ($p->must == 1) {
-                echo '<label class="col-lg-2 control-label" for="">' . $p->prop_name . '<span class="required">*</span></label>';
+                echo '<label class="span2 control-label" for="">' . $p->prop_name . '<span class="required">*</span></label>';
             } else {
-                echo '<label class="col-lg-2 control-label" for="">' . $p->prop_name . '</label>';
+                echo '<label class="span2 control-label" for="">' . $p->prop_name . '</label>';
             }
-            echo '<div class="col-lg-9">';
+            echo '<div class="span10">';
             if ($p->type == 'input') {
                 echo $p->getPropTextFieldValues($p->prop_name, $props_arr[$p->prop_id]);
             } elseif ($p->type == 'optional') {
@@ -732,11 +728,11 @@ class ItemController extends Controller
         foreach ($props as $p) {
             echo '<div class="row">';
             if ($p->must == 1) {
-                echo '<label class="col-lg-2 control-label" for="">' . $p->prop_name . '<span class="required">*</span></label>';
+                echo '<label class="span2 control-label" for="">' . $p->prop_name . '<span class="required">*</span></label>';
             } else {
-                echo '<label class="col-lg-2 control-label" for="">' . $p->prop_name . '</label>';
+                echo '<label class="span2 control-label" for="">' . $p->prop_name . '</label>';
             }
-            echo '<div class="col-lg-9">';
+            echo '<div class="span9">';
             if ($p->type == 'input') {
                 echo $p->getPropTextFieldValues($p->prop_name, $props_arr[$p->prop_id][0]);
             } elseif ($p->type == 'optional') {
@@ -756,8 +752,8 @@ class ItemController extends Controller
 
         if ($props) {
             echo '<div class="row">';
-            echo '<label class="col-lg-2 control-label" for="">商品规格</label>';
-            echo '<div class="col-lg-9">';
+            echo '<label class="span2 control-label" for="">商品规格</label>';
+            echo '<div class="span9">';
             echo '<div class="sku-wrap">';
             $ii = 0;
             foreach ($props as $p) {
@@ -780,8 +776,8 @@ class ItemController extends Controller
 
             echo <<<EOF
 	    <div class="row" style='margin-bottom:10px' style="visibility:hidden">
-	    <div class="col-lg-2">&nbsp;</div>
-	    <div class="col-lg-9" style="padding-left:0">
+	    <div class="span2">&nbsp;</div>
+	    <div class="span9" style="padding-left:0">
 	    <div class="sku-map">
 	    <table id="sku" class="table table-bordered">
 	    <thead>

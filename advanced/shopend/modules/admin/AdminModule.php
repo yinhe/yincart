@@ -17,7 +17,7 @@ class AdminModule extends CWebModule
                 'errorAction'=>$this->getId().'/default/error',
             ),
             'user'=>array(
-                'class'=>'CWebUser',
+                'class'=>'WebUser',
                 'stateKeyPrefix'=>'admin',
                 'loginUrl'=>Yii::app()->createUrl($this->getId().'/default/login'),
             ),
@@ -71,8 +71,8 @@ class AdminModule extends CWebModule
                 'default/login',
                 'default/error',
             );
-            $store = Store::model()->findByPk($_SESSION['store']['store_id']);
-            if($store->password!==false && Yii::app()->user->isGuest && !in_array($route,$publicPages))
+//            $store = Store::model()->findByPk($_SESSION['store']['store_id']);
+            if(Yii::app()->user->isGuest && !in_array($route,$publicPages))
                 Yii::app()->user->loginRequired();
             else
                 return true;

@@ -1,13 +1,21 @@
 body {
-  padding-top: 50px;
+    padding-top: 40px;
 }
-.starter-template {
-  padding: 40px 15px;
-  text-align: center;
-}
-.main-content {
+#content {
     margin-top: 20px;
 }
-#content, #sidebar {
-    margin-top: 20px;
+#siderbar-nav {
+    float: left;
+    width: 200px;
+}
+#siderbar-content {
+    position: relative;
+    margin-left: 220px;
+}
+.powered {
+    text-align: center;
+}
+.preview img {
+    width: auto;
+    height: 100px;
 }

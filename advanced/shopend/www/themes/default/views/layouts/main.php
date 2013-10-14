@@ -38,12 +38,25 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">ShopTest</a>
-            <p class="navbar-text">Signed in as <a href="#" class="navbar-link">Mark Otto</a></p>
+            <p class="navbar-text">welcome, <a href="#" class="navbar-link">
+                    <?php
+                    echo Yii::app()->user->name;
+                    if(Yii::app()->getModule('user')->isAdmin()){
+                        echo CHtml::link(' 后台管理 ', array('/admin'));
+                    }
+
+                    if(!Yii::app()->user->isGuest){
+                        echo CHtml::link('Logout', array('/user/logout'));
+                    }else{
+                        echo CHtml::link(' Login', array('/user/login'));
+                    }
+                    ?></a>
+            </p>
         </div>
         <div class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="#">购物车 <span class="badge">42</span></a></li>
-                <li><a href="#about">会员中心</a></li>
+                <li><?php echo CHtml::link('会员中心', array('/member')) ?></li>
                 <li><a href="#contact">联系客服</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">网站导航 <b class="caret"></b></a>

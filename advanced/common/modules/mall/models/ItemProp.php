@@ -136,8 +136,8 @@ class ItemProp extends CActiveRecord
 
     /**
      * 获取指定id的所有后代，不含指定id
-     * @param type $id 指定id, 有可能是array
-     * @return type 所有后代id的一维数组
+     * @param $id 指定id, 有可能是array
+     * @return array 所有后代id的一维数组
      */
     public static function getChildsId($id)
     {
@@ -277,8 +277,8 @@ class ItemProp extends CActiveRecord
     /**
      * 类型
      *
-     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
-     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true，
      *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
      * @return mixed
      */
@@ -303,8 +303,8 @@ class ItemProp extends CActiveRecord
     /**
      *
      * @param string $attr 字段名字
-     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
-     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true，
      *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
      * @return mixed
      */
@@ -327,8 +327,8 @@ class ItemProp extends CActiveRecord
 
     /**
      *
-     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
-     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true，
      *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
      * @return mixed
      */
@@ -353,10 +353,10 @@ class ItemProp extends CActiveRecord
      * 分类属性
      *
      * @param int $id 分类ID
-     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
-     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true，
      *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
-     * @param type $level 层级
+     * @param int $level 层级
      * @return mixed
      */
     public function attrCategory($id, $returnAttr = false, $index = null, $level = 1)

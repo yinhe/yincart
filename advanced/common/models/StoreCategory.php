@@ -36,11 +36,26 @@ class StoreCategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('store_id, lft, rgt, level', 'required'),
+			array('name', 'required'),
 			array('level, label, if_show', 'numerical', 'integerOnly'=>true),
 			array('store_id, root, lft, rgt', 'length', 'max'=>10),
 			array('name', 'length', 'max'=>100),
 			array('url, pic', 'length', 'max'=>255),
+
+            array('pic', 'file',
+                'types' => 'jpg, gif, png',
+                'maxSize' => 1024 * 1024 * 2, // 2MB
+                'tooLarge' => '文件超过 2MB. 请上传小一点儿的文件.',
+                'allowEmpty' => true,
+                'on' => 'create'
+            ),
+            array('pic', 'file',
+                'types' => 'jpg, gif, png',
+                'maxSize' => 1024 * 1024 * 2, // 2MB
+                'tooLarge' => '文件超过 2MB. 请上传小一点儿的文件.',
+                'allowEmpty' => true,
+                'on' => 'update'
+            ),
 			array('position', 'length', 'max'=>45),
 			array('memo', 'safe'),
 			// The following rule is used by search().
@@ -203,5 +218,16 @@ class StoreCategory extends CActiveRecord
         }
 
         return $rs;
+    }
+
+    public function beforeSave() {
+        if (parent::beforeSave()) {
+            if ($this->isNewRecord) {
+                $this->store_id = $_SESSION['store']['store_id'];
+            } else
+                $this->store_id = $_SESSION['store']['store_id'];
+            return true;
+        } else
+            return false;
     }
 }

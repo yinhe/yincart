@@ -59,8 +59,8 @@ $cs->registerScript('skusJsD','
 </style>
 
 <div class="row" style='margin-bottom:10px'>
-    <?php echo $form->labelEx($model, 'category_id', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
+    <?php echo $form->labelEx($model, 'category_id', array('class' => 'span2 control-label')); ?>
+    <div class="span5">
 	<?php echo $form->dropDownList($model, 'category_id', $model->attrCategory(3)); ?>
     </div>
     <?php echo $form->error($model, 'category_id'); ?>

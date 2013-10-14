@@ -57,3 +57,5 @@ $this->menu = array(
     <dd><?php echo CHtml::encode(User::itemAlias("UserStatus", $model->status)); ?></dd>
 
 </dl>
+
+<?php print_r(Yii::app()->controller->module->returnUrl) ?>

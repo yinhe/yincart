@@ -14,126 +14,133 @@
  * @property integer $create_time
  * @property integer $update_time
  */
-class Article extends CActiveRecord {
+class Article extends CActiveRecord
+{
 
     /**
      * Returns the static model of the specified AR class.
      * @return Article the static model class
      */
-    public static function model($className = __CLASS__) {
-	return parent::model($className);
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
     }
 
     /**
      * @return string the associated database table name
      */
-    public function tableName() {
-	return '{{article}}';
+    public function tableName()
+    {
+        return '{{article}}';
     }
 
     /**
      * @return array validation rules for model attributes.
      */
-    public function rules() {
-	// NOTE: you should only define rules for those attributes that
-	// will receive user inputs.
-	return array(
-	    array('category_id, summary, title, content, language', 'required'),
-	    array('category_id, views', 'numerical', 'integerOnly' => true),
-	    array('title', 'length', 'max' => 250),
-	    array('from', 'length', 'max' => 200),
-	    array('url', 'url'),
-	    array('language', 'safe'),
-	    // The following rule is used by search().
-	    // Please remove those attributes that should not be searched.
-	    array('article_id, category_id, author_id, title, from, content, views, create_time, update_time', 'safe', 'on' => 'search'),
-	);
+    public function rules()
+    {
+        // NOTE: you should only define rules for those attributes that
+        // will receive user inputs.
+        return array(
+            array('category_id, summary, title, content, language', 'required'),
+            array('category_id, views', 'numerical', 'integerOnly' => true),
+            array('title', 'length', 'max' => 250),
+            array('from', 'length', 'max' => 200),
+            array('url', 'url'),
+            array('language', 'safe'),
+            // The following rule is used by search().
+            // Please remove those attributes that should not be searched.
+            array('article_id, category_id, author_id, title, from, content, views, create_time, update_time', 'safe', 'on' => 'search'),
+        );
     }
 
     /**
      * @return array relational rules.
      */
-    public function relations() {
-	// NOTE: you may need to adjust the relation name and the related
-	// class name for the relations automatically generated below.
-	return array(
-	    'author' => array(self::BELONGS_TO, 'AdminUser', 'author_id'),
-	    'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
+    public function relations()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'author' => array(self::BELONGS_TO, 'AdminUser', 'author_id'),
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
 //            'comments' => array(self::HAS_MANY, 'Comment', 'article_id', 'condition' => 'comments.status=' . Comment::STATUS_APPROVED, 'order' => 'comments.create_time DESC'),
 //            'commentCount' => array(self::STAT, 'Comment', 'article_id', 'condition' => 'status=' . Comment::STATUS_APPROVED),
-	);
+        );
     }
 
     /**
      * @return array customized attribute labels (name=>label)
      */
-    public function attributeLabels() {
-	return array(
-	    'article_id' => 'Article',
-	    'category_id' => '分类',
-	    'author_id' => '作者',
-	    'title' => '标题',
-	    'language' => '语言',
-	    'from' => '来源',
-	    'summary' => '摘要',
-	    'content' => '内容',
-	    'views' => '热度',
-	    'create_time' => '发布时间',
-	    'update_time' => '更新时间',
-	    'category.name' => '分类',
-	    'author.username' => '作者',
-	    'url' => '链接'
-	);
+    public function attributeLabels()
+    {
+        return array(
+            'article_id' => 'Article',
+            'category_id' => '分类',
+            'author_id' => '作者',
+            'title' => '标题',
+            'language' => '语言',
+            'from' => '来源',
+            'summary' => '摘要',
+            'content' => '内容',
+            'views' => '热度',
+            'create_time' => '发布时间',
+            'update_time' => '更新时间',
+            'category.name' => '分类',
+            'author.username' => '作者',
+            'url' => '链接'
+        );
     }
 
     /**
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
-    public function search() {
-	// Warning: Please modify the following code to remove attributes that
-	// should not be searched.
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
 
-	$criteria = new CDbCriteria;
+        $criteria = new CDbCriteria;
 
-	$criteria->order = 'article_id desc';
-	$criteria->compare('article_id', $this->article_id);
-	$criteria->compare('category_id', $this->category_id);
-	$criteria->compare('author_id', $this->author_id);
-	$criteria->compare('title', $this->title, true);
-	$criteria->compare('from', $this->from, true);
-	$criteria->compare('content', $this->content, true);
-	$criteria->compare('views', $this->views);
-	$criteria->compare('create_time', $this->create_time);
-	$criteria->compare('update_time', $this->update_time);
+        $criteria->order = 'article_id desc';
+        $criteria->compare('article_id', $this->article_id);
+        $criteria->compare('category_id', $this->category_id);
+        $criteria->compare('author_id', $this->author_id);
+        $criteria->compare('title', $this->title, true);
+        $criteria->compare('from', $this->from, true);
+        $criteria->compare('content', $this->content, true);
+        $criteria->compare('views', $this->views);
+        $criteria->compare('create_time', $this->create_time);
+        $criteria->compare('update_time', $this->update_time);
 
-	return new CActiveDataProvider($this, array(
-	    'criteria' => $criteria,
-	));
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+        ));
     }
 
-    public function beforeSave() {
-	if (parent::beforeSave()) {
-	    if ($this->isNewRecord) {
-		$this->create_time = $this->update_time = time();
-		$this->author_id = Yii::app()->user->id;
-	    }
-	    else
-		$this->update_time = time();
-	    return true;
-	}
-	else
-	    return false;
+    public function beforeSave()
+    {
+        if (parent::beforeSave()) {
+            if ($this->isNewRecord) {
+                $this->create_time = $this->update_time = time();
+                $this->author_id = Yii::app()->user->id;
+            } else
+                $this->update_time = time();
+            return true;
+        } else
+            return false;
     }
 
-    public function behaviors() {
-	return array(
-	    array(
-		'class' => 'comext.seo.behaviors.SeoActiveRecordBehavior',
-		'route' => 'article/view',
-		'params' => array('id' => $this->article_id, 'title' => $this->title),
-	    ),
-	);
+    public function behaviors()
+    {
+        return array(
+            array(
+                'class' => 'comext.seo.behaviors.SeoActiveRecordBehavior',
+                'route' => 'article/view',
+                'params' => array('id' => $this->article_id, 'title' => $this->title),
+            ),
+        );
     }
 
 //        public function afterFind() {
@@ -162,24 +169,25 @@ class Article extends CActiveRecord {
 //        return $comment->save();
 //    }
 
-    public function getUrl() {
-	if (F::utf8_str($this->title) == '1') {
-	    $title = str_replace('/', '-', $this->title);
-	} else {
-	    $pinyin = new Pinyin($this->title);
-	    $title = $pinyin->full2();
-	    $title = str_replace('/', '-', $title);
-	}
+    public function getUrl()
+    {
+        if (F::utf8_str($this->title) == '1') {
+            $title = str_replace('/', '-', $this->title);
+        } else {
+            $pinyin = new Pinyin($this->title);
+            $title = $pinyin->full2();
+            $title = str_replace('/', '-', $title);
+        }
 
-	return Yii::app()->createUrl('article/view', array(
-		    'id' => $this->article_id,
-		    'title' => $title,
-	));
+        return Yii::app()->createUrl('article/view', array(
+            'id' => $this->article_id,
+            'title' => $title,
+        ));
     }
 
     /**
      * 分类属性
-     * 
+     *
      * @param int $id 分类ID
      * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
      * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
@@ -187,30 +195,31 @@ class Article extends CActiveRecord {
      * @param type $level 层级
      * @return mixed
      */
-    public function attrCategory($id, $returnAttr = false, $index = null, $level = 1) {
-	$data = array();
-	$category = Category::model()->findByPk($id);
-	$descendants = $category->descendants()->findAll();
-	foreach ($descendants as $k1 => $child) {
-	    $string = '  ';
-	    $string .= str_repeat('  ', $child->level - $level);
-	    if ($child->isLeaf() && !$child->next()->find()) {
-		$string .= '';
-	    } else {
-		$string .= '';
-	    }
-	    $string .= '' . $child->name;
+    public function attrCategory($id, $returnAttr = false, $index = null, $level = 1)
+    {
+        $data = array();
+        $category = Category::model()->findByPk($id);
+        $descendants = $category->descendants()->findAll();
+        foreach ($descendants as $k1 => $child) {
+            $string = '  ';
+            $string .= str_repeat('  ', $child->level - $level);
+            if ($child->isLeaf() && !$child->next()->find()) {
+                $string .= '';
+            } else {
+                $string .= '';
+            }
+            $string .= '' . $child->name;
 
-	    $data[$child->id] = $string;
-	}
-	if ($returnAttr !== false) {
-	    is_null($index) && $index = $this->category_id;
-	    $rs = empty($data[$index]) ? null : $data[$index];
-	} else {
-	    $rs = $data;
-	}
+            $data[$child->id] = $string;
+        }
+        if ($returnAttr !== false) {
+            is_null($index) && $index = $this->category_id;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        } else {
+            $rs = $data;
+        }
 
-	return $rs;
+        return $rs;
     }
 
 }

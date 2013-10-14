@@ -1,79 +1,19 @@
-<div class="row">
-    <?php echo $form->labelEx($model, 'post_fee', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->textField($model, 'post_fee'); ?>
-    </div>
-    <?php echo $form->error($model, 'post_fee'); ?>
-</div>
+<?php echo $form->textFieldControlGroup($model, 'post_fee'); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'express_fee', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->textField($model, 'express_fee'); ?>
-    </div>
-    <?php echo $form->error($model, 'express_fee'); ?>
-</div>
+<?php echo $form->textFieldControlGroup($model, 'express_fee'); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'ems_fee', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->textField($model, 'ems_fee'); ?>
-    </div>
-    <?php echo $form->error($model, 'ems_fee'); ?>
-</div>
+<?php echo $form->textFieldControlGroup($model, 'ems_fee'); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'is_show', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->radioButtonList($model, 'is_show', array('1' => '是', '0' => '否')); ?>
-    </div>
-    <?php echo $form->error($model, 'is_show'); ?>
-</div>
+<?php echo $form->radioButtonListControlGroup($model, 'is_show', array('1' => '是', '0' => '否')); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'is_promote', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->radioButtonList($model, 'is_promote', array('1' => '是', '0' => '否')); ?>
-    </div>
-    <?php echo $form->error($model, 'is_promote'); ?>
-</div>
+<?php echo $form->radioButtonListControlGroup($model, 'is_promote', array('1' => '是', '0' => '否')); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'is_new', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->radioButtonList($model, 'is_new', array('1' => '是', '0' => '否')); ?>
-    </div>
-    <?php echo $form->error($model, 'is_new'); ?>
-</div>
+<?php echo $form->radioButtonListControlGroup($model, 'is_new', array('1' => '是', '0' => '否')); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'is_hot', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->radioButtonList($model, 'is_hot', array('1' => '是', '0' => '否')); ?>
-    </div>
-    <?php echo $form->error($model, 'is_hot'); ?>
-</div>
+<?php echo $form->radioButtonListControlGroup($model, 'is_hot', array('1' => '是', '0' => '否')); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'is_best', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->radioButtonList($model, 'is_best', array('1' => '是', '0' => '否')); ?>
-    </div>
-    <?php echo $form->error($model, 'is_best'); ?>
-</div>
+<?php echo $form->radioButtonListControlGroup($model, 'is_best', array('1' => '是', '0' => '否')); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'is_discount', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->radioButtonList($model, 'is_discount', array('1' => '是', '0' => '否')); ?>
-    </div>
-    <?php echo $form->error($model, 'is_discount'); ?>
-</div>
+<?php echo $form->radioButtonListControlGroup($model, 'is_discount', array('1' => '是', '0' => '否')); ?>
 
-<div class="row">
-    <?php echo $form->labelEx($model, 'sort_order', array('class' => 'col-lg-2 control-label')); ?>
-    <div class="col-lg-5">
-	<?php echo $form->textField($model, 'sort_order'); ?>
-    </div>
-    <?php echo $form->error($model, 'sort_order'); ?>
-</div>
+<?php echo $form->textFieldControlGroup($model, 'sort_order'); ?>

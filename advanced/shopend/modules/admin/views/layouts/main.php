@@ -8,98 +8,80 @@ $cs->registerCoreScript('jquery');
 //$cs->registerScriptFile($baseUrl . '/js/respond.min.js');
 //$cs->registerScriptFile($baseUrl . '/js/bootstrap.min.js');
 //$cs->registerCssFile($baseUrl.'/css/bootstrap.css');
-//$cs->registerCssFile($baseUrl.'/css/starter-template.css');
+$cs->registerCssFile($baseUrl . '/css/admin.css');
 ?>
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title><?php echo CHtml::encode($this->pageTitle) ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title><?php echo CHtml::encode($this->pageTitle)?></title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo $baseUrl ?>/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<?php echo $baseUrl ?>/css/admin.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="<?php echo $baseUrl ?>/js/html5shiv.js"></script>
-    <script src="<?php echo $baseUrl ?>/js/respond.min.js"></script>
-    <![endif]-->
+    <?php Yii::app()->bootstrap->register(); ?>
 </head>
-
 <body>
+<?php $this->widget('bootstrap.widgets.TbNavbar', array(
+    'color' => TbHtml::NAVBAR_COLOR_INVERSE,
+    'brandLabel' => '商家管理后台',
+    'collapse' => true,
+    'fluid' => true,
+    'items' => array(
+        array(
+            'class' => 'bootstrap.widgets.TbNav',
+            'items' => array(
+                array('label' => '内容管理', 'url' => '#', 'items' => array(
+                    array('label' => '内容分类', 'url' => array('/admin/cmsCategory/admin')),
+                    array('label' => '单页管理', 'url' => array('/admin/page/admin')),
+                    array('label' => '文章管理', 'url' => array('/admin/article/admin')),
+                    array('label' => '博客管理', 'url' => array('/admin/post/admin')),
+                )),
+                array('label' => '商城管理', 'url' => '#', 'items' => array(
+                    array('label' => '商品分类', 'url' => array('/admin/itemCategory/admin')),
+                    array('label' => '商品列表', 'url' => array('/admin/item/list')),
+                    array('label' => '订单列表', 'url' => array('/admin/order/list')),
+                )),
+                array('label' => '系统设置', 'url' => '#', 'items' => array(
+//                    array('label' => '菜单', 'url' => array('/admin/menu/admin')),
+                    array('label' => '店铺分类', 'url' => array('/admin/storeCategory/admin')),
+//                    array('label' => '皮肤', 'url' => '#'),
+//                    array('label' => '插件', 'url' => '#'),
+                )),
+            ),
+        ),
+        array(
+            'class' => 'bootstrap.widgets.TbNav',
+            'items' => array(
+                array('label' => '网站前台', 'url' => '#'),
+                array('label' => '站点配置', 'url' => '#'),
+                array('label' => Yii::app()->user->name, 'url' => '#', 'items' => array(
+                    array('label' => '个人资料', 'url' => '#'),
+                    array('label' => '退出', 'url' => array('/admin/default/logout')),
+                )),
+            ),
+            'htmlOptions' => array('class' => 'pull-right')
+        ),
+    ),
+)); ?>
 
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">商家后台管理</a>
-        </div>
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">控制面板</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的店铺 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">订单</a></li>
-                        <li><a href="#">客户</a></li>
-                        <li><a href="#">折扣</a></li>
-                        <li><?php echo CHtml::link('商品', array('/item/list'))?></li>
-                        <li><a href="#">收藏</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">我的网站 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">帖子</a></li>
-                        <li><a href="#">单页</a></li>
-                        <li><a href="#">导航</a></li>
-                        <li><a href="#">皮肤</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">商店配置 <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">手机网站</a></li>
-                        <li><a href="#">站点设置</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><?php echo CHtml::link('网站前台', Yii::app()->homeUrl) ?></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo Yii::app()->user->name ?> <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">个人资料</a></li>
-                        <li><?php echo CHtml::link('退出', array('/admin/default/logout')) ?></li>
-                    </ul>
-                </li>
-            </ul>
-        </div><!--/.nav-collapse -->
+<div class="container-fluid">
+    <div id="content">
+        <?php echo $content ?>
     </div>
+
 </div>
-
-<div class="container">
-
-    <?php echo $content ?>
-
-</div><!-- /.container -->
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="<?php echo $baseUrl ?>/js/bootstrap.min.js"></script>
+<!-- /.container -->
+<footer>
+    <div class="row-fluid">
+        <div class="span12">
+            <p class="powered"><?php echo Yii::powered(); ?>
+                / <?php echo CHtml::link('Yincart', 'http://yincart.com'); ?>
+                <span class="copy">Copyright &copy; <?php echo date('Y'); ?> by <?php echo F::sg('site', 'name'); ?>
+                    . All Rights Reserved.</span>
+            </p>
+        </div>
+    </div>
+</footer>
+<!-- footer -->
 </body>
 </html>

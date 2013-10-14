@@ -36,15 +36,86 @@ $cs->registerScriptFile($baseUrl . '/js/underscore-min.js');
 
 <div class="container">
 
-    <form class="form-signin" action="<?php echo Yii::app()->createUrl('/admin/default/login') ?>" method="post">
-        <h2 class="form-signin-heading">Please Login</h2>
+<!--    <form class="form-signin" action="--><?php //echo Yii::app()->createUrl('/admin/default/login') ?><!--" method="post">-->
+<!--        <h2 class="form-signin-heading">Please Login</h2>-->
 <!--        <input type="text" class="form-control" placeholder="Email address" name="LoginForm[email]" autofocus>-->
-        <input type="password" class="form-control" placeholder="Password" name="LoginForm[password]">
-        <label class="checkbox">
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-    </form>
+<!--        <input type="text" class="form-control" placeholder="Email address" autofocus>-->
+<!--        <input type="password" class="form-control" placeholder="Password" name="LoginForm[password]">-->
+<!--        <label class="checkbox">-->
+<!--            <input type="checkbox" value="remember-me"> Remember me-->
+<!--        </label>-->
+<!--        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>-->
+<!--    </form>-->
+
+
+    <?php if(Yii::app()->user->hasFlash('loginMessage')): ?>
+
+        <div class="success">
+            <?php echo Yii::app()->user->getFlash('loginMessage'); ?>
+        </div>
+
+    <?php endif; ?>
+
+
+
+    <div class="form">
+        <?php echo CHtml::beginForm(Yii::app()->createUrl('/admin/default/login'), 'post', array('class'=>'form-signin')); ?>
+        <h2 class="form-signin-heading">商家管理后台</h2>
+
+        <?php echo CHtml::errorSummary($model, '请更正以下错误：', NULL, array('class'=>'text-danger')); ?>
+
+        <div class="form-group">
+            <?php echo CHtml::activeLabelEx($model,'username'); ?>
+            <?php echo CHtml::activeTextField($model,'username', array('class'=>'form-control')) ?>
+        </div>
+
+        <div class="form-group">
+            <?php echo CHtml::activeLabelEx($model,'password'); ?>
+            <?php echo CHtml::activePasswordField($model,'password', array('class'=>'form-control')) ?>
+        </div>
+
+        <div class="form-group">
+            <p class="hint">
+                <?php echo CHtml::link(F::t("Lost Password?"),Yii::app()->getModule('user')->recoveryUrl); ?>
+            </p>
+        </div>
+
+        <div class="checkbox">
+            <?php echo CHtml::activeCheckBox($model,'rememberMe'); ?>
+            <?php echo CHtml::activeLabelEx($model,'rememberMe'); ?>
+        </div>
+
+            <?php echo CHtml::submitButton(F::t("Login"), array('class'=>'btn btn-lg btn-primary btn-block')); ?>
+
+        <?php echo CHtml::endForm(); ?>
+    </div><!-- form -->
+
+
+<?php
+$form = new CForm(array(
+    'elements'=>array(
+        'username'=>array(
+            'type'=>'text',
+            'maxlength'=>32,
+        ),
+        'password'=>array(
+            'type'=>'password',
+            'maxlength'=>32,
+        ),
+        'rememberMe'=>array(
+            'type'=>'checkbox',
+        )
+    ),
+
+    'buttons'=>array(
+        'login'=>array(
+            'type'=>'submit',
+            'label'=>'Login',
+        ),
+    ),
+), $model);
+
+?>
 
 </div> <!-- /container -->
 
