@@ -41,7 +41,7 @@ class Comment extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('content, author, email', 'required'),
+			array('content', 'required'),
 			array('author, email, url', 'length', 'max'=>128),
 			array('email','email'),
 			array('url','url'),
@@ -95,7 +95,7 @@ class Comment extends CActiveRecord
 	{
 		if($post===null)
 			$post=$this->post;
-		return $post->url.'#c'.$this->id;
+		return $post->getUrl().'#c'.$this->id;
 	}
 
 	/**
@@ -140,6 +140,8 @@ class Comment extends CActiveRecord
 		{
 			if($this->isNewRecord)
 				$this->create_time=time();
+                $this->author=Yii::app()->user->name;
+                $this->author_id=Yii::app()->user->id;
 			return true;
 		}
 		else

@@ -11,7 +11,8 @@ class Post extends CActiveRecord
 	 * @var integer $status
 	 * @var integer $create_time
 	 * @var integer $update_time
-	 * @var integer $author_id
+	 * @var integer $user_id
+     * @var integer $store_id
 	 */
 	const STATUS_DRAFT=1;
 	const STATUS_PUBLISHED=2;
@@ -21,9 +22,10 @@ class Post extends CActiveRecord
 
 	/**
 	 * Returns the static model of the specified AR class.
+     * @param string $className
 	 * @return CActiveRecord the static model class
 	 */
-	public static function model($className=__CLASS__)
+    public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
@@ -44,12 +46,12 @@ class Post extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('title, content, status', 'required'),
+			array('title', 'required'),
 			array('status', 'in', 'range'=>array(1,2,3)),
 			array('title', 'length', 'max'=>128),
 			array('tags', 'match', 'pattern'=>'/^[\w\s,]+$/', 'message'=>'Tags can only contain word characters.'),
 			array('tags', 'normalizeTags'),
-
+            array('store_id, category_id, url, source, summary, content, views, create_time, update_time, author, user_id, language', 'safe'),
 			array('title, status', 'safe', 'on'=>'search'),
 		);
 	}
@@ -62,7 +64,9 @@ class Post extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'author' => array(self::BELONGS_TO, 'User', 'author_id'),
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
+            'storeCategory' => array(self::BELONGS_TO, 'StoreCategory', 'category_id'),
+			'author' => array(self::BELONGS_TO, 'User', 'user_id'),
 			'comments' => array(self::HAS_MANY, 'Comment', 'post_id', 'condition'=>'comments.status='.Comment::STATUS_APPROVED, 'order'=>'comments.create_time DESC'),
 			'commentCount' => array(self::STAT, 'Comment', 'post_id', 'condition'=>'status='.Comment::STATUS_APPROVED),
 		);
@@ -75,13 +79,14 @@ class Post extends CActiveRecord
 	{
 		return array(
 			'id' => 'Id',
+            'category_id' => 'Category',
 			'title' => 'Title',
 			'content' => 'Content',
 			'tags' => 'Tags',
 			'status' => 'Status',
 			'create_time' => 'Create Time',
 			'update_time' => 'Update Time',
-			'author_id' => 'Author',
+			'user_id' => 'User',
 		);
 	}
 
@@ -151,7 +156,8 @@ class Post extends CActiveRecord
 			if($this->isNewRecord)
 			{
 				$this->create_time=$this->update_time=time();
-				$this->author_id=Yii::app()->user->id;
+				$this->user_id=Yii::app()->user->id;
+                $this->store_id = $_SESSION['store']['store_id'] ? $_SESSION['store']['store_id'] : 0;
 			}
 			else
 				$this->update_time=time();
@@ -199,4 +205,74 @@ class Post extends CActiveRecord
 			),
 		));
 	}
+
+    public function ownerSearch()
+    {
+        $criteria=new CDbCriteria;
+        $criteria->condition = 'user_id ='.Yii::app()->user->id;
+
+        $criteria->compare('title',$this->title,true);
+
+        $criteria->compare('status',$this->status);
+
+        return new CActiveDataProvider('Post', array(
+            'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'status, update_time DESC',
+            ),
+        ));
+    }
+
+    public function storeSearch()
+    {
+        $criteria=new CDbCriteria;
+        $criteria->condition = 'store_id ='.$_SESSION['store']['store_id'];
+
+        $criteria->compare('title',$this->title,true);
+
+        $criteria->compare('status',$this->status);
+
+        return new CActiveDataProvider('Post', array(
+            'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=>'status, update_time DESC',
+            ),
+        ));
+    }
+
+    /**
+     * 分类属性
+     *
+     * @param int $id 分类ID
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @param int $level 层级
+     * @return mixed
+     */
+    public function attrCategory($id, $returnAttr = false, $index = null, $level = 1) {
+        $data = array();
+        $category = StoreCategory::model()->findByPk($id);
+        $descendants = $category->descendants()->findAll();
+        foreach ($descendants as $k1 => $child) {
+            $string = '  ';
+            $string .= str_repeat('  ', $child->level - $level);
+            if ($child->isLeaf() && !$child->next()->find()) {
+                $string .= '';
+            } else {
+                $string .= '';
+            }
+            $string .= '' . $child->name;
+
+            $data[$child->id] = $string;
+        }
+        if ($returnAttr !== false) {
+            is_null($index) && $index = $this->category_id;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        } else {
+            $rs = $data;
+        }
+
+        return $rs;
+    }
 }

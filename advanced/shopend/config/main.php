@@ -119,6 +119,10 @@ return CMap::mergeArray(
             ),
         ),
         'components' => array(
+            'request'=>array(
+                'enableCsrfValidation'=>true,
+                'enableCookieValidation'=>true,
+            ),
             'oauth' => array(
                 'class' => 'common.components.oauth'
             ),

@@ -1,9 +1,22 @@
-<?php if(!empty($_GET['tag'])): ?>
-<h1>Posts Tagged with <i><?php echo CHtml::encode($_GET['tag']); ?></i></h1>
-<?php endif; ?>
+<?php
+/* @var $this PostController */
+/* @var $dataProvider CActiveDataProvider */
+?>
 
-<?php $this->widget('zii.widgets.CListView', array(
+<?php
+$this->breadcrumbs=array(
+	'Posts',
+);
+
+$this->menu=array(
+	array('label'=>'Create Post', 'icon'=>'plus', 'url'=>array('create')),
+	array('label'=>'Manage Post', 'icon'=>'cog', 'url'=>array('admin')),
+);
+?>
+
+<h1>Posts</h1>
+
+<?php $this->widget('bootstrap.widgets.TbListView',array(
 	'dataProvider'=>$dataProvider,
 	'itemView'=>'_view',
-	'template'=>"{items}\n{pager}",
 )); ?>

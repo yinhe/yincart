@@ -33,8 +33,7 @@ $cs->registerCssFile($baseUrl . '/css/admin.css');
                 array('label' => '内容管理', 'url' => '#', 'items' => array(
                     array('label' => '内容分类', 'url' => array('/admin/cmsCategory/admin')),
                     array('label' => '单页管理', 'url' => array('/admin/page/admin')),
-                    array('label' => '文章管理', 'url' => array('/admin/article/admin')),
-                    array('label' => '博客管理', 'url' => array('/admin/post/admin')),
+                    array('label' => '帖子管理', 'url' => array('/admin/post/admin')),
                 )),
                 array('label' => '商城管理', 'url' => '#', 'items' => array(
                     array('label' => '商品分类', 'url' => array('/admin/itemCategory/admin')),
@@ -52,10 +51,10 @@ $cs->registerCssFile($baseUrl . '/css/admin.css');
         array(
             'class' => 'bootstrap.widgets.TbNav',
             'items' => array(
-                array('label' => '网站前台', 'url' => '#'),
-                array('label' => '站点配置', 'url' => '#'),
+                array('label' => '网站前台', 'url' =>array('/site/index')),
+                array('label' => '站点配置', 'url' => '/admin/settings'),
                 array('label' => Yii::app()->user->name, 'url' => '#', 'items' => array(
-                    array('label' => '个人资料', 'url' => '#'),
+                    array('label' => '个人资料', 'url' => '/admin/user/profile'),
                     array('label' => '退出', 'url' => array('/admin/default/logout')),
                 )),
             ),

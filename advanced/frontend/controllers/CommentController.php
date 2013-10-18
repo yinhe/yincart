@@ -2,7 +2,7 @@
 
 class CommentController extends Controller
 {
-	public $layout='//layouts/column3'; 
+	public $layout='column2';
 
 	/**
 	 * @var CActiveRecord the currently loaded data model instance.
@@ -15,16 +15,25 @@ class CommentController extends Controller
 	public function filters()
 	{
 		return array(
-			'rights',
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
 
 	/**
-	* Actions that are always allowed.
-	*/
-	public function allowedActions()
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
 	{
-	 	return '_form';
+		return array(
+			array('allow', // allow authenticated users to access all actions
+				'users'=>array('@'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
 	}
 
 	/**
@@ -34,7 +43,6 @@ class CommentController extends Controller
 	public function actionUpdate()
 	{
 		$model=$this->loadModel();
-
 		if(isset($_POST['ajax']) && $_POST['ajax']==='comment-form')
 		{
 			echo CActiveForm::validate($model);
@@ -76,12 +84,9 @@ class CommentController extends Controller
 	 */
 	public function actionIndex()
 	{
-                Yii::app()->theme = 'admin';
-                $this->layout  = '//layouts/column2';
-                
 		$dataProvider=new CActiveDataProvider('Comment', array(
 			'criteria'=>array(
-				'with'=>'item',
+				'with'=>'post',
 				'order'=>'t.status, t.create_time DESC',
 			),
 		));

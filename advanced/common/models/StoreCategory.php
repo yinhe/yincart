@@ -87,7 +87,7 @@ class StoreCategory extends CActiveRecord
 			'lft' => 'Lft',
 			'rgt' => 'Rgt',
 			'level' => 'Level',
-            'name' => '名称',
+            'name' => '分类名',
             'label' => '标签',
             'url' => 'Url',
             'pic' => '图片',
