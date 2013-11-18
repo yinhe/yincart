@@ -12,7 +12,7 @@ $cs->registerScript('skusJsD','
 	    $.ajax
 		    ({
 			type: "POST",
-			data: "category_id=" + Tid,
+			data: {"category_id":Tid, "YII_CSRF_TOKEN":$("[name=YII_CSRF_TOKEN]").val()},
 			url: "' . Yii::app()->createUrl('/admin/item/getPropValues').'",
 			dataType: "html",
 			success: function(results)

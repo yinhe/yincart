@@ -54,8 +54,8 @@ $cs->registerCssFile($baseUrl . '/css/admin.css');
                 array('label' => '网站前台', 'url' =>array('/site/index')),
                 array('label' => '站点配置', 'url' => '/admin/settings'),
                 array('label' => Yii::app()->user->name, 'url' => '#', 'items' => array(
-                    array('label' => '个人资料', 'url' => '/admin/user/profile'),
-                    array('label' => '退出', 'url' => array('/admin/default/logout')),
+                    array('label' => '个人资料', 'icon'=>'user', 'url' => '/admin/user/profile'),
+                    array('label' => '退出', 'icon'=>'off', 'url' => array('/admin/default/logout')),
                 )),
             ),
             'htmlOptions' => array('class' => 'pull-right')
