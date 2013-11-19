@@ -16,28 +16,32 @@
  * @property integer $if_show
  * @property string $memo
  */
-class Category extends CActiveRecord {
+class Category extends CActiveRecord
+{
 
     /**
      * Returns the static model of the specified AR class.
      * @param string $className active record class name.
      * @return Category the static model class
      */
-    public static function model($className = __CLASS__) {
+    public static function model($className = __CLASS__)
+    {
         return parent::model($className);
     }
 
     /**
      * @return string the associated database table name
      */
-    public function tableName() {
+    public function tableName()
+    {
         return '{{category}}';
     }
 
     /**
      * @return array validation rules for model attributes.
      */
-    public function rules() {
+    public function rules()
+    {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
@@ -71,17 +75,18 @@ class Category extends CActiveRecord {
     /**
      * @return array relational rules.
      */
-    public function relations() {
+    public function relations()
+    {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
-        return array(
-        );
+        return array();
     }
 
     /**
      * @return array customized attribute labels (name=>label)
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return array(
             'id' => 'ID',
             'root' => 'Root',
@@ -102,7 +107,8 @@ class Category extends CActiveRecord {
      * Retrieves a list of models based on the current search/filter conditions.
      * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
      */
-    public function search() {
+    public function search()
+    {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
 
@@ -125,7 +131,8 @@ class Category extends CActiveRecord {
         ));
     }
 
-    public function behaviors() {
+    public function behaviors()
+    {
         return array(
             'NestedSetBehavior' => array(
                 'class' => 'comext.nested-set-behavior.NestedSetBehavior',
@@ -133,70 +140,68 @@ class Category extends CActiveRecord {
                 'rightAttribute' => 'rgt',
                 'levelAttribute' => 'level',
                 'hasManyRoots' => true,
-        ));
+            ));
     }
-    
-    public function getThumb() {
+
+    public function getThumb()
+    {
         $img_url = '/../../upload/category/' . $this->pic;
-        $trueimage = Yii::app()->request->hostInfo.Yii::app()->baseUrl.$img_url;
+        $trueimage = Yii::app()->request->hostInfo . Yii::app()->baseUrl . $img_url;
         if (F::isfile($trueimage)) {
-        $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(750, 368, $img_url, array('method' => 'resize'));
-        $img_thumb_now = CHtml::image($img_thumb, $this->name);
-        return CHtml::link($img_thumb_now, $this->url, array('title' => $this->name));
-        }else{
+            $img_thumb = Yii::app()->request->baseUrl . ImageHelper::thumb(750, 368, $img_url, array('method' => 'resize'));
+            $img_thumb_now = CHtml::image($img_thumb, $this->name);
+            return CHtml::link($img_thumb_now, $this->url, array('title' => $this->name));
+        } else {
             return '没有图片';
         }
     }
-    
-    public function getLabel() {
-        if($this->label == '1'){
+
+    public function getLabel()
+    {
+        if ($this->label == '1') {
             echo '<span class="label label-info" style="margin-right:5px">New</span>';
-        }elseif($this->label == '2') {
+        } elseif ($this->label == '2') {
             echo '<span class="label label-important" style="margin-right:5px">Hot!</span>';
         }
     }
-    
-    public function getChildCount() {
+
+    public function getChildCount()
+    {
         $category = Category::model()->findByPk($this->id);
         $descendants = $category->children()->findAll();
         return count($descendants);
     }
-    
-    public function getDescendantsId() {
+
+    public function getDescendantsId()
+    {
         $category = Category::model()->findByPk($this->id);
         $descendants = $category->descendants()->findAll();
-        foreach($descendants as $descendant){
+        foreach ($descendants as $descendant) {
             $ids[] = $descendant->id;
         }
-        $cid = $ids ?  implode(',', $ids) : NULL;
+        $cid = $ids ? implode(',', $ids) : NULL;
         return $cid;
     }
-    
+
     /**
      * 显示
-     * 
-     * @param type $returnAttr false则返回分类列表，true则返回该对象的分类值
-     * @param type $index 结合$returnAttr使用。如果$returnAttr为true，
-     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true,若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
      * @return mixed
      */
     public function attrLabelHtml($returnAttr = false, $index = null)
     {
         $data = array(
-            '1'=>'<span class="label label-info">New</span>',
-            '2'=>'<span class="label label-important">Hot!</span>',
+            '1' => '<span class="label label-info">New</span>',
+            '2' => '<span class="label label-important">Hot!</span>',
         );
-        
-        if ($returnAttr !== false)
-        {
+
+        if ($returnAttr !== false) {
             is_null($index) && $index = $this->label;
             $rs = empty($data[$index]) ? null : $data[$index];
-        }
-        else
-        {
+        } else {
             $rs = $data;
         }
-
         return $rs;
     }
 

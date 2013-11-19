@@ -1,13 +1,12 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <?php
-echo CGoogleApi::init();
+//echo CGoogleApi::init();
 //echo CHtml::script(CGoogleApi::load('jquery', '1.4.2'));
-echo CHtml::script(CGoogleApi::load("jqueryui", "1.8.2"));
+//echo CHtml::script(CGoogleApi::load("jqueryui", "1.8.2"));
 Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js/jquery.dynotable.js');
 ?>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#t1').dynoTable();
-
         /*
          * dynoTable configuration options
          * These are the options that are available with their default values
@@ -55,16 +54,14 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
 
     <?php echo $form->errorSummary($model); ?>
 
+
+
     <div class="control-group">
-        <?php echo $form->labelEx($model, 'type_id'); ?>
-        <?php
-        $cri = new CDbCriteria(array(
-            'condition' => 'enabled = 1'
-        ));
-        $ItemType = ItemType::model()->findAll($cri);
-        $list = CHtml::listData($ItemType, 'type_id', 'name');
-        echo CHtml::DropDownList('ItemProp[type_id]', $model->type_id ? $model->type_id : '', $list, array('empty' => '请选择类目'));
-        ?>
+        <?php echo $form->labelEx($model, 'category_id', array('class' => 'control-label')); ?>
+        <div class="controls">
+            <?php echo $form->dropDownList($model, 'category_id', $model->attrCategory(3)); ?>
+            <?php echo $form->error($model, 'category_id'); ?>
+        </div>
     </div>
 
     <div class="control-group">
@@ -121,7 +118,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
                 <tr>
                     <th>移动</th>
                     <th>属性值名称</th>
-                    <th>类目</th>
                     <th>排序</th>
                     <th>克隆</th>
                     <th>删除</th>
@@ -133,16 +129,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
                         </td>
                         <td>
                             <input id="tf1" type="text" name="PropValue[value_name][]" />
-                        </td>
-                        <td>
-                            <?php
-                            $cri = new CDbCriteria(array(
-                                'condition' => 'enabled = 1'
-                            ));
-                            $ItemType = ItemType::model()->findAll($cri);
-                            $list = CHtml::listData($ItemType, 'type_id', 'name');
-                            echo CHtml::DropDownList('PropValue[type_id][]', '', $list, array('id' => 'tf2__c'));
-                            ?>
                         </td>
                         <td>
                             <input id="tf3" type="text" name="PropValue[sort_order][]" />
@@ -172,16 +158,6 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
                                 <input id="tf1__c" type="text" name="PropValue[value_name][]" value="<?php echo $sv->value_name ?>" />
                             </td>
                             <td>
-                                <?php
-                                $cri = new CDbCriteria(array(
-                                    'condition' => 'enabled = 1'
-                                ));
-                                $ItemType = ItemType::model()->findAll($cri);
-                                $list = CHtml::listData($ItemType, 'type_id', 'name');
-                                echo CHtml::DropDownList('PropValue[type_id][]', $sv->type_id, $list, array('id' => 'tf2__c'));
-                                ?>
-                            </td>
-                            <td>
                                 <input id="tf3__c" type="text" name="PropValue[sort_order][]" value="<?php echo $sv->sort_order ?>" />
                             </td>
                             <td class="icons">
@@ -200,16 +176,7 @@ Yii::app()->clientScript->registerScriptFile(Yii::app()->request->baseUrl . '/js
                         <td>
                             <input id="tf1" type="text" name="PropValue[value_name][]" />
                         </td>
-                        <td>
-                            <?php
-                            $cri = new CDbCriteria(array(
-                                'condition' => 'enabled = 1'
-                            ));
-                            $ItemType = ItemType::model()->findAll($cri);
-                            $list = CHtml::listData($ItemType, 'type_id', 'name');
-                            echo CHtml::DropDownList('PropValue[type_id][]', '', $list, array('id' => 'tf2__c'));
-                            ?>
-                        </td>
+
                         <td>
                             <input id="tf3" type="text" name="PropValue[sort_order][]" />
                         </td>

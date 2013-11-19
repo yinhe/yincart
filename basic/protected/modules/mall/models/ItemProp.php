@@ -46,12 +46,12 @@ class ItemProp extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('type_id, prop_name', 'required'),
-            array('type_id, is_key_prop, is_sale_prop, is_color_prop, is_enum_prop, is_item_prop, must, multi, sort_order', 'numerical', 'integerOnly' => true),
+            array('category_id, prop_name', 'required'),
+            array('category_id, is_key_prop, is_sale_prop, is_color_prop, is_enum_prop, is_item_prop, must, multi, sort_order', 'numerical', 'integerOnly' => true),
             array('parent_prop_id, parent_value_id, type', 'length', 'max' => 10),
             array('prop_name, prop_alias', 'length', 'max' => 100),
             array('status', 'length', 'max' => 7),
-            array('type_id, prop_values', 'safe'),
+            array('category_id, prop_values', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
             array('prop_id, parent_prop_id, parent_value_id, prop_name, prop_alias, type, is_key_prop, is_sale_prop, is_color_prop, is_enum_prop, is_item_prop, must, multi, prop_values, status, sort_order', 'safe', 'on' => 'search'),
@@ -65,8 +65,8 @@ class ItemProp extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-//            'categories'=>array(self::MANY_MANY, 'Category', 'prop_category(prop_id, type_id)'),
-            'itemType' => array(self::BELONGS_TO, 'ItemType', 'type_id'),
+//            'categories'=>array(self::MANY_MANY, 'Category', 'prop_category(prop_id, category_id)'),
+            'category' => array(self::BELONGS_TO, 'Category', 'category_id'),
         );
     }
 
@@ -76,7 +76,7 @@ class ItemProp extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'prop_id' => '属性ID',
-            'type_id' => '类目',
+            'category_id' => '类目',
             'parent_prop_id' => '上级属性ID',
             'parent_value_id' => '上级属性值ID',
             'prop_name' => '属性名',
@@ -179,7 +179,7 @@ class ItemProp extends CActiveRecord {
                 $db->createCommand()->insert('{{prop_value}}', array(
                     'prop_id' => $this->prop_id,
                     'value_name' => $PropValues['value_name'][$i],
-                    'type_id' => $PropValues['type_id'][$i],
+                    'category_id' => $PropValues['category_id'][$i],
                     'sort_order' => $PropValues['sort_order'][$i],
                 ));
             }
@@ -233,6 +233,43 @@ class ItemProp extends CActiveRecord {
 
         $list = CHtml::listData($PropValues, 'value_id', 'value_name');
         echo CHtml::checkBoxList('Item[props]['. $this->prop_id.']', $selected, $list, array('label'=>$label, 'separator' => '', 'labelOptions' => array('class' => 'labelForRadio')));
+    }
+
+    /**
+     * 分类属性
+     *
+     * @param int $id 分类ID
+     * @param bool $returnAttr false则返回分类列表，true则返回该对象的分类值
+     * @param null $index 结合$returnAttr使用。如果$returnAttr为true，
+     *              若指定$index，则返回指定$index对应的值，否则返回当前对象对应的分类值
+     * @param int $level 层级
+     * @return mixed
+     */
+    public function attrCategory($id, $returnAttr = false, $index = null, $level = 1)
+    {
+        $data = array();
+        $category = Category::model()->findByPk($id);
+        $descendants = $category->descendants()->findAll();
+        foreach ($descendants as $k1 => $child) {
+            $string = '';
+            $string .= str_repeat('|--', $child->level - $level);
+            if ($child->isLeaf() && !$child->next()->find()) {
+                $string .= '|--';
+            } else {
+                $string .= '';
+            }
+            $string .= '' . $child->name;
+
+            $data[$child->id] = $string;
+        }
+        if ($returnAttr !== false) {
+            is_null($index) && $index = $this->category_id;
+            $rs = empty($data[$index]) ? null : $data[$index];
+        } else {
+            $rs = $data;
+        }
+
+        return $rs;
     }
     
 }

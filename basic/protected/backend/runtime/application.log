@@ -2342,3 +2342,623 @@ Stack trace:
 REQUEST_URI=/site-yinhe/yincart/basic/backend.php/plugin/pluginmanage/index
 HTTP_REFERER=http://localhost/site-yinhe/yincart/basic/backend.php/plugin/pluginmanage/index
 ---
+2013/11/19 00:48:42 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemTypeController.php (141)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/11/19 00:48:42 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemTypeController.php(141): CActiveRecord->__construct('search')
+#3 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemTypeController->actionAdmin()
+#4 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 E:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#13 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemType/a...')
+#14 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/backend.php/mall/itemType/admin
+HTTP_REFERER=http://basic.com/backend.php/cms/article/admin
+---
+2013/11/19 00:52:12 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\admin.php (49)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php (122)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/11/19 00:52:12 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveFinder.php(383): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveFinder.php(278): CJoinElement->__construct(Object(CActiveFinder), Object(CBelongsToRelation), Object(CJoinElement), 1)
+#4 E:\wamp\www\yii\framework\db\ar\CActiveFinder.php(48): CActiveFinder->buildJoinTree(Object(CJoinElement), 'itemType')
+#5 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(909): CActiveFinder->__construct(Object(ItemProp), 'itemType')
+#6 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(280): CActiveRecord->getActiveFinder('itemType')
+#7 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(181): CActiveRecord->getRelated('itemType')
+#8 E:\wamp\www\yii\framework\web\helpers\CHtml.php(2145): CActiveRecord->__isset('itemType')
+#9 E:\wamp\www\yii\framework\zii\widgets\grid\CDataColumn.php(139): CHtml::value(Object(ItemProp), 'itemType.name')
+#10 E:\wamp\www\yii\framework\zii\widgets\grid\CGridColumn.php(151): CDataColumn->renderDataCellContent(0, Object(ItemProp))
+#11 E:\wamp\www\yii\framework\zii\widgets\grid\CGridView.php(616): CGridColumn->renderDataCell(0)
+#12 E:\wamp\www\yii\framework\zii\widgets\grid\CGridView.php(572): CGridView->renderTableRow(0)
+#13 E:\wamp\www\yii\framework\zii\widgets\grid\CGridView.php(482): CGridView->renderTableBody()
+#14 E:\wamp\www\yii\framework\zii\widgets\CBaseListView.php(167): CGridView->renderItems()
+#15 [internal function]: CBaseListView->renderSection(Array)
+#16 E:\wamp\www\yii\framework\zii\widgets\CBaseListView.php(150): preg_replace_callback('/{(\w+)}/', Array, '{summary}?{item...')
+#17 E:\wamp\www\yii\framework\zii\widgets\CBaseListView.php(135): CBaseListView->renderContent()
+#18 E:\wamp\www\yii\framework\web\CBaseController.php(181): CBaseListView->run()
+#19 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\admin.php(49): CBaseController->widget('bootstrap.widge...', Array)
+#20 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#21 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#22 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#23 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('admin', Array, true)
+#24 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(122): CController->render('admin', Array)
+#25 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemPropController->actionAdmin()
+#26 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#27 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#28 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#29 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#30 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/a...')
+#31 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#32 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#33 {main}
+REQUEST_URI=/backend.php/mall/itemProp/admin
+HTTP_REFERER=http://basic.com/backend.php/mall/itemCategory/admin
+---
+2013/11/19 00:55:19 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php (64)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php (17)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php (80)
+2013/11/19 00:55:19 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(64): CActiveRecord->findAll(Object(CDbCriteria))
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#14 [internal function]: ItemPropController->actionUpdate('1')
+#15 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#16 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#17 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#22 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 00:56:08 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php (64)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php (17)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php (80)
+2013/11/19 00:56:08 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(64): CActiveRecord->findAll(Object(CDbCriteria))
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#14 [internal function]: ItemPropController->actionUpdate('1')
+#15 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#16 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#17 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#22 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 00:57:53 [error] [exception.CException] exception 'CException' with message 'ItemProp and its behaviors do not have a method or closure named "attrCategory".' in E:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('attrCategory', Array)
+#1 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): CActiveRecord->__call('attrCategory', Array)
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): ItemProp->attrCategory(3)
+#3 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#5 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#7 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#8 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#9 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#10 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#11 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#12 [internal function]: ItemPropController->actionUpdate('1')
+#13 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#20 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 00:59:34 [error] [exception.CException] exception 'CException' with message 'ItemProp and its behaviors do not have a method or closure named "attrCategory".' in E:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('attrCategory', Array)
+#1 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): CActiveRecord->__call('attrCategory', Array)
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): ItemProp->attrCategory(3)
+#3 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#5 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#7 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#8 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#9 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#10 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#11 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#12 [internal function]: ItemPropController->actionUpdate('1')
+#13 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#20 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 00:59:36 [error] [exception.CException] exception 'CException' with message 'ItemProp and its behaviors do not have a method or closure named "attrCategory".' in E:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('attrCategory', Array)
+#1 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): CActiveRecord->__call('attrCategory', Array)
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): ItemProp->attrCategory(3)
+#3 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#5 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#7 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#8 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#9 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#10 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#11 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#12 [internal function]: ItemPropController->actionUpdate('1')
+#13 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#20 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 00:59:37 [error] [exception.CException] exception 'CException' with message 'ItemProp and its behaviors do not have a method or closure named "attrCategory".' in E:\wamp\www\yii\framework\base\CComponent.php:266
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(227): CComponent->__call('attrCategory', Array)
+#1 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): CActiveRecord->__call('attrCategory', Array)
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(62): ItemProp->attrCategory(3)
+#3 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#4 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#5 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#6 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#7 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#8 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#9 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#10 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#11 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#12 [internal function]: ItemPropController->actionUpdate('1')
+#13 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#20 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 01:04:18 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php (176)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php (17)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php (80)
+2013/11/19 01:04:18 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(176): CActiveRecord->findAll(Object(CDbCriteria))
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#14 [internal function]: ItemPropController->actionUpdate('1')
+#15 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#16 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#17 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#22 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 01:05:22 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php (176)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php (17)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php (80)
+2013/11/19 01:05:22 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(176): CActiveRecord->findAll(Object(CDbCriteria))
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\update.php(17): CController->renderPartial('_form', Array)
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('update', Array, true)
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(80): CController->render('update', Array)
+#14 [internal function]: ItemPropController->actionUpdate('1')
+#15 E:\wamp\www\yii\framework\web\actions\CAction.php(108): ReflectionMethod->invokeArgs(Object(ItemPropController), Array)
+#16 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(47): CAction->runWithParamsInternal(Object(ItemPropController), Object(ReflectionMethod), Array)
+#17 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#18 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#19 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('update')
+#21 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/u...')
+#22 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#23 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#24 {main}
+REQUEST_URI=/backend.php/mall/itemProp/update/id/1
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 01:09:52 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php (138)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\create.php (14)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php (54)
+2013/11/19 01:09:52 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\_form.php(138): CActiveRecord->findAll(Object(CDbCriteria))
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\itemProp\create.php(14): CController->renderPartial('_form', Array)
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemPropController.php(54): CController->render('create', Array)
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemPropController->actionCreate()
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#16 E:\wamp\www\yii\framework\web\CController.php(286): CController->runAction(Object(CInlineAction))
+#17 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#18 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemProp/c...')
+#20 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#21 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#22 {main}
+REQUEST_URI=/backend.php/mall/itemProp/create
+HTTP_REFERER=http://basic.com/backend.php/mall/itemProp/admin
+---
+2013/11/19 01:12:56 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemTypeController.php (141)
+in E:\wamp\www\site-yinhe\yincart\basic\backend.php (14)
+2013/11/19 01:12:56 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(79): CActiveRecord->getMetaData()
+#2 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemTypeController.php(141): CActiveRecord->__construct('search')
+#3 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemTypeController->actionAdmin()
+#4 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#5 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#6 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#7 E:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#8 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#9 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#10 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#11 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#12 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('admin')
+#13 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/itemType/a...')
+#14 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#15 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#16 {main}
+REQUEST_URI=/backend.php/mall/itemType/admin
+HTTP_REFERER=http://basic.com/backend.php/mall/itemCategory/admin
+---
+2013/11/19 01:16:16 [error] [system.db.CDbCommand] CDbCommand::fetchAll() failed: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'yincart.item_type' doesn't exist. The SQL statement executed was: SHOW FULL COLUMNS FROM `item_type`.
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_type.php (48)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php (23)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php (14)
+2013/11/19 01:16:16 [error] [exception.CDbException] exception 'CDbException' with message '数据库中无法找到 active record class "ItemType" 对应的 table "item_type".' in E:\wamp\www\yii\framework\db\ar\CActiveRecord.php:2362
+Stack trace:
+#0 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(411): CActiveRecordMetaData->__construct(Object(ItemType))
+#1 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(658): CActiveRecord->getMetaData()
+#2 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1350): CActiveRecord->getTableSchema()
+#3 E:\wamp\www\yii\framework\db\ar\CActiveRecord.php(1470): CActiveRecord->query(Object(CDbCriteria), true)
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_type.php(48): CActiveRecord->findAll(Object(CDbCriteria))
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#7 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php(23): CController->renderPartial('_form_type', Array, true)
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#11 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#12 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php(14): CController->renderPartial('_form', Array)
+#13 E:\wamp\www\yii\framework\web\CBaseController.php(126): require('E:\wamp\www\sit...')
+#14 E:\wamp\www\yii\framework\web\CBaseController.php(95): CBaseController->renderInternal('E:\wamp\www\sit...', Array, true)
+#15 E:\wamp\www\yii\framework\web\CController.php(869): CBaseController->renderFile('E:\wamp\www\sit...', Array, true)
+#16 E:\wamp\www\yii\framework\web\CController.php(782): CController->renderPartial('create', Array, true)
+#17 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(139): CController->render('create', Array)
+#18 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionCreate()
+#19 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#20 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#21 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#22 E:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#23 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#24 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#25 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#26 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#27 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#28 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/creat...')
+#29 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#30 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#31 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 01:17:23 [error] [php] include(ItemType.php): failed to open stream: No such file or directory (E:\wamp\www\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_type.php(48): spl_autoload_call()
+#1 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#2 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#3 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php(23): ItemController->renderPartial()
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#7 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php(14): ItemController->renderPartial()
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#11 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#12 E:\wamp\www\yii\framework\web\CController.php(782): ItemController->renderPartial()
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(139): ItemController->render()
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionCreate()
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#16 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): ItemController->runAction()
+#17 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 E:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#19 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): ItemController->filterAccessControl()
+#20 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#21 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 E:\wamp\www\yii\framework\web\CController.php(265): ItemController->runActionWithFilters()
+#23 E:\wamp\www\yii\framework\web\CWebApplication.php(282): ItemController->run()
+#24 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#25 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#26 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CWebApplication->run()
+REQUEST_URI=/backend.php/mall/item/create
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_type.php (48)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php (23)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php (14)
+2013/11/19 01:26:10 [error] [php] include(ItemType.php): failed to open stream: No such file or directory (E:\wamp\www\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_type.php(48): spl_autoload_call()
+#1 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#2 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#3 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php(23): ItemController->renderPartial()
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#7 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#8 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php(14): ItemController->renderPartial()
+#9 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#10 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#11 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#12 E:\wamp\www\yii\framework\web\CController.php(782): ItemController->renderPartial()
+#13 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(144): ItemController->render()
+#14 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionCreate()
+#15 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#16 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): ItemController->runAction()
+#17 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#18 E:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#19 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): ItemController->filterAccessControl()
+#20 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#21 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#22 E:\wamp\www\yii\framework\web\CController.php(265): ItemController->runActionWithFilters()
+#23 E:\wamp\www\yii\framework\web\CWebApplication.php(282): ItemController->run()
+#24 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#25 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#26 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CWebApplication->run()
+REQUEST_URI=/backend.php/mall/item/create
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form_type.php (48)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php (23)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php (14)
+2013/11/19 05:35:43 [error] [exception.CException] exception 'CException' with message '别名 "xupload.models.XUploadForm" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:347
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(3): YiiBase::import('xupload.models....')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(354): require('E:\wamp\www\sit...')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(338): CWebApplication->createController('item/create/', Object(MallModule))
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('mall/item/creat...')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/creat...')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 05:36:19 [error] [exception.CException] exception 'CException' with message '别名 "xupload.models.XUploadForm" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:347
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(3): YiiBase::import('xupload.models....')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(354): require('E:\wamp\www\sit...')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(338): CWebApplication->createController('item/create/', Object(MallModule))
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('mall/item/creat...')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/creat...')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 05:37:17 [error] [exception.CException] exception 'CException' with message '别名 "xupload.models.XUploadForm" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:347
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(3): YiiBase::import('xupload.models....')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(354): require('E:\wamp\www\sit...')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(338): CWebApplication->createController('item/create/', Object(MallModule))
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('mall/item/creat...')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/creat...')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 05:39:12 [error] [exception.CException] exception 'CException' with message '别名 "xupload.models.XUploadForm" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:347
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(3): YiiBase::import('xupload.models....')
+#1 E:\wamp\www\yii\framework\web\CWebApplication.php(354): require('E:\wamp\www\sit...')
+#2 E:\wamp\www\yii\framework\web\CWebApplication.php(338): CWebApplication->createController('item/create/', Object(MallModule))
+#3 E:\wamp\www\yii\framework\web\CWebApplication.php(276): CWebApplication->createController('mall/item/creat...')
+#4 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/creat...')
+#5 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 05:51:38 [error] [exception.CException] exception 'CException' with message '别名 "xupload.models.XUploadForm" 是无效的. 请确定它指向一个已存在的目录或文件.' in E:\wamp\www\yii\framework\YiiBase.php:347
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(186): YiiBase::import('xupload.models....')
+#1 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionCreate()
+#2 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams(Array)
+#3 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#4 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#5 E:\wamp\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#6 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#7 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#8 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#9 E:\wamp\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#10 E:\wamp\www\yii\framework\web\CWebApplication.php(282): CController->run('create')
+#11 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('mall/item/creat...')
+#12 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#13 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CApplication->run()
+#14 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 07:36:00 [error] [php] include(TbHtml.php): failed to open stream: No such file or directory (E:\wamp\www\yii\framework\YiiBase.php:427)
+Stack trace:
+#0 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php(16): spl_autoload_call()
+#1 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#2 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#3 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#4 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php(20): ItemController->renderPartial()
+#5 E:\wamp\www\yii\framework\web\CBaseController.php(126): require()
+#6 E:\wamp\www\yii\framework\web\CBaseController.php(95): ItemController->renderInternal()
+#7 E:\wamp\www\yii\framework\web\CController.php(869): ItemController->renderFile()
+#8 E:\wamp\www\yii\framework\web\CController.php(782): ItemController->renderPartial()
+#9 E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php(275): ItemController->render()
+#10 E:\wamp\www\yii\framework\web\actions\CInlineAction.php(49): ItemController->actionCreate()
+#11 E:\wamp\www\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#12 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(133): ItemController->runAction()
+#13 E:\wamp\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#14 E:\wamp\www\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#15 E:\wamp\www\yii\framework\web\filters\CInlineFilter.php(58): ItemController->filterAccessControl()
+#16 E:\wamp\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#17 E:\wamp\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#18 E:\wamp\www\yii\framework\web\CController.php(265): ItemController->runActionWithFilters()
+#19 E:\wamp\www\yii\framework\web\CWebApplication.php(282): ItemController->run()
+#20 E:\wamp\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController()
+#21 E:\wamp\www\yii\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#22 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): CWebApplication->run()
+REQUEST_URI=/backend.php/mall/item/create
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\_form.php (16)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\views\item\create.php (20)
+in E:\wamp\www\site-yinhe\yincart\basic\protected\modules\mall\controllers\ItemController.php (275)
+2013/11/19 08:20:49 [error] [exception.CException] exception 'CException' with message '别名 "bootstrap.components.Bootstrap" 无效。请确认它指向一个存在的PHP文件。' in E:\wamp\www\yii\framework\YiiBase.php:322
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CModule.php(523): CModule->getComponent('bootstrap')
+#3 E:\wamp\www\yii\framework\base\CApplication.php(163): CModule->preloadComponents()
+#4 E:\wamp\www\yii\framework\YiiBase.php(125): CApplication->__construct(Array)
+#5 E:\wamp\www\yii\framework\YiiBase.php(98): YiiBase::createApplication('CWebApplication', Array)
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): YiiBase::createWebApplication(Array)
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 08:24:41 [error] [exception.CException] exception 'CException' with message '别名 "bootstrap.components.Bootstrap" 无效。请确认它指向一个存在的PHP文件。' in E:\wamp\www\yii\framework\YiiBase.php:322
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CModule.php(523): CModule->getComponent('bootstrap')
+#3 E:\wamp\www\yii\framework\base\CApplication.php(163): CModule->preloadComponents()
+#4 E:\wamp\www\yii\framework\YiiBase.php(125): CApplication->__construct(Array)
+#5 E:\wamp\www\yii\framework\YiiBase.php(98): YiiBase::createApplication('CWebApplication', Array)
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): YiiBase::createWebApplication(Array)
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---
+2013/11/19 08:38:21 [error] [exception.CException] exception 'CException' with message '别名 "bootstrap.components.Bootstrap" 无效。请确认它指向一个存在的PHP文件。' in E:\wamp\www\yii\framework\YiiBase.php:322
+Stack trace:
+#0 E:\wamp\www\yii\framework\YiiBase.php(196): YiiBase::import('bootstrap.compo...', true)
+#1 E:\wamp\www\yii\framework\base\CModule.php(386): YiiBase::createComponent(Array)
+#2 E:\wamp\www\yii\framework\base\CModule.php(523): CModule->getComponent('bootstrap')
+#3 E:\wamp\www\yii\framework\base\CApplication.php(163): CModule->preloadComponents()
+#4 E:\wamp\www\yii\framework\YiiBase.php(125): CApplication->__construct(Array)
+#5 E:\wamp\www\yii\framework\YiiBase.php(98): YiiBase::createApplication('CWebApplication', Array)
+#6 E:\wamp\www\site-yinhe\yincart\basic\backend.php(14): YiiBase::createWebApplication(Array)
+#7 {main}
+REQUEST_URI=/backend.php/mall/item/create
+HTTP_REFERER=http://basic.com/backend.php/mall/item/admin
+---

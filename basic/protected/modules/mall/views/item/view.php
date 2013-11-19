@@ -1,25 +1,25 @@
 <?php
 $this->breadcrumbs=array(
-	'Items'=>array('index'),
+	'商品列表'=>array('list'),
 	$model->title,
 );
 
 $this->menu=array(
-	array('label'=>'List Item', 'icon'=>'list', 'url'=>array('index')),
-	array('label'=>'Create Item', 'icon'=>'plus','url'=>array('create')),
-	array('label'=>'Update Item', 'icon'=>'pencil','url'=>array('update', 'id'=>$model->item_id)),
-	array('label'=>'Delete Item', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->item_id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Item', 'icon'=>'cog','url'=>array('admin')),
+array('label'=>'创建商品','icon'=>'plus','url'=>array('create')),
+array('label'=>'更新商品','icon'=>'pencil','url'=>array('update','id'=>$model->item_id)),
+array('label'=>'删除商品','icon'=>'trash','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->item_id),'confirm'=>'Are you sure you want to delete this item?')),
+array('label'=>'查看商品','icon'=>'cog','url'=>array('list')),
 );
 ?>
 
-<h1>View Item #<?php echo $model->item_id; ?></h1>
+<h1>查看商品 #<?php echo $model->item_id; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView', array(
-	'data'=>$model,
-	'attributes'=>array(
+<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+'data'=>$model,
+'attributes'=>array(
 		'item_id',
 		'category_id',
+		'type_id',
 		'title',
 		'sn',
 		'unit',
@@ -50,5 +50,5 @@ $this->menu=array(
 		'create_time',
 		'update_time',
 		'language',
-	),
+),
 )); ?>

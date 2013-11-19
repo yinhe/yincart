@@ -7,6 +7,7 @@ $backend = $frontend . DIRECTORY_SEPARATOR . '..';
 Yii::setPathOfAlias('backend', $backend);
 Yii::setPathOfAlias('widgets', $frontend . DIRECTORY_SEPARATOR . 'widgets');
 Yii::setPathOfAlias('bootstrap', $frontend . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'bootstrap');
+Yii::setPathOfAlias('xupload', $frontend . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'xupload');
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
@@ -27,6 +28,13 @@ return array(
         'application.modules.user.models.*',
         'application.modules.user.components.*',
         'application.modules.translate.TranslateModule'
+    ),
+    // path aliases
+    'aliases' => array(
+        // yiistrap configuration
+        'bootstrap' => realpath(__DIR__ . '/../extensions/bootstrap'), // change if necessary
+        // yiiwheels configuration
+        'yiiwheels' => realpath(__DIR__ . '/../extensions/yiiwheels'), // change if necessary
     ),
     'modules' => array(
         'comments' => array(
@@ -123,11 +131,19 @@ return array(
             'loginUrl' => array('/user/login'),
             'stateKeyPrefix' => 'front_',
         ),
+//        'bootstrap' => array(
+//            'class' => 'bootstrap.components.Bootstrap',
+//            'responsiveCss' => true,
+//            'fontAwesomeCss' => true,
+////            'enableCdn' => true,
+//        ),
+        // yiistrap configuration
         'bootstrap' => array(
-            'class' => 'bootstrap.components.Bootstrap',
-            'responsiveCss' => true,
-            'fontAwesomeCss' => true,
-//            'enableCdn' => true,
+            'class' => 'bootstrap.components.TbApi',
+        ),
+        // yiiwheels configuration
+        'yiiwheels' => array(
+            'class' => 'yiiwheels.YiiWheels',
         ),
         'cart' => array(
             'class' => 'ext.Cart',

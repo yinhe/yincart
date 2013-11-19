@@ -1,9 +1,14 @@
 <?php
 /**
  * The following variables are available in this template:
- * - $this: the BootCrudCode object
+ * - $this: the BootstrapCode object
  */
 ?>
+<?php echo "<?php\n"; ?>
+/* @var $this <?php echo $this->getControllerClass(); ?> */
+/* @var $model <?php echo $this->getModelClass(); ?> */
+<?php echo "?>\n"; ?>
+
 <?php
 echo "<?php\n";
 $nameColumn = $this->guessNameColumn($this->tableSchema->columns);
@@ -15,23 +20,26 @@ echo "\$this->breadcrumbs=array(
 ?>
 
 $this->menu=array(
-array('label'=>'List <?php echo $this->modelClass; ?>','icon'=>'list','url'=>array('index')),
-array('label'=>'Create <?php echo $this->modelClass; ?>','icon'=>'plus','url'=>array('create')),
-array('label'=>'Update <?php echo $this->modelClass; ?>','icon'=>'pencil','url'=>array('update','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>)),
-array('label'=>'Delete <?php echo $this->modelClass; ?>','icon'=>'trash','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>),'confirm'=>'Are you sure you want to delete this item?')),
-array('label'=>'Manage <?php echo $this->modelClass; ?>','icon'=>'cog','url'=>array('admin')),
+	array('label'=>'List <?php echo $this->modelClass; ?>', 'icon'=>'list', 'url'=>array('index')),
+	array('label'=>'Create <?php echo $this->modelClass; ?>', 'icon'=>'plus', 'url'=>array('create')),
+	array('label'=>'Update <?php echo $this->modelClass; ?>', 'icon'=>'pencil', 'url'=>array('update', 'id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>)),
+	array('label'=>'Delete <?php echo $this->modelClass; ?>', 'icon'=>'trash', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model-><?php echo $this->tableSchema->primaryKey; ?>),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage <?php echo $this->modelClass; ?>', 'icon'=>'cog', 'url'=>array('admin')),
 );
 ?>
 
 <h1>View <?php echo $this->modelClass . " #<?php echo \$model->{$this->tableSchema->primaryKey}; ?>"; ?></h1>
 
-<?php echo "<?php"; ?> $this->widget('bootstrap.widgets.TbDetailView',array(
-'data'=>$model,
-'attributes'=>array(
+<?php echo "<?php"; ?> $this->widget('zii.widgets.CDetailView',array(
+    'htmlOptions' => array(
+        'class' => 'table table-striped table-condensed table-hover',
+    ),
+    'data'=>$model,
+    'attributes'=>array(
 <?php
 foreach ($this->tableSchema->columns as $column) {
-	echo "\t\t'" . $column->name . "',\n";
+    echo "\t\t'" . $column->name . "',\n";
 }
 ?>
-),
+	),
 )); ?>
