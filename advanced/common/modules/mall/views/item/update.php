@@ -14,4 +14,4 @@ $this->menu=array(
 
 <h1>更新商品 <?php echo $model->item_id; ?></h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'img'=>$img)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'img'=>$img, 'upload' => $upload)); ?>

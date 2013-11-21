@@ -229,6 +229,7 @@ class ItemProp extends CActiveRecord
         ));
         $PropValues = PropValue::model()->findAll($cri);
         $list = CHtml::listData($PropValues, 'value_id', 'value_name');
+        $data = array();
         foreach ($list as $k => $v) {
             $data[$this->prop_id . ':' . $k] = $v;
         }
@@ -267,9 +268,11 @@ class ItemProp extends CActiveRecord
         }
         echo '<ul class="sku-list">';
         if ($child_type) {
-            echo CHtml::checkBoxList('Item[' . $type . '][' . $child_type . '][' . $this->prop_id . ']', $selected, $data, array('template' => '<li class="sku-item">{input}{label}</li>', 'label' => $label, 'separator' => '', 'class' => $class, 'labelOptions' => array('class' => 'labelForRadio')));
+            echo CHtml::checkBoxList('Item[' . $type . '][' . $child_type . '][' . $this->prop_id . ']', $selected, $data,
+                array('template' => '<label class="checkbox inline">{input}{label}</label>', 'label' => $label, 'separator' => '', 'class' => $class, 'labelOptions' => array('class' => 'labelForRadio')));
         } else {
-            echo CHtml::checkBoxList('Item[' . $type . '][' . $this->prop_id . ']', $selected, $data, array('template' => '<li class="sku-item">{input}{label}</li>', 'label' => $label, 'separator' => '', 'class' => $class, 'labelOptions' => array('class' => 'labelForRadio')));
+            echo CHtml::checkBoxList('Item[' . $type . '][' . $this->prop_id . ']', $selected, $data,
+                array('template' => '<label class="checkbox inline">{input}{label}</label>', 'label' => $label, 'separator' => '', 'class' => $class, 'labelOptions' => array('class' => 'labelForRadio')));
         }
         echo '</ul>';
     }
@@ -286,7 +289,7 @@ class ItemProp extends CActiveRecord
     {
         $data = array(
             'input' => '输入',
-            'optional' => '枚举',
+            'optional' => '单选',
             'multiCheck' => '多选'
         );
 
@@ -364,26 +367,10 @@ class ItemProp extends CActiveRecord
         $data = array();
         $category = Category::model()->findByPk($id);
         $descendants = $category->descendants()->findAll();
-        foreach ($descendants as $k1 => $child) {
-            $string = '';
-            $string .= str_repeat('|--', $child->level - $level);
-            if ($child->isLeaf() && !$child->next()->find()) {
-                $string .= '|--';
-            } else {
-                $string .= '';
-            }
-            $string .= '' . $child->name;
-
-            $data[$child->id] = $string;
-        }
-        if ($returnAttr !== false) {
-            is_null($index) && $index = $this->category_id;
-            $rs = empty($data[$index]) ? null : $data[$index];
-        } else {
-            $rs = $data;
-        }
-
-        return $rs;
+        $data = Category::model()->getSelectOptions($descendants);
+        if ($returnAttr && $index && isset($data[$index]))
+            $data = $data[$index];
+        return $data;
     }
 
 }

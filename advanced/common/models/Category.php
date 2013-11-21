@@ -159,9 +159,11 @@ class Category extends CActiveRecord
     public function getLabel()
     {
         if ($this->label == '1') {
-            echo '<span class="label label-info" style="margin-right:5px">New</span>';
+            return '<span class="label label-info" style="margin-right:5px">New</span>' . $this->name;
         } elseif ($this->label == '2') {
-            echo '<span class="label label-important" style="margin-right:5px">Hot!</span>';
+            return '<span class="label label-important" style="margin-right:5px">Hot!</span>' . $this->name;
+        } else {
+            return $this->name;
         }
     }
 
@@ -192,6 +194,7 @@ class Category extends CActiveRecord
     public function attrLabelHtml($returnAttr = false, $index = null)
     {
         $data = array(
+            '0' => '<span class="label label-success">None</span>',
             '1' => '<span class="label label-info">New</span>',
             '2' => '<span class="label label-important">Hot!</span>',
         );

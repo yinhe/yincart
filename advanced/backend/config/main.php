@@ -23,6 +23,7 @@ Yii::setPathOfAlias('www', $root . DIRECTORY_SEPARATOR . 'backend' . DIRECTORY_S
 Yii::setPathOfAlias('comext', $root . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'extensions');
 /* uncomment if you need to use frontend folders */
 /* Yii::setPathOfAlias('frontend', $root . DIRECTORY_SEPARATOR . 'frontend'); */
+Yii::setPathOfAlias('xupload', $root . DIRECTORY_SEPARATOR . 'common' . DIRECTORY_SEPARATOR . 'extensions' . DIRECTORY_SEPARATOR . 'xupload');
 
 
 $mainLocalFile = $backendConfigDir . DIRECTORY_SEPARATOR . 'main-local.php';
