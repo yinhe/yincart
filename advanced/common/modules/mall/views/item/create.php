@@ -11,4 +11,4 @@ $this->menu=array(
 
 <h1>添加商品</h1>
 
-<?php echo $this->renderPartial('_form', array('model'=>$model, 'img'=>$img)); ?>
+<?php echo $this->renderPartial('_form', array('model'=>$model, 'img'=>$img, 'upload' => $upload)); ?>

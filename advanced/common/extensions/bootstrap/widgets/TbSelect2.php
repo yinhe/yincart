@@ -1,10 +1,18 @@
 <?php
-/*##  TbSelect2 class file.
+/**
+ *##  TbSelect2 class file.
  *
  * @author Antonio Ramirez <antonio@clevertech.biz>
  * @copyright Copyright &copy; Clevertech 2012-
- * @license [New BSD License](http://www.opensource.org/licenses/bsd-license.php) 
- * @package bootstrap.widgets.input
+ * @license [New BSD License](http://www.opensource.org/licenses/bsd-license.php)
+ */
+
+/**
+ *## Select2 wrapper widget
+ *
+ * @see http://ivaynberg.github.io/select2/
+ *
+ * @package booster.widgets.forms.inputs
  */
 class TbSelect2 extends CInputWidget
 {
@@ -46,9 +54,11 @@ class TbSelect2 extends CInputWidget
 	 */
 	public function init()
 	{
-		if (empty($this->data) && $this->asDropDownList === true) {
-			throw new CException(Yii::t('zii', '"data" attribute cannot be blank'));
-		}
+		$this->normalizeData();
+
+		$this->normalizeOptions();
+
+		$this->addEmptyItemIfPlaceholderDefined();
 
 		$this->setDefaultWidthIfEmpty();
 	}
@@ -96,12 +106,21 @@ class TbSelect2 extends CInputWidget
 	 */
 	public function registerClientScript($id)
 	{
-		Yii::app()->bootstrap->registerAssetCss('select2.css');
-		Yii::app()->bootstrap->registerAssetJs('select2.js');
+		Yii::app()->bootstrap->registerPackage('select2');
 
 		$options = !empty($this->options) ? CJavaScript::encode($this->options) : '';
 
-		$defValue = !empty($this->val) ? ".select2('val', '$this->val')" : '';
+		if(! empty($this->val)) {
+			if(is_array($this->val)) {
+				$data = CJSON::encode($this->val);
+			} else {
+				$data = $this->val;
+			}
+
+			$defValue = ".select2('val', $data)";
+		}
+		else
+			$defValue = '';
 
 		ob_start();
 		echo "jQuery('#{$id}').select2({$options})$defValue";
@@ -114,12 +133,35 @@ class TbSelect2 extends CInputWidget
 
 	private function setDefaultWidthIfEmpty()
 	{
-		if (empty($this->options)) {
-			$this->options = array();
-		}
-
 		if (empty($this->options['width'])) {
 			$this->options['width'] = 'resolve';
 		}
+	}
+
+	private function normalizeData()
+	{
+		if (!$this->data)
+			$this->data = array();
+	}
+
+	private function addEmptyItemIfPlaceholderDefined()
+	{
+		if (!empty($this->htmlOptions['placeholder']))
+			$this->options['placeholder'] = $this->htmlOptions['placeholder'];
+
+		if (!empty($this->options['placeholder']))
+			$this->prependDataWithEmptyItem();
+	}
+
+	private function normalizeOptions()
+	{
+		if (empty($this->options)) {
+			$this->options = array();
+		}
+	}
+
+	private function prependDataWithEmptyItem()
+	{
+		$this->data[''] = '';
 	}
 }

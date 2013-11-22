@@ -426,26 +426,10 @@ class Item extends CActiveRecord
         $data = array();
         $category = Category::model()->findByPk($id);
         $descendants = $category->descendants()->findAll();
-        foreach ($descendants as $k1 => $child) {
-            $string = '';
-            $string .= str_repeat('--', $child->level - $level);
-//	    if ($child->isLeaf() && !$child->next()->find()) {
-//		$string .= '|--';
-//	    } else {
-//		$string .= '';
-//	    }
-            $string .= $child->name;
-
-            $data[$child->id] = $string;
-        }
-        if ($returnAttr !== false) {
-            is_null($index) && $index = $this->category_id;
-            $rs = empty($data[$index]) ? null : $data[$index];
-        } else {
-            $rs = $data;
-        }
-
-        return $rs;
+        $data = Category::model()->getSelectOptions($descendants);
+        if ($returnAttr && $index && isset($data[$index]))
+            $data = $data[$index];
+        return $data;
     }
 
     public function afterSave()
