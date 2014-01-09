@@ -10,6 +10,10 @@ base on yiiframework , website:yincart.com
 [![Build Status](https://secure.travis-ci.org/yinhe/yincart.png)](http://travis-ci.org/yinhe/yincart) 
 [![Dependency Status](https://www.versioneye.com/php/yinhe:yincart/dev-master/badge.png)](https://www.versioneye.com/php/yinhe:yincart/dev-master)
 
+###版本迁移进入yincart group
+
+新地址为：https://github.com/yincart
+
 ###Yincart项目结构说明
 
 * advanced为中大型项目管理结构分支，前台入口为frontend/www，后台入口为backend/www；定位于B2B2C
